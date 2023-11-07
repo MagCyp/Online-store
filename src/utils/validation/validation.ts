@@ -1,3 +1,27 @@
+export const isFirstName = {
+  required: 'First Name is a required field!',
+  pattern: {
+    value: /^[A-Za-z]{2,}$/,
+    message: 'The first name must contain at least 2 English characters',
+  },
+};
+
+export const isLastName = {
+  required: 'Last Name is a required field!',
+  pattern: {
+    value: /^[A-Za-z]{2,}$/,
+    message: 'The last name must contain at least 2 English characters',
+  },
+};
+
+export const isPhone = {
+  required: 'Phone is a required field!',
+  pattern: {
+    value: /^\+380\d{9}$/,
+    message: 'The phone number must start with +380 and contain 9 characters',
+  },
+};
+
 export const isEmail = {
   required: 'Email is a required field!',
   pattern: {
@@ -5,6 +29,7 @@ export const isEmail = {
     message: 'Please enter a valid email address',
   },
 };
+
 export const isPassword = {
   required: 'Password is a required field!',
   pattern: {
