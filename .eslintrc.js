@@ -28,6 +28,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'react'],
   rules: {
     'prefer-const': 'warn',
+    'react/react-in-jsx-scope': 'off',
     'prettier/prettier': [
       'warn',
       {

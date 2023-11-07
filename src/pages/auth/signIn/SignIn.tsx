@@ -1,8 +1,8 @@
-import React from 'react';
+import { FC } from 'react';
 
 import SignInForm from '../../../components/auth/signInForm/SignInForm';
 
-const SignIn: React.FC = () => {
+const SignIn: FC = () => {
   return (
     <div
       style={{

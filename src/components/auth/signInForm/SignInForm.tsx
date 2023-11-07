@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
 
@@ -8,7 +8,7 @@ import { isEmail, isPassword } from '../../../utils/validation/validation';
 
 import { UserData } from './types';
 
-const SignInForm: React.FC = () => {
+const SignInForm: FC = () => {
   const {
     register,
     handleSubmit,

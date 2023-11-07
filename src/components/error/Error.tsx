@@ -1,7 +1,8 @@
-import React from 'react';
+import { FC } from 'react';
+
 import { Props } from './types';
 
-const Error: React.FC<Props> = ({ message }) => {
+const Error: FC<Props> = ({ message }) => {
   return (
     <div style={{ color: 'red', paddingLeft: '10px', display: 'block' }}>
       {message}

@@ -1,8 +1,8 @@
-import React from 'react';
+import { FC } from 'react';
 
 import SignIn from './pages/auth/signIn/SignIn';
 
-const App: React.FC = () => {
+const App: FC = () => {
   return <SignIn />;
 };
 
