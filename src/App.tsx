@@ -1,7 +1,9 @@
 import React from 'react';
 
+import SignIn from './pages/auth/signIn/SignIn';
+
 const App: React.FC = () => {
-  return <div>App</div>;
+  return <SignIn />;
 };
 
 export default App;
