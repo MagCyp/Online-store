@@ -1,9 +1,12 @@
 import { FC } from 'react';
+
 import { Props } from './types';
 
-const Button: FC<Props> = ({ text, onClick, type }) => {
+import styles from './Button.module.scss';
+
+const Button: FC<Props> = ({ className, text, onClick, type }) => {
   return (
-    <button type={type} onClick={onClick}>
+    <button className={`${styles[className]}`} type={type} onClick={onClick}>
       {text}
     </button>
   );
