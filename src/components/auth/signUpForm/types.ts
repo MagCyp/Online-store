@@ -1,8 +1,13 @@
 export interface UserData {
   firstName: string;
   lastName: string;
-  phone: string;
+  phoneNumber: string;
   email: string;
   password: string;
-  repeatPassword: string;
+  repeatPassword?: string;
+}
+
+export interface CustomError {
+  data: string;
+  error: string;
 }
