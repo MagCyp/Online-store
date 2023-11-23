@@ -78,7 +78,7 @@ const SignUpForm: FC = () => {
         borderRadius: '5px',
       }}
     >
-      {isError && <Error message={typedError.data} />}
+      {isError && <Error className="default-red" message={typedError.data} />}
       <input
         type="text"
         placeholder="First Name"
@@ -90,7 +90,9 @@ const SignUpForm: FC = () => {
           width: '100%',
         }}
       />
-      {errors?.firstName && <Error message={errors.firstName.message} />}
+      {errors?.firstName && (
+        <Error className="default-red" message={errors.firstName.message} />
+      )}
       <input
         type="text"
         placeholder="Last Name"
@@ -102,7 +104,9 @@ const SignUpForm: FC = () => {
           width: '100%',
         }}
       />
-      {errors?.lastName && <Error message={errors.lastName.message} />}
+      {errors?.lastName && (
+        <Error className="default-red" message={errors.lastName.message} />
+      )}
       <input
         type="tel"
         placeholder="Phone"
@@ -115,7 +119,9 @@ const SignUpForm: FC = () => {
           width: '100%',
         }}
       />
-      {errors?.phoneNumber && <Error message={errors.phoneNumber.message} />}
+      {errors?.phoneNumber && (
+        <Error className="default-red" message={errors.phoneNumber.message} />
+      )}
       <input
         type="email"
         placeholder="Email"
@@ -127,7 +133,9 @@ const SignUpForm: FC = () => {
           width: '100%',
         }}
       />
-      {errors?.email && <Error message={errors.email.message} />}
+      {errors?.email && (
+        <Error className="default-red" message={errors.email.message} />
+      )}
       <input
         type="password"
         placeholder="Password"
@@ -139,7 +147,9 @@ const SignUpForm: FC = () => {
           width: '100%',
         }}
       />
-      {errors?.password && <Error message={errors.password.message} />}
+      {errors?.password && (
+        <Error className="default-red" message={errors.password.message} />
+      )}
       <input
         type="password"
         placeholder="Confirm Password"
@@ -155,7 +165,10 @@ const SignUpForm: FC = () => {
         }}
       />
       {errors?.repeatPassword && (
-        <Error message={errors.repeatPassword.message} />
+        <Error
+          className="default-red"
+          message={errors.repeatPassword.message}
+        />
       )}
       {isLoading ? (
         <button

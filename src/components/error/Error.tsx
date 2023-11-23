@@ -2,12 +2,10 @@ import { FC } from 'react';
 
 import { Props } from './types';
 
-const Error: FC<Props> = ({ message }) => {
-  return (
-    <div style={{ color: 'red', paddingLeft: '10px', display: 'block' }}>
-      {message}
-    </div>
-  );
+import styles from './Error.module.scss';
+
+const Error: FC<Props> = ({ className, message }) => {
+  return <div className={styles[className]}>{message}</div>;
 };
 
 export default Error;

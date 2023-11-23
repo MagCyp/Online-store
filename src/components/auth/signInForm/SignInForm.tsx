@@ -52,7 +52,9 @@ const SignInForm: FC = () => {
           width: '100%',
         }}
       />
-      {errors?.email && <Error message={errors.email.message} />}
+      {errors?.email && (
+        <Error className="default-red" message={errors.email.message} />
+      )}
       <input
         type="password"
         placeholder="Password"
@@ -64,7 +66,9 @@ const SignInForm: FC = () => {
           width: '100%',
         }}
       />
-      {errors?.password && <Error message={errors.password.message} />}
+      {errors?.password && (
+        <Error className="default-red" message={errors.password.message} />
+      )}
       <button
         type="submit"
         style={{
