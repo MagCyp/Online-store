@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import { useRegistrationUserMutation } from '../../../store/services/authApi';
+import { setUser } from '../../../store/slices/user/userSlice';
 
 import Error from '../../error/Error';
 
@@ -15,18 +16,11 @@ import {
   isPhone,
 } from '../../../utils/validation/validation';
 
+import { useAppDispatch } from '../../../hooks/redux/redux';
+
 import { CustomError, UserData } from './types';
 
 const SignUpForm: FC = () => {
-  const [
-    registrationUser,
-    { data: registrationData, isSuccess, isError, error, isLoading },
-  ] = useRegistrationUserMutation();
-
-  const navigate = useNavigate();
-
-  const typedError = error as CustomError;
-
   const {
     register,
     handleSubmit,
@@ -43,6 +37,15 @@ const SignUpForm: FC = () => {
       repeatPassword: '',
     },
   });
+  const [
+    registrationUser,
+    { data: registrationData, isSuccess, isError, error, isLoading },
+  ] = useRegistrationUserMutation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const typedError = error as CustomError;
+  const password = watch('password');
 
   const onSubmit: SubmitHandler<UserData> = async data => {
     await registrationUser(data);
@@ -51,10 +54,9 @@ const SignUpForm: FC = () => {
     }
   };
 
-  const password = watch('password');
-
   useEffect(() => {
     if (isSuccess) {
+      dispatch(setUser({ token: registrationData.jwt }));
       navigate('/');
     } else if (isError) {
       console.log(typedError.error);
