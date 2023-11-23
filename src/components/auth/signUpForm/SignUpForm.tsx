@@ -1,6 +1,9 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
+
+import { useRegistrationUserMutation } from '../../../store/services/authApi';
 
 import Error from '../../error/Error';
 
@@ -12,9 +15,18 @@ import {
   isPhone,
 } from '../../../utils/validation/validation';
 
-import { UserData } from './types';
+import { CustomError, UserData } from './types';
 
 const SignUpForm: FC = () => {
+  const [
+    registrationUser,
+    { data: registrationData, isSuccess, isError, error, isLoading },
+  ] = useRegistrationUserMutation();
+
+  const navigate = useNavigate();
+
+  const typedError = error as CustomError;
+
   const {
     register,
     handleSubmit,
@@ -25,19 +37,29 @@ const SignUpForm: FC = () => {
     values: {
       firstName: '',
       lastName: '',
-      phone: '',
+      phoneNumber: '',
       email: '',
       password: '',
       repeatPassword: '',
     },
   });
 
-  const onSubmit: SubmitHandler<UserData> = data => {
-    console.log(data);
-    reset();
+  const onSubmit: SubmitHandler<UserData> = async data => {
+    await registrationUser(data);
+    if (registrationData) {
+      reset();
+    }
   };
 
   const password = watch('password');
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate('/');
+    } else if (isError) {
+      console.log(typedError.error);
+    }
+  }, [isSuccess, isError]);
 
   return (
     <form
@@ -54,6 +76,7 @@ const SignUpForm: FC = () => {
         borderRadius: '5px',
       }}
     >
+      {isError && <Error message={typedError.data} />}
       <input
         type="text"
         placeholder="First Name"
@@ -81,7 +104,7 @@ const SignUpForm: FC = () => {
       <input
         type="tel"
         placeholder="Phone"
-        {...register('phone', isPhone)}
+        {...register('phoneNumber', isPhone)}
         inputMode="numeric"
         style={{
           padding: '10px',
@@ -90,7 +113,7 @@ const SignUpForm: FC = () => {
           width: '100%',
         }}
       />
-      {errors?.phone && <Error message={errors.phone.message} />}
+      {errors?.phoneNumber && <Error message={errors.phoneNumber.message} />}
       <input
         type="email"
         placeholder="Email"
@@ -132,20 +155,37 @@ const SignUpForm: FC = () => {
       {errors?.repeatPassword && (
         <Error message={errors.repeatPassword.message} />
       )}
-      <button
-        type="submit"
-        style={{
-          background: '#007bff',
-          color: '#fff',
-          padding: '10px 20px',
-          border: 'none',
-          borderRadius: '5px',
-          cursor: 'pointer',
-          width: '100%',
-        }}
-      >
-        Login
-      </button>
+      {isLoading ? (
+        <button
+          type="submit"
+          style={{
+            background: '#007bff',
+            color: '#fff',
+            padding: '10px 20px',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            width: '100%',
+          }}
+        >
+          Loading...
+        </button>
+      ) : (
+        <button
+          type="submit"
+          style={{
+            background: '#007bff',
+            color: '#fff',
+            padding: '10px 20px',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            width: '100%',
+          }}
+        >
+          Login
+        </button>
+      )}
     </form>
   );
 };
