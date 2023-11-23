@@ -5,7 +5,6 @@ import * as userReducers from './userReducers';
 import { UserState } from './types';
 
 const initialState: UserState = {
-  email: null,
   token: null,
 };
 
