@@ -21,16 +21,21 @@ const CustomInput: FC<TProps> = ({
   return (
     <>
       <div className={containerClass ? styles[containerClass] : ''}>
-        <label className={labelClass ? styles[labelClass] : ''} htmlFor={name}>
-          {label}:
-        </label>
+        {label && (
+          <label
+            className={labelClass ? styles[labelClass] : ''}
+            htmlFor={name}
+          >
+            {label}:
+          </label>
+        )}
         <input
           className={inputClass ? styles[inputClass] : ''}
           type={type}
           placeholder={placeholder}
           {...register}
-          name={name}
-          id={name}
+          name={name ? name : ''}
+          id={name ? name : ''}
         />
       </div>
       {errors && <Error className="default-red" message={errorsMessage} />}

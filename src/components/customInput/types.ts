@@ -8,7 +8,7 @@ export type TProps = {
   inputClass?: string;
   register?: UseFormRegisterReturn<string>;
   label?: string;
-  name: string;
+  name?: string;
   type?: HTMLInputTypeAttribute;
   placeholder: string;
   errors: FieldErrors<UserData> | undefined;
