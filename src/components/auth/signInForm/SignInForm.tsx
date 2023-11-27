@@ -1,12 +1,17 @@
-import { FC } from 'react';
-
+import { FC, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import Error from '../../error/Error';
 
+import { useAppDispatch } from '../../../hooks/redux/redux';
+
+import { useLoginUserMutation } from '../../../store/services/authApi';
+import { setUser } from '../../../store/slices/user/userSlice';
+
 import { isEmail, isPassword } from '../../../utils/validation/validation';
 
-import { UserData } from './types';
+import { CustomError, UserData } from './types';
 
 const SignInForm: FC = () => {
   const {
@@ -20,11 +25,29 @@ const SignInForm: FC = () => {
       password: '',
     },
   });
+  const [loginUser, { data: loginData, isSuccess, isError, error, isLoading }] =
+    useLoginUserMutation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<UserData> = data => {
-    console.log(data);
-    reset();
+  const typedError = error as CustomError;
+
+  const onSubmit: SubmitHandler<UserData> = async data => {
+    await loginUser(data);
+
+    if (loginData) {
+      reset();
+    }
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(setUser({ token: loginData.jwt }));
+      navigate('/');
+    } else if (isError) {
+      console.log(typedError.error);
+    }
+  }, [isSuccess, isError]);
 
   return (
     <form
@@ -41,6 +64,7 @@ const SignInForm: FC = () => {
         borderRadius: '5px',
       }}
     >
+      {isError && <Error className="default-red" message={typedError.data} />}
       <input
         type="email"
         placeholder="Email"
@@ -69,20 +93,37 @@ const SignInForm: FC = () => {
       {errors?.password && (
         <Error className="default-red" message={errors.password.message} />
       )}
-      <button
-        type="submit"
-        style={{
-          background: '#007bff',
-          color: '#fff',
-          padding: '10px 20px',
-          border: 'none',
-          borderRadius: '5px',
-          cursor: 'pointer',
-          width: '100%',
-        }}
-      >
-        Login
-      </button>
+      {isLoading ? (
+        <button
+          type="submit"
+          style={{
+            background: '#007bff',
+            color: '#fff',
+            padding: '10px 20px',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            width: '100%',
+          }}
+        >
+          Loading...
+        </button>
+      ) : (
+        <button
+          type="submit"
+          style={{
+            background: '#007bff',
+            color: '#fff',
+            padding: '10px 20px',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            width: '100%',
+          }}
+        >
+          Login
+        </button>
+      )}
     </form>
   );
 };
