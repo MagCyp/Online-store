@@ -34,6 +34,7 @@ const SignInForm: FC = () => {
 
   const onSubmit: SubmitHandler<UserData> = async data => {
     await loginUser(data);
+
     if (loginData) {
       reset();
     }
