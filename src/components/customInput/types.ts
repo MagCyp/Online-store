@@ -25,5 +25,4 @@ export type TProps = {
   name: string;
   type?: HTMLInputTypeAttribute;
   placeholder: string;
-  errorsMessage?: string | undefined;
 };
