@@ -1,9 +1,12 @@
-export interface UserData {
+export interface UserLoginData {
+  email: string;
+  password: string;
+}
+
+export interface UserRegisterData extends UserLoginData {
   firstName: string;
   lastName: string;
   phoneNumber: string;
-  email: string;
-  password: string;
   repeatPassword?: string;
 }
 
