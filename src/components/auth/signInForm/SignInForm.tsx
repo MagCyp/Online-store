@@ -1,30 +1,25 @@
 import { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { SubmitHandler } from 'react-hook-form';
 
 import Error from '../../error/Error';
+import CustomInput from '../../customInput/Input';
+import Button from '../../button/Button';
 
 import { useAppDispatch } from '../../../hooks/redux/redux';
+import { useSignInForm } from '../../../hooks/auth/useSignInForm/useSignInForm';
 
 import { useLoginUserMutation } from '../../../store/services/authApi';
 import { setUser } from '../../../store/slices/user/userSlice';
 
 import { isEmail, isPassword } from '../../../utils/validation/validation';
 
-import { CustomError, UserData } from './types';
+import { CustomError, UserLoginData } from '../../../models/models';
+
+import styles from './SignInForm.module.scss';
 
 const SignInForm: FC = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<UserData>({
-    values: {
-      email: '',
-      password: '',
-    },
-  });
+  const { errors, handleSubmit, register, reset } = useSignInForm();
   const [loginUser, { data: loginData, isSuccess, isError, error, isLoading }] =
     useLoginUserMutation();
   const dispatch = useAppDispatch();
@@ -32,7 +27,7 @@ const SignInForm: FC = () => {
 
   const typedError = error as CustomError;
 
-  const onSubmit: SubmitHandler<UserData> = async data => {
+  const onSubmit: SubmitHandler<UserLoginData> = async data => {
     await loginUser(data);
 
     if (loginData) {
@@ -53,76 +48,39 @@ const SignInForm: FC = () => {
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: '450px',
-        gap: '10px',
-        padding: '20px',
-        border: '1px solid #ccc',
-        borderRadius: '5px',
-      }}
+      className={styles['form-container']}
     >
       {isError && <Error className="default-red" message={typedError.data} />}
-      <input
+      <CustomInput
         type="email"
         placeholder="Email"
-        {...register('email', isEmail)}
-        style={{
-          padding: '10px',
-          border: '1px solid #ccc',
-          borderRadius: '5px',
-          width: '100%',
-        }}
+        register={register}
+        name="email"
+        validationSchema={isEmail}
+        containerClass="default-input"
+        inputClass="default-input"
+        labelClass="default-input"
       />
       {errors?.email && (
         <Error className="default-red" message={errors.email.message} />
       )}
-      <input
+      <CustomInput
         type="password"
         placeholder="Password"
-        {...register('password', isPassword)}
-        style={{
-          padding: '10px',
-          border: '1px solid #ccc',
-          borderRadius: '5px',
-          width: '100%',
-        }}
+        register={register}
+        name="password"
+        validationSchema={isPassword}
+        containerClass="default-input"
+        inputClass="default-input"
+        labelClass="default-input"
       />
       {errors?.password && (
         <Error className="default-red" message={errors.password.message} />
       )}
       {isLoading ? (
-        <button
-          type="submit"
-          style={{
-            background: '#007bff',
-            color: '#fff',
-            padding: '10px 20px',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer',
-            width: '100%',
-          }}
-        >
-          Loading...
-        </button>
+        <Button className="white-button" type="submit" text="Loading..." />
       ) : (
-        <button
-          type="submit"
-          style={{
-            background: '#007bff',
-            color: '#fff',
-            padding: '10px 20px',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer',
-            width: '100%',
-          }}
-        >
-          Login
-        </button>
+        <Button className="white-button" type="submit" text="Login" />
       )}
     </form>
   );

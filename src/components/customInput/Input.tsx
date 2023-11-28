@@ -1,7 +1,5 @@
 import { FC } from 'react';
 
-import Error from '../error/Error';
-
 import { TProps } from './types';
 
 import styles from './Input.module.scss';
@@ -14,32 +12,25 @@ const CustomInput: FC<TProps> = ({
   placeholder,
   register,
   name,
-  errors,
-  errorsMessage,
+  validationSchema,
   label,
 }) => {
   return (
-    <>
-      <div className={containerClass ? styles[containerClass] : ''}>
-        {label && (
-          <label
-            className={labelClass ? styles[labelClass] : ''}
-            htmlFor={name}
-          >
-            {label}:
-          </label>
-        )}
-        <input
-          className={inputClass ? styles[inputClass] : ''}
-          type={type}
-          placeholder={placeholder}
-          {...register}
-          name={name ? name : ''}
-          id={name ? name : ''}
-        />
-      </div>
-      {errors && <Error className="default-red" message={errorsMessage} />}
-    </>
+    <div className={containerClass && styles[containerClass]}>
+      {label && (
+        <label className={labelClass && styles[labelClass]} htmlFor={name}>
+          {label}:
+        </label>
+      )}
+      <input
+        className={inputClass && styles[inputClass]}
+        type={type}
+        placeholder={placeholder}
+        {...(register && register(name as any, validationSchema))}
+        name={name && name}
+        id={name && name}
+      />
+    </div>
   );
 };
 

@@ -1,12 +1,16 @@
 import { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { SubmitHandler } from 'react-hook-form';
 
-import { useForm, SubmitHandler } from 'react-hook-form';
+import Error from '../../error/Error';
+import CustomInput from '../../customInput/Input';
+import Button from '../../button/Button';
+
+import { useAppDispatch } from '../../../hooks/redux/redux';
+import { useSignUpForm } from '../../../hooks/auth/useSignUpForm/useSignUpForm';
 
 import { useRegistrationUserMutation } from '../../../store/services/authApi';
 import { setUser } from '../../../store/slices/user/userSlice';
-
-import Error from '../../error/Error';
 
 import {
   isEmail,
@@ -16,27 +20,12 @@ import {
   isPhone,
 } from '../../../utils/validation/validation';
 
-import { useAppDispatch } from '../../../hooks/redux/redux';
+import { CustomError, UserRegisterData } from '../../../models/models';
 
-import { CustomError, UserData } from './types';
+import styles from './SignUpForm.module.scss';
 
 const SignUpForm: FC = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-    watch,
-  } = useForm<UserData>({
-    values: {
-      firstName: '',
-      lastName: '',
-      phoneNumber: '',
-      email: '',
-      password: '',
-      repeatPassword: '',
-    },
-  });
+  const { errors, handleSubmit, register, reset, password } = useSignUpForm();
   const [
     registrationUser,
     { data: registrationData, isSuccess, isError, error, isLoading },
@@ -45,10 +34,10 @@ const SignUpForm: FC = () => {
   const navigate = useNavigate();
 
   const typedError = error as CustomError;
-  const password = watch('password');
 
-  const onSubmit: SubmitHandler<UserData> = async data => {
+  const onSubmit: SubmitHandler<UserRegisterData> = async data => {
     await registrationUser(data);
+
     if (registrationData) {
       reset();
     }
@@ -67,102 +56,86 @@ const SignUpForm: FC = () => {
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: '450px',
-        gap: '10px',
-        padding: '20px',
-        border: '1px solid #ccc',
-        borderRadius: '5px',
-      }}
+      className={styles['form-container']}
     >
       {isError && <Error className="default-red" message={typedError.data} />}
-      <input
+      <CustomInput
         type="text"
         placeholder="First Name"
-        {...register('firstName', isFirstName)}
-        style={{
-          padding: '10px',
-          border: '1px solid #ccc',
-          borderRadius: '5px',
-          width: '100%',
-        }}
+        register={register}
+        name="firstName"
+        validationSchema={isFirstName}
+        containerClass="default-input"
+        inputClass="default-input"
+        labelClass="default-input"
       />
       {errors?.firstName && (
         <Error className="default-red" message={errors.firstName.message} />
       )}
-      <input
+      <CustomInput
         type="text"
         placeholder="Last Name"
-        {...register('lastName', isLastName)}
-        style={{
-          padding: '10px',
-          border: '1px solid #ccc',
-          borderRadius: '5px',
-          width: '100%',
-        }}
+        register={register}
+        name="lastName"
+        validationSchema={isLastName}
+        containerClass="default-input"
+        inputClass="default-input"
+        labelClass="default-input"
       />
       {errors?.lastName && (
         <Error className="default-red" message={errors.lastName.message} />
       )}
-      <input
+      <CustomInput
         type="tel"
         placeholder="Phone"
-        {...register('phoneNumber', isPhone)}
-        inputMode="numeric"
-        style={{
-          padding: '10px',
-          border: '1px solid #ccc',
-          borderRadius: '5px',
-          width: '100%',
-        }}
+        register={register}
+        name="phoneNumber"
+        validationSchema={isPhone}
+        containerClass="default-input"
+        inputClass="default-input"
+        labelClass="default-input"
       />
       {errors?.phoneNumber && (
         <Error className="default-red" message={errors.phoneNumber.message} />
       )}
-      <input
+      <CustomInput
         type="email"
         placeholder="Email"
-        {...register('email', isEmail)}
-        style={{
-          padding: '10px',
-          border: '1px solid #ccc',
-          borderRadius: '5px',
-          width: '100%',
-        }}
+        register={register}
+        name="email"
+        validationSchema={isEmail}
+        containerClass="default-input"
+        inputClass="default-input"
+        labelClass="default-input"
       />
       {errors?.email && (
         <Error className="default-red" message={errors.email.message} />
       )}
-      <input
+      <CustomInput
         type="password"
         placeholder="Password"
-        {...register('password', isPassword)}
-        style={{
-          padding: '10px',
-          border: '1px solid #ccc',
-          borderRadius: '5px',
-          width: '100%',
-        }}
+        register={register}
+        name="password"
+        validationSchema={isPassword}
+        containerClass="default-input"
+        inputClass="default-input"
+        labelClass="default-input"
       />
       {errors?.password && (
         <Error className="default-red" message={errors.password.message} />
       )}
-      <input
+      <CustomInput
         type="password"
         placeholder="Confirm Password"
-        {...register('repeatPassword', {
+        register={register}
+        name="repeatPassword"
+        validationSchema={{
           validate: value => value === password || 'Passwords do not match',
           required: 'Passwords do not match',
-        })}
-        style={{
-          padding: '10px',
-          border: '1px solid #ccc',
-          borderRadius: '5px',
-          width: '100%',
         }}
+        containerClass="default-input"
+        inputClass="default-input"
+        labelClass="default-input"
       />
       {errors?.repeatPassword && (
         <Error
@@ -171,35 +144,9 @@ const SignUpForm: FC = () => {
         />
       )}
       {isLoading ? (
-        <button
-          type="submit"
-          style={{
-            background: '#007bff',
-            color: '#fff',
-            padding: '10px 20px',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer',
-            width: '100%',
-          }}
-        >
-          Loading...
-        </button>
+        <Button className="white-button" type="submit" text="Loading..." />
       ) : (
-        <button
-          type="submit"
-          style={{
-            background: '#007bff',
-            color: '#fff',
-            padding: '10px 20px',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer',
-            width: '100%',
-          }}
-        >
-          Login
-        </button>
+        <Button className="white-button" type="submit" text="Register" />
       )}
     </form>
   );
