@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { Props } from './types';
+import { Props } from '@components/error/types';
 
-import styles from './Error.module.scss';
+import styles from '@components/error/Error.module.scss';
 
 const Error: FC<Props> = ({ className, message }) => {
   return <div className={styles[className]}>{message}</div>;

@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 
-import { UserLoginData } from '../../../models/models';
+import { UserLoginData } from '@models/models';
 
 export const useSignInForm = () => {
   const {

@@ -1,10 +1,10 @@
 import { HTMLInputTypeAttribute } from 'react';
 import { UseFormRegister } from 'react-hook-form';
 
-import { ValidationSchema } from '../../utils/validation/types';
+import { ValidationSchema } from '@utils/validation/types';
 
-import { UserLoginData } from '../../models/models';
-import { UserRegisterData } from '../../models/models';
+import { UserLoginData } from '@models/models';
+import { UserRegisterData } from '@models/models';
 
 type CombinedRegisterType = UseFormRegister<UserLoginData | UserRegisterData>;
 

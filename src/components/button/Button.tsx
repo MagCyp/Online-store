@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { Props } from './types';
+import { Props } from '@components/button/types';
 
-import styles from './Button.module.scss';
+import styles from '@components/button/Button.module.scss';
 
 const Button: FC<Props> = ({ className, text, onClick, type }) => {
   return (

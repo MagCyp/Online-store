@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import * as userReducers from './userReducers';
+import * as userReducers from '@store/slices/user/userReducers';
 
-import { UserState } from './types';
+import { UserState } from '@store/slices/user/types';
 
 const initialState: UserState = {
   token: null,
