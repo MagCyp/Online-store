@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { TProps } from './types';
+import { TProps } from '@components/customInput/types';
 
-import styles from './Input.module.scss';
+import styles from '@components/customInput/Input.module.scss';
 
 const CustomInput: FC<TProps> = ({
   containerClass,

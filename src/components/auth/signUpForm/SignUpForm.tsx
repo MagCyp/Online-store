@@ -2,15 +2,15 @@ import { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler } from 'react-hook-form';
 
-import Error from '../../error/Error';
-import CustomInput from '../../customInput/Input';
-import Button from '../../button/Button';
+import Error from '@components/error/Error';
+import CustomInput from '@components/customInput/Input';
+import Button from '@components/button/Button';
 
-import { useAppDispatch } from '../../../hooks/redux/redux';
-import { useSignUpForm } from '../../../hooks/auth/useSignUpForm/useSignUpForm';
+import { useAppDispatch } from '@hooks/redux/redux';
+import { useSignUpForm } from '@hooks/auth/useSignUpForm/useSignUpForm';
 
-import { useRegistrationUserMutation } from '../../../store/services/authApi';
-import { setUser } from '../../../store/slices/user/userSlice';
+import { useRegistrationUserMutation } from '@store/services/authApi';
+import { setUser } from '@store/slices/user/userSlice';
 
 import {
   isEmail,
@@ -18,11 +18,11 @@ import {
   isLastName,
   isPassword,
   isPhone,
-} from '../../../utils/validation/validation';
+} from '@utils/validation/validation';
 
-import { CustomError, UserRegisterData } from '../../../models/models';
+import { CustomError, UserRegisterData } from '@models/models';
 
-import styles from './SignUpForm.module.scss';
+import styles from '@components/auth/signUpForm/SignUpForm.module.scss';
 
 const SignUpForm: FC = () => {
   const { errors, handleSubmit, register, reset, password } = useSignUpForm();

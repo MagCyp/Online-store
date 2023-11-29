@@ -2,21 +2,21 @@ import { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler } from 'react-hook-form';
 
-import Error from '../../error/Error';
-import CustomInput from '../../customInput/Input';
-import Button from '../../button/Button';
+import Error from '@components/error/Error';
+import CustomInput from '@components/customInput/Input';
+import Button from '@components/button/Button';
 
-import { useAppDispatch } from '../../../hooks/redux/redux';
-import { useSignInForm } from '../../../hooks/auth/useSignInForm/useSignInForm';
+import { useAppDispatch } from '@hooks/redux/redux';
+import { useSignInForm } from '@hooks/auth/useSignInForm/useSignInForm';
 
-import { useLoginUserMutation } from '../../../store/services/authApi';
-import { setUser } from '../../../store/slices/user/userSlice';
+import { useLoginUserMutation } from '@store/services/authApi';
+import { setUser } from '@store/slices/user/userSlice';
 
-import { isEmail, isPassword } from '../../../utils/validation/validation';
+import { isEmail, isPassword } from '@utils/validation/validation';
 
-import { CustomError, UserLoginData } from '../../../models/models';
+import { CustomError, UserLoginData } from '@models/models';
 
-import styles from './SignInForm.module.scss';
+import styles from '@components/auth/signInForm/SignInForm.module.scss';
 
 const SignInForm: FC = () => {
   const { errors, handleSubmit, register, reset } = useSignInForm();

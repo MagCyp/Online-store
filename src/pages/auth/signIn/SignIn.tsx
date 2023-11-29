@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import SignInForm from '../../../components/auth/signInForm/SignInForm';
+import SignInForm from '@components/auth/signInForm/SignInForm';
 
 const SignIn: FC = () => {
   return (
