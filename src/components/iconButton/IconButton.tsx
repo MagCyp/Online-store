@@ -2,17 +2,15 @@ import { FC } from 'react';
 
 import { generateButtonClassNames } from '@/utils/className';
 
-import { Props } from '@components/button/types';
+import { Props } from './types';
 
-import styles from '@components/button/Button.module.scss';
+import styles from './IconButton.module.scss';
 
-const Button: FC<Props> = ({
+const IconButton: FC<Props> = ({
   className,
-  text,
+  icon,
   type,
   isDisabled,
-  iconRight,
-  iconLeft,
   onClick,
 }) => {
   const buttonClassNames = generateButtonClassNames(className, styles);
@@ -24,11 +22,9 @@ const Button: FC<Props> = ({
       onClick={onClick}
       disabled={isDisabled}
     >
-      {iconLeft && iconLeft}
-      <p>{text}</p>
-      {iconRight && iconRight}
+      {icon}
     </button>
   );
 };
 
-export default Button;
+export default IconButton;

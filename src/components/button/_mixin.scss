@@ -81,19 +81,3 @@
     @include small-text;
   }
 }
-
-@mixin border-background($color) {
-  background-color: $color;
-  border: 1px solid $color;
-}
-
-@mixin text-color($color) {
-  p,
-  svg {
-    color: $color;
-  }
-}
-
-@mixin animation($ms) {
-  transition: background-color $ms ease-in-out;
-}
