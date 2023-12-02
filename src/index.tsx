@@ -6,7 +6,7 @@ import App from '@/App';
 
 import { store } from '@store/store';
 
-import '@/variables/global/_global.scss';
+import '@/variables/global/global.scss';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,

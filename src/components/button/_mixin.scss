@@ -1,0 +1,99 @@
+@import '@/variables/global/global';
+
+@mixin large-default {
+  padding: 16px 28px 16px 28px;
+  gap: 12px;
+}
+
+@mixin large-link {
+  gap: 12px;
+}
+
+@mixin large-text {
+  p {
+    @extend .bold;
+    @extend .l;
+  }
+}
+
+@mixin medium-default {
+  padding: 10px 18px 10px 18px;
+  gap: 8px;
+}
+
+@mixin medium-link {
+  gap: 8px;
+}
+
+@mixin medium-text {
+  p {
+    @extend .bolt;
+    @extend .m;
+  }
+}
+
+@mixin small-default {
+  padding: 8px 14px 8px 14px;
+  gap: 8px;
+}
+
+@mixin small-link {
+  gap: 8px;
+}
+
+@mixin small-text {
+  p {
+    @extend .medium;
+    @extend .s;
+  }
+}
+
+@mixin default-sizes {
+  &.large {
+    @include large-default;
+    @include large-text;
+  }
+
+  &.medium {
+    @include medium-default;
+    @include large-text;
+  }
+
+  &.small {
+    @include small-default;
+    @include small-text;
+  }
+}
+
+@mixin link-sizes {
+  &.large {
+    @include large-link;
+    @include large-text;
+  }
+
+  &.medium {
+    @include medium-link;
+    @include large-text;
+  }
+
+  &.small {
+    @include small-link;
+    @include small-text;
+  }
+}
+
+@mixin border-background($color) {
+  background-color: $color;
+  border: 1px solid $color;
+}
+
+@mixin text-color($color) {
+  p,
+  svg {
+    color: $color;
+  }
+}
+
+@mixin animation($ms) {
+  transition: background-color $ms ease-in-out;
+}
