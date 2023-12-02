@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import { sizes, Props } from '@components/icons/types';
 
 const SocialIcon: FC<Props> = ({ size }) => {

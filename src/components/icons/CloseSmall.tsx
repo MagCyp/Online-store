@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import { sizes, Props } from '@components/icons/types';
 
 const CloseSmall: FC<Props> = ({ size }) => {
