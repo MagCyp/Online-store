@@ -1,9 +1,97 @@
-.white-button {
-  width: 100%;
-  height: 44px;
-  padding: 10px 40px 10px 10px;
-  background-color: #fff;
-  font-weight: 500;
-  font-size: 16px;
-  border: 1px solid #ddd;
+@import '@/variables/colors/colors';
+@import './mixin';
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+}
+
+.primary {
+  @include text-color($gray-500);
+  @include border-background($green-500);
+  @include default-sizes;
+  @include animation(60ms);
+
+  &:hover {
+    @include border-background($green-400);
+    @include animation(60ms);
+  }
+
+  &:active:enabled {
+    @include animation(60ms);
+    box-shadow: 0px 0px 28px 0px #9cb94b70;
+    transition: box-shadow 150ms ease-in-out;
+  }
+
+  &:disabled {
+    @include text-color($gray-300);
+    @include border-background($gray-200);
+  }
+}
+
+.secondary {
+  @include text-color($gray-10);
+  @include default-sizes;
+  @include animation(60ms);
+  border: 1px solid $gray-200;
+  background-color: transparent;
+
+  &:hover {
+    @include text-color($gray-500);
+    @include animation(60ms);
+    background-color: $white;
+    border-color: 1px solid $gray-500;
+  }
+
+  &:active:enabled {
+    @include border-background($gray-50);
+    @include text-color($gray-500);
+    @include animation(60ms);
+  }
+
+  &:disabled {
+    @include text-color($gray-200);
+    border: 1px solid $gray-200;
+    background-color: transparent;
+  }
+}
+
+.link-color {
+  @include text-color($green-500);
+  @include link-sizes;
+  border: transparent;
+  background-color: transparent;
+
+  &:hover {
+    @include text-color($green-300);
+  }
+
+  &:active:enabled {
+    @include text-color($green-700);
+  }
+
+  &:disabled {
+    @include text-color($gray-200);
+  }
+}
+
+.link-gray {
+  @include text-color($gray-10);
+  @include link-sizes;
+  border: transparent;
+  background-color: transparent;
+
+  &:hover {
+    @include text-color($gray-50);
+  }
+
+  &:active:enabled {
+    @include text-color($gray-100);
+  }
+  
+  &:disabled {
+    @include text-color($gray-200);
+  }
 }

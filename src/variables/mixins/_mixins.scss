@@ -4,13 +4,11 @@
 @mixin font-families-monument {
   &.regular {
     font-weight: 400;
-    color: $gray-10;
     font-family: 'monument-regular', sans-serif;
   }
 
   &.bold {
     font-weight: 800;
-    color: $gray-10;
     font-family: 'monument-bold', sans-serif;
   }
 }
@@ -18,19 +16,16 @@
 @mixin font-families-helvetica {
   &.regular {
     font-weight: 400;
-    color: $gray-10;
     font-family: 'helvetica-regular', sans-serif;
   }
 
   &.medium {
     font-weight: 500;
-    color: $gray-10;
     font-family: 'helvetica-medium', sans-serif;
   }
 
   &.bold {
     font-weight: 700;
-    color: $gray-10;
     font-family: 'helvetica-bold', sans-serif;
   }
 }
