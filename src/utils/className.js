@@ -1,4 +1,4 @@
-export const generateButtonClassNames = (classNames, styles) => {
+export const generateClassNames = (classNames, styles) => {
   return Array.isArray(classNames)
     ? classNames.map(name => styles[name]).join(' ')
     : classNames
