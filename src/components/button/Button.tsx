@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { generateButtonClassNames } from '@/utils/className';
+import { generateClassNames } from '@/utils/className';
 
 import { Props } from '@components/button/types';
 
@@ -15,7 +15,7 @@ const Button: FC<Props> = ({
   iconLeft,
   onClick,
 }) => {
-  const buttonClassNames = generateButtonClassNames(className, styles);
+  const buttonClassNames = generateClassNames(className, styles);
 
   return (
     <button

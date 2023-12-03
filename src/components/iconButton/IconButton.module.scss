@@ -1,6 +1,6 @@
 @import '@/variables/colors/colors';
 @import '@/variables/mixins/utilities';
-@import './mixin';
+@import '@/components/iconButton/mixin';
 
 .primary {
   @include text-color($gray-500);
