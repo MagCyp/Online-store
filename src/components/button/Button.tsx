@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { generateClassNames } from '@/utils/className';
+import { generateClassNames } from '@/utils/generateClassNames/className';
 
 import { Props } from '@components/button/types';
 
