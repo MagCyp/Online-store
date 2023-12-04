@@ -1,0 +1,41 @@
+@import '@/variables/colors/colors';
+@import '@/variables/global/global';
+
+@mixin sizes {
+  &.small {
+    padding: 2px 8px;
+    @extend .xs;
+  }
+
+  &.medium {
+    padding: 2px 10px;
+    @extend .s;
+  }
+
+  &.large {
+    padding: 4px 12px;
+    @extend .s;
+  }
+}
+
+@mixin colors {
+  &.gray {
+    background-color: $gray-500;
+    color: $gray-25;
+  }
+
+  &.primary {
+    background-color: $green-500;
+    color: $gray-500;
+  }
+
+  &.error {
+    background-color: $error-100;
+    color: $error-700;
+  }
+
+  &.warning {
+    background-color: $warning-100;
+    color: $warning-700;
+  }
+}
