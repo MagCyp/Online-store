@@ -2,11 +2,11 @@
 @import '@/components/badge/mixin';
 @import '@/variables/global/global';
 
-.badge{
-    @include sizes;
-    @include colors;
-    @extend .medium;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.badge {
+  @include sizes;
+  @include colors;
+  @extend .medium;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
