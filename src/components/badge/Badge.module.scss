@@ -1,6 +1,5 @@
-@import '@/variables/mixins/utilities';
+@use '@/variables/fonts/fontFamiliesHelvetica';
 @import '@/components/badge/mixin';
-@import '@/variables/global/global';
 
 .badge {
   @include sizes;

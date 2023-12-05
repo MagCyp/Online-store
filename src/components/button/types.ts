@@ -8,4 +8,5 @@ export type Props = {
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
   onClick?: () => void;
+  href?: string;
 };

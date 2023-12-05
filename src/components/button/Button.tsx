@@ -14,6 +14,7 @@ const Button: FC<Props> = ({
   iconRight,
   iconLeft,
   onClick,
+  href,
 }) => {
   const buttonClassNames = generateClassNames(className, styles);
 
@@ -25,7 +26,7 @@ const Button: FC<Props> = ({
       disabled={isDisabled}
     >
       {iconLeft && iconLeft}
-      <p>{text}</p>
+      <a href={href && href}>{text}</a>
       {iconRight && iconRight}
     </button>
   );

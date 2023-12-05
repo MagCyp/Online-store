@@ -1,3 +1,5 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
 @import '@/variables/global/global';
 
 @mixin large-default {
@@ -10,7 +12,7 @@
 }
 
 @mixin large-text {
-  p {
+  a {
     @extend .bold;
     @extend .l;
   }
@@ -26,7 +28,7 @@
 }
 
 @mixin medium-text {
-  p {
+  a {
     @extend .bolt;
     @extend .m;
   }
@@ -42,7 +44,7 @@
 }
 
 @mixin small-text {
-  p {
+  a {
     @extend .medium;
     @extend .s;
   }

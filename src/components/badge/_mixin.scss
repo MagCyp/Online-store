@@ -1,5 +1,5 @@
+@use '@/variables/fonts/paragraphSizes';
 @import '@/variables/colors/colors';
-@import '@/variables/global/global';
 
 @mixin sizes {
   &.small {
