@@ -1,6 +1,93 @@
-.default-input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+@import '@/variables/colors/colors';
+@import '@/variables/fonts/fonts';
+
+.input {
+  font-weight: 400;
+  font-family: 'helvetica-regular', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: $gray-10;
+  padding: 32px 42px 12px 14px;
   width: 100%;
+  height: 68px;
+  border: none;
+  outline: none;
+  position: relative;
+  background-color: inherit;
+  border-bottom: 1px solid $gray-100;
+
+  &:focus + label,
+  &.has-text + label {
+    font-weight: 500;
+    font-family: 'helvetica-medium', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: $gray-10;
+    left: 0;
+    top: 0;
+  }
+
+  &:disabled + label {
+    cursor: not-allowed;
+    font-weight: 400;
+    font-family: 'helvetica-regular', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    color: $gray-200;
+  }
+}
+
+label {
+  position: absolute;
+  left: 15px;
+  bottom: 12px;
+  pointer-events: none;
+  transition: 0.3s ease all;
+  font-weight: 400;
+  font-family: 'helvetica-regular', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: $gray-100;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+
+  .icon-left {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    bottom: 14px;
+    left: 14px;
+  }
+
+  .icon-right {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    bottom: 14px;
+    right: 14px;
+  }
+}
+
+.with-left-icon {
+  left: 42px;
+}
+
+.with-icon {
+  &:valid,
+  &:invalid,
+  &:focus {
+    padding-left: 40px;
+  }
+}
+
+.error-border {
+  border-bottom: 1px solid $error-400;
 }

@@ -1,47 +1,39 @@
 import { FC, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { SubmitHandler } from 'react-hook-form';
 
 import Error from '@components/error/Error';
 import CustomInput from '@components/customInput/Input';
 import Button from '@components/button/Button';
 
-import { useAppDispatch } from '@hooks/redux/redux';
-import { useSignUpForm } from '@hooks/auth/useSignUpForm/useSignUpForm';
+import useCustomRegister from '@/hooks/auth/useSubmitRegister/useSubmitRegister';
 
-import { useRegistrationUserMutation } from '@store/services/authApi';
 import { setUser } from '@store/slices/user/userSlice';
-
-import {
-  isEmail,
-  isFirstName,
-  isLastName,
-  isPassword,
-  isPhone,
-} from '@utils/validation/validation';
-
-import { CustomError, UserRegisterData } from '@models/models';
 
 import styles from '@components/auth/signUpForm/SignUpForm.module.scss';
 
 const SignUpForm: FC = () => {
-  const { errors, handleSubmit, register, reset, password } = useSignUpForm();
-  const [
-    registrationUser,
-    { data: registrationData, isSuccess, isError, error, isLoading },
-  ] = useRegistrationUserMutation();
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  const typedError = error as CustomError;
-
-  const onSubmit: SubmitHandler<UserRegisterData> = async data => {
-    await registrationUser(data);
-
-    if (registrationData) {
-      reset();
-    }
-  };
+  const {
+    authState,
+    dispatch,
+    emailError,
+    isError,
+    isLoading,
+    isSuccess,
+    onChangeEmail,
+    onChangePassword,
+    onSubmit,
+    passwordError,
+    registrationData,
+    typedError,
+    firstNameError,
+    lastNameError,
+    phoneError,
+    repeatPasswordError,
+    onChangeFirstName,
+    onChangeLastName,
+    onChangePhone,
+    onChangeRepeatPassword,
+    navigate,
+  } = useCustomRegister();
 
   useEffect(() => {
     if (isSuccess) {
@@ -53,100 +45,68 @@ const SignUpForm: FC = () => {
   }, [isSuccess, isError]);
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      noValidate
-      className={styles['form-container']}
-    >
+    <form onSubmit={onSubmit} noValidate className={styles['form-container']}>
       {isError && <Error className="default-red" message={typedError.data} />}
       <CustomInput
+        error={firstNameError}
         type="text"
-        placeholder="First Name"
-        register={register}
-        name="firstName"
-        validationSchema={isFirstName}
-        containerClass="default-input"
-        inputClass="default-input"
-        labelClass="default-input"
+        label="First name"
+        value={authState.firstName}
+        onChange={onChangeFirstName}
       />
-      {errors?.firstName && (
-        <Error className="default-red" message={errors.firstName.message} />
+      {firstNameError && (
+        <Error className="default-red" message={firstNameError} />
       )}
       <CustomInput
+        error={lastNameError}
         type="text"
-        placeholder="Last Name"
-        register={register}
-        name="lastName"
-        validationSchema={isLastName}
-        containerClass="default-input"
-        inputClass="default-input"
-        labelClass="default-input"
+        label="Last name"
+        value={authState.lastName}
+        onChange={onChangeLastName}
       />
-      {errors?.lastName && (
-        <Error className="default-red" message={errors.lastName.message} />
+      {lastNameError && (
+        <Error className="default-red" message={lastNameError} />
       )}
       <CustomInput
+        error={phoneError}
         type="tel"
-        placeholder="Phone"
-        register={register}
-        name="phoneNumber"
-        validationSchema={isPhone}
-        containerClass="default-input"
-        inputClass="default-input"
-        labelClass="default-input"
+        label="Phone number"
+        value={authState.phoneNumber}
+        onChange={onChangePhone}
       />
-      {errors?.phoneNumber && (
-        <Error className="default-red" message={errors.phoneNumber.message} />
-      )}
+      {phoneError && <Error className="default-red" message={phoneError} />}
       <CustomInput
+        error={emailError}
         type="email"
-        placeholder="Email"
-        register={register}
-        name="email"
-        validationSchema={isEmail}
-        containerClass="default-input"
-        inputClass="default-input"
-        labelClass="default-input"
+        label="Email address"
+        value={authState.email}
+        onChange={onChangeEmail}
       />
-      {errors?.email && (
-        <Error className="default-red" message={errors.email.message} />
+      {emailError && <Error className="default-red" message={emailError} />}
+      <CustomInput
+        error={passwordError}
+        type="password"
+        label="Password"
+        value={authState.password}
+        onChange={onChangePassword}
+      />
+      {passwordError && (
+        <Error className="default-red" message={passwordError} />
       )}
       <CustomInput
+        error={repeatPasswordError}
         type="password"
-        placeholder="Password"
-        register={register}
-        name="password"
-        validationSchema={isPassword}
-        containerClass="default-input"
-        inputClass="default-input"
-        labelClass="default-input"
+        label="Confirm password"
+        value={authState.repeatPassword}
+        onChange={onChangeRepeatPassword}
       />
-      {errors?.password && (
-        <Error className="default-red" message={errors.password.message} />
-      )}
-      <CustomInput
-        type="password"
-        placeholder="Confirm Password"
-        register={register}
-        name="repeatPassword"
-        validationSchema={{
-          validate: value => value === password || 'Passwords do not match',
-          required: 'Passwords do not match',
-        }}
-        containerClass="default-input"
-        inputClass="default-input"
-        labelClass="default-input"
-      />
-      {errors?.repeatPassword && (
-        <Error
-          className="default-red"
-          message={errors.repeatPassword.message}
-        />
+      {repeatPasswordError && (
+        <Error className="default-red" message={repeatPasswordError} />
       )}
       {isLoading ? (
-        <Button className="white-button" type="submit" text="Loading..." />
+        <Button className="primary medium" type="submit" text="Loading..." />
       ) : (
-        <Button className="white-button" type="submit" text="Register" />
+        <Button className="primary medium" type="submit" text="Register" />
       )}
     </form>
   );
