@@ -83,6 +83,7 @@ const useCustomRegister = () => {
           phoneNumber: '',
           repeatPassword: '',
         };
+
         dispatch(setRegister(clearData));
       }
     }

@@ -53,6 +53,7 @@ const useCustomLogin = () => {
   const handleEmail = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const error = validateEmail(value);
+
     dispatch(setLogin({ ...authState, email: value }));
 
     if (formSubmitted) {
@@ -63,6 +64,7 @@ const useCustomLogin = () => {
   const handlePassword = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const error = validatePassword(value);
+
     dispatch(setLogin({ ...authState, password: value }));
 
     if (formSubmitted) {

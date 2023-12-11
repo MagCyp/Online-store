@@ -11,7 +11,8 @@ const CustomInput: FC<Props> = ({
   iconRight,
   iconButtonLeft,
   iconButtonRight,
-  className,
+  leftIconClassname,
+  rightIconClassname,
   value,
   onChange,
   label,
@@ -36,7 +37,7 @@ const CustomInput: FC<Props> = ({
             <IconButton
               icon={iconButtonLeft}
               type="button"
-              className={className ? className : ''}
+              className={leftIconClassname ? leftIconClassname : ''}
             />
           )}
         </div>
@@ -54,7 +55,7 @@ const CustomInput: FC<Props> = ({
             <IconButton
               icon={iconButtonRight}
               type="button"
-              className={className ? className : ''}
+              className={rightIconClassname ? rightIconClassname : ''}
             />
           )}
         </div>
