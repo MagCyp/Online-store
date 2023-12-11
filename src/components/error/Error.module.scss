@@ -1,5 +1,7 @@
+@import '@/variables/colors/colors';
+
 .default-red {
-  color: red;
-  padding-left: 10px;
+  color: $error-400;
+  margin-top: 8px;
   display: block;
 }

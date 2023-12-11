@@ -1,35 +1,65 @@
 import { FC } from 'react';
 
-import { TProps } from '@components/customInput/types';
+import IconButton from '@components/iconButton/IconButton';
+
+import { Props } from '@components/customInput/types';
 
 import styles from '@components/customInput/Input.module.scss';
 
-const CustomInput: FC<TProps> = ({
-  containerClass,
-  labelClass,
-  inputClass,
-  type,
-  placeholder,
-  register,
-  name,
-  validationSchema,
+const CustomInput: FC<Props> = ({
+  iconLeft,
+  iconRight,
+  iconButtonLeft,
+  iconButtonRight,
+  leftIconClassname,
+  rightIconClassname,
+  value,
+  onChange,
   label,
+  type,
+  error,
 }) => {
+  const inputClassNames = `${styles['input']} ${
+    value !== '' ? styles['has-text'] : ''
+  } ${iconLeft || iconButtonLeft ? styles['with-icon'] : ''} ${
+    error ? styles['error-border'] : ''
+  }`;
+  const labelClassNames = `${value !== '' ? styles['label-focused'] : ''} ${
+    iconLeft || iconButtonLeft ? styles['with-left-icon'] : ''
+  }`;
+
   return (
-    <div className={containerClass && styles[containerClass]}>
-      {label && (
-        <label className={labelClass && styles[labelClass]} htmlFor={name}>
-          {label}:
-        </label>
-      )}
-      <input
-        className={inputClass && styles[inputClass]}
-        type={type}
-        placeholder={placeholder}
-        {...(register && register(name as any, validationSchema))}
-        name={name && name}
-        id={name && name}
-      />
+    <div className={styles['input-wrapper']}>
+      <div className={styles['input-container']}>
+        <div className={styles['icon-left']}>
+          {iconLeft && iconLeft}
+          {iconButtonLeft && (
+            <IconButton
+              icon={iconButtonLeft}
+              type="button"
+              className={leftIconClassname ? leftIconClassname : ''}
+            />
+          )}
+        </div>
+        <input
+          className={inputClassNames}
+          type={type}
+          value={value}
+          onChange={onChange}
+          required
+        />
+        <label className={labelClassNames}>{label}</label>
+        <div className={styles['icon-right']}>
+          {iconRight && iconRight}
+          {iconButtonRight && (
+            <IconButton
+              icon={iconButtonRight}
+              type="button"
+              className={rightIconClassname ? rightIconClassname : ''}
+            />
+          )}
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,21 +1,15 @@
-import { HTMLInputTypeAttribute } from 'react';
-import { UseFormRegister } from 'react-hook-form';
+import { ReactNode, HTMLInputTypeAttribute } from 'react';
 
-import { ValidationSchema } from '@utils/validation/types';
-
-import { UserLoginData } from '@models/models';
-import { UserRegisterData } from '@models/models';
-
-type CombinedRegisterType = UseFormRegister<UserLoginData | UserRegisterData>;
-
-export type TProps = {
-  containerClass?: string;
-  labelClass?: string;
-  inputClass?: string;
-  register?: CombinedRegisterType | undefined;
-  validationSchema: ValidationSchema;
+export type Props = {
   label?: string;
-  name: string;
-  type?: HTMLInputTypeAttribute;
-  placeholder: string;
+  type: HTMLInputTypeAttribute;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  iconRight?: ReactNode;
+  iconLeft?: ReactNode;
+  iconButtonLeft?: ReactNode;
+  iconButtonRight?: ReactNode;
+  rightIconClassname?: string;
+  leftIconClassname?: string;
+  error?: string;
 };
