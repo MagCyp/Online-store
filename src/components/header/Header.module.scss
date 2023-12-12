@@ -9,7 +9,6 @@
   padding: 0px 400px;
   justify-content: space-between;
   align-items: center;
-  background-color: $gray-500;
   color: $gray-10;
   height: 64px;
   z-index: 9999;
@@ -51,7 +50,7 @@
     color: $gray-600;
     box-shadow: 0px 4px 16px 0px rgba(91, 98, 115, 0.1);
   }
-  
+
   & > * {
     @extend .regular;
     @extend .xxs;
