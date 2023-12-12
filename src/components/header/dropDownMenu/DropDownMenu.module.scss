@@ -1,0 +1,48 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.menu {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+
+  p {
+    @extend .medium;
+    @extend .s;
+  }
+}
+
+.dropdown-menu {
+  display: flex;
+  align-items: flex-start;
+  position: absolute;
+  background-color: $gray-500;
+  top: 100%;
+  padding: 32px;
+  gap: 32px;
+  width: 816px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transform: translate(-50%, -20px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.menu:hover .dropdown-menu {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.container {
+  width: 360px;
+  
+  > * {
+    height: 80px;
+  }
+}

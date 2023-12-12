@@ -38,4 +38,9 @@
     background-color: $warning-100;
     color: $warning-700;
   }
+  
+  &.success {
+    background-color: $success-100;
+    color: $success-700;
+  }
 }
