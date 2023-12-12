@@ -9,7 +9,9 @@ export type Props = {
   iconLeft?: ReactNode;
   iconButtonLeft?: ReactNode;
   iconButtonRight?: ReactNode;
-  rightIconClassname?: string;
-  leftIconClassname?: string;
+  rightIconClassName?: string;
+  leftIconClassName?: string;
+  leftIconButtonClick?: () => void;
+  rightIconButtonClick?: () => void;
   error?: string;
 };

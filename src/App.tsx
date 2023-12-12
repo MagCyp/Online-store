@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
 import { setUser } from '@store/slices/user/userSlice';
 
+import Header from './components/header/Header';
 import SignIn from '@pages/auth/signIn/SignIn';
 import SignUp from '@pages/auth/signUp/SignUp';
 import Home from '@pages/home/Home';
@@ -24,6 +25,7 @@ const App: FC = () => {
 
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/" element={<Home />} />
