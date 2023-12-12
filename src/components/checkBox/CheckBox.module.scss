@@ -1,0 +1,143 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+$check-mark-green-small: "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cg clip-path='url(%23clip0_847_7395)'%3E%3Cpath d='M2.5 6L5 8.5L10 3.5' stroke='%23B2FE02' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_847_7395'%3E%3Crect width='12' height='12' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E";
+$check-mark-green-large: "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cg clip-path='url(%23clip0_847_7407)'%3E%3Cpath d='M2.91699 6.99998L5.83366 9.91665L11.667 4.08331' stroke='%23B2FE02' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_847_7407'%3E%3Crect width='14' height='14' fill='%23fff'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E";
+$check-mark-gray-small: "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M10 3L4.5 8.5L2 6' stroke='%23454548' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E";
+$check-mark-gray-large:"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23fff' d='M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z'/%3E%3C/svg%3E";
+
+.checkbox-container-small {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+
+  .checkbox {
+    border-radius: 4px;
+    appearance: none;
+    border: 1px solid $gray-50;
+    width: 16px;
+    height: 16px;
+  
+    &:hover {
+      border: 1px solid $green-500;
+      background-color: $gray-400;
+    }
+
+    &:focus:active {
+      border: 1px solid $green-200;
+      box-shadow: 0px 0px 28px 0px $checkbox-shadow;
+    }
+
+    &:disabled{
+      border: 1px solid $gray-300;
+      background-color: $gray-400;
+    }
+  
+    &:checked {
+      background: url($check-mark-green-small) no-repeat center center;
+      border: 1px solid $green-500;
+      background-color: $gray-400;
+
+      &:focus:active {
+        box-shadow: 0px 0px 28px 0px $checkbox-shadow;
+      }
+
+      &:disabled {
+        background: url($check-mark-gray-small) no-repeat center center;
+        border: 1px solid $gray-300;
+      }
+    }
+  }
+  
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1 0 0;
+  }
+
+  .label {
+    @extend .medium;
+    @extend .s;
+    color: $gray-10;
+  }
+
+  .supporting-text {
+    @extend .regular;
+    @extend .s;
+    color: $gray-100;
+  }
+}
+
+.checkbox-container-large{
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  
+  .checkbox {
+    border-radius: 6px;
+    appearance: none;
+    border: 1px solid $gray-50;
+    width: 20px;
+    height: 20px;
+  
+    &:hover {
+      border: 1px solid $green-500;
+      background-color: $gray-400;
+    }
+
+    &:focus:active {
+      border: 1px solid $green-200;
+      box-shadow: 0px 0px 28px 0px $checkbox-shadow;
+      background-color: transparent !important;
+    }
+
+    &:disabled{
+      border: 1px solid $gray-400;
+      background-color: $gray-300;
+    }
+  
+    &:checked {
+      background: url($check-mark-green-large) no-repeat center center;
+      border: 1px solid $green-500;
+      background-color: $gray-400;
+
+      &:focus:active {
+        box-shadow: 0px 0px 28px 0px $checkbox-shadow;
+      }
+
+      &:disabled {
+        background: url($check-mark-gray-large) no-repeat center center;
+        border: 1px solid $gray-300;
+      }
+    }
+  }
+  
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    flex: 1 0 0;
+  }
+
+  .label {
+    @extend .medium;
+    @extend .m;
+    color: $gray-10;
+  }
+
+  .supporting-text {
+    @extend .regular;
+    @extend .m;
+    color: $gray-100;
+  }
+}
+
+.checkbox-container {
+  display: flex;
+  padding-top: 2px;
+  justify-content: center;
+  align-items: center;
+}

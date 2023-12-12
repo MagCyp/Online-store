@@ -51,7 +51,9 @@ const CustomInput: FC<Props> = ({
           onChange={onChange}
           required
         />
-        <label className={labelClassNames}>{label}</label>
+        <label className={`${labelClassNames} ${styles['label']}`}>
+          {label}
+        </label>
         <div className={styles['icon-right']}>
           {iconRight && iconRight}
           {iconButtonRight && (
