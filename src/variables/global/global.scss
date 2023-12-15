@@ -1,3 +1,4 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
 @import '@/variables/mixins/mixinsFont';
 @import '@/variables/colors/colors';
 
@@ -64,6 +65,7 @@ h5 {
 }
 
 h6 {
+  @extend .bold;
   font-size: 22px;
   line-height: 32px;
 }
