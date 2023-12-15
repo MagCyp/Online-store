@@ -1,20 +1,19 @@
 import { FC, useState } from 'react';
 import ReactSlider from 'react-slider';
 
-import { Props } from '@/components/rangeSlider/types';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
+
+import { setPriceRange } from '@/store/slices/catalog/catalogSlice';
 
 import styles from '@components/rangeSlider/RangeSlider.module.scss';
 
-const PriceRangeSlider: FC<Props> = ({
-  min,
-  max,
-  priceRange,
-  setPriceRange,
-}) => {
+const RangeSlider: FC = () => {
+  const dispatch = useAppDispatch();
+  const { min, max, priceRange } = useAppSelector(state => state.catalog);
   const [input, setInput] = useState<number[]>([min, max]);
 
   const handleSliderChange = (val: number[]) => {
-    setPriceRange(val);
+    dispatch(setPriceRange(val));
     setInput(val);
   };
 
@@ -54,7 +53,7 @@ const PriceRangeSlider: FC<Props> = ({
     const newPriceRange = [...priceRange];
     newPriceRange[index] = newValue;
 
-    setPriceRange(newPriceRange);
+    dispatch(setPriceRange(newPriceRange));
     setInput(newPriceRange);
   };
 
@@ -106,4 +105,4 @@ const PriceRangeSlider: FC<Props> = ({
   );
 };
 
-export default PriceRangeSlider;
+export default RangeSlider;

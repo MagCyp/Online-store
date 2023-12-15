@@ -5,12 +5,14 @@ import { authApi } from '@store/services/authApi';
 import userSlice from '@store/slices/user/userSlice';
 import loginSlice from '@store/slices/auth/login/loginSlice';
 import registerSlice from '@/store/slices/auth/register/registerSlice';
+import catalogSlice from '@store/slices/catalog/catalogSlice';
 
 export const store = configureStore({
   reducer: {
     user: userSlice,
     login: loginSlice,
     register: registerSlice,
+    catalog: catalogSlice,
     [authApi.reducerPath]: authApi.reducer,
   },
   middleware: getDefaultMiddleware =>

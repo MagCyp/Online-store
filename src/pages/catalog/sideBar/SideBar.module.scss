@@ -1,0 +1,13 @@
+@import '@/variables/colors/colors';
+
+.sidebar-container {
+    display: flex;
+    flex-direction: column;
+    width: 198px;
+    gap: 32px;
+    align-items: flex-start;
+    
+  * {
+    color: $gray-10;
+  }
+}
