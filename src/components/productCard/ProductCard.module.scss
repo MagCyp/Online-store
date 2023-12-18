@@ -1,0 +1,80 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  width: 256px;
+}
+
+.image-container {
+  position: relative;
+
+  .top-label {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+  }
+
+  .top-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+
+  .bottom-label {
+    position: absolute;
+    left: 8px;
+    bottom: 8px;
+  }
+
+  img {
+    width: 256px;
+    height: 256px;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  align-self: stretch;
+
+  .brand {
+    @extend .regular;
+    @extend .s;
+    color: $gray-100;
+  }
+
+  .product-name {
+    @extend .bold;
+    @extend .l;
+    color: $gray-10;
+  }
+
+  .short-description {
+    @extend .regular;
+    @extend .s;
+    color: $gray-50;
+  }
+
+  .price-container {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+
+    .price {
+      color: $gray-10;
+    }
+
+    .sale-price {
+      @extend .regular;
+      color: $gray-100;
+      text-decoration: line-through;
+    }
+  }
+}
