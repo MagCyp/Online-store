@@ -6,6 +6,8 @@ import { UserState } from '@store/slices/user/types';
 
 const initialState: UserState = {
   token: null,
+  favorites: [],
+  cart: [],
 };
 
 const userSlice = createSlice({
@@ -14,5 +16,5 @@ const userSlice = createSlice({
   reducers: userReducers,
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, setFavorites, setCart } = userSlice.actions;
 export default userSlice.reducer;

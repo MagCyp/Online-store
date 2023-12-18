@@ -15,12 +15,14 @@ const Button: FC<Props> = ({
   iconLeft,
   onClick,
   href,
+  isVisible,
 }) => {
   const buttonClassNames = generateClassNames(className, styles);
 
   return (
     <button
       className={buttonClassNames}
+      style={{ visibility: isVisible ? 'visible' : 'hidden' }}
       type={type}
       onClick={onClick}
       disabled={isDisabled}
