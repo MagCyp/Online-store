@@ -31,3 +31,10 @@ export const setSelected = (
     state.selectedList.push(itemToAdd);
   }
 };
+
+export const setSortBy = (
+  state: CatalogState,
+  action: PayloadAction<string>,
+) => {
+  state.sortBy = action.payload;
+};

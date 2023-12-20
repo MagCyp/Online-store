@@ -1,11 +1,12 @@
 import { FC, useState } from 'react';
 
-import IconButton from '@/components/iconButton/IconButton';
+import IconButton from '@components/iconButton/IconButton';
 import ArrowDown from '@components/icons/ArrowDown';
+import ArrowUp from '@components/icons/ArrowUp';
 
-import { Props } from '@/components/dropDown/types';
+import { Props } from '@components/dropDown/types';
 
-import styles from '@/components/dropDown/DropDown.module.scss';
+import styles from '@components/dropDown/DropDown.module.scss';
 
 const DropDown: FC<Props> = ({ header, children }) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -17,7 +18,9 @@ const DropDown: FC<Props> = ({ header, children }) => {
         <IconButton
           className="link-gray"
           type="button"
-          icon={<ArrowDown size="small" />}
+          icon={
+            !isVisible ? <ArrowDown size="small" /> : <ArrowUp size="small" />
+          }
           onClick={() => setIsVisible(!isVisible)}
         />
       </div>
