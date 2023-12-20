@@ -1,9 +1,10 @@
 import React from 'react';
-import ProductCard from '@/components/productCard/ProductCard';
+
+import ProductCard from '@components/productCard/ProductCard';
 
 import { Props } from '@pages/catalog/productList/types';
 
-import styles from '@/pages/catalog/productList/ProductList.module.scss';
+import styles from '@pages/catalog/productList/ProductList.module.scss';
 
 const ProductList: React.FC<Props> = ({ products }) => {
   const chunkSize = 3;
