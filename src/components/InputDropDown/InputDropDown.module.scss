@@ -55,6 +55,10 @@
     gap: 12px;
     cursor: pointer;
 
+    &:hover{
+      background-color: $gray-400;
+    }
+
     p {
       @extend .medium;
       @extend .s;
