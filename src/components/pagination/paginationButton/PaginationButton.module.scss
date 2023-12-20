@@ -1,0 +1,31 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.button {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  border-radius: 8px;
+  background-color: transparent;
+  color: $gray-50;
+  @extend .medium;
+  @extend .s;
+
+  &:hover:not([disabled]) {
+    @extend .hover;
+  }
+
+  &:focus:not([disabled]):active {
+    background-color: $gray-400;
+    box-shadow: 0px 0px 0px 4px $pagination-button-shadow;
+  }
+
+  &.hover {
+    background-color: $gray-400;
+    color: $green-600;
+  }
+}

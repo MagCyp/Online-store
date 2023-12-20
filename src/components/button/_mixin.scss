@@ -29,7 +29,7 @@
 
 @mixin medium-text {
   a {
-    @extend .bolt;
+    @extend .bold;
     @extend .m;
   }
 }
@@ -58,7 +58,7 @@
 
   &.medium {
     @include medium-default;
-    @include large-text;
+    @include medium-text;
   }
 
   &.small {
@@ -75,7 +75,7 @@
 
   &.medium {
     @include medium-link;
-    @include large-text;
+    @include medium-text;
   }
 
   &.small {
