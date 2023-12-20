@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  width: 832px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pages {
+  display: flex;
+  align-items: flex-start;
+  gap: 2px;
+}
