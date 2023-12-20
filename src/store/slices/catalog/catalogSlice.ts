@@ -8,6 +8,7 @@ const initialState: CatalogState = {
   max: 100,
   priceRange: [0, 100],
   selectedList: [],
+  sortBy: 'New',
 };
 
 const catalogSlice = createSlice({
@@ -16,5 +17,6 @@ const catalogSlice = createSlice({
   reducers: catalogReducers,
 });
 
-export const { setPriceRange, setMinMax, setSelected } = catalogSlice.actions;
+export const { setPriceRange, setMinMax, setSelected, setSortBy } =
+  catalogSlice.actions;
 export default catalogSlice.reducer;

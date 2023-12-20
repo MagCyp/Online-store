@@ -3,4 +3,5 @@ export interface CatalogState {
   max: number;
   priceRange: number[];
   selectedList: number[];
+  sortBy: string;
 }

@@ -1,0 +1,64 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.container {
+  display: flex;
+  gap: 28px;
+  position: relative;
+  width: auto;  
+
+  .header {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+
+    .header-text {
+      @extend .bold;
+      @extend .l;
+      transition: color 0.3s;
+
+      &.hidden {
+        color: $gray-10;
+      }
+
+      &.visible {
+        color: $gray-100;
+      }
+    }
+
+    &:hover {
+      .hidden {
+        color: $gray-100;
+      }
+    }
+  }
+}
+
+.item-list {
+  background-color: $gray-500;
+  border: 1px solid $gray-400;
+  // box-shadow: 0px 0px 32px 0px $item-list-shadow;
+  padding: 16px 0px;
+  flex-direction: column;
+  z-index: 2;
+  position: absolute;
+  top: calc(100% + 28px);
+  right: 0;
+  width: 220px;
+
+  .item {
+    display: flex;
+    padding: 16px 24px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+
+    p {
+      @extend .medium;
+      @extend .s;
+      color: $gray-10;
+    }
+  }
+}
