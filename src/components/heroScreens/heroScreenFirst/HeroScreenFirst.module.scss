@@ -1,0 +1,57 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+
+@import '@/variables/colors/colors';
+
+.bg-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background-image: linear-gradient(
+      rgba(20, 21, 19, 0.65),
+      rgba(20, 21, 19, 0.65)
+    ),
+    url('../../../assets/images/hero-screen-bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.content-wrapper {
+  padding: 244px 0 180px 0;
+  color: $gray-10;
+}
+
+.title {
+  margin-bottom: 40px;
+}
+
+.slider {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 56px;
+  padding-top: 56px;
+  border-top: 1px solid $gray-10;
+}
+
+.discount-content {
+  max-width: 282px;
+}
+
+.discount-title {
+  @extend .bold;
+  @extend .m;
+}
+
+.description {
+  margin-top: 8px;
+  width: 282px;
+  @extend .regular;
+  @extend .s;
+}
+
+.buttons-container {
+  display: flex;
+  height: 56px;
+  gap: 32px;
+  margin: 8px 0;
+}

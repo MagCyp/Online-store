@@ -3,11 +3,12 @@
 @import '@/variables/colors/colors';
 
 .header {
-  position: relative;
+  position: absolute;
   display: flex;
   width: 100%;
   padding: 0px 400px;
   justify-content: space-between;
+  background-color: transparent;
   align-items: center;
   color: $gray-10;
   height: 64px;

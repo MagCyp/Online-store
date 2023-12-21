@@ -1,0 +1,108 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+
+@import '@/variables/colors/colors';
+
+.bg-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url('../../../assets/images/hero-screen-second-bg.png');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.container {
+  margin: 213px 0 180px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.img-container {
+  width: 552px;
+  height: 394px;
+  img {
+    width: 552px;
+    height: 394px;
+  }
+}
+
+.limited-edition-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 444px;
+  padding-top: 19px;
+}
+
+.text-container {
+  margin-bottom: 40px;
+}
+
+.limited-description {
+  @extend .medium;
+  @extend .m;
+  color: var(--Green-200, #efffc9);
+  margin-bottom: 8px;
+}
+
+.title {
+  color: $gray-10;
+  margin-bottom: 8px;
+}
+
+.prices {
+  color: $gray-10;
+}
+
+.offer-container {
+  margin-bottom: 30px;
+}
+
+.offer-description {
+  @extend .regular;
+  @extend .m;
+  color: $gray-10;
+  margin-bottom: 12px;
+}
+
+.timer-container {
+  display: flex;
+}
+
+.timer-clock {
+  h6 {
+    @extend .medium;
+    color: $gray-500;
+  }
+  margin-right: 12px;
+  margin-bottom: 6px;
+  background-color: $gray-10;
+  text-align: center;
+  align-items: center;
+  height: 52px;
+  width: 52px;
+  display: flex;
+  justify-content: center;
+}
+
+.timer-item {
+  p {
+    @extend .xs;
+    @extend .regular;
+    color: $gray-100;
+  }
+  margin-right: 12px;
+  margin-bottom: 40px;
+  text-align: center;
+  align-items: center;
+  height: 24px;
+  width: 52px;
+  display: flex;
+  justify-content: center;
+}
+
+.buttons-container {
+  margin-left: auto;
+  display: flex;
+  gap: 32px;
+}
