@@ -4,7 +4,7 @@ import Error from '@components/error/Error';
 import CustomInput from '@components/customInput/Input';
 import Button from '@components/button/Button';
 
-import useCustomLogin from '@/hooks/auth/useSubmitLogin/useSubmitLogin';
+import useCustomLogin from '@hooks/auth/useSubmitLogin/useSubmitLogin';
 
 import { setUser } from '@store/slices/user/userSlice';
 

@@ -89,7 +89,7 @@ const ProductCard: FC<Props> = ({
         type="button"
         text="Add to cart"
         className="secondary medium"
-        isVisible={isHovered}
+        isHidden={!isHovered}
         onClick={() => dispatch(setCart(id))}
       />
     </div>

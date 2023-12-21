@@ -1,10 +1,10 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
+import { useAppDispatch, useAppSelector } from '@hooks/redux/redux';
 
 import { useRegistrationUserMutation } from '@store/services/authApi';
-import { setRegister } from '@/store/slices/auth/register/registerSlice';
+import { setRegister } from '@store/slices/auth/register/registerSlice';
 
 import {
   validateEmail,
@@ -15,8 +15,8 @@ import {
   validateRepeatPassword,
 } from '@utils/validation/validation';
 
-import { RegisterState } from '@/store/slices/auth/register/types';
-import { CustomError } from '@/models/models';
+import { RegisterState } from '@store/slices/auth/register/types';
+import { CustomError } from '@models/models';
 
 const useCustomRegister = () => {
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);

@@ -5,7 +5,7 @@ export type Props = {
   text: string;
   type: 'button' | 'submit' | 'reset' | undefined;
   isDisabled?: boolean;
-  isVisible?: boolean;
+  isHidden?: boolean;
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
   onClick?: () => void;

@@ -4,7 +4,7 @@ import Error from '@components/error/Error';
 import CustomInput from '@components/customInput/Input';
 import Button from '@components/button/Button';
 
-import useCustomRegister from '@/hooks/auth/useSubmitRegister/useSubmitRegister';
+import useCustomRegister from '@hooks/auth/useSubmitRegister/useSubmitRegister';
 
 import { setUser } from '@store/slices/user/userSlice';
 

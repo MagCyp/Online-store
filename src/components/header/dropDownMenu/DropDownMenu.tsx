@@ -1,14 +1,14 @@
 import { FC, useState } from 'react';
 
-import DropDownItem from '@/components/header/dropDownItem/DropDownItem';
-import Keyboard from '@/components/icons/Keyboard';
-import Mice from '@/components/icons/Mice';
-import Headsets from '@/components/icons/Headsets';
-import MouseMats from '@/components/icons/MouseMats';
-import Joysticks from '@/components/icons/Joysticks';
-import Chair from '@/components/icons/Chair';
+import DropDownItem from '@components/header/dropDownItem/DropDownItem';
+import Keyboard from '@components/icons/Keyboard';
+import Mice from '@components/icons/Mice';
+import Headsets from '@components/icons/Headsets';
+import MouseMats from '@components/icons/MouseMats';
+import Joysticks from '@components/icons/Joysticks';
+import Chair from '@components/icons/Chair';
 
-import styles from '@/components/header/dropDownMenu/DropDownMenu.module.scss';
+import styles from '@components/header/dropDownMenu/DropDownMenu.module.scss';
 
 const items = [
   {

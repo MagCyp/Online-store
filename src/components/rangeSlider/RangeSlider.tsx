@@ -1,9 +1,9 @@
 import { FC, useState } from 'react';
 import ReactSlider from 'react-slider';
 
-import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
+import { useAppDispatch, useAppSelector } from '@hooks/redux/redux';
 
-import { setPriceRange } from '@/store/slices/catalog/catalogSlice';
+import { setPriceRange } from '@store/slices/catalog/catalogSlice';
 
 import styles from '@components/rangeSlider/RangeSlider.module.scss';
 

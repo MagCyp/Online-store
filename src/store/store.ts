@@ -4,7 +4,7 @@ import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { authApi } from '@store/services/authApi';
 import userSlice from '@store/slices/user/userSlice';
 import loginSlice from '@store/slices/auth/login/loginSlice';
-import registerSlice from '@/store/slices/auth/register/registerSlice';
+import registerSlice from '@store/slices/auth/register/registerSlice';
 import catalogSlice from '@store/slices/catalog/catalogSlice';
 
 export const store = configureStore({

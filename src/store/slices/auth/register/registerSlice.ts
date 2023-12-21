@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import * as authReducers from '@/store/slices/auth/register/registerReducer';
+import * as authReducers from '@store/slices/auth/register/registerReducer';
 
 import { RegisterState } from '@store/slices/auth/register/types';
 

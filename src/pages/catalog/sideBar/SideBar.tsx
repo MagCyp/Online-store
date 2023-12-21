@@ -1,14 +1,14 @@
 import { FC } from 'react';
 
-import RangeSlider from '@/components/rangeSlider/RangeSlider';
-import DropDown from '@/components/dropDown/DropDown';
-import CheckBox from '@/components/checkBox/CheckBox';
+import RangeSlider from '@components/rangeSlider/RangeSlider';
+import DropDown from '@components/dropDown/DropDown';
+import CheckBox from '@components/checkBox/CheckBox';
 
-import { useAppDispatch } from '@/hooks/redux/redux';
+import { useAppDispatch } from '@hooks/redux/redux';
 
-import { setSelected } from '@/store/slices/catalog/catalogSlice';
+import { setSelected } from '@store/slices/catalog/catalogSlice';
 
-import styles from '@/pages/catalog/sideBar/SideBar.module.scss';
+import styles from '@pages/catalog/sideBar/SideBar.module.scss';
 
 const options = [
   {

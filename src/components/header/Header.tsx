@@ -1,17 +1,17 @@
 import { FC, useState } from 'react';
 
-import DropDownMenu from '@/components/header/dropDownMenu/DropDownMenu';
-import DropDownSearch from '@/components/header/dropDownSearch/DropDownSearch';
-import Button from '@/components/button/Button';
-import IconButton from '@/components/iconButton/IconButton';
-import Search from '@/components/icons/Search';
-import UserCircle from '@/components/icons/UserCircle';
-import HeartOpacity from '@/components/icons/HeartOpacity';
-import ShoppingBag from '@/components/icons/ShoppingBag';
+import DropDownMenu from '@components/header/dropDownMenu/DropDownMenu';
+import DropDownSearch from '@components/header/dropDownSearch/DropDownSearch';
+import Button from '@components/button/Button';
+import IconButton from '@components/iconButton/IconButton';
+import Search from '@components/icons/Search';
+import UserCircle from '@components/icons/UserCircle';
+import HeartOpacity from '@components/icons/HeartOpacity';
+import ShoppingBag from '@components/icons/ShoppingBag';
 
-import { restrictNumberToString } from '@/utils/NumberString/restrictNumberToString';
+import { restrictNumberToString } from '@utils/NumberString/restrictNumberToString';
 
-import styles from '@/components/header/Header.module.scss';
+import styles from '@components/header/Header.module.scss';
 
 const Header: FC = () => {
   const [isVisibleSearch, setVisibleSearch] = useState<boolean>(false);

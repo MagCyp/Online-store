@@ -1,10 +1,10 @@
 import { FC } from 'react';
 
-import { generateClassNames } from '@/utils/generateClassNames/className';
+import { generateClassNames } from '@utils/generateClassNames/className';
 
-import { Props } from './types';
+import { Props } from '@components/iconButton/types';
 
-import styles from './IconButton.module.scss';
+import styles from '@components/iconButton/IconButton.module.scss';
 
 const IconButton: FC<Props> = ({
   className,
