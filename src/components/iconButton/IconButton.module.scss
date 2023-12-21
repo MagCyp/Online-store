@@ -106,25 +106,25 @@
 
 .fill {
   @include background-animation(150ms);
-  @include text-color($gray-500);
-  background-color: $gray-10;
+  @include text-color($gray-10);
+  background-color: $default-background-color;
   border-radius: 100px;
   border: 0px solid transparent;
   padding: 8px;
 
   &:hover {
     @include background-animation(150ms);
-    background-color: $gray-50;
+    background-color: $hover-background-color;
   }
 
   &:active:enabled {
     @include background-animation(150ms);
-    background-color: $gray-10;
+    background-color: $focused-background-color;
   }
 
   &:disabled {
     @include text-color($gray-200);
-    background-color: $gray-300;
+    background-color: $disabled-background-color;
   }
 }
 

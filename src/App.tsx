@@ -3,11 +3,11 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
 import { setUser } from '@store/slices/user/userSlice';
 
-import Header from '@/components/header/Header';
+import Header from '@components/header/Header';
 import SignIn from '@pages/auth/signIn/SignIn';
 import SignUp from '@pages/auth/signUp/SignUp';
 import Home from '@pages/home/Home';
-import Catalog from '@/pages/catalog/Catalog';
+import Catalog from '@pages/catalog/Catalog';
 
 import PrivateRoute from '@utils/privateRoute/PrivateRoute';
 

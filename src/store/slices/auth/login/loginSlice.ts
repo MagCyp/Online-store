@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import * as loginReducers from '@/store/slices/auth/login/loginReducer';
+import * as loginReducers from '@store/slices/auth/login/loginReducer';
 
 import { LoginState } from '@store/slices/auth/login/types';
 

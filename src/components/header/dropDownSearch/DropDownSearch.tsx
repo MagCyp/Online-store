@@ -1,13 +1,13 @@
 import { FC, useState } from 'react';
 
-import Search from '@/components/icons/Search';
-import CloseBig from '@/components/icons/CloseBig';
+import Search from '@components/icons/Search';
+import CloseBig from '@components/icons/CloseBig';
 import DropDownItem from '@components/header/dropDownItem/DropDownItem';
-import CustomInput from '@/components/customInput/Input';
+import CustomInput from '@components/customInput/Input';
 
-import { Props } from '@/components/header/dropDownSearch/types';
+import { Props } from '@components/header/dropDownSearch/types';
 
-import styles from '@/components/header/dropDownSearch/DropDownSearch.module.scss';
+import styles from '@components/header/dropDownSearch/DropDownSearch.module.scss';
 
 const items = [
   {

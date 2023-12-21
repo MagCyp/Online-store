@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { generateClassNames } from '@/utils/generateClassNames/className';
+import { generateClassNames } from '@utils/generateClassNames/className';
 
 import { Props } from '@components/button/types';
 
@@ -15,14 +15,14 @@ const Button: FC<Props> = ({
   iconLeft,
   onClick,
   href,
-  isVisible,
+  isHidden,
 }) => {
   const buttonClassNames = generateClassNames(className, styles);
 
   return (
     <button
       className={buttonClassNames}
-      style={{ visibility: isVisible ? 'visible' : 'hidden' }}
+      style={{ visibility: isHidden ? 'hidden' : 'visible' }}
       type={type}
       onClick={onClick}
       disabled={isDisabled}

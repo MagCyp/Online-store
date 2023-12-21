@@ -9,8 +9,6 @@ import { Props } from '@components/pagination/types';
 
 import styles from '@components/pagination/Pagination.module.scss';
 
-
-
 const Pagination: FC<Props> = ({ pages, currentPage, setCurrentPage }) => {
   const pageNumbers = Array.from({ length: pages }, (_, index) => index + 1);
 
@@ -52,7 +50,6 @@ const Pagination: FC<Props> = ({ pages, currentPage, setCurrentPage }) => {
         type="button"
         className="link-gray small"
         text="Previous"
-        isVisible
         onClick={() => changePage(true, false)}
       />
       <div className={styles['pages']}>
@@ -70,7 +67,6 @@ const Pagination: FC<Props> = ({ pages, currentPage, setCurrentPage }) => {
         type="button"
         className="link-gray small"
         text="Next"
-        isVisible
         onClick={() => changePage(false, true)}
       />
     </div>

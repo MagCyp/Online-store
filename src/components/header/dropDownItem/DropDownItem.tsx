@@ -1,12 +1,12 @@
 import { FC } from 'react';
 
-import ArrowRightUp from '@/components/icons/ArrowRightUp';
-import Badge from '@/components/badge/Badge';
-import Search from '@/components/icons/Search';
+import ArrowRightUp from '@components/icons/ArrowRightUp';
+import Badge from '@components/badge/Badge';
+import Search from '@components/icons/Search';
 
-import { Props } from './types';
+import { Props } from '@components/header/dropDownItem/types';
 
-import styles from '@/components/header/dropDownItem/DropDownItem.module.scss';
+import styles from '@components/header/dropDownItem/DropDownItem.module.scss';
 
 const DropDownItem: FC<Props> = ({ icon, text, href, isNew, listItem }) => {
   return (

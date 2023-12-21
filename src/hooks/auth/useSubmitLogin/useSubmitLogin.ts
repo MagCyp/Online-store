@@ -1,15 +1,15 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
+import { useAppDispatch, useAppSelector } from '@hooks/redux/redux';
 
 import { useLoginUserMutation } from '@store/services/authApi';
-import { setLogin } from '@/store/slices/auth/login/loginSlice';
+import { setLogin } from '@store/slices/auth/login/loginSlice';
 
 import { validateEmail, validatePassword } from '@utils/validation/validation';
 
-import { LoginState } from '@/store/slices/auth/login/types';
-import { CustomError } from '@/models/models';
+import { LoginState } from '@store/slices/auth/login/types';
+import { CustomError } from '@models/models';
 
 const useCustomLogin = () => {
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
