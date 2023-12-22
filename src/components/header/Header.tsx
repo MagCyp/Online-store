@@ -8,11 +8,11 @@ import Search from '@components/icons/Search';
 import UserCircle from '@components/icons/UserCircle';
 import HeartOpacity from '@components/icons/HeartOpacity';
 import ShoppingBag from '@components/icons/ShoppingBag';
+import Container from '@components/container/Container';
 
 import { restrictNumberToString } from '@utils/NumberString/restrictNumberToString';
 
 import styles from '@components/header/Header.module.scss';
-import Container from '../container/Container';
 
 const Header: FC = () => {
   const [isVisibleSearch, setVisibleSearch] = useState<boolean>(false);
