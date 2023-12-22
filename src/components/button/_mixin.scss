@@ -11,7 +11,7 @@
 }
 
 @mixin large-text {
-  a {
+  * {
     @extend .bold;
     @extend .l;
   }
@@ -27,7 +27,7 @@
 }
 
 @mixin medium-text {
-  a {
+  * {
     @extend .bold;
     @extend .m;
   }
@@ -43,7 +43,7 @@
 }
 
 @mixin small-text {
-  a {
+  * {
     @extend .medium;
     @extend .s;
   }
