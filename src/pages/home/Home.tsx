@@ -1,7 +1,39 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
+
+import HeroScreenFirst from '@components/heroScreens/heroScreenFirst/HeroScreenFirst';
+import HeroScreenSecond from '@components/heroScreens/heroScreenSecond/HeroScreenSecond';
 
 const Home: FC = () => {
-  return <div>Home</div>;
+  const [isLeftButtonClicked, setIsLeftButtonClicked] =
+    useState<boolean>(false);
+  const [isRightButtonClicked, setIsRightButtonClicked] =
+    useState<boolean>(false);
+
+  const handleLeftButtonClick = () => {
+    setIsLeftButtonClicked(!isLeftButtonClicked);
+    setIsRightButtonClicked(false);
+  };
+
+  const handleRightButtonClick = () => {
+    setIsRightButtonClicked(!isRightButtonClicked);
+    setIsLeftButtonClicked(false);
+  };
+
+  return (
+    <div>
+      {!isLeftButtonClicked && !isRightButtonClicked ? (
+        <HeroScreenFirst
+          onLeftButtonClick={handleLeftButtonClick}
+          onRightButtonClick={handleRightButtonClick}
+        />
+      ) : (
+        <HeroScreenSecond
+          onLeftButtonClick={handleLeftButtonClick}
+          onRightButtonClick={handleRightButtonClick}
+        />
+      )}
+    </div>
+  );
 };
 
 export default Home;
