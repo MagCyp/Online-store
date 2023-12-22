@@ -31,7 +31,7 @@ const App: FC = () => {
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/" element={<Home />} />
         </Route>
-        <Route path="/catalog" element={<Catalog />} />
+        <Route path="/catalog/:category" element={<Catalog />} />
         <Route
           path="/login"
           element={auth ? <Navigate to="/" /> : <SignIn />}

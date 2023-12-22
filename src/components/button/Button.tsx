@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import { generateClassNames } from '@utils/generateClassNames/className';
 
@@ -28,7 +29,7 @@ const Button: FC<Props> = ({
       disabled={isDisabled}
     >
       {iconLeft && iconLeft}
-      <a href={href && href}>{text}</a>
+      {href ? <Link to={href}>{text}</Link> : <p>{text}</p>}
       {iconRight && iconRight}
     </button>
   );
