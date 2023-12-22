@@ -17,7 +17,7 @@ const list: Record<string, string> = {
   gamingChairs: 'Gaming chairs',
 };
 
-const BreadCrumb: FC<Props> = ({ category, name }) => {
+const Breadcrumb: FC<Props> = ({ category, name }) => {
   const convertCategory = (category: string): string => {
     if (category in list) {
       return list[category];
@@ -51,4 +51,4 @@ const BreadCrumb: FC<Props> = ({ category, name }) => {
   );
 };
 
-export default BreadCrumb;
+export default Breadcrumb;
