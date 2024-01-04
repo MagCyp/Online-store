@@ -10,7 +10,7 @@ import { setSortBy } from '@store/slices/catalog/catalogSlice';
 
 import { Props } from '@components/inputDropDown/types';
 
-import styles from '@components/InputDropDown/inputDropDown.module.scss';
+import styles from '@components/inputDropDown/InputDropDown.module.scss';
 
 const InputDropDow: FC<Props> = ({ options, sort }) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
