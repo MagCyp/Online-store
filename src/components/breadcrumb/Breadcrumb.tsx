@@ -9,12 +9,12 @@ import { Props } from '@components/breadcrumb/types';
 import styles from '@components/breadcrumb/Breadcrumb.module.scss';
 
 const list: Record<string, string> = {
-  mice: 'Mouse',
-  mouseMats: 'Mouse mats',
-  keyboards: 'Keyboard',
-  joysticks: 'Joystick and controller',
-  headsets: 'Headsets',
-  gamingChairs: 'Gaming chairs',
+  Mouse: 'Mouse',
+  'Mouse Pad': 'Mouse mats',
+  Keyboard: 'Keyboard',
+  Joystick: 'Joystick and controller',
+  Headset: 'Headsets',
+  'Gaming Chairs': 'Gaming chairs',
 };
 
 const Breadcrumb: FC<Props> = ({ category, name }) => {
