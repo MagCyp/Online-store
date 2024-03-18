@@ -8,9 +8,9 @@ import { useAppDispatch, useAppSelector } from '@hooks/redux/redux';
 
 import { setSortBy } from '@store/slices/catalog/catalogSlice';
 
-import { Props } from '@components/InputDropDown/types';
+import { Props } from '@components/inputDropDown/types';
 
-import styles from '@components/InputDropDown/InputDropDown.module.scss';
+import styles from '@components/inputDropDown/InputDropDown.module.scss';
 
 const InputDropDow: FC<Props> = ({ options, sort }) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
