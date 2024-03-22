@@ -13,37 +13,37 @@ import styles from '@components/header/dropDownMenu/DropDownMenu.module.scss';
 const items = [
   {
     text: 'Mice',
-    href: 'catalog/mice',
+    href: 'catalog/Mouse',
     icon: <Mice size="medium" />,
     isNew: true,
   },
   {
     text: 'Keyboards',
-    href: 'catalog/keyboards',
+    href: 'catalog/Keyboard',
     icon: <Keyboard size="medium" />,
     isNew: false,
   },
   {
     text: 'Headsets',
-    href: 'catalog/headsets',
+    href: 'catalog/Headset',
     icon: <Headsets size="medium" />,
     isNew: true,
   },
   {
     text: 'Mouse mats',
-    href: 'catalog/mouseMats',
+    href: 'catalog/Mouse Pad',
     icon: <MouseMats size="medium" />,
     isNew: false,
   },
   {
     text: 'Joysticks and controllers',
-    href: 'catalog/joysticks',
+    href: 'catalog/Joystick',
     icon: <Joysticks size="medium" />,
     isNew: true,
   },
   {
     text: 'Gaming chairs',
-    href: 'catalog/gamingChairs',
+    href: 'catalog/Gaming Chairs',
     icon: <Chair size="medium" />,
     isNew: false,
   },

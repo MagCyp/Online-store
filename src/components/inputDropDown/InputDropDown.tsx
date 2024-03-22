@@ -12,7 +12,7 @@ import { Props } from '@components/inputDropDown/types';
 
 import styles from '@components/inputDropDown/InputDropDown.module.scss';
 
-const InputDropDow: FC<Props> = ({ options, sort }) => {
+const InputDropDown: FC<Props> = ({ options, sort }) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
@@ -32,7 +32,10 @@ const InputDropDow: FC<Props> = ({ options, sort }) => {
 
   return (
     <div className={styles['container']}>
-      <div className={styles['header']}>
+      <div
+        className={styles['header']}
+        onClick={() => setIsVisible(!isVisible)}
+      >
         <p
           className={`${styles['header-text']} ${
             isVisible ? styles['visible'] : styles['hidden']
@@ -46,7 +49,6 @@ const InputDropDow: FC<Props> = ({ options, sort }) => {
           icon={
             !isVisible ? <ArrowDown size="small" /> : <ArrowUp size="small" />
           }
-          onClick={() => setIsVisible(!isVisible)}
         />
       </div>
       <div
@@ -67,4 +69,4 @@ const InputDropDow: FC<Props> = ({ options, sort }) => {
   );
 };
 
-export default InputDropDow;
+export default InputDropDown;

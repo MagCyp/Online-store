@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import Badge from '@/components/badge/Badge';
 import IconButton from '@/components/iconButton/IconButton';
@@ -21,16 +21,31 @@ const ProductCard: FC<Props> = ({
   name,
   shortDescription,
   price,
-  salePrice,
+  priceWithSale,
   imageUrl,
   id,
 }) => {
   const [isHovered, setHovered] = useState<boolean>(false);
+  const [formattedShortDesc, setFormattedShortDesc] = useState<string>('');
   const dispatch = useAppDispatch();
   const isFavorite = useAppSelector(state => state.user.favorites).includes(id);
 
   const handleMouseEnter = () => setHovered(true);
   const handleMouseLeave = () => setHovered(false);
+
+  useEffect(() => {
+    if (shortDescription) {
+      const isContinuousWord =
+        shortDescription.length > 33 && !/\s/.test(shortDescription);
+
+      if (isContinuousWord) {
+        const formattedString = shortDescription.replace(/(.{10})/g, '$1 ');
+        setFormattedShortDesc(formattedString);
+      } else {
+        setFormattedShortDesc(shortDescription);
+      }
+    }
+  }, [shortDescription]);
 
   return (
     <div
@@ -70,14 +85,14 @@ const ProductCard: FC<Props> = ({
       </div>
       <div className={styles['content']}>
         <div>
-          <p className={styles['brand']}>{brand}</p>
+          <p className={styles['brand']}>{brand.name}</p>
           <p className={styles['product-name']}>{name}</p>
         </div>
-        <p className={styles['short-description']}>{shortDescription}</p>
+        <p className={styles['short-description']}>{formattedShortDesc}</p>
         <div className={styles['price-container']}>
-          {salePrice ? (
+          {priceWithSale ? (
             <>
-              <h6 className={styles['price']}>${salePrice}</h6>
+              <h6 className={styles['price']}>${priceWithSale}</h6>
               <h6 className={styles['sale-price']}>${price}</h6>
             </>
           ) : (
