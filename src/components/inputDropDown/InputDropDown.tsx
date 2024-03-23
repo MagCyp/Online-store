@@ -1,32 +1,25 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import IconButton from '@components/iconButton/IconButton';
 import ArrowDown from '@components/icons/ArrowDown';
 import ArrowUp from '@components/icons/ArrowUp';
 
-import { useAppDispatch, useAppSelector } from '@hooks/redux/redux';
-
-import { setSortBy } from '@store/slices/catalog/catalogSlice';
-
 import { Props } from '@components/inputDropDown/types';
 
 import styles from '@components/inputDropDown/InputDropDown.module.scss';
 
-const InputDropDown: FC<Props> = ({ options, sort }) => {
+const InputDropDown: FC<Props> = ({ options, setSortedBy }) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const dispatch = useAppDispatch();
+  const [selectedOption, setSelectedOption] = useState<string>();
 
-  const sortBy =
-    sort === 'review'
-      ? useAppSelector(state => state.catalog.sortBy)
-      : useAppSelector(state => state.catalog.sortBy);
+  useEffect(() => {
+    setSortedBy(options[0].sortBy);
+    setSelectedOption(options[0].name);
+  }, []);
 
-  const handleChooseSort = (option: string) => {
-    if (sort === 'review') {
-      dispatch(setSortBy(option));
-    } else if (sort === 'product') {
-      dispatch(setSortBy(option));
-    }
+  const handleChooseSort = (option: { name: string; sortBy: string }) => {
+    setSortedBy(option.sortBy);
+    setSelectedOption(option.name);
     setIsVisible(false);
   };
 
@@ -41,7 +34,7 @@ const InputDropDown: FC<Props> = ({ options, sort }) => {
             isVisible ? styles['visible'] : styles['hidden']
           }`}
         >
-          {sortBy}
+          {selectedOption}
         </p>
         <IconButton
           className="link-gray"
@@ -57,11 +50,11 @@ const InputDropDown: FC<Props> = ({ options, sort }) => {
       >
         {options.map(option => (
           <div
-            key={option}
+            key={option.name}
             className={styles['item']}
             onClick={() => handleChooseSort(option)}
           >
-            <p>{option}</p>
+            <p>{option.name}</p>
           </div>
         ))}
       </div>
