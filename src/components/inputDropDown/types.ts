@@ -1,4 +1,4 @@
 export interface Props {
-  options: string[];
-  sort: 'review' | 'product';
+  options: { name: string; sortBy: string }[];
+  setSortedBy: (sortBy: string) => void;
 }
