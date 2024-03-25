@@ -1,61 +1,72 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 import { fetchMostPurchaseProducts } from '@/store/data/mostPurchaseProducts/asyncAction';
 import { fetchFiltersProducts } from '@/store/data/filtersProducts/asyncAction';
 import { fetchAllProducts } from '@/store/data/allProducts/asyncAction';
 
-import { IProduct } from '@/models/models';
-import { IProductsSliceState } from '@store/slices/data/allProducts/types';
+import { IProductsSliceState } from '@/store/slices/data/products/types';
+
+import * as productReducer from '@store/slices/data/products/productReducer';
 
 const initialState: IProductsSliceState = {
-  data: [],
+  dataProducts: [],
+  dataMostPurchase: [],
+  dataFiltersProducts: [],
   status: '',
 };
 
 export const productsSlice = createSlice({
   name: 'products',
   initialState,
-  reducers: {
-    setItems(state, action: PayloadAction<IProduct[]>) {
-      state.data = action.payload;
-    },
-  },
+  reducers: productReducer,
   extraReducers: builder => {
     builder.addCase(fetchAllProducts.pending, state => {
       state.status = 'loading';
-      state.data = [];
+      state.dataMostPurchase = [];
+      state.dataFiltersProducts = [];
+      state.dataProducts = [];
     });
     builder.addCase(fetchAllProducts.fulfilled, (state, action) => {
       state.status = 'success';
-      state.data = action.payload._embedded.products;
+      state.dataProducts = action.payload._embedded.products;
     });
     builder.addCase(fetchAllProducts.rejected, state => {
       state.status = 'error';
-      state.data = [];
+      state.dataMostPurchase = [];
+      state.dataFiltersProducts = [];
+      state.dataProducts = [];
     });
     builder.addCase(fetchMostPurchaseProducts.pending, state => {
       state.status = 'loading';
-      state.data = [];
+      state.dataMostPurchase = [];
+      state.dataFiltersProducts = [];
+      state.dataProducts = [];
     });
     builder.addCase(fetchMostPurchaseProducts.fulfilled, (state, action) => {
       state.status = 'success';
-      state.data = action.payload;
+      state.dataMostPurchase = action.payload;
     });
     builder.addCase(fetchMostPurchaseProducts.rejected, state => {
       state.status = 'error';
-      state.data = [];
+      state.dataMostPurchase = [];
+      state.dataFiltersProducts = [];
+      state.dataProducts = [];
     });
     builder.addCase(fetchFiltersProducts.pending, state => {
       state.status = 'loading';
-      state.data = [];
+      state.dataMostPurchase = [];
+      state.dataFiltersProducts = [];
+      state.dataProducts = [];
     });
     builder.addCase(fetchFiltersProducts.fulfilled, (state, action) => {
       state.status = 'success';
-      state.data = action.payload;
+      state.dataFiltersProducts = action.payload;
     });
     builder.addCase(fetchFiltersProducts.rejected, state => {
       state.status = 'error';
-      state.data = [];
+      state.dataMostPurchase = [];
+      state.dataFiltersProducts = [];
+      state.dataProducts = [];
     });
   },
 });

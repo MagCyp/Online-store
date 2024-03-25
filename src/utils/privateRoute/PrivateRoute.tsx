@@ -5,7 +5,7 @@ import { useGetUser } from '@hooks/getUser/useGetUser';
 
 const PrivateRoute: FC = () => {
   const auth = useGetUser();
-  return auth ? <Outlet /> : <Navigate to="/login" />;
+  return !auth ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default PrivateRoute;
