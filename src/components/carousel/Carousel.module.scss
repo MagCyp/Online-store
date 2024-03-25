@@ -7,7 +7,7 @@
   background-size: cover;
   background-position: center;
   overflow: hidden;
-  padding: 116px 0 132px 0;
+  padding: 116px 0;
 }
 
 .categories-wrapper {
@@ -16,40 +16,63 @@
   gap: 40px;
   margin-bottom: 16px;
   border-bottom: 1px solid $gray-300;
-}
 
-.category {
-  padding-bottom: 16px;
-  color: $gray-50;
-  cursor: pointer;
-}
+  .category {
+    padding-bottom: 16px;
+    color: $gray-50;
+    cursor: pointer;
+  }
 
-.active-category {
-  border-bottom: 2px solid $gray-10;
+  .active-category {
+    color: $gray-10;
+    border-bottom: 2px solid $gray-10;
+  }
 }
 
 .cards-wrapper {
   padding-top: 48px;
   width: 1280px;
   margin: 0 auto;
-  display: flex;
+
+  .card {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
-.card {
+.icon {
+  margin-top: 182px;
+  width: 56px;
+  height: 56px;
+}
+
+.swiper-wrapper {
   width: 1120px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  gap: auto;
+
+  .my-swiper swiper-slide {
+    width: 256px;
+  }
 }
 
-.left-icon {
-  margin-right: 24px;
-  //   width: 56px;
-  //   height: 56px;
-}
+.pagination-circle-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 100px;
 
-.right-icon {
-  //   width: 56px;
-  //   margin-left: auto;
+  .pagination-circle {
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    background-color: $gray-200;
+    cursor: pointer;
+  }
+
+  .active-pagination-circle {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background-color: $gray-10;
+  }
 }
