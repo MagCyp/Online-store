@@ -169,7 +169,7 @@ const Carousel: FC = () => {
                   <SwiperSlide key={item.id} className={styles['swiper-slide']}>
                     <ProductCard
                       key={item.id}
-                      brand={item.brand?.name}
+                      brand={item.brand}
                       name={item.name}
                       shortDescription={item.shortDescription}
                       price={item.price}
