@@ -14,3 +14,79 @@ export interface CustomError {
   data: string;
   error: string;
 }
+
+export interface IProduct {
+  id: string;
+  name: string;
+  shortDescription: string;
+  price: number;
+  imageUrl: string;
+  createdAt?: string;
+  priceWithSale?: null;
+  inventory?: {
+    id: string;
+    quantity: number;
+  };
+  brand: {
+    id: string;
+    name: string;
+  };
+  reviews?: string[];
+  category?: {
+    id: string;
+    name: string;
+  };
+  _links?: {
+    self: {
+      href: string;
+    };
+  };
+}
+
+export interface IFilterProduct {
+  brands: string[];
+  price: {
+    max_price: number;
+    min_price: number;
+  };
+  characteristics: Record<string, string[]>;
+  isPresent: boolean[];
+  isSale: boolean[];
+}
+
+export interface IMostPurchaseProducts {
+  id: string;
+  name: string;
+  shortDescription: string;
+  price: number;
+  imageUrl: string;
+  createdAt: string;
+  characteristics: {
+    Buttons: string;
+    DPI: string;
+    Interface: string;
+    Color: string;
+  };
+  priceWithSale: null;
+  inventory: {
+    id: string;
+    quantity: number;
+  };
+  isSale: null;
+  isPresent: null;
+  brand: {
+    id: string;
+    name: string;
+  };
+  reviews: [];
+  category: {
+    id: string;
+    name: string;
+  };
+}
+
+export interface IProductData {
+  _embedded: {
+    products: IProduct[];
+  };
+}

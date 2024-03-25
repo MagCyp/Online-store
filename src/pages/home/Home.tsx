@@ -2,6 +2,7 @@ import { FC, useState } from 'react';
 
 import HeroScreenFirst from '@components/heroScreens/heroScreenFirst/HeroScreenFirst';
 import HeroScreenSecond from '@components/heroScreens/heroScreenSecond/HeroScreenSecond';
+import Carousel from '@components/carousel/Carousel';
 
 const Home: FC = () => {
   const [isLeftButtonClicked, setIsLeftButtonClicked] =
@@ -32,6 +33,7 @@ const Home: FC = () => {
           onRightButtonClick={handleRightButtonClick}
         />
       )}
+      <Carousel />
     </div>
   );
 };
