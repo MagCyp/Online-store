@@ -1,6 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 
-import { CatalogState } from '@store/slices/catalog/types';
+import { CatalogState, Selected } from '@store/slices/catalog/types';
 
 export const setPriceRange = (
   state: CatalogState,
@@ -13,15 +13,17 @@ export const setMinMax = (
   state: CatalogState,
   action: PayloadAction<number[]>,
 ) => {
-  state.min = action.payload[0];
-  state.max = action.payload[1];
+  const [min, max] = action.payload;
+  state.min = min;
+  state.max = max;
+  state.priceRange = [min, max];
 };
 
 export const setSelected = (
   state: CatalogState,
-  action: PayloadAction<number>,
+  action: PayloadAction<Selected>,
 ) => {
-  const itemToAdd = action.payload;
+  const itemToAdd = `${action.payload.type}.${action.payload.key}=${action.payload.value}`;
 
   const isAlreadySelected = state.selectedList.includes(itemToAdd);
 
@@ -37,4 +39,12 @@ export const setSortBy = (
   action: PayloadAction<string>,
 ) => {
   state.sortBy = action.payload;
+};
+
+export const toggleSale = (state: CatalogState) => {
+  state.inSale = state.inSale === '' ? 'isPresent=true' : '';
+};
+
+export const toggleStock = (state: CatalogState) => {
+  state.inStock = state.inStock === '' ? 'true' : '';
 };

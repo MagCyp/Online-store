@@ -1,21 +1,30 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import ReactSlider from 'react-slider';
 
 import { useAppDispatch, useAppSelector } from '@hooks/redux/redux';
 
-import { setPriceRange } from '@store/slices/catalog/catalogSlice';
+import { setMinMax, setPriceRange } from '@store/slices/catalog/catalogSlice';
+
+import { Props } from '@components/rangeSlider/types';
 
 import styles from '@components/rangeSlider/RangeSlider.module.scss';
 
-const RangeSlider: FC = () => {
+const RangeSlider: FC<Props> = ({ priceMin, priceMax }) => {
   const dispatch = useAppDispatch();
-  const { min, max, priceRange } = useAppSelector(state => state.catalog);
-  const [input, setInput] = useState<number[]>([min, max]);
+  const { priceRange } = useAppSelector(state => state.catalog);
+  const [input, setInput] = useState<number[]>([priceMin, priceMax]);
 
   const handleSliderChange = (val: number[]) => {
-    dispatch(setPriceRange(val));
     setInput(val);
   };
+
+  const onAfterChange = (val: number[]) => {
+    dispatch(setMinMax([val[0], val[1]]));
+  };
+
+  useEffect(() => {
+    setInput([priceMin, priceMax]);
+  }, [priceMin, priceMax]);
 
   const handleOnChange = (newValue: number, index: number) => {
     if (isNaN(newValue) || newValue.toString().length > 6) {
@@ -68,7 +77,7 @@ const RangeSlider: FC = () => {
               value={input[0]}
               onChange={e => handleOnChange(Number(e.target.value), 0)}
               onBlur={e =>
-                handleOnBlur(Number(e.target.value), min, priceRange[1], 0)
+                handleOnBlur(Number(e.target.value), priceMin, priceRange[1], 0)
               }
             />
           </div>
@@ -81,7 +90,7 @@ const RangeSlider: FC = () => {
               value={input[1]}
               onChange={e => handleOnChange(Number(e.target.value), 1)}
               onBlur={e =>
-                handleOnBlur(Number(e.target.value), priceRange[0], max, 1)
+                handleOnBlur(Number(e.target.value), priceRange[0], priceMax, 1)
               }
             />
           </div>
@@ -92,12 +101,13 @@ const RangeSlider: FC = () => {
         <ReactSlider
           value={priceRange}
           onChange={handleSliderChange}
+          onAfterChange={onAfterChange}
           className={styles['slider']}
           thumbClassName={styles['thumb']}
           trackClassName={styles['track']}
           orientation="horizontal"
-          min={min}
-          max={max}
+          min={priceMin}
+          max={priceMax}
           minDistance={1}
         />
       </div>

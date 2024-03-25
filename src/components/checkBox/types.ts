@@ -6,4 +6,6 @@ export interface Props {
   disabled?: boolean;
   id?: string;
   onChange?: () => void;
+  setChecked?: boolean;
+  getIsChecked?: (isChecked: boolean) => void;
 }

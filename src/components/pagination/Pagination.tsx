@@ -13,6 +13,10 @@ const Pagination: FC<Props> = ({ pages, currentPage, setCurrentPage }) => {
   const pageNumbers = Array.from({ length: pages }, (_, index) => index + 1);
 
   const getPageSubset = () => {
+    if (pages <= 6) {
+      return pageNumbers;
+    }
+
     const l = currentPage.length;
     const activePage = currentPage[l - 1];
 

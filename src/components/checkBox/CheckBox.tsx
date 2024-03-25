@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { Props } from '@components/checkBox/types';
 
@@ -12,6 +12,8 @@ const CheckBox: FC<Props> = ({
   large,
   disabled,
   id,
+  setChecked,
+  getIsChecked,
 }) => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
@@ -19,6 +21,17 @@ const CheckBox: FC<Props> = ({
     onChange && onChange();
     setIsChecked(!isChecked);
   };
+
+  useEffect(() => {
+    if (setChecked !== undefined) {
+      setIsChecked(setChecked);
+      getIsChecked && getIsChecked(isChecked);
+    }
+  }, [setChecked]);
+
+  useEffect(() => {
+    getIsChecked && getIsChecked(isChecked);
+  }, [isChecked]);
 
   return (
     <div
