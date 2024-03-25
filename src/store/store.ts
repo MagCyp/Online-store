@@ -6,7 +6,7 @@ import userSlice from '@store/slices/user/userSlice';
 import loginSlice from '@store/slices/auth/login/loginSlice';
 import registerSlice from '@store/slices/auth/register/registerSlice';
 import catalogSlice from '@store/slices/catalog/catalogSlice';
-import productsSlice from '@store/slices/data/allProducts/productsSlice';
+import productsSlice from '@/store/slices/data/products/productsSlice';
 
 export const store = configureStore({
   reducer: {

@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { IFetchParams } from './types';
+
+import { IFetchParams } from '@store/data/filtersProducts/types';
 
 export const fetchFiltersProducts = createAsyncThunk(
   'products/fetchFiltersProducts',

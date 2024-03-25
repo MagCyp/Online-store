@@ -1,5 +1,4 @@
 import { FC, useState, useEffect, useRef } from 'react';
-
 import { Swiper, SwiperSlide, SwiperRef, SwiperClass } from 'swiper/react';
 
 import Container from '@components/container/Container';
@@ -34,7 +33,11 @@ const Carousel: FC = () => {
   });
   const sliderRef = useRef<SwiperRef>(null);
   const dispatch = useAppDispatch();
-  const { data, status } = useAppSelector(state => state.products);
+  const { dataProducts, dataMostPurchase, status } = useAppSelector(
+    state => state.products,
+  );
+
+  const data = [...dataProducts, ...dataMostPurchase];
 
   const handleNext = () => {
     if (sliderRef.current) {
@@ -81,6 +84,7 @@ const Carousel: FC = () => {
         fetchAllProducts({
           page: 0,
           size: 12,
+          sort: 'createdAt,DESC',
         }),
       );
       setActivePaginationTab(0);

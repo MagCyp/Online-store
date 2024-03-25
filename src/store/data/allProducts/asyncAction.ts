@@ -7,9 +7,9 @@ import { IFetchParams } from '@store/data/allProducts/types';
 export const fetchAllProducts = createAsyncThunk(
   'products/fetchAllProducts',
   async (params: IFetchParams) => {
-    const { page, size } = params;
+    const { page, size, sort } = params;
     const { data } = await axios.get<IProductData>(
-      `http://localhost:8080/products?page=${page}&size=${size}&sort=createdAt,DESC`,
+      `http://localhost:8080/products?page=${page}&size=${size}&sort=${sort}`,
     );
 
     return data;
