@@ -1,6 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 
-import { CatalogState } from '@store/slices/catalog/types';
+import { CatalogState, Selected } from '@store/slices/catalog/types';
 
 export const setPriceRange = (
   state: CatalogState,
@@ -21,7 +21,7 @@ export const setMinMax = (
 
 export const setSelected = (
   state: CatalogState,
-  action: PayloadAction<{ key: string; value: string; type: string }>,
+  action: PayloadAction<Selected>,
 ) => {
   const itemToAdd = `${action.payload.type}.${action.payload.key}=${action.payload.value}`;
 

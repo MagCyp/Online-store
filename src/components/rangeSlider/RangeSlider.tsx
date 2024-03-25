@@ -9,10 +9,10 @@ import { Props } from '@components/rangeSlider/types';
 
 import styles from '@components/rangeSlider/RangeSlider.module.scss';
 
-const RangeSlider: FC<Props> = ({ price_min, price_max }) => {
+const RangeSlider: FC<Props> = ({ priceMin, priceMax }) => {
   const dispatch = useAppDispatch();
   const { priceRange } = useAppSelector(state => state.catalog);
-  const [input, setInput] = useState<number[]>([price_min, price_max]);
+  const [input, setInput] = useState<number[]>([priceMin, priceMax]);
 
   const handleSliderChange = (val: number[]) => {
     setInput(val);
@@ -23,8 +23,8 @@ const RangeSlider: FC<Props> = ({ price_min, price_max }) => {
   };
 
   useEffect(() => {
-    setInput([price_min, price_max]);
-  }, [price_min, price_max]);
+    setInput([priceMin, priceMax]);
+  }, [priceMin, priceMax]);
 
   const handleOnChange = (newValue: number, index: number) => {
     if (isNaN(newValue) || newValue.toString().length > 6) {
@@ -77,12 +77,7 @@ const RangeSlider: FC<Props> = ({ price_min, price_max }) => {
               value={input[0]}
               onChange={e => handleOnChange(Number(e.target.value), 0)}
               onBlur={e =>
-                handleOnBlur(
-                  Number(e.target.value),
-                  price_min,
-                  priceRange[1],
-                  0,
-                )
+                handleOnBlur(Number(e.target.value), priceMin, priceRange[1], 0)
               }
             />
           </div>
@@ -95,12 +90,7 @@ const RangeSlider: FC<Props> = ({ price_min, price_max }) => {
               value={input[1]}
               onChange={e => handleOnChange(Number(e.target.value), 1)}
               onBlur={e =>
-                handleOnBlur(
-                  Number(e.target.value),
-                  priceRange[0],
-                  price_max,
-                  1,
-                )
+                handleOnBlur(Number(e.target.value), priceRange[0], priceMax, 1)
               }
             />
           </div>
@@ -116,8 +106,8 @@ const RangeSlider: FC<Props> = ({ price_min, price_max }) => {
           thumbClassName={styles['thumb']}
           trackClassName={styles['track']}
           orientation="horizontal"
-          min={price_min}
-          max={price_max}
+          min={priceMin}
+          max={priceMax}
           minDistance={1}
         />
       </div>
