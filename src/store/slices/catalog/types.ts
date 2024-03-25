@@ -7,3 +7,9 @@ export interface CatalogState {
   inStock: string;
   inSale: string;
 }
+
+export interface Selected {
+  key: string;
+  value: string;
+  type: string;
+}

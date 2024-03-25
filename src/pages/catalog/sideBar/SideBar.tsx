@@ -55,10 +55,10 @@ const SideBar: FC<Props> = ({ loadProduct }) => {
     const sortBy = catalog.sortBy;
     const inSale = catalog.inSale;
     const inStock = catalog.inStock;
-    const price_min = catalog.min;
-    const price_max = catalog.max;
+    const priceMin = catalog.min;
+    const priceMax = catalog.max;
 
-    return `${selectedList}&${sortBy}&price=${price_min}&price=${price_max}&${inSale}&${inStock}`;
+    return `${selectedList}&${sortBy}&price=${priceMin}&price=${priceMax}&${inSale}&${inStock}`;
   };
 
   useEffect(() => {
@@ -187,8 +187,8 @@ const SideBar: FC<Props> = ({ loadProduct }) => {
       <h6>Filters:</h6>
       <DropDown header="Price">
         <RangeSlider
-          price_min={newFilters?.price.min_price || 0}
-          price_max={newFilters?.price.max_price || 0}
+          priceMin={newFilters?.price.min_price || 0}
+          priceMax={newFilters?.price.max_price || 0}
         />
       </DropDown>
       {filters && renderBrands(filters.brands, newFilters?.brands)}

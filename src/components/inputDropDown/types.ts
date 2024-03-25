@@ -1,4 +1,9 @@
 export interface Props {
-  options: { name: string; sortBy: string }[];
+  options: OptionProps[];
   setSortedBy: (sortBy: string) => void;
+}
+
+export interface OptionProps {
+  name: string;
+  sortBy: string;
 }

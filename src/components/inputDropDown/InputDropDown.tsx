@@ -4,7 +4,7 @@ import IconButton from '@components/iconButton/IconButton';
 import ArrowDown from '@components/icons/ArrowDown';
 import ArrowUp from '@components/icons/ArrowUp';
 
-import { Props } from '@components/inputDropDown/types';
+import { Props, OptionProps } from '@components/inputDropDown/types';
 
 import styles from '@components/inputDropDown/InputDropDown.module.scss';
 
@@ -17,7 +17,7 @@ const InputDropDown: FC<Props> = ({ options, setSortedBy }) => {
     setSelectedOption(options[0].name);
   }, []);
 
-  const handleChooseSort = (option: { name: string; sortBy: string }) => {
+  const handleChooseSort = (option: OptionProps) => {
     setSortedBy(option.sortBy);
     setSelectedOption(option.name);
     setIsVisible(false);
