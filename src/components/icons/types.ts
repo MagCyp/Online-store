@@ -1,4 +1,6 @@
 export enum sizes {
+  hover = '136px',
+  extraLarge = '118px',
   big = '56',
   large = '40',
   medium = '24',

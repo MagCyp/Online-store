@@ -3,6 +3,7 @@ import { FC, useState } from 'react';
 import HeroScreenFirst from '@components/heroScreens/heroScreenFirst/HeroScreenFirst';
 import HeroScreenSecond from '@components/heroScreens/heroScreenSecond/HeroScreenSecond';
 import Carousel from '@components/carousel/Carousel';
+import ShopByCategory from '@components/shopByCategory/ShopByCategory';
 
 const Home: FC = () => {
   const [isLeftButtonClicked, setIsLeftButtonClicked] =
@@ -34,6 +35,7 @@ const Home: FC = () => {
         />
       )}
       <Carousel />
+      <ShopByCategory />
     </div>
   );
 };
