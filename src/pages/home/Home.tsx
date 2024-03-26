@@ -4,6 +4,7 @@ import HeroScreenFirst from '@components/heroScreens/heroScreenFirst/HeroScreenF
 import HeroScreenSecond from '@components/heroScreens/heroScreenSecond/HeroScreenSecond';
 import Carousel from '@components/carousel/Carousel';
 import ShopByCategory from '@components/shopByCategory/ShopByCategory';
+import AboutUs from '@components/aboutUs/AboutUs';
 
 const Home: FC = () => {
   const [isLeftButtonClicked, setIsLeftButtonClicked] =
@@ -36,6 +37,7 @@ const Home: FC = () => {
       )}
       <Carousel />
       <ShopByCategory />
+      <AboutUs />
     </div>
   );
 };
