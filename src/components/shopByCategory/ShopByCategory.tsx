@@ -1,7 +1,6 @@
 import React, { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import styles from '@components/shopByCategory/ShopByCategory.module.scss';
 import Container from '@components/container/Container';
 
 import Keyboard from '@components/icons/Keyboard';
@@ -12,6 +11,8 @@ import Headsets from '@components/icons/Headsets';
 import Chair from '@components/icons/Chair';
 
 import { IItems } from '@components/shopByCategory/types';
+
+import styles from '@components/shopByCategory/ShopByCategory.module.scss';
 
 const items: IItems[] = [
   { id: 1, icon: <Keyboard size="extraLarge" />, title: 'Keyboards' },
