@@ -6,7 +6,7 @@ import item1 from '@/assets/images/aboutUs/item1.png';
 import item2 from '@/assets/images/aboutUs/item2.png';
 import item3 from '@/assets/images/aboutUs/item3.png';
 
-import { IItems } from './types';
+import { IItems } from '@components/aboutUs/types';
 
 import styles from '@components/aboutUs/AboutUs.module.scss';
 
