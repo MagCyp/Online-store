@@ -187,7 +187,6 @@ const SideBar: FC<Props> = ({ loadProduct }) => {
   return (
     <div className={styles['sidebar-container']}>
       <h6>Filters:</h6>
-      <button onClick={() => console.log(catalog)}>111</button>
       <DropDown header="Price">
         <RangeSlider
           priceMin={newFilters?.price.min_price || 0}
