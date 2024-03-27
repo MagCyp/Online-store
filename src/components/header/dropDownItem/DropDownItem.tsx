@@ -9,13 +9,21 @@ import { Props } from '@components/header/dropDownItem/types';
 
 import styles from '@components/header/dropDownItem/DropDownItem.module.scss';
 
-const DropDownItem: FC<Props> = ({ icon, text, href, isNew, listItem }) => {
+const DropDownItem: FC<Props> = ({
+  icon,
+  text,
+  href,
+  isNew,
+  listItem,
+  onClick,
+}) => {
   return (
     <Link
       to={href}
       className={`${styles['drop-down-item']} ${
         listItem ? styles['list-item'] : ''
       }`}
+      onClick={onClick}
     >
       <div className={styles['text-badge']}>
         {icon ? icon : <Search size="small" />}

@@ -6,4 +6,5 @@ export interface Props {
   href: string;
   isNew?: boolean;
   listItem?: boolean;
+  onClick?: () => void;
 }

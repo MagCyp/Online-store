@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 
 import Search from '@components/icons/Search';
 import CloseBig from '@components/icons/CloseBig';
@@ -36,8 +36,9 @@ const items = [
   },
 ];
 
-const DropDownSearch: FC<Props> = ({ onClick, isVisible }) => {
+const DropDownSearch: FC<Props> = ({ onClick, isVisible, toggleRef }) => {
   const [value, setValue] = useState<string>('');
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
@@ -48,11 +49,29 @@ const DropDownSearch: FC<Props> = ({ onClick, isVisible }) => {
     onClick();
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node) &&
+        !toggleRef.current?.contains(event.target as Node) &&
+        isVisible
+      ) {
+        handleCloseClick();
+      }
+    };
+
+    document.addEventListener('mouseup', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mouseup', handleClickOutside);
+    };
+  }, [containerRef, handleCloseClick, isVisible, toggleRef]);
+
   return (
     <div
-      className={`${styles['search-container']} ${
-        isVisible ? styles.visible : ''
-      }`}
+      ref={containerRef}
+      className={`${styles['search-container']} ${styles.visible}`}
     >
       <div className={styles['search-header-container']}>
         <CustomInput
@@ -77,6 +96,7 @@ const DropDownSearch: FC<Props> = ({ onClick, isVisible }) => {
               text={item.text}
               href={item.href}
               listItem
+              onClick={handleCloseClick}
             />
           ))}
         </div>

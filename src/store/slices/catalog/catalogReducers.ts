@@ -38,7 +38,7 @@ export const setSortBy = (
   state: CatalogState,
   action: PayloadAction<string>,
 ) => {
-  state.sortBy = action.payload;
+  state.sortBy = `sort=${action.payload}`;
 };
 
 export const toggleSale = (state: CatalogState) => {

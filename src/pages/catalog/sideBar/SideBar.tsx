@@ -36,7 +36,9 @@ const SideBar: FC<Props> = ({ loadProduct }) => {
   const fetchData = async (request?: string) => {
     try {
       const queryString = request ? `&${request}` : '';
-      const url = `http://localhost:8080/products/filters?category.name=${category}${queryString}`;
+      const url = `http://localhost:8080/products/filters?category.name=${
+        category === 'Mouse Pad' ? 'Pad' : category
+      }${queryString}`;
 
       const response = await fetch(url);
 
@@ -87,7 +89,7 @@ const SideBar: FC<Props> = ({ loadProduct }) => {
     };
 
     setData();
-  }, []);
+  }, [category]);
 
   const renderCharacteristics = (
     mainObject: Record<string, string[]>,
@@ -185,6 +187,7 @@ const SideBar: FC<Props> = ({ loadProduct }) => {
   return (
     <div className={styles['sidebar-container']}>
       <h6>Filters:</h6>
+      <button onClick={() => console.log(catalog)}>111</button>
       <DropDown header="Price">
         <RangeSlider
           priceMin={newFilters?.price.min_price || 0}
