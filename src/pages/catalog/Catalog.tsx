@@ -37,7 +37,9 @@ const Catalog: FC = () => {
     try {
       const queryString = request ? `&${request}` : '';
       const response = await fetch(
-        `http://localhost:8080/products?category.name=${category}&page=${
+        `http://localhost:8080/products?category.name=${
+          category === 'Mouse Pad' ? 'Pad' : category
+        }&page=${
           currentPage[currentPage.length - 1] - 1
         }&size=15${queryString}`,
       );
@@ -63,7 +65,7 @@ const Catalog: FC = () => {
     };
 
     getData();
-  }, [request]);
+  }, [request, category]);
 
   const handleLoadMore = async () => {
     setCurrentPage([...currentPage, currentPage[currentPage.length - 1] + 1]);
