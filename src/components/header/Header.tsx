@@ -16,7 +16,7 @@ import styles from '@components/header/Header.module.scss';
 
 const Header: FC = () => {
   const [isVisibleSearch, setVisibleSearch] = useState<boolean>(false);
-  const toggleButtonRef = useRef(null);
+  const toggleButtonRef = useRef<HTMLButtonElement>(null);
 
   const favoriteCount = 999;
   const cartCount = 15;
