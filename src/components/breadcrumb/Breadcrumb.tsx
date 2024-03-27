@@ -9,12 +9,12 @@ import { Props } from '@components/breadcrumb/types';
 import styles from '@components/breadcrumb/Breadcrumb.module.scss';
 
 const list: Record<string, string> = {
-  Mouse: 'Mouse',
+  Mouse: 'Mice',
   'Mouse Pad': 'Mouse mats',
-  Keyboard: 'Keyboard',
-  Joystick: 'Joystick and controller',
+  Keyboard: 'Keyboards',
+  Joystick: 'Joysticks and controllers',
   Headset: 'Headsets',
-  'Gaming Chairs': 'Gaming chairs',
+  'Gaming Chair': 'Gaming chairs',
 };
 
 const Breadcrumb: FC<Props> = ({ category, name }) => {
@@ -39,7 +39,7 @@ const Breadcrumb: FC<Props> = ({ category, name }) => {
           href="/"
         />
         <ArrowRight size="small" />
-        <Link to={`/catalog/${category}`}>{newCat}</Link>
+        <Link to={`/catalog/${category}`}>{category}</Link>
         {name && (
           <>
             <ArrowRight size="small" />

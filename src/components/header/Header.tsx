@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 
 import DropDownMenu from '@components/header/dropDownMenu/DropDownMenu';
 import DropDownSearch from '@components/header/dropDownSearch/DropDownSearch';
@@ -16,6 +16,7 @@ import styles from '@components/header/Header.module.scss';
 
 const Header: FC = () => {
   const [isVisibleSearch, setVisibleSearch] = useState<boolean>(false);
+  const toggleButtonRef = useRef<HTMLButtonElement>(null);
 
   const favoriteCount = 999;
   const cartCount = 15;
@@ -43,10 +44,13 @@ const Header: FC = () => {
         </div>
         <div className={styles['icons']}>
           <IconButton
+            ref={toggleButtonRef}
             type="button"
             className="link-gray large"
             icon={<Search size="medium" />}
-            onClick={() => setVisibleSearch(!isVisibleSearch)}
+            onClick={() =>
+              isVisibleSearch ? setVisibleSearch(false) : setVisibleSearch(true)
+            }
           />
           <IconButton
             type="button"
@@ -78,10 +82,13 @@ const Header: FC = () => {
             )}
           </div>
         </div>
-        <DropDownSearch
-          onClick={() => setVisibleSearch(!isVisibleSearch)}
-          isVisible={isVisibleSearch}
-        />
+        {isVisibleSearch && (
+          <DropDownSearch
+            onClick={() => setVisibleSearch(false)}
+            isVisible={isVisibleSearch}
+            toggleRef={toggleButtonRef}
+          />
+        )}
       </header>
     </Container>
   );

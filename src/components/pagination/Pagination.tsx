@@ -10,7 +10,13 @@ import { Props } from '@components/pagination/types';
 import styles from '@components/pagination/Pagination.module.scss';
 
 const Pagination: FC<Props> = ({ pages, currentPage, setCurrentPage }) => {
-  const pageNumbers = Array.from({ length: pages }, (_, index) => index + 1);
+  const pageNumbers: number[] = Array.from(
+    { length: pages },
+    (_, index) => index + 1,
+  );
+
+  const firstPage: number = currentPage[0];
+  const lastPage: number = currentPage[currentPage.length - 1];
 
   const getPageSubset = () => {
     if (pages <= 6) {
@@ -55,6 +61,7 @@ const Pagination: FC<Props> = ({ pages, currentPage, setCurrentPage }) => {
         className="link-gray small"
         text="Previous"
         onClick={() => changePage(true, false)}
+        isDisabled={firstPage === 1}
       />
       <div className={styles['pages']}>
         {getPageSubset().map((pageNumber, index) => (
@@ -72,6 +79,7 @@ const Pagination: FC<Props> = ({ pages, currentPage, setCurrentPage }) => {
         className="link-gray small"
         text="Next"
         onClick={() => changePage(false, true)}
+        isDisabled={lastPage === pages}
       />
     </div>
   );
