@@ -22,75 +22,79 @@ const Header: FC = () => {
   const cartCount = 15;
 
   return (
-    <Container>
-      <header className={styles['header']}>
-        <div className={styles['logo']}>
-          <h5 className="regular">Logo</h5>
-        </div>
-        <div className={styles['link-group']}>
-          <DropDownMenu />
-          <Button
-            className="link-gray small"
-            type="button"
-            text="About us"
-            href="/aboutUs"
-          />
-          <Button
-            className="link-gray small"
-            type="button"
-            text="Support"
-            href="/support"
-          />
-        </div>
-        <div className={styles['icons']}>
-          <IconButton
-            ref={toggleButtonRef}
-            type="button"
-            className="link-gray large"
-            icon={<Search size="medium" />}
-            onClick={() =>
-              isVisibleSearch ? setVisibleSearch(false) : setVisibleSearch(true)
-            }
-          />
-          <IconButton
-            type="button"
-            className="link-gray large"
-            icon={<UserCircle size="medium" />}
-          />
-          <div className={styles['icon-container']}>
+    <header>
+      <Container>
+        <div className={styles['header']}>
+          <div className={styles['logo']}>
+            <h5 className="regular">Logo</h5>
+          </div>
+          <div className={styles['link-group']}>
+            <DropDownMenu />
+            <Button
+              className="link-gray small"
+              type="button"
+              text="About us"
+              href="/aboutUs"
+            />
+            <Button
+              className="link-gray small"
+              type="button"
+              text="Support"
+              href="/support"
+            />
+          </div>
+          <div className={styles['icons']}>
+            <IconButton
+              ref={toggleButtonRef}
+              type="button"
+              className="link-gray large"
+              icon={<Search size="medium" />}
+              onClick={() =>
+                isVisibleSearch
+                  ? setVisibleSearch(false)
+                  : setVisibleSearch(true)
+              }
+            />
             <IconButton
               type="button"
               className="link-gray large"
-              icon={<HeartOpacity size="medium" />}
+              icon={<UserCircle size="medium" />}
             />
-            {favoriteCount > 0 && (
-              <span className={styles['count']}>
-                {restrictNumberToString(favoriteCount)}
-              </span>
-            )}
+            <div className={styles['icon-container']}>
+              <IconButton
+                type="button"
+                className="link-gray large"
+                icon={<HeartOpacity size="medium" />}
+              />
+              {favoriteCount > 0 && (
+                <span className={styles['count']}>
+                  {restrictNumberToString(favoriteCount)}
+                </span>
+              )}
+            </div>
+            <div className={styles['icon-container']}>
+              <IconButton
+                type="button"
+                className="link-gray large"
+                icon={<ShoppingBag size="medium" />}
+              />
+              {cartCount > 0 && (
+                <span className={styles['count']}>
+                  {restrictNumberToString(cartCount)}
+                </span>
+              )}
+            </div>
           </div>
-          <div className={styles['icon-container']}>
-            <IconButton
-              type="button"
-              className="link-gray large"
-              icon={<ShoppingBag size="medium" />}
+          {isVisibleSearch && (
+            <DropDownSearch
+              onClick={() => setVisibleSearch(false)}
+              isVisible={isVisibleSearch}
+              toggleRef={toggleButtonRef}
             />
-            {cartCount > 0 && (
-              <span className={styles['count']}>
-                {restrictNumberToString(cartCount)}
-              </span>
-            )}
-          </div>
+          )}
         </div>
-        {isVisibleSearch && (
-          <DropDownSearch
-            onClick={() => setVisibleSearch(false)}
-            isVisible={isVisibleSearch}
-            toggleRef={toggleButtonRef}
-          />
-        )}
-      </header>
-    </Container>
+      </Container>
+    </header>
   );
 };
 

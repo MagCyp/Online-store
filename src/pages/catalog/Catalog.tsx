@@ -7,12 +7,13 @@ import Button from '@/components/button/Button';
 import Load from '@/components/icons/Load';
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb';
 import Container from '@/components/container/Container';
+import DynamicBackgroundEffects from '@/components/dynamicBackgroundEffects/DynamicBackgroundEffects';
 import SideBar from '@/pages/catalog/sideBar/SideBar';
-import ProductList from '@pages/catalog/productList/ProductList';
+import ProductList from '@/pages/catalog/productList/ProductList';
 
 import { useAppDispatch } from '@/hooks/redux/redux';
 
-import { setSortBy } from '@store/slices/catalog/catalogSlice';
+import { setSortBy } from '@/store/slices/catalog/catalogSlice';
 
 import { Props as ProductProps } from '@/components/productCard/types';
 
@@ -92,44 +93,46 @@ const Catalog: FC = () => {
   }, [currentPage]);
 
   return (
-    <Container>
-      <div className={styles['category-container']}>
-        <div className={styles['breadcrumb']}>
-          <Breadcrumb category={category ?? ''} name={id ?? ''} />
-        </div>
-        <div className={styles['content-container']}>
-          <SideBar loadProduct={setRequest} />
-          <div className={styles['content']}>
-            <div className={styles['sort-container']}>
-              <p>Sort by:</p>
-              <InputDropDown
-                options={sortProduct}
-                setSortedBy={sortBy => dispatch(setSortBy(sortBy))}
+    <DynamicBackgroundEffects>
+      <Container>
+        <div className={styles['category-container']}>
+          <div className={styles['breadcrumb']}>
+            <Breadcrumb category={category ?? ''} name={id ?? ''} />
+          </div>
+          <div className={styles['content-container']}>
+            <SideBar loadProduct={setRequest} />
+            <div className={styles['content']}>
+              <div className={styles['sort-container']}>
+                <p>Sort by:</p>
+                <InputDropDown
+                  options={sortProduct}
+                  setSortedBy={sortBy => dispatch(setSortBy(sortBy))}
+                />
+              </div>
+              {products !== undefined ? (
+                <ProductList products={products} />
+              ) : (
+                'any product list'
+              )}
+              <div className={styles['load-more']}>
+                <Button
+                  iconLeft={<Load size="small" />}
+                  type="button"
+                  text="Load more"
+                  className="secondary medium"
+                  onClick={() => handleLoadMore()}
+                />
+              </div>
+              <Pagination
+                currentPage={currentPage}
+                setCurrentPage={handleChangePage}
+                pages={pages}
               />
             </div>
-            {products !== undefined ? (
-              <ProductList products={products} />
-            ) : (
-              'any product list'
-            )}
-            <div className={styles['load-more']}>
-              <Button
-                iconLeft={<Load size="small" />}
-                type="button"
-                text="Load more"
-                className="secondary medium"
-                onClick={() => handleLoadMore()}
-              />
-            </div>
-            <Pagination
-              currentPage={currentPage}
-              setCurrentPage={handleChangePage}
-              pages={pages}
-            />
           </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </DynamicBackgroundEffects>
   );
 };
 
