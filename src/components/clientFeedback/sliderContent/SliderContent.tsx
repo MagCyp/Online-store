@@ -2,10 +2,10 @@ import { FC } from 'react';
 
 import quotes from '@/assets/images/clientFeedback/quotes.svg';
 
-import StarFull from '@/components/icons/StarFull';
-import StarEmpty from '@/components/icons/StarEmpty';
+import StarFull from '@components/icons/StarFull';
+import StarEmpty from '@components/icons/StarEmpty';
 
-import { Props } from '@/components/clientFeedback/sliderContent/types';
+import { Props } from '@components/clientFeedback/sliderContent/types';
 
 import styles from '@components/clientFeedback/ClientFeedback.module.scss';
 
