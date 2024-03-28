@@ -2,7 +2,6 @@ import { FC } from 'react';
 
 import { sizes, Props } from '@components/icons/types';
 
-
 const SocialIconColored: FC<Props> = ({ size }) => {
   const dynamicSize = sizes[size];
 
