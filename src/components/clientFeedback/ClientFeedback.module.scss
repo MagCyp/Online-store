@@ -1,0 +1,90 @@
+@import '@/variables/colors/colors';
+
+.bg-wrapper {
+  background: $black;
+  padding-bottom: 264px;
+}
+
+.main-wrapper {
+  display: flex;
+  gap: 32px;
+}
+
+.contant-wrapper {
+  padding: 18px 0;
+}
+
+.client-title {
+  margin-bottom: 24px;
+  color: $gray-10;
+}
+
+.client-description {
+  color: $gray-50;
+  margin-bottom: 72px;
+}
+
+.reviews-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.rating-description {
+  color: $white;
+}
+
+.comments-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 630px;
+}
+
+.slider-wrapper {
+  border: 2px solid $gray-300;
+  border-radius: 12px;
+}
+
+.quotes-img {
+  margin-left: 44px;
+  margin-top: 44px;
+}
+
+.comment-description {
+  color: $gray-10;
+  max-width: 390px;
+  height: 120px;
+  margin: 27px 56px;
+}
+
+.rating-wrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 56px;
+  margin-bottom: 44px;
+
+  img {
+    height: 52px;
+    width: 52px;
+    border-radius: 50%;
+    margin-right: 16px;
+  }
+
+  .user-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-right: 82px;
+
+    .user-title {
+      color: $gray-10;
+      margin-bottom: 2px;
+    }
+
+    .user-description {
+      color: $gray-50;
+    }
+  }
+}
