@@ -15,16 +15,37 @@ import { IItems } from '@components/shopByCategory/types';
 import styles from '@components/shopByCategory/ShopByCategory.module.scss';
 
 const items: IItems[] = [
-  { id: 1, icon: <Keyboard size="extraLarge" />, title: 'Keyboards' },
-  { id: 2, icon: <Mice size="extraLarge" />, title: 'Mice' },
-  { id: 3, icon: <MouseMats size="extraLarge" />, title: 'Mouse pads' },
+  {
+    id: 1,
+    icon: <Keyboard size="extraLarge" />,
+    title: 'Keyboards',
+    href: 'Keyboard',
+  },
+  { id: 2, icon: <Mice size="extraLarge" />, title: 'Mice', href: 'Mouse' },
+  {
+    id: 3,
+    icon: <MouseMats size="extraLarge" />,
+    title: 'Mouse pads',
+    href: 'Mouse Pad',
+  },
   {
     id: 4,
     icon: <Joysticks size="extraLarge" />,
     title: 'Joysticks and controllers',
+    href: 'Joystick',
   },
-  { id: 5, icon: <Headsets size="extraLarge" />, title: 'Headsets' },
-  { id: 6, icon: <Chair size="extraLarge" />, title: 'Gaming chairs' },
+  {
+    id: 5,
+    icon: <Headsets size="extraLarge" />,
+    title: 'Headsets',
+    href: 'Headset',
+  },
+  {
+    id: 6,
+    icon: <Chair size="extraLarge" />,
+    title: 'Gaming chairs',
+    href: 'Gaming Chair',
+  },
 ];
 
 const ShopByCategory: FC = () => {
@@ -39,8 +60,8 @@ const ShopByCategory: FC = () => {
     setHoveredItemId(null);
   };
 
-  const handleClick = (category: string) => {
-    navigate(`/catalog/${category}`);
+  const handleClick = (href: string) => {
+    navigate(`/catalog/${href}`);
   };
 
   return (
@@ -56,7 +77,7 @@ const ShopByCategory: FC = () => {
                   className={styles['item']}
                   onMouseEnter={() => handleMouseEnter(item.id)}
                   onMouseLeave={handleMouseLeave}
-                  onClick={() => handleClick(item.title)}
+                  onClick={() => handleClick(item.href)}
                 >
                   {item.id === hoveredItemId
                     ? React.cloneElement(item.icon, { size: 'hover' })

@@ -43,7 +43,7 @@ const items = [
   },
   {
     text: 'Gaming chairs',
-    href: 'catalog/Gaming Chairs',
+    href: 'catalog/Gaming Chair',
     icon: <Chair size="medium" />,
     isNew: false,
   },
