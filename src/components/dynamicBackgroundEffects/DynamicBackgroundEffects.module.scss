@@ -1,0 +1,46 @@
+.shapes-container-wrapper{
+  position: relative;
+  display: flex;
+  height: 100%;
+}
+
+.shapes-container{
+  flex-grow: 1;
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.background-shape {
+  position: absolute;
+  width: 1046px;
+  height: 746px;
+  border-radius: 50%;
+  opacity: 20%;
+}
+
+.green-effect {
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    #348f5a 0%,
+    rgba(29, 29, 31, 0) 100%
+  );
+}
+
+.blue-effect {
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    #1a1e46 0%,
+    rgba(29, 29, 31, 0) 100%
+  );
+}
+
+.background-shape-left {
+  padding: 0;
+}
+
+.background-shape-right {
+  padding: 0;
+}

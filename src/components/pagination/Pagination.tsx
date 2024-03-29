@@ -61,7 +61,7 @@ const Pagination: FC<Props> = ({ pages, currentPage, setCurrentPage }) => {
         className="link-gray small"
         text="Previous"
         onClick={() => changePage(true, false)}
-        isDisabled={firstPage === 1}
+        isDisabled={firstPage === 1 || pages === 0}
       />
       <div className={styles['pages']}>
         {getPageSubset().map((pageNumber, index) => (
@@ -79,7 +79,7 @@ const Pagination: FC<Props> = ({ pages, currentPage, setCurrentPage }) => {
         className="link-gray small"
         text="Next"
         onClick={() => changePage(false, true)}
-        isDisabled={lastPage === pages}
+        isDisabled={lastPage === pages || pages === 0}
       />
     </div>
   );

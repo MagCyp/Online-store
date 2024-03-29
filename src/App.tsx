@@ -27,20 +27,22 @@ const App: FC = () => {
   return (
     <BrowserRouter>
       <Header />
-      <Routes>
-        <Route path="/" element={<PrivateRoute />}>
-          <Route path="/" element={<Home />} />
-        </Route>
-        <Route path="/catalog/:category" element={<Catalog />} />
-        <Route
-          path="/login"
-          element={auth ? <Navigate to="/" /> : <SignIn />}
-        />
-        <Route
-          path="/register"
-          element={auth ? <Navigate to="/" /> : <SignUp />}
-        />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path="/" element={<PrivateRoute />}>
+            <Route path="/" element={<Home />} />
+          </Route>
+          <Route path="/catalog/:category" element={<Catalog />} />
+          <Route
+            path="/login"
+            element={auth ? <Navigate to="/" /> : <SignIn />}
+          />
+          <Route
+            path="/register"
+            element={auth ? <Navigate to="/" /> : <SignUp />}
+          />
+        </Routes>
+      </main>
     </BrowserRouter>
   );
 };
