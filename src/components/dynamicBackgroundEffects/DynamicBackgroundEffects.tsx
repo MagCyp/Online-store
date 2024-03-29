@@ -1,9 +1,8 @@
-import { FC, ReactNode, useEffect, useRef } from 'react';
-import styles from '@/components/dynamicBackgroundEffects/DynamicBackgroundEffects.module.scss';
+import { FC, useEffect, useRef } from 'react';
 
-interface Props {
-  children: ReactNode;
-}
+import { Props } from '@components/dynamicBackgroundEffects/types';
+
+import styles from '@components/dynamicBackgroundEffects/DynamicBackgroundEffects.module.scss';
 
 const DynamicBackgroundEffects: FC<Props> = ({ children }) => {
   const containerRef = useRef<HTMLDivElement>(null);
