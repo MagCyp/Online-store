@@ -1,0 +1,111 @@
+@import '@/variables/colors/colors';
+
+.bg-wrapper {
+  background-color: $gray-500;
+  padding-bottom: 80px;
+  padding-top: 64px;
+}
+
+.updates-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 64px;
+
+  .title-wrapper {
+    width: 450px;
+  }
+
+  h5 {
+    color: $white;
+  }
+
+  .subscribe-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .input-wrapper {
+    width: 320px;
+  }
+
+  .error-wrapper {
+    height: 26px;
+  }
+
+  .button-wrapper {
+    width: 203px;
+  }
+}
+
+.store-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 44px;
+
+  .store-text-wrapper {
+    width: 352px;
+
+    h6 {
+      margin-bottom: 20px;
+      color: $white;
+    }
+
+    p {
+      color: $white;
+    }
+  }
+}
+
+.categories-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 74px;
+
+  .popular-wrapper {
+    width: 164px;
+  }
+
+  .about-wrapper {
+    width: 132px;
+  }
+
+  .follow-wrapper {
+    width: 100px;
+  }
+
+  .categories-title {
+    margin-bottom: 36px;
+    color: $white;
+  }
+
+  p {
+    color: $gray-10;
+    margin-bottom: 20px;
+  }
+}
+
+.logo-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid $gray-300;
+  padding-top: 12px;
+
+  .logo {
+    display: flex;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    a {
+      color: $gray-10;
+    }
+  }
+
+  p {
+    color: $gray-100;
+  }
+}

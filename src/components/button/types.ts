@@ -10,4 +10,16 @@ export type Props = {
   iconRight?: ReactNode;
   onClick?: () => void;
   href?: string;
+  fullWidth?: boolean;
+};
+
+export type CSSProperties = {
+  visibility?:
+    | 'visible'
+    | 'hidden'
+    | 'collapse'
+    | 'initial'
+    | 'inherit'
+    | undefined;
+  width?: string | undefined;
 };

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { generateClassNames } from '@utils/generateClassNames/className';
 
-import { Props } from '@components/button/types';
+import { CSSProperties, Props } from '@components/button/types';
 
 import styles from '@components/button/Button.module.scss';
 
@@ -17,13 +17,19 @@ const Button: FC<Props> = ({
   onClick,
   href,
   isHidden,
+  fullWidth,
 }) => {
   const buttonClassNames = generateClassNames(className, styles);
+
+  const buttonStyles: CSSProperties = {
+    visibility: isHidden ? 'hidden' : 'visible',
+    width: fullWidth ? '100%' : undefined,
+  };
 
   return (
     <button
       className={buttonClassNames}
-      style={{ visibility: isHidden ? 'hidden' : 'visible' }}
+      style={buttonStyles}
       type={type}
       onClick={onClick}
       disabled={isDisabled}
