@@ -13,7 +13,7 @@ const RangeSlider: FC<Props> = ({ priceMin, priceMax, onChange }) => {
   const dispatch = useAppDispatch();
   const { priceRange } = useAppSelector(state => state.catalog);
   const [input, setInput] = useState<number[]>([priceMin, priceMax]);
-  const [priceUpdated, setPriceUpdated] = useState(false);
+  const [priceUpdated, setPriceUpdated] = useState<boolean>(false);
 
   const handleSliderChange = (val: number[]) => {
     setInput(val);
