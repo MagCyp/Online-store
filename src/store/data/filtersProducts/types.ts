@@ -1,3 +1,4 @@
 export interface IFetchParams {
-  brandName: string;
+  category: string;
+  query?: string;
 }

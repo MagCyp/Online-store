@@ -1,3 +1,1 @@
-export interface Props {
-  loadProduct: (request: string) => void;
-}
+export const i = 0;
