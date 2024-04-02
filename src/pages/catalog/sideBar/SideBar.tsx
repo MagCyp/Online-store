@@ -12,24 +12,17 @@ import {
   setMinMax,
   clearState,
 } from '@store/slices/catalog/catalogSlice';
+import { fetchFiltersProducts } from '@store/data/filtersProducts/asyncAction';
+
+import { generateRequest } from '@utils/CatalogPage/generateRequest';
+
+import { IFilterProduct } from '@models/models';
+import { Props } from '@pages/catalog/sideBar/types';
+
 import styles from '@pages/catalog/sideBar/SideBar.module.scss';
-import { fetchFiltersProducts } from '@/store/data/filtersProducts/asyncAction';
-import { generateRequest } from '@/utils/CatalogPage/generateRequest';
-
-interface filtersDataProps {
-  brands: string[];
-  price: { min_price: number; max_price: number };
-  isSale: boolean[];
-  isPresent: boolean[];
-  characteristics: Record<string, string[]>;
-}
-
-interface Props {
-  loadProducts: () => void;
-}
 
 const SideBar: FC<Props> = ({ loadProducts }) => {
-  const [filters, setFilters] = useState<filtersDataProps>();
+  const [filters, setFilters] = useState<IFilterProduct>();
   const [shouldFetch, setShouldFetch] = useState(false);
   const [updated, setUpdated] = useState<boolean>(false);
   const [isUpdated, setIsUpdated] = useState<boolean>(false);

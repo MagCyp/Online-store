@@ -1,4 +1,4 @@
-import { IMostPurchaseProducts, IProduct } from '@/models/models';
+import { IMostPurchaseProducts, IProduct } from '@models/models';
 
 export interface IProductsSliceState {
   dataProducts: IProduct[];

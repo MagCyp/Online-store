@@ -1,1 +1,3 @@
-export const i = 0;
+export interface Props {
+  loadProducts: () => void;
+}

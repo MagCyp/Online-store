@@ -1,4 +1,4 @@
-import { CatalogState } from '@/store/slices/catalog/types';
+import { CatalogState } from '@store/slices/catalog/types';
 
 export const generateRequest = (catalog: CatalogState) => {
   const selectedList = catalog.selectedList.join('&');

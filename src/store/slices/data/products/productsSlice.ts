@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchMostPurchaseProducts } from '@/store/data/mostPurchaseProducts/asyncAction';
-import { fetchAllProducts } from '@/store/data/allProducts/asyncAction';
+import { fetchMostPurchaseProducts } from '@store/data/mostPurchaseProducts/asyncAction';
+import { fetchAllProducts } from '@store/data/allProducts/asyncAction';
 
-import { IProductsSliceState } from '@/store/slices/data/products/types';
+import { IProductsSliceState } from '@store/slices/data/products/types';
 
 import * as productReducer from '@store/slices/data/products/productReducer';
 
