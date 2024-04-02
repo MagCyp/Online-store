@@ -89,12 +89,12 @@ const Catalog: FC = () => {
 
   const handleLoadMore = () => {
     setCurrentPage([...currentPage, currentPage[currentPage.length - 1] + 1]);
-    fetchData(true);
+    setNeedUpdate(true);
   };
 
   const handleChangePage = (page: number[]) => {
     setCurrentPage(page);
-    fetchData(true);
+    setNeedUpdate(true);
   };
 
   return (
