@@ -1,5 +1,5 @@
-import { Props as ProductProps } from '@components/productCard/types';
+import { IProduct } from '@/models/models';
 
 export interface Props {
-  products: ProductProps[];
+  products: IProduct[];
 }

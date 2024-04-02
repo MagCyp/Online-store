@@ -10,7 +10,15 @@ const ProductList: FC<Props> = ({ products }) => {
   return (
     <div className={styles['container']}>
       {products.map(product => (
-        <ProductCard key={product.id} {...product} />
+        <ProductCard
+          key={product.id}
+          brand={product.brand}
+          name={product.name}
+          shortDescription={product.shortDescription}
+          price={product.price}
+          imageUrl={product.imageUrl}
+          id={product.id}
+        />
       ))}
     </div>
   );

@@ -6,7 +6,8 @@ import userSlice from '@store/slices/user/userSlice';
 import loginSlice from '@store/slices/auth/login/loginSlice';
 import registerSlice from '@store/slices/auth/register/registerSlice';
 import catalogSlice from '@store/slices/catalog/catalogSlice';
-import productsSlice from '@/store/slices/data/products/productsSlice';
+import productsSlice from '@store/slices/data/products/productsSlice';
+import filtersSlice from '@store/slices/data/filters/filtersSlice';
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     register: registerSlice,
     catalog: catalogSlice,
     products: productsSlice,
+    filters: filtersSlice,
     [authApi.reducerPath]: authApi.reducer,
   },
   middleware: getDefaultMiddleware =>

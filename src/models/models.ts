@@ -87,6 +87,12 @@ export interface IMostPurchaseProducts {
 
 export interface IProductData {
   _embedded: {
-    products: IProduct[];
+    products?: IProduct[];
+  };
+  page: {
+    size: number;
+    totalElements: number;
+    totalPages: number;
+    number: number;
   };
 }
