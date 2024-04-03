@@ -6,7 +6,6 @@ import IconButton from '@components/iconButton/IconButton';
 import ArrowLeft from '@components/icons/ArrowLeft';
 import ArrowRight from '@components/icons/ArrowRight';
 import ProductCard from '@components/productCard/ProductCard';
-import DataLoading from '@components/dataLoading/DataLoading';
 import DataError from '@components/dataError/DataError';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
@@ -21,6 +20,8 @@ import styles from '@components/carousel/Carousel.module.scss';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/free-mode';
+import ProductCardSkeleton from '../skeletons/ProductCardSkeleton';
+import DynamicBackgroundEffects from '../dynamicBackgroundEffects/DynamicBackgroundEffects';
 
 const tabs: string[] = ['New', 'Best sellers', 'Recommended'];
 
@@ -38,6 +39,8 @@ const Carousel: FC = () => {
   );
 
   const data = [...dataProducts, ...dataMostPurchase];
+
+  console.log(dataMostPurchase);
 
   const handleNext = () => {
     if (sliderRef.current) {
@@ -121,9 +124,35 @@ const Carousel: FC = () => {
   return (
     <div className={styles['bg-wrapper']}>
       {status === 'loading' ? (
-        <DataLoading />
+        <Container>
+          <div className={styles['categories-wrapper']}>
+            {tabs.map((item, index) => (
+              <p
+                className={`${styles.category} regular l ${
+                  activeTab === index
+                    ? `${styles['active-category']} bold l`
+                    : ''
+                }`}
+                key={index}
+                onClick={() => {
+                  setActiveTab(index);
+                  fetchDataByTab(index);
+                }}
+              >
+                {item}
+              </p>
+            ))}
+          </div>
+          <div className={styles['skeleton-wrapper']}>
+            {[...Array(4)].map((_, index) => (
+              <ProductCardSkeleton key={index} />
+            ))}
+          </div>
+        </Container>
       ) : status === 'error' ? (
-        <DataError />
+        <Container>
+          <DataError />
+        </Container>
       ) : (
         <>
           <Container>

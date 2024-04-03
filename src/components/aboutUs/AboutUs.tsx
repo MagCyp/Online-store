@@ -14,7 +14,7 @@ const items: IItems[] = [
   {
     id: 1,
     img: item1,
-    title: 'Our Passion for Gaming',
+    title: 'Our passion for gaming',
     description: `Embark on gaming adventures with us at [Your Store Name].
     We're gamers passionate about elevating your experience. Explore our curated selection for unrivaled performance
     in every virtual realm.`,
@@ -22,14 +22,14 @@ const items: IItems[] = [
   {
     id: 2,
     img: item2,
-    title: 'The our store Difference',
-    description: `Discover excellence at our store. We meticulously select top-tier peripherals, ensuring innovation, 
+    title: 'Our store difference',
+    description: `Discover excellence at our store. We meticulously select top-tier peripherals, ensuring innovation,
     durability, and customer satisfaction. Your gaming journey deserves the best, and we're here to provide it.`,
   },
   {
     id: 3,
     img: item3,
-    title: 'Elevate Your Setup',
+    title: 'Elevate your setup',
     description: `Revamp your gaming setup with our store. Unleash your potential with cutting-edge peripherals and accessories designed for style, comfort, and peak performance.
     Your victory begins here.`,
   },

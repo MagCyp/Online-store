@@ -16,13 +16,14 @@ import styles from '@components/clientFeedback/ClientFeedback.module.scss';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
+import DynamicBackgroundEffects from '../dynamicBackgroundEffects/DynamicBackgroundEffects';
 
 const items: IItems[] = [
   {
     id: 1,
     title: `I've been using the QuantumX Pro for a month now, and I'm blown away by its precision 
     and customizable RGB lighting. The ergonomic design is perfect for my long gaming sessions. A must-have for serious gamers!`,
-    logo: 'https://miro.medium.com/v2/resize:fit:1200/0*XQfhtDq1sukXwKgn.jpg',
+    logo: 'https://img.freepik.com/free-photo/handsome-businessman-glasses-looking-satisfied-smiling-holding-hands-waist-standing_1258-26388.jpg',
     userName: 'Yuriy',
     yearsExperience: 5,
     rating: 5,
@@ -38,7 +39,7 @@ const items: IItems[] = [
   {
     id: 3,
     title: `I can recommend this item!`,
-    logo: 'https://static.toiimg.com/photo/83890812.cms',
+    logo: 'https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?size=626&ext=jpg&ga=GA1.1.1908636980.1711843200&semt=ais',
     userName: 'Andriy',
     yearsExperience: 5,
     rating: 3,
@@ -57,6 +58,7 @@ const ClientFeedback: FC = () => {
   };
 
   return (
+    // <DynamicBackgroundEffects>
     <div className={styles['bg-wrapper']}>
       <Container>
         <div className={styles['main-wrapper']}>
@@ -115,6 +117,7 @@ const ClientFeedback: FC = () => {
         </div>
       </Container>
     </div>
+    // {/* </DynamicBackgroundEffects> */}
   );
 };
 

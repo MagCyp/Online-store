@@ -27,11 +27,7 @@ export interface IProduct {
     id: string;
     quantity: number;
   };
-  brand: {
-    id: string;
-    name: string;
-  };
-  reviews?: string[];
+  brand: string;
   category?: {
     id: string;
     name: string;
@@ -74,10 +70,7 @@ export interface IMostPurchaseProducts {
   };
   isSale: null;
   isPresent: null;
-  brand: {
-    id: string;
-    name: string;
-  };
+  brand: string;
   reviews: [];
   category: {
     id: string;
@@ -87,6 +80,6 @@ export interface IMostPurchaseProducts {
 
 export interface IProductData {
   _embedded: {
-    products: IProduct[];
+    products: IProduct[] | IMostPurchaseProducts[];
   };
 }

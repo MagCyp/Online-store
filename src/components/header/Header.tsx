@@ -26,7 +26,9 @@ const Header: FC = () => {
       <Container>
         <div className={styles['header']}>
           <div className={styles['logo']}>
-            <h5 className="regular">Logo</h5>
+            <a href="/">
+              <h5 className="regular">Logo</h5>
+            </a>
           </div>
           <div className={styles['link-group']}>
             <DropDownMenu />
