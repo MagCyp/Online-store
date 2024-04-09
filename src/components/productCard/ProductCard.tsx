@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 
 import Badge from '@/components/badge/Badge';
 import IconButton from '@/components/iconButton/IconButton';
@@ -15,8 +15,7 @@ import { Props } from '@/components/productCard/types';
 import styles from '@components/productCard/ProductCard.module.scss';
 
 const ProductCard: FC<Props> = ({
-  topLabel,
-  bottomLabel,
+  createdAt,
   brand,
   name,
   shortDescription,
@@ -47,6 +46,23 @@ const ProductCard: FC<Props> = ({
     }
   }, [shortDescription]);
 
+  const generateTopLabel = useMemo(() => {
+    const today = new Date();
+    const creationDate = new Date(createdAt);
+    const diff = Number(today) - Number(creationDate);
+    const diffInDays = diff / (1000 * 60 * 60 * 24);
+
+    if (diffInDays >= 14) {
+      return null;
+    }
+
+    return (
+      <div className={styles['top-label']}>
+        <Badge className="gray small" text="New" />
+      </div>
+    );
+  }, []);
+
   return (
     <div
       className={styles['container']}
@@ -54,11 +70,7 @@ const ProductCard: FC<Props> = ({
       onMouseLeave={handleMouseLeave}
     >
       <div className={styles['image-container']}>
-        {topLabel && (
-          <div className={styles['top-label']}>
-            <Badge className="gray small" text={topLabel} />
-          </div>
-        )}
+        {generateTopLabel}
         <div
           className={styles['top-button']}
           style={{ visibility: isHovered ? 'visible' : 'hidden' }}
@@ -77,16 +89,18 @@ const ProductCard: FC<Props> = ({
           />
         </div>
         <img className={styles['image']} src={imageUrl} alt="" />
-        {bottomLabel && (
+        {priceWithSale && (
           <div className={styles['bottom-label']}>
-            <Badge className="gray small" text={bottomLabel} />
+            <Badge className="gray small" text="Sale" />
           </div>
         )}
       </div>
       <div className={styles['content']}>
         <div>
           <p className={styles['brand']}>{brand}</p>
-          <p className={styles['product-name']}>{name}</p>
+          <p className={styles['product-name']} data-tooltip={name}>
+            {name}
+          </p>
         </div>
         <p className={styles['short-description']}>{formattedShortDesc}</p>
         <div className={styles['price-container']}>

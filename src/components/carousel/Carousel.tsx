@@ -205,6 +205,8 @@ const Carousel: FC = () => {
                       shortDescription={item.shortDescription}
                       price={item.price}
                       imageUrl={item.imageUrl}
+                      createdAt={item.createdAt}
+                      priceWithSale={item.priceWithSale}
                       id={item.id}
                     />
                   </SwiperSlide>

@@ -5,11 +5,11 @@ import { CatalogState } from '@store/slices/catalog/types';
 import * as catalogReducers from '@store/slices/catalog/catalogReducers';
 
 export const initialState: CatalogState = {
-  min: 0,
-  max: 0,
+  min: NaN,
+  max: NaN,
   priceRange: [],
   selectedList: [],
-  sortBy: '',
+  sortBy: 'createdAt,DESC',
   inSale: '',
   inStock: '',
 };
