@@ -1,0 +1,13 @@
+@import '@/variables/colors/colors';
+
+@mixin skeletonGradientAnimation {
+  animation: skeletonAnimation 2s infinite alternate;
+}
+
+@keyframes skeletonAnimation {
+  @for $i from 0 to 101 {
+    #{$i + '%'} {
+      background: linear-gradient(90deg, $gray-300 #{$i + '%'}, $gray-200);
+    }
+  }
+}

@@ -13,7 +13,6 @@ import Chair from '@components/icons/Chair';
 import { IItems } from '@components/shopByCategory/types';
 
 import styles from '@components/shopByCategory/ShopByCategory.module.scss';
-import DynamicBackgroundEffects from '../dynamicBackgroundEffects/DynamicBackgroundEffects';
 
 const items: IItems[] = [
   {
@@ -66,7 +65,6 @@ const ShopByCategory: FC = () => {
   };
 
   return (
-    // <DynamicBackgroundEffects>
     <div className={styles['bg-wrapper']}>
       <Container>
         <h3 className={`${styles.title} regular`}>Shop by category</h3>
@@ -93,7 +91,6 @@ const ShopByCategory: FC = () => {
         </div>
       </Container>
     </div>
-    // </DynamicBackgroundEffects>
   );
 };
 

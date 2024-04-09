@@ -1,19 +1,12 @@
 @import '@/variables/colors/colors';
-
-@keyframes skeletonAnimation {
-  @for $i from 0 to 101 {
-    #{$i + '%'} {
-      background: linear-gradient(90deg, $gray-300 #{$i + '%'}, $gray-200);
-    }
-  }
-}
+@import '@/variables/skeleton/skeleton';
 
 .skeleton-img {
   width: 256px;
   height: 256px;
   border-radius: 6px;
   margin-bottom: 20px;
-  animation: skeletonAnimation 2s infinite alternate;
+  @include skeletonGradientAnimation;
 }
 
 .skeleton-brand {
@@ -21,7 +14,7 @@
   height: 14px;
   border-radius: 6px;
   margin-bottom: 8px;
-  animation: skeletonAnimation 2s infinite alternate;
+  @include skeletonGradientAnimation;
 }
 
 .skeleton-name {
@@ -29,7 +22,7 @@
   height: 18px;
   border-radius: 6px;
   margin-bottom: 21px;
-  animation: skeletonAnimation 2s infinite alternate;
+  @include skeletonGradientAnimation;
 }
 
 .skeleton-description {
@@ -37,7 +30,7 @@
   height: 14px;
   border-radius: 6px;
   margin-bottom: 12px;
-  animation: skeletonAnimation 2s infinite alternate;
+  @include skeletonGradientAnimation;
 }
 
 .skeleton-additional {
@@ -45,7 +38,7 @@
   height: 14px;
   border-radius: 6px;
   margin-bottom: 21px;
-  animation: skeletonAnimation 2s infinite alternate;
+  @include skeletonGradientAnimation;
 }
 
 .price-wrapper {
@@ -57,5 +50,5 @@
   width: 49px;
   height: 22px;
   border-radius: 6px;
-  animation: skeletonAnimation 2s infinite alternate;
+  @include skeletonGradientAnimation;
 }

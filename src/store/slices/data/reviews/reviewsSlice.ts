@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchReviews } from '@/store/data/reviews/asyncAction';
+import { fetchReviews } from '@store/data/reviews/asyncAction';
 
 import { IReviewsSliceState } from '@store/slices/data/reviews/types';
 
