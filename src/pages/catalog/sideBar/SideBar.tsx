@@ -197,6 +197,7 @@ const SideBar: FC<Props> = ({ loadProducts }) => {
           filters.characteristics,
           dataFilters?.characteristics,
         )}
+      <hr className={styles['line']} />
       <CheckBox
         label="In stock"
         small
