@@ -8,5 +8,4 @@ export const setItems = (
 ) => {
   state.dataProducts = action.payload.dataProducts;
   state.dataMostPurchase = action.payload.dataMostPurchase;
-  state.dataFiltersProducts = action.payload.dataFiltersProducts;
 };

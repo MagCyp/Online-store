@@ -7,6 +7,7 @@ import ArrowLeft from '@components/icons/ArrowLeft';
 import ArrowRight from '@components/icons/ArrowRight';
 import ProductCard from '@components/productCard/ProductCard';
 import DataError from '@components/dataError/DataError';
+import ProductCardSkeleton from '@components/skeletons/productCardSkeleton/ProductCardSkeleton';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
 
@@ -20,8 +21,6 @@ import styles from '@components/carousel/Carousel.module.scss';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/free-mode';
-import ProductCardSkeleton from '../skeletons/ProductCardSkeleton';
-import DynamicBackgroundEffects from '../dynamicBackgroundEffects/DynamicBackgroundEffects';
 
 const tabs: string[] = ['New', 'Best sellers', 'Recommended'];
 
@@ -39,8 +38,6 @@ const Carousel: FC = () => {
   );
 
   const data = [...dataProducts, ...dataMostPurchase];
-
-  console.log(dataMostPurchase);
 
   const handleNext = () => {
     if (sliderRef.current) {
@@ -91,13 +88,18 @@ const Carousel: FC = () => {
         }),
       );
       setActivePaginationTab(0);
-    }
-
-    if (tabIndex === 1) {
+    } else if (tabIndex === 1) {
       dispatch(fetchMostPurchaseProducts());
       setActivePaginationTab(0);
+    } else if (tabIndex === 2) {
+      dispatch(
+        fetchAllProducts({
+          page: 0,
+          size: 12,
+          sort: 'averageRate,DESC',
+        }),
+      );
     }
-
     setSlideBegOrNot({
       isFirst: true,
       isLast: false,

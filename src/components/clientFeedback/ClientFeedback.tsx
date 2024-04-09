@@ -1,4 +1,4 @@
-import { FC, useRef } from 'react';
+import { FC, useRef, useEffect } from 'react';
 import { Swiper, SwiperSlide, SwiperRef } from 'swiper/react';
 
 import clientsIcon from '@/assets/images/clientFeedback/clientsIcon.png';
@@ -9,45 +9,22 @@ import StarFull from '@components/icons/StarFull';
 import IconButton from '@components/iconButton/IconButton';
 import ArrowRight from '@components/icons/ArrowRight';
 import ArrowLeft from '@components/icons/ArrowLeft';
+import DataError from '@components/dataError/DataError';
+import ClientFeedbackSkeleton from '@components/skeletons/clientFeedbackSkeleton/ClientFeedbackSkeleton';
 
-import { IItems } from '@components/clientFeedback/types';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
+
+import { fetchReviews } from '@/store/data/reviews/asyncAction';
 
 import styles from '@components/clientFeedback/ClientFeedback.module.scss';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
-import DynamicBackgroundEffects from '../dynamicBackgroundEffects/DynamicBackgroundEffects';
-
-const items: IItems[] = [
-  {
-    id: 1,
-    title: `I've been using the QuantumX Pro for a month now, and I'm blown away by its precision 
-    and customizable RGB lighting. The ergonomic design is perfect for my long gaming sessions. A must-have for serious gamers!`,
-    logo: 'https://img.freepik.com/free-photo/handsome-businessman-glasses-looking-satisfied-smiling-holding-hands-waist-standing_1258-26388.jpg',
-    userName: 'Yuriy',
-    yearsExperience: 5,
-    rating: 5,
-  },
-  {
-    id: 2,
-    title: `Hello everyone, I'm a young doter, I can recommend a mouse, hooks on pudge fly one in three`,
-    logo: 'https://sankt-peterburg.vse-footbolki.ru/image/catalog/vsm/0/0/302/302485/previews/people_5_child_sweatshirt_cotton_front_melangeburgundy_700.jpg',
-    userName: 'Dmytro',
-    yearsExperience: 5,
-    rating: 5,
-  },
-  {
-    id: 3,
-    title: `I can recommend this item!`,
-    logo: 'https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?size=626&ext=jpg&ga=GA1.1.1908636980.1711843200&semt=ais',
-    userName: 'Andriy',
-    yearsExperience: 5,
-    rating: 3,
-  },
-];
 
 const ClientFeedback: FC = () => {
   const sliderRef = useRef<SwiperRef>(null);
+  const dispatch = useAppDispatch();
+  const { reviews, status } = useAppSelector(state => state.reviews);
 
   const handleNext = () => {
     sliderRef.current?.swiper?.slideNext();
@@ -57,67 +34,79 @@ const ClientFeedback: FC = () => {
     sliderRef.current?.swiper?.slidePrev();
   };
 
+  useEffect(() => {
+    dispatch(fetchReviews());
+  }, []);
+
   return (
-    // <DynamicBackgroundEffects>
     <div className={styles['bg-wrapper']}>
-      <Container>
-        <div className={styles['main-wrapper']}>
-          <div className={styles['contant-wrapper']}>
-            <h3 className={`${styles['client-title']} regular`}>
-              Client feedback
-            </h3>
-            <p className={`${styles['client-description']} regular l`}>
-              More than 2000 honest reviews. We do not do not edit or process
-              customer reviews.
-            </p>
-            <img src={clientsIcon} alt="clients" />
-            <div className={styles['reviews-wrapper']}>
-              <StarFull size="small" />
-              <span>
-                <p className={`${styles['rating-description']} medium m`}>
-                  4.6
-                </p>
-              </span>
-              <span>
-                <p className={`${styles['rating-description']} medium m`}>
-                  (500+ Reviews)
-                </p>
-              </span>
+      {status === 'loading' ? (
+        <Container>
+          <ClientFeedbackSkeleton />
+        </Container>
+      ) : status === 'error' ? (
+        <Container>
+          <DataError />
+        </Container>
+      ) : (
+        <Container>
+          <div className={styles['main-wrapper']}>
+            <div className={styles['contant-wrapper']}>
+              <h3 className={`${styles['client-title']} regular`}>
+                Client feedback
+              </h3>
+              <p className={`${styles['client-description']} regular l`}>
+                More than 2000 honest reviews. We do not do not edit or process
+                customer reviews.
+              </p>
+              <img src={clientsIcon} alt="clients" />
+              <div className={styles['reviews-wrapper']}>
+                <StarFull size="small" />
+                <span>
+                  <p className={`${styles['rating-description']} medium m`}>
+                    4.6
+                  </p>
+                </span>
+                <span>
+                  <p className={`${styles['rating-description']} medium m`}>
+                    (500+ Reviews)
+                  </p>
+                </span>
+              </div>
+            </div>
+            <div>
+              <div className={styles['comments-wrapper']}>
+                <IconButton
+                  type="button"
+                  className="outline"
+                  icon={<ArrowLeft size="large" />}
+                  onClick={handlePrev}
+                />
+                <Swiper
+                  slidesPerView={1}
+                  spaceBetween={0}
+                  navigation={false}
+                  ref={sliderRef}
+                  loop={reviews.length > 1}
+                >
+                  {reviews.map(item => (
+                    <SwiperSlide key={item.id}>
+                      <SliderContent {...item} />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+                <IconButton
+                  type="button"
+                  className="outline"
+                  icon={<ArrowRight size="large" />}
+                  onClick={handleNext}
+                />
+              </div>
             </div>
           </div>
-          <div>
-            <div className={styles['comments-wrapper']}>
-              <IconButton
-                type="button"
-                className="outline"
-                icon={<ArrowLeft size="large" />}
-                onClick={handlePrev}
-              />
-              <Swiper
-                slidesPerView={1}
-                spaceBetween={0}
-                navigation={false}
-                ref={sliderRef}
-                loop={true}
-              >
-                {items.map(item => (
-                  <SwiperSlide key={item.id}>
-                    <SliderContent {...item} />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-              <IconButton
-                type="button"
-                className="outline"
-                icon={<ArrowRight size="large" />}
-                onClick={handleNext}
-              />
-            </div>
-          </div>
-        </div>
-      </Container>
+        </Container>
+      )}
     </div>
-    // {/* </DynamicBackgroundEffects> */}
   );
 };
 

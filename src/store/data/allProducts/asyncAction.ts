@@ -6,11 +6,18 @@ import { IFetchParams } from '@store/data/allProducts/types';
 
 export const fetchAllProducts = createAsyncThunk(
   'products/fetchAllProducts',
-  async (params: IFetchParams) => {
-    const { page, size, sort } = params;
-    const { data } = await axios.get<IProductData>(
-      `http://localhost:8080/products?page=${page}&size=${size}&sort=${sort}`,
-    );
+  async ({ page, size, sort, category, query }: IFetchParams) => {
+    const queryParams = [];
+    if (page !== undefined && page !== null) queryParams.push(`page=${page}`);
+    if (size) queryParams.push(`size=${size}`);
+    if (sort) queryParams.push(`sort=${sort}`);
+    if (category) queryParams.push(`category.name=${category}`);
+    if (query) queryParams.push(`${query}`);
+
+    const queryString = queryParams.join('&');
+    const url = `http://localhost:8080/products?${queryString}`;
+
+    const { data } = await axios.get<IProductData>(url);
 
     return data;
   },

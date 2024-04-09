@@ -4,10 +4,10 @@ import { CatalogState } from '@store/slices/catalog/types';
 
 import * as catalogReducers from '@store/slices/catalog/catalogReducers';
 
-const initialState: CatalogState = {
+export const initialState: CatalogState = {
   min: 0,
-  max: 100,
-  priceRange: [0, 100],
+  max: 0,
+  priceRange: [],
   selectedList: [],
   sortBy: '',
   inSale: '',
@@ -27,5 +27,6 @@ export const {
   setSortBy,
   toggleSale,
   toggleStock,
+  clearState,
 } = catalogSlice.actions;
 export default catalogSlice.reducer;

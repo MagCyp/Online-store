@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import styles from '@components/skeletons/ProductCardSkeleton.module.scss';
+import styles from '@components/skeletons/productCardSkeleton/ProductCardSkeleton.module.scss';
 
 const ProductCardSkeleton: FC = () => {
   return (

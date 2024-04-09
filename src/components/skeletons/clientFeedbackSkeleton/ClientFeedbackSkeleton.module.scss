@@ -1,0 +1,112 @@
+@import '@/variables/colors/colors';
+
+@keyframes skeletonAnimation {
+  @for $i from 0 to 101 {
+    #{$i + '%'} {
+      background: linear-gradient(90deg, $gray-300 #{$i + '%'}, $gray-200);
+    }
+  }
+}
+
+.skeleton-wrapper {
+  display: flex;
+  gap: 140px;
+}
+
+.reviews-wrapper {
+  padding: 18px 0;
+}
+
+.title-skeleton {
+  width: 458px;
+  height: 60px;
+  border-radius: 6px;
+  margin-bottom: 24px;
+  animation: skeletonAnimation 2s infinite alternate;
+}
+
+.description-skeleton {
+  width: 458px;
+  height: 18px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  animation: skeletonAnimation 2s infinite alternate;
+}
+
+.icons-skeleton {
+  width: 144px;
+  height: 45px;
+  border-radius: 6px;
+  margin-top: 72px;
+  margin-bottom: 24px;
+  animation: skeletonAnimation 2s infinite alternate;
+}
+
+.rating-skeleton {
+  width: 172px;
+  height: 24px;
+  border-radius: 6px;
+  animation: skeletonAnimation 2s infinite alternate;
+}
+
+.quotes-skeleton {
+  width: 45px;
+  height: 24px;
+  border-radius: 6px;
+  margin-top: 27px;
+  margin-bottom: 43px;
+  animation: skeletonAnimation 2s infinite alternate;
+}
+
+.comment-skeleton {
+  width: 414px;
+  height: 120px;
+  border-radius: 6px;
+  margin-bottom: 32px;
+  animation: skeletonAnimation 2s infinite alternate;
+}
+
+.skeleton-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 6px;
+  margin-right: 22px;
+  animation: skeletonAnimation 2s infinite alternate;
+}
+
+.user-skeleton-wrapper {
+  display: flex;
+  align-items: center;
+  padding-bottom: 44px;
+}
+
+.text-skeleton-wrapper {
+  margin-right: 51px;
+}
+
+.name-skeleton {
+  width: 52px;
+  height: 18px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  animation: skeletonAnimation 2s infinite alternate;
+}
+
+.experiance-skeleton {
+  width: 140px;
+  height: 14px;
+  border-radius: 6px;
+  animation: skeletonAnimation 2s infinite alternate;
+}
+
+.rating-wrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.skeleton-star {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  animation: skeletonAnimation 2s infinite alternate;
+}

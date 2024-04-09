@@ -1,0 +1,61 @@
+@import '@/variables/colors/colors';
+
+@keyframes skeletonAnimation {
+  @for $i from 0 to 101 {
+    #{$i + '%'} {
+      background: linear-gradient(90deg, $gray-300 #{$i + '%'}, $gray-200);
+    }
+  }
+}
+
+.skeleton-img {
+  width: 256px;
+  height: 256px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  animation: skeletonAnimation 2s infinite alternate;
+}
+
+.skeleton-brand {
+  width: 49px;
+  height: 14px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  animation: skeletonAnimation 2s infinite alternate;
+}
+
+.skeleton-name {
+  width: 150px;
+  height: 18px;
+  border-radius: 6px;
+  margin-bottom: 21px;
+  animation: skeletonAnimation 2s infinite alternate;
+}
+
+.skeleton-description {
+  width: 256px;
+  height: 14px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  animation: skeletonAnimation 2s infinite alternate;
+}
+
+.skeleton-additional {
+  width: 138px;
+  height: 14px;
+  border-radius: 6px;
+  margin-bottom: 21px;
+  animation: skeletonAnimation 2s infinite alternate;
+}
+
+.price-wrapper {
+  display: flex;
+  gap: 12px;
+}
+
+.price-wrapper div {
+  width: 49px;
+  height: 22px;
+  border-radius: 6px;
+  animation: skeletonAnimation 2s infinite alternate;
+}

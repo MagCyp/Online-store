@@ -7,10 +7,10 @@ import Carousel from '@components/carousel/Carousel';
 import ShopByCategory from '@components/shopByCategory/ShopByCategory';
 import AboutUs from '@components/aboutUs/AboutUs';
 import ClientFeedback from '@components/clientFeedback/ClientFeedback';
+import DynamicBackgroundEffects from '@components/dynamicBackgroundEffects/DynamicBackgroundEffects';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
-import DynamicBackgroundEffects from '@/components/dynamicBackgroundEffects/DynamicBackgroundEffects';
 
 const Home: FC = () => {
   const sliderRef = useRef<SwiperRef>(null);
