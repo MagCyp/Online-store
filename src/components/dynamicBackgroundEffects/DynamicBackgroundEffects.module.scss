@@ -1,11 +1,9 @@
-.shapes-container-wrapper{
+.shapes-container-wrapper {
   position: relative;
-  display: flex;
   height: 100%;
 }
 
-.shapes-container{
-  flex-grow: 1;
+.shapes-container {
   position: absolute;
   width: 100%;
   min-height: 100%;

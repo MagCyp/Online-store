@@ -21,22 +21,10 @@ export interface IProduct {
   shortDescription: string;
   price: number;
   imageUrl: string;
-  createdAt?: string;
-  priceWithSale?: null;
-  inventory?: {
-    id: string;
-    quantity: number;
-  };
-  brand: {
-    id: string;
-    name: string;
-  };
-  reviews?: string[];
-  category?: {
-    id: string;
-    name: string;
-  };
-  _links?: {
+  createdAt: string;
+  priceWithSale: null;
+  brand: string;
+  _links: {
     self: {
       href: string;
     };
@@ -54,42 +42,26 @@ export interface IFilterProduct {
   isSale: boolean[];
 }
 
-export interface IMostPurchaseProducts {
+export interface IReviews {
   id: string;
-  name: string;
-  shortDescription: string;
-  price: number;
-  imageUrl: string;
-  createdAt: string;
-  characteristics: {
-    Buttons: string;
-    DPI: string;
-    Interface: string;
-    Color: string;
-  };
-  priceWithSale: null;
-  inventory: {
-    id: string;
-    quantity: number;
-  };
-  isSale: null;
-  isPresent: null;
-  brand: {
-    id: string;
-    name: string;
-  };
-  reviews: [];
-  category: {
-    id: string;
-    name: string;
+  productId: string;
+  rate: number;
+  comment: string;
+  userName: string;
+  userPhoto: string;
+  _links: {
+    product: {
+      href: string;
+    };
   };
 }
 
 export interface IProductData {
   _embedded: {
     products?: IProduct[];
+    review?: IReviews[];
   };
-  page: {
+  page?: {
     size: number;
     totalElements: number;
     totalPages: number;

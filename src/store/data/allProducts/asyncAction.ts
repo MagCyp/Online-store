@@ -7,7 +7,7 @@ import { IFetchParams } from '@store/data/allProducts/types';
 export const fetchAllProducts = createAsyncThunk(
   'products/fetchAllProducts',
   async ({ page, size, sort, category, query }: IFetchParams) => {
-    let queryParams = [];
+    const queryParams = [];
     if (page !== undefined && page !== null) queryParams.push(`page=${page}`);
     if (size) queryParams.push(`size=${size}`);
     if (sort) queryParams.push(`sort=${sort}`);

@@ -44,7 +44,7 @@ export const productsSlice = createSlice({
     });
     builder.addCase(fetchMostPurchaseProducts.fulfilled, (state, action) => {
       state.status = 'success';
-      state.dataMostPurchase = action.payload;
+      state.dataMostPurchase = action.payload._embedded?.products || [];
     });
     builder.addCase(fetchMostPurchaseProducts.rejected, state => {
       state.status = 'error';

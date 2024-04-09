@@ -85,7 +85,7 @@ const ProductCard: FC<Props> = ({
       </div>
       <div className={styles['content']}>
         <div>
-          <p className={styles['brand']}>{brand.name}</p>
+          <p className={styles['brand']}>{brand}</p>
           <p className={styles['product-name']}>{name}</p>
         </div>
         <p className={styles['short-description']}>{formattedShortDesc}</p>

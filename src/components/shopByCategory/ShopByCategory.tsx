@@ -67,7 +67,7 @@ const ShopByCategory: FC = () => {
   return (
     <div className={styles['bg-wrapper']}>
       <Container>
-        <h3 className={`${styles.title} regular`}>Shop By Category</h3>
+        <h3 className={`${styles.title} regular`}>Shop by category</h3>
         <div className={styles['items-wrapper']}>
           {items.map(
             item =>

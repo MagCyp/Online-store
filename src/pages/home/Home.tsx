@@ -1,4 +1,5 @@
-import { FC, useState } from 'react';
+import { FC, useRef } from 'react';
+import { Swiper, SwiperSlide, SwiperRef } from 'swiper/react';
 
 import HeroScreenFirst from '@components/heroScreens/heroScreenFirst/HeroScreenFirst';
 import HeroScreenSecond from '@components/heroScreens/heroScreenSecond/HeroScreenSecond';
@@ -6,40 +7,50 @@ import Carousel from '@components/carousel/Carousel';
 import ShopByCategory from '@components/shopByCategory/ShopByCategory';
 import AboutUs from '@components/aboutUs/AboutUs';
 import ClientFeedback from '@components/clientFeedback/ClientFeedback';
+import DynamicBackgroundEffects from '@components/dynamicBackgroundEffects/DynamicBackgroundEffects';
+
+import 'swiper/css';
+import 'swiper/css/free-mode';
 
 const Home: FC = () => {
-  const [isLeftButtonClicked, setIsLeftButtonClicked] =
-    useState<boolean>(false);
-  const [isRightButtonClicked, setIsRightButtonClicked] =
-    useState<boolean>(false);
+  const sliderRef = useRef<SwiperRef>(null);
 
-  const handleLeftButtonClick = () => {
-    setIsLeftButtonClicked(!isLeftButtonClicked);
-    setIsRightButtonClicked(false);
+  const handleNext = () => {
+    sliderRef.current?.swiper?.slideNext();
   };
 
-  const handleRightButtonClick = () => {
-    setIsRightButtonClicked(!isRightButtonClicked);
-    setIsLeftButtonClicked(false);
+  const handlePrev = () => {
+    sliderRef.current?.swiper?.slidePrev();
   };
 
   return (
     <div>
-      {!isLeftButtonClicked && !isRightButtonClicked ? (
-        <HeroScreenFirst
-          onLeftButtonClick={handleLeftButtonClick}
-          onRightButtonClick={handleRightButtonClick}
-        />
-      ) : (
-        <HeroScreenSecond
-          onLeftButtonClick={handleLeftButtonClick}
-          onRightButtonClick={handleRightButtonClick}
-        />
-      )}
-      <Carousel />
-      <ShopByCategory />
-      <AboutUs />
-      <ClientFeedback />
+      <Swiper
+        slidesPerView={1}
+        spaceBetween={0}
+        navigation={false}
+        ref={sliderRef}
+        loop={true}
+      >
+        <SwiperSlide>
+          <HeroScreenFirst
+            onLeftButtonClick={handlePrev}
+            onRightButtonClick={handleNext}
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <HeroScreenSecond
+            onLeftButtonClick={handlePrev}
+            onRightButtonClick={handleNext}
+          />
+        </SwiperSlide>
+      </Swiper>
+      <DynamicBackgroundEffects>
+        <Carousel />
+        <ShopByCategory />
+        <AboutUs />
+        <ClientFeedback />
+      </DynamicBackgroundEffects>
     </div>
   );
 };

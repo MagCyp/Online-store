@@ -1,7 +1,6 @@
 @import '@/variables/colors/colors';
 
 .bg-wrapper {
-  background: $black;
   padding-bottom: 264px;
 }
 
@@ -70,6 +69,10 @@
     height: 52px;
     width: 52px;
     border-radius: 50%;
+    object-fit: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     margin-right: 16px;
   }
 

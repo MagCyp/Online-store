@@ -9,30 +9,24 @@ import { Props } from '@components/clientFeedback/sliderContent/types';
 
 import styles from '@components/clientFeedback/ClientFeedback.module.scss';
 
-const SliderContent: FC<Props> = ({
-  title,
-  logo,
-  userName,
-  yearsExperience,
-  rating,
-}) => {
+const SliderContent: FC<Props> = ({ rate, comment, userName, userPhoto }) => {
   return (
     <div className={styles['slider-wrapper']}>
       <img className={styles['quotes-img']} src={quotes} alt="quotes" />
-      <p className={`${styles['comment-description']} regular m`}>{title}</p>
+      <p className={`${styles['comment-description']} regular m`}>{comment}</p>
       <div className={styles['rating-wrapper']}>
-        <img src={logo} alt="user" />
+        <img src={userPhoto} alt="user" />
         <div className={styles['user-wrapper']}>
           <p className={`${styles['user-title']} bold l`}>{userName}</p>
           <p className={`${styles['user-description']} regular s`}>
-            {yearsExperience} years of experience
+            {5} years of experience
           </p>
         </div>
         <div>
-          {[...Array(rating)].map((_, index) => (
+          {[...Array(rate)].map((_, index) => (
             <StarFull key={index} size="small" />
           ))}
-          {[...Array(5 - rating)].map((_, index) => (
+          {[...Array(5 - rate)].map((_, index) => (
             <StarEmpty key={index} size="small" />
           ))}
         </div>

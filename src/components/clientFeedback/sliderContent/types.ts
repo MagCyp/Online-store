@@ -1,7 +1,8 @@
 export interface Props {
-  title: string;
-  logo: string;
+  id: string;
+  productId: string;
+  rate: number;
+  comment: string;
   userName: string;
-  yearsExperience: number;
-  rating: number;
+  userPhoto: string;
 }

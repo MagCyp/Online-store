@@ -1,8 +1,8 @@
-import { IMostPurchaseProducts, IProduct } from '@models/models';
+import { IProduct } from '@models/models';
 
 export interface IProductsSliceState {
   dataProducts: IProduct[];
-  dataMostPurchase: IMostPurchaseProducts[];
+  dataMostPurchase: IProduct[];
   status?: string;
   productsInfo?: {
     size: number;

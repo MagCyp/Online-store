@@ -1,13 +1,14 @@
 @import '@/variables/colors/colors';
 
 .bg-wrapper {
-  width: 100%;
-  min-height: 100vh;
-  background-image: url('../../assets/images/hero-screen-second-bg.png');
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
+  position: relative;
   padding: 116px 0;
+}
+
+.skeleton-wrapper {
+  display: flex;
+  gap: 32px;
+  padding-top: 48px;
 }
 
 .categories-wrapper {
