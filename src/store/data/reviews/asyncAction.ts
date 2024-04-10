@@ -7,7 +7,7 @@ export const fetchReviews = createAsyncThunk(
   'reviews/fetchReviews',
   async () => {
     const { data } = await axios.get<IProductData>(
-      `${process.env.REACT_APP_API_UR}/reviews/best-rate`,
+      `${process.env.REACT_APP_API_URL}/reviews/best-rate`,
     );
 
     return data;
