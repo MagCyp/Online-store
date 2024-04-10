@@ -9,7 +9,7 @@ export const fetchFiltersProducts = createAsyncThunk(
     const { category, query } = params;
     const { data } = await axios.get(
       `${
-        process.env.REACT_APP_API_URL
+        process.env.REACT_APP_API_UR
       }/products/filters?category.name=${category}&${query || ''}`,
     );
 

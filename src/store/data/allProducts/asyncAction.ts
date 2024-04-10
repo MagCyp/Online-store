@@ -17,7 +17,7 @@ export const fetchAllProducts = createAsyncThunk(
       query,
     });
 
-    const url = `${process.env.REACT_APP_API_URL}/products?${queryString}`;
+    const url = `${process.env.REACT_APP_API_UR}/products?${queryString}`;
 
     const { data } = await axios.get<IProductData>(url);
 
