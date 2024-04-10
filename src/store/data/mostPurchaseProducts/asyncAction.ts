@@ -7,7 +7,7 @@ export const fetchMostPurchaseProducts = createAsyncThunk(
   'products/fetchMostPurchaseProducts',
   async () => {
     const { data } = await axios.get<IProductData>(
-      `http://localhost:8080/products/most-purchase`,
+      `${process.env.REACT_APP_API_URL}/products/most-purchase`,
     );
 
     return data;

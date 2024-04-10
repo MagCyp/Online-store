@@ -8,9 +8,9 @@ export const fetchFiltersProducts = createAsyncThunk(
   async (params: IFetchParams) => {
     const { category, query } = params;
     const { data } = await axios.get(
-      `http://localhost:8080/products/filters?category.name=${category}&${
-        query || ''
-      }`,
+      `${
+        process.env.REACT_APP_API_URL
+      }/products/filters?category.name=${category}&${query || ''}`,
     );
 
     return data;
