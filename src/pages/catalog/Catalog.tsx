@@ -69,11 +69,11 @@ const Catalog: FC = () => {
   };
 
   useEffect(() => {
-    if (needUpdate) {
+    if (needUpdate && !isNaN(catalog.min) && !isNaN(catalog.max)) {
       fetchData(true);
       setNeedUpdate(false);
     }
-  }, [needUpdate]);
+  }, [needUpdate, catalog.max, catalog.min]);
 
   useEffect(() => {
     if (dataProducts.length > 0 && status === 'success' && productsInfo) {

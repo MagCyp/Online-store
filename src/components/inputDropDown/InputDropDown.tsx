@@ -13,7 +13,6 @@ const InputDropDown: FC<Props> = ({ options, setSortedBy }) => {
   const [selectedOption, setSelectedOption] = useState<string>();
 
   useEffect(() => {
-    setSortedBy(options[0].sortBy);
     setSelectedOption(options[0].name);
   }, []);
 

@@ -8,29 +8,10 @@ import { Props } from '@components/breadcrumb/types';
 
 import styles from '@components/breadcrumb/Breadcrumb.module.scss';
 
-const list: Record<string, string> = {
-  Mouse: 'Mice',
-  'Mouse Pad': 'Mouse mats',
-  Keyboard: 'Keyboards',
-  Joystick: 'Joysticks and controllers',
-  Headset: 'Headsets',
-  'Gaming Chair': 'Gaming chairs',
-};
-
 const Breadcrumb: FC<Props> = ({ category, name }) => {
-  const convertCategory = (category: string): string => {
-    if (category in list) {
-      return list[category];
-    } else {
-      return category;
-    }
-  };
-
-  const newCat = convertCategory(category);
-
   return (
     <div className={styles['container']}>
-      {!name && <h2 className="regular">{newCat}</h2>}
+      {!name && <h2 className="regular">{category}</h2>}
       <div className={styles['breadcrumbs']}>
         <Button
           className="link-gray small"

@@ -18,6 +18,8 @@ const ProductList: FC<Props> = ({ products }) => {
           price={product.price}
           imageUrl={product.imageUrl}
           id={product.id}
+          createdAt={product.createdAt}
+          priceWithSale={product.priceWithSale}
         />
       ))}
     </div>

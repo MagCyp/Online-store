@@ -1,11 +1,10 @@
 export interface Props {
-  topLabel?: string;
-  bottomLabel?: string;
+  createdAt: string;
   brand: string;
   name: string;
   shortDescription: string;
   price: number;
-  priceWithSale?: number;
+  priceWithSale: number | null;
   imageUrl: string;
   id: string;
 }

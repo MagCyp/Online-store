@@ -43,6 +43,7 @@
   align-items: flex-start;
   gap: 12px;
   align-self: stretch;
+  position: relative;
 
   .brand {
     @extend .regular;
@@ -54,6 +55,23 @@
     @extend .bold;
     @extend .l;
     color: $gray-10;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+
+    &:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: 50px;
+      left: 0;
+      padding: 4px 8px;
+      background-color: $gray-500;
+      border-radius: 4px;
+      white-space: nowrap;
+      z-index: 9999;
+      @extend .xxs;
+    }
   }
 
   .short-description {

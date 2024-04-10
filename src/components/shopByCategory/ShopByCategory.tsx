@@ -19,32 +19,27 @@ const items: IItems[] = [
     id: 1,
     icon: <Keyboard size="extraLarge" />,
     title: 'Keyboards',
-    href: 'Keyboard',
   },
-  { id: 2, icon: <Mice size="extraLarge" />, title: 'Mice', href: 'Mouse' },
+  { id: 2, icon: <Mice size="extraLarge" />, title: 'Mice' },
   {
     id: 3,
     icon: <MouseMats size="extraLarge" />,
     title: 'Mouse pads',
-    href: 'Mouse Pad',
   },
   {
     id: 4,
     icon: <Joysticks size="extraLarge" />,
     title: 'Joysticks and controllers',
-    href: 'Joystick',
   },
   {
     id: 5,
     icon: <Headsets size="extraLarge" />,
     title: 'Headsets',
-    href: 'Headset',
   },
   {
     id: 6,
     icon: <Chair size="extraLarge" />,
     title: 'Gaming chairs',
-    href: 'Gaming Chair',
   },
 ];
 
@@ -77,7 +72,7 @@ const ShopByCategory: FC = () => {
                   className={styles['item']}
                   onMouseEnter={() => handleMouseEnter(item.id)}
                   onMouseLeave={handleMouseLeave}
-                  onClick={() => handleClick(item.href)}
+                  onClick={() => handleClick(item.title)}
                 >
                   {item.id === hoveredItemId
                     ? React.cloneElement(item.icon, { size: 'hover' })
