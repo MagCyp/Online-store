@@ -17,7 +17,7 @@ export const useTimeout = (date: string) => {
   const timerInformation: string[] = ['Days', 'Hours', 'Minutes', 'Seconds'];
 
   useEffect(() => {
-    let interval: any;
+    let interval: NodeJS.Timeout;
 
     const startTimer = () => {
       const countDownDate = new Date(date).getTime();
