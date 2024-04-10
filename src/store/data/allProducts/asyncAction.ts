@@ -1,9 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { IProductData } from '@/models/models';
+import { getQueriesForProducts } from '@utils/queriesForUrl/getQueriesForProducts/getQueriesForProducts';
+
 import { IFetchParams } from '@store/data/allProducts/types';
-import { getQueriesForProducts } from '@/utils/queriesForUrl/getQueriesForProducts/getQueriesForProducts';
+import { IProductData } from '@/models/models';
 
 export const fetchAllProducts = createAsyncThunk(
   'products/fetchAllProducts',
