@@ -117,7 +117,7 @@ const Catalog: FC = () => {
               {products ? (
                 <ProductList products={products} />
               ) : (
-                'any product list'
+                'any productId list'
               )}
               {currentPage[currentPage.length - 1] < pages ? (
                 <div className={styles['load-more']}>

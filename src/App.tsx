@@ -14,6 +14,7 @@ import PrivateRoute from '@utils/privateRoute/PrivateRoute';
 
 import { useGetUser } from '@hooks/getUser/useGetUser';
 import { useAppDispatch } from '@hooks/redux/redux';
+import ProductId from '@pages/productId/ProductId';
 
 const App: FC = () => {
   const auth = useGetUser();
@@ -34,6 +35,7 @@ const App: FC = () => {
             <Route path="/" element={<Home />} />
           </Route>
           <Route path="/catalog/:category" element={<Catalog />} />
+          <Route path="/catalog/:category/:id" element={<ProductId />} />
           <Route
             path="/login"
             element={auth ? <Navigate to="/" /> : <SignIn />}

@@ -9,6 +9,7 @@ import catalogSlice from '@store/slices/catalog/catalogSlice';
 import productsSlice from '@store/slices/data/products/productsSlice';
 import filtersSlice from '@store/slices/data/filters/filtersSlice';
 import reviewsSlice from '@store/slices/data/reviews/reviewsSlice';
+import productIdSlice from '@store/slices/productId/productIdSlice';
 
 export const store = configureStore({
   reducer: {
@@ -17,6 +18,7 @@ export const store = configureStore({
     register: registerSlice,
     catalog: catalogSlice,
     products: productsSlice,
+    productId: productIdSlice,
     filters: filtersSlice,
     reviews: reviewsSlice,
     [authApi.reducerPath]: authApi.reducer,
