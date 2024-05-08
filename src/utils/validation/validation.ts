@@ -26,7 +26,7 @@ export const validateEmail = (value: string | undefined): string => {
   return '';
 };
 
-export const validatePassword = (value: string): string => {
+export const validatePassword = (value: string | undefined): string => {
   if (!value) return 'Password is a required field!';
   if (!/(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(value))
     return 'Password must be at least 8 characters and contain at least one letter and one number';
