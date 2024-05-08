@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { setUser } from '@store/slices/user/userSlice';
 
@@ -35,14 +35,8 @@ const App: FC = () => {
           </Route>
           <Route path="/catalog/:category" element={<Catalog />} />
           <Route path="/catalog/:category/:id" element={<ProductId />} />
-          <Route
-            path="/login"
-            element={auth ? <Navigate to="/" /> : <AuthModal isOpen />}
-          />
-          <Route
-            path="/register"
-            element={auth ? <Navigate to="/" /> : <AuthModal register isOpen />}
-          />
+          <Route path="/login" element={<AuthModal isOpen />} />
+          <Route path="/register" element={<AuthModal register isOpen />} />
         </Routes>
       </main>
       <Footer />
