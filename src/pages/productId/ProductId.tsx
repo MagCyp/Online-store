@@ -214,7 +214,6 @@ const ProductId: FC = () => {
                   </div>
                 ),
               )}
-              ))
             </div>
           </div>
 
@@ -317,28 +316,38 @@ const ProductId: FC = () => {
             </div>
           </div>
 
-          <div className={styles['customer-review-box']}>
-            <div className={styles['customer-column']}>
-              <div className={styles['stars']}>
-                <StarFull size={'small'} />
-                <StarEmpty size={'small'} />
-                <StarEmpty size={'small'} />
-                <StarEmpty size={'small'} />
-                <StarEmpty size={'small'} />
+
+          <div className={styles['customer-box']}>
+            <hr />
+            <div className={styles['customer-review-box']}>
+              <div className={styles['customer-column']}>
+                <div className={styles['stars']}>
+                  <StarFull size={'small'} />
+                  <StarEmpty size={'small'} />
+                  <StarEmpty size={'small'} />
+                  <StarEmpty size={'small'} />
+                  <StarEmpty size={'small'} />
+                </div>
+                <h3>Natalie S.</h3>
+                <span>Aug 24, 2023</span>
+                <div className={styles['verified']}>
+                  <Check size={'medium'} color={'#F6F6F7'} />
+                  <span>Verified</span>
+                </div>
               </div>
-              <h3>Natalie S.</h3>
-              <span>Aug 24, 2023</span>
-              <div className={styles['verified']}>
-                <Check size={'small'} color={'#F6F6F7'}/>
-                <span>Verified</span>
-              </div>
-            </div>
 
 
-            <div className={styles['review']}>
-              <h2>Unmatched Precision and Style!</h2>
-              <p>I&apos;ve been using the QuantumX Pro for a month now, and I&apos;m blown away by its precision and customizable RGB lighting. The ergonomic design is perfect for my long gaming sessions. A must-have for serious gamers!</p>
+              <div className={styles['review']}>
+                <h2>Unmatched Precision and Style!</h2>
+                <p>I&apos;ve been using the QuantumX Pro for a month now, and I&apos;m blown away by its precision and
+                  customizable RGB lighting. The ergonomic design is perfect for my long gaming sessions. A must-have
+                  for
+                  serious gamers!</p>
+              </div>
+
             </div>
+
+            <hr />
 
           </div>
 
