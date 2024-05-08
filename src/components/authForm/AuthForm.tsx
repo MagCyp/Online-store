@@ -16,9 +16,9 @@ import {
   validatePhone,
 } from '@/utils/validation/validation';
 
-import { Props, Errors } from '@components/auth/types';
+import { Props, Errors } from '@components/authForm/types';
 
-import styles from '@components/auth/authForm.module.scss';
+import styles from '@components/authForm/authForm.module.scss';
 
 const AuthModal: FC<Props> = ({ register, isOpen }) => {
   const [email, setEmail] = useState<string>('');
