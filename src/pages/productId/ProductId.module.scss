@@ -7,7 +7,7 @@
   padding-bottom: 130px;
 
   .breadcrumb {
-    padding: 48px 0 48px;
+    padding: 66px 0 22px 0;
   }
 
   // breadcrumb
@@ -69,7 +69,7 @@
         .stars {
           display: flex;
           flex-direction: row;
-          gap: 4px;
+          gap: 8px;
         }
 
         // stars
@@ -108,7 +108,7 @@
         display: flex;
         flex-direction: column;
         gap: 8px;
-        margin-top: 24px;
+        margin-top: 28px;
 
         .product-title {
           color: $gray-100;
@@ -147,7 +147,7 @@
         display: flex;
         align-items: center;
         gap: 16px;
-        margin-top: 24px;
+        margin-top: 28px;
 
         .product-price {
           color: $gray-10;
@@ -192,7 +192,7 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
-        margin-top: 24px;
+        margin-top: 28px;
 
         .color-picker {
           display: flex;
@@ -221,6 +221,7 @@
         line-height: 18px;
         color: $gray-25;
         user-select: none;
+        margin-top: 10px;
       }
 
       // color-text
@@ -229,7 +230,7 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
-        margin: 24px 0;
+        margin: 28px 0;
 
         .row {
           display: flex;
@@ -320,6 +321,7 @@
 .key-features {
   display: flex;
   flex-direction: column;
+  margin-top: 80px;
 
   p {
     font-family: 'helvetica-regular', sans-serif;
@@ -332,8 +334,8 @@
   // p
 
   hr {
-    margin-top: 20px;
-    margin-bottom: 80px;
+    margin-top: 18px;
+    margin-bottom: 72px;
     border: 1px solid $gray-300;
   }
 
@@ -342,7 +344,8 @@
   .items-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 120px;
+    gap: 140px;
+
 
     .product-features {
       display: flex;
@@ -369,6 +372,7 @@
           flex-direction: column;
           flex-wrap: nowrap;
           justify-content: center;
+          gap: 20px;
 
           h1 {
             max-width: 353px;
@@ -410,13 +414,14 @@
 
 .customer-reviews-container {
   display: grid;
+  margin-top: 200px;
   grid-template-columns: 1fr 1fr;
-  grid-column-gap: 10px;
+  grid-column-gap: 0;
 
   .customer-reviews-left {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 20px;
 
     h1 {
       font-family: 'monument-regular', sans-serif;
@@ -435,7 +440,7 @@
       .stars {
         display: flex;
         flex-direction: row;
-        gap: 4px;
+        gap: 8px;
       }
 
       .avg-rate {
@@ -443,6 +448,7 @@
         font-size: 14px;
         font-family: 'helvetica-regular', sans-serif;
         line-height: 20px;
+        margin-left: 4px;
       }
     }
 
@@ -459,18 +465,18 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 14px;
+    gap: 24px;
 
     .rate-indicator {
       display: flex;
       flex-direction: row;
       align-items: center;
-      gap: 20px;
+      gap: 16px;
 
       .stars {
         display: flex;
         flex-direction: row;
-        gap: 4px;
+        gap: 8px;
       }
 
       .reviews-count {
@@ -483,74 +489,86 @@
   }
 }
 
-.customer-review-box {
-  display: flex;
-  flex-direction: row;
-  margin-top: 100px; // delete
+.customer-box {
 
-  .customer-column {
-    min-width: 250px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    .stars {
-      display: flex;
-      flex-direction: row;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-
-    h3 {
-      font-size: 16px;
-      font-family: helvetica-regular, sans-serif;
-      font-weight: 700;
-      color: $gray-10;
-      line-height: 24px;
-    }
-
-    span {
-      font-size: 12px;
-      font-family: helvetica-regular, sans-serif;
-      font-weight: 400;
-      color: $gray-200;
-      line-height: 18px;
-    }
-
-    .verified {
-      display: flex;
-      flex-direction: row;
-      gap: 4px;
-
-      span {
-        font-size: 14px;
-        font-family: helvetica-regular, sans-serif;
-        font-weight: 500;
-        color: $gray-10;
-        line-height: 20px;
-      }
-    }
+  hr {
+    margin-bottom: 32px;
+    margin-top: 32px;
+    border: 1px solid $gray-300;
   }
 
-  .review {
+  .customer-review-box {
     display: flex;
-    flex-direction: column;
-    gap: 16px;
+    flex-direction: row;
 
-    h2 {
-      font-size: 18px;
-      font-family: helvetica-regular, sans-serif;
-      font-weight: 700;
-      color: $gray-10;
-      line-height: 26px;
+    .customer-column {
+      min-width: 250px;
+      display: flex;
+      flex-direction: column;
+
+      .stars {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+
+      h3 {
+        font-size: 16px;
+        font-family: helvetica-regular, sans-serif;
+        font-weight: 700;
+        color: $gray-10;
+        line-height: 24px;
+        margin-top: 24px;
+      }
+
+      span {
+        font-size: 12px;
+        font-family: helvetica-regular, sans-serif;
+        font-weight: 400;
+        color: $gray-200;
+        line-height: 18px;
+        margin-top: 8px;
+      }
+
+      .verified {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 4px;
+        user-select: none;
+        margin-top: 16px;
+
+        span {
+          font-size: 14px;
+          font-family: helvetica-regular, sans-serif;
+          font-weight: 500;
+          color: $gray-10;
+          line-height: 20px;
+        }
+      }
     }
 
-    p {
-      font-size: 14px;
-      font-family: helvetica-regular, sans-serif;
-      font-weight: 400;
-      color: $gray-50;
-      line-height: 20px;
+    .review {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      h2 {
+        font-size: 18px;
+        font-family: helvetica-regular, sans-serif;
+        font-weight: 700;
+        color: $gray-10;
+        line-height: 26px;
+      }
+
+      p {
+        font-size: 14px;
+        font-family: helvetica-regular, sans-serif;
+        font-weight: 400;
+        color: $gray-50;
+        line-height: 20px;
+      }
     }
   }
 }
@@ -562,21 +580,21 @@
   line-height: 48px;
   font-weight: 400;
   font-family: monument-regular, sans-serif;
+  user-select: none;
 }
 
 
-
 .recommended-product-row {
-  margin-top: 20px;
+  margin-top: 56px;
   display: flex;
   flex-direction: row;
-  gap: 24px;
+  gap: 32px;
 }
 
 .product-card {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  //gap: 10px;
 
   .img-box {
     height: 256px;
@@ -590,6 +608,9 @@
     font-weight: 400;
     color: $gray-100;
     line-height: 20px;
+    margin-top: 20px;
+    margin-bottom: 2px;
+    user-select: none;
   }
 
   h2 {
@@ -598,6 +619,7 @@
     font-weight: 700;
     color: $gray-10;
     line-height: 26px;
+    margin-bottom: 12px;
   }
 
   p {
@@ -607,17 +629,19 @@
     font-weight: 400;
     color: $gray-50;
     line-height: 20px;
+    margin-bottom: 12px;
   }
 
   h3 {
-      color: $gray-10;
-      font-family: 'helvetica-bold', sans-serif;
-      font-size: 22px;
-      font-weight: 700;
-      line-height: 32px;
-      user-select: none;
-    }
+    color: $gray-10;
+    font-family: 'helvetica-bold', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 32px;
+    user-select: none;
+  }
 }
+
 // productId-container
 
 
