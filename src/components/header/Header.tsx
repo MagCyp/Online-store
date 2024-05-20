@@ -14,6 +14,8 @@ import { restrictNumberToString } from '@utils/NumberString/restrictNumberToStri
 
 import styles from '@components/header/Header.module.scss';
 
+import { Link } from 'react-router-dom';
+
 const Header: FC = () => {
   const [isVisibleSearch, setVisibleSearch] = useState<boolean>(false);
   const toggleButtonRef = useRef<HTMLButtonElement>(null);
@@ -75,11 +77,13 @@ const Header: FC = () => {
               )}
             </div>
             <div className={styles['icon-container']}>
-              <IconButton
-                type="button"
-                className="link-gray large"
-                icon={<ShoppingBag size="medium" />}
-              />
+              <Link to="/checkout">
+                <IconButton
+                  type="button"
+                  className="link-gray large"
+                  icon={<ShoppingBag size="medium" />}
+                />
+              </Link>
               {cartCount > 0 && (
                 <span className={styles['count']}>
                   {restrictNumberToString(cartCount)}
