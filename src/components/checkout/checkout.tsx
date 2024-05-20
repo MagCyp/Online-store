@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '@/components/checkout/Checkout.module.scss'
 
 const Checkout: React.FC = () => {
     return (
