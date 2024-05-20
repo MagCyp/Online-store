@@ -9,6 +9,7 @@ import SignIn from '@pages/auth/signIn/SignIn';
 import SignUp from '@pages/auth/signUp/SignUp';
 import Home from '@pages/home/Home';
 import Catalog from '@pages/catalog/Catalog';
+import Checkout from '@/components/checkout/Checkout';
 
 import PrivateRoute from '@utils/privateRoute/PrivateRoute';
 
@@ -44,6 +45,7 @@ const App: FC = () => {
             path="/register"
             element={auth ? <Navigate to="/" /> : <SignUp />}
           />
+          <Route path="/checkout" element={<Checkout />} /> 
         </Routes>
       </main>
       <Footer />
