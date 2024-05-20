@@ -1,0 +1,6 @@
+const Checkout = () => {
+    return (
+        <>
+        </>
+    )
+}
