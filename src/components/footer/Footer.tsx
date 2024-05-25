@@ -2,29 +2,28 @@ import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Container from '@components/container/Container';
-import CustomInput from '@components/customInput/Input';
+import CustomInput from '@/components/customInput/Input';
 import Button from '@components/button/Button';
-import Error from '@components/error/Error';
 
 import { validateEmail } from '@utils/validation/validation';
 
-import { IITems } from '@components/footer/types';
+import { IItems } from '@components/footer/types';
 
 import styles from '@components/footer/Footer.module.scss';
 
-const popularCategoriesItems: IITems[] = [
+const popularCategoriesItems: IItems[] = [
   { id: 1, title: 'Mice', href: '/catalog/Mice' },
   { id: 2, title: 'Headsets', href: '/catalog/Headsets' },
   { id: 3, title: 'Keyboards', href: '/catalog/Keyboards' },
 ];
 
-const aboutUsItems: IITems[] = [
+const aboutUsItems: IItems[] = [
   { id: 1, title: 'Cookie Policy', href: '/' },
   { id: 2, title: 'Payment Methods', href: '/' },
   { id: 3, title: 'Privacy policy', href: '/' },
 ];
 
-const followUsItems: IITems[] = [
+const followUsItems: IItems[] = [
   { id: 1, title: 'Facebook', href: '/' },
   { id: 2, title: 'Twitter', href: '/' },
   { id: 3, title: 'Instagram', href: '/' },
@@ -32,11 +31,6 @@ const followUsItems: IITems[] = [
 
 const Footer: FC = () => {
   const [email, setEmail] = useState<string>('');
-  const [emailError, setEmailError] = useState<string>('');
-
-  const handleEmailClick = () => {
-    setEmailError(validateEmail(email));
-  };
 
   return (
     <div className={styles['bg-wrapper']}>
@@ -48,17 +42,12 @@ const Footer: FC = () => {
           <div className={styles['subscribe-wrapper']}>
             <div className={styles['input-wrapper']}>
               <CustomInput
-                error={emailError}
                 type="email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 label="Email"
+                validate={validateEmail}
               />
-              {emailError ? (
-                <Error className="default-red" message={emailError} />
-              ) : (
-                <div className={styles['error-wrapper']}></div>
-              )}
             </div>
             <div className={styles['button-wrapper']}>
               <Button
@@ -66,7 +55,6 @@ const Footer: FC = () => {
                 className="primary medium"
                 type="submit"
                 text="Subscribe"
-                onClick={handleEmailClick}
               />
             </div>
           </div>

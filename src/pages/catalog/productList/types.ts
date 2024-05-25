@@ -1,5 +1,6 @@
 import { IProduct } from '@/models/models';
 
 export interface Props {
-  products: IProduct[];
+  products?: IProduct[];
+  isLoading?: boolean;
 }

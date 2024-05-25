@@ -27,7 +27,11 @@
   }
 
   .input-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 320px;
+    min-height: 100px;
   }
 
   .error-wrapper {

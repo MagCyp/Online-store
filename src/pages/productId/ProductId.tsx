@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Container from '@/components/container/Container';
 import DynamicBackgroundEffects from '@/components/dynamicBackgroundEffects/DynamicBackgroundEffects';
 import React, { FC, useEffect } from 'react';
@@ -51,7 +53,6 @@ const ProductId: FC = () => {
   useEffect(() => {
     dispatch(getProductById(id!));
   }, [dispatch, id]);
-
 
   const str: string[] = ['New, Old'];
   return (
@@ -238,9 +239,7 @@ const ProductId: FC = () => {
             </div>
 
             <div className={styles['customer-reviews-right']}>
-
               <div className={styles['rate-indicator']}>
-
                 <div className={styles['stars']}>
                   <StarFull size={'small'} />
                   <StarFull size={'small'} />
@@ -251,11 +250,12 @@ const ProductId: FC = () => {
 
                 <ProgressIndicator width={80} />
 
-                <div className={styles['reviews-count']}>{fiveStarReviews()}</div>
+                <div className={styles['reviews-count']}>
+                  {fiveStarReviews()}
+                </div>
               </div>
 
               <div className={styles['rate-indicator']}>
-
                 <div className={styles['stars']}>
                   <StarFull size={'small'} />
                   <StarFull size={'small'} />
@@ -266,11 +266,12 @@ const ProductId: FC = () => {
 
                 <ProgressIndicator width={80} />
 
-                <div className={styles['reviews-count']}>{fiveStarReviews()}</div>
+                <div className={styles['reviews-count']}>
+                  {fiveStarReviews()}
+                </div>
               </div>
 
               <div className={styles['rate-indicator']}>
-
                 <div className={styles['stars']}>
                   <StarFull size={'small'} />
                   <StarFull size={'small'} />
@@ -281,11 +282,12 @@ const ProductId: FC = () => {
 
                 <ProgressIndicator width={80} />
 
-                <div className={styles['reviews-count']}>{fiveStarReviews()}</div>
+                <div className={styles['reviews-count']}>
+                  {fiveStarReviews()}
+                </div>
               </div>
 
               <div className={styles['rate-indicator']}>
-
                 <div className={styles['stars']}>
                   <StarFull size={'small'} />
                   <StarFull size={'small'} />
@@ -296,11 +298,12 @@ const ProductId: FC = () => {
 
                 <ProgressIndicator width={80} />
 
-                <div className={styles['reviews-count']}>{fiveStarReviews()}</div>
+                <div className={styles['reviews-count']}>
+                  {fiveStarReviews()}
+                </div>
               </div>
 
               <div className={styles['rate-indicator']}>
-
                 <div className={styles['stars']}>
                   <StarFull size={'small'} />
                   <StarEmpty size={'small'} />
@@ -311,50 +314,44 @@ const ProductId: FC = () => {
 
                 <ProgressIndicator width={80} />
 
-                <div className={styles['reviews-count']}>{fiveStarReviews()}</div>
+                <div className={styles['reviews-count']}>
+                  {fiveStarReviews()}
+                </div>
               </div>
             </div>
           </div>
 
-
-          <div className={styles['customer-box']}>
-            <hr />
-            <div className={styles['customer-review-box']}>
-              <div className={styles['customer-column']}>
-                <div className={styles['stars']}>
-                  <StarFull size={'small'} />
-                  <StarEmpty size={'small'} />
-                  <StarEmpty size={'small'} />
-                  <StarEmpty size={'small'} />
-                  <StarEmpty size={'small'} />
-                </div>
-                <h3>Natalie S.</h3>
-                <span>Aug 24, 2023</span>
-                <div className={styles['verified']}>
-                  <Check size={'medium'} color={'#F6F6F7'} />
-                  <span>Verified</span>
-                </div>
+          <div className={styles['customer-review-box']}>
+            <div className={styles['customer-column']}>
+              <div className={styles['stars']}>
+                <StarFull size={'small'} />
+                <StarEmpty size={'small'} />
+                <StarEmpty size={'small'} />
+                <StarEmpty size={'small'} />
+                <StarEmpty size={'small'} />
               </div>
-
-
-              <div className={styles['review']}>
-                <h2>Unmatched Precision and Style!</h2>
-                <p>I&apos;ve been using the QuantumX Pro for a month now, and I&apos;m blown away by its precision and
-                  customizable RGB lighting. The ergonomic design is perfect for my long gaming sessions. A must-have
-                  for
-                  serious gamers!</p>
+              <h3>Natalie S.</h3>
+              <span>Aug 24, 2023</span>
+              <div className={styles['verified']}>
+                <Check size={'small'} color={'#F6F6F7'} />
+                <span>Verified</span>
               </div>
-
             </div>
 
-            <hr />
-
+            <div className={styles['review']}>
+              <h2>Unmatched Precision and Style!</h2>
+              <p>
+                I&apos;ve been using the QuantumX Pro for a month now, and
+                I&apos;m blown away by its precision and customizable RGB
+                lighting. The ergonomic design is perfect for my long gaming
+                sessions. A must-have for serious gamers!
+              </p>
+            </div>
           </div>
 
           <h3 className={styles['recommended-product']}>Recommended product</h3>
 
           <div className={styles['recommended-product-row']}>
-
             <div className={styles['product-card']}>
               <div className={styles['img-box']} />
               <span>Brand</span>
@@ -387,7 +384,6 @@ const ProductId: FC = () => {
               <h3>$132</h3>
             </div>
           </div>
-
         </div>
       </Container>
     </DynamicBackgroundEffects>

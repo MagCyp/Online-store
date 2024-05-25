@@ -5,11 +5,11 @@ export enum sizes {
   large = '40',
   medium = '24',
   small = '20',
+  verySmall = '12',
 }
 
 export interface Props extends React.SVGProps<SVGSVGElement> {
   width?: number | string;
   height?: number | string;
   size: keyof typeof sizes;
-  color?: string;
 }

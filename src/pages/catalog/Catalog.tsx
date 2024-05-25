@@ -114,11 +114,10 @@ const Catalog: FC = () => {
                   setSortedBy={sortBy => handleSortBy(sortBy)}
                 />
               </div>
-              {products ? (
-                <ProductList products={products} />
-              ) : (
-                'any productId list'
-              )}
+              <ProductList
+                products={products}
+                isLoading={status === 'loading'}
+              />
               {currentPage[currentPage.length - 1] < pages ? (
                 <div className={styles['load-more']}>
                   <Button

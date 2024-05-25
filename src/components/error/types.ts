@@ -1,4 +1,5 @@
 export interface Props {
-  className: string;
+  className?: string;
   message: string | undefined;
+  bigError?: boolean;
 }
