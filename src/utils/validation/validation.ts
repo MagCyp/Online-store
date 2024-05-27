@@ -41,3 +41,8 @@ export const validateRepeatPassword = (
   if (password !== repeatPassword) return 'Passwords do not match';
   return '';
 };
+
+export const validateNullString = (str: string | undefined): string => {
+  if (!str) return 'This field is required!';
+  return '';
+};

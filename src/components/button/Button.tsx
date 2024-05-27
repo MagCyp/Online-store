@@ -15,6 +15,7 @@ const Button: FC<Props> = ({
   iconRight,
   iconLeft,
   onClick,
+  onClickEvent,
   href,
   isHidden,
   fullWidth,
@@ -31,7 +32,7 @@ const Button: FC<Props> = ({
       className={buttonClassNames}
       style={buttonStyles}
       type={type}
-      onClick={onClick}
+      onClick={onClick || onClickEvent}
       disabled={isDisabled}
     >
       {iconLeft && iconLeft}

@@ -1,0 +1,13 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.account-container {
+  padding-top: 112px;
+  padding-bottom: 200px;
+}
+
+.content {
+  padding-top: 112px;
+  display: flex;
+}

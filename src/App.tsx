@@ -9,6 +9,7 @@ import Home from '@pages/home/Home';
 import Catalog from '@pages/catalog/Catalog';
 import AuthModal from '@components/authForm/AuthForm';
 import ProductId from '@pages/productId/ProductId';
+import UserAccount from '@pages/userAccount/UserAccount';
 
 import PrivateRoute from '@utils/privateRoute/PrivateRoute';
 
@@ -37,6 +38,7 @@ const App: FC = () => {
           <Route path="/catalog/:category/:id" element={<ProductId />} />
           <Route path="/login" element={<AuthModal isOpen />} />
           <Route path="/register" element={<AuthModal register isOpen />} />
+          <Route path="/account" element={<UserAccount />} />
         </Routes>
       </main>
       <Footer />

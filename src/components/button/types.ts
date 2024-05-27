@@ -9,6 +9,7 @@ export type Props = {
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
   onClick?: () => void;
+  onClickEvent?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   href?: string;
   fullWidth?: boolean;
 };
