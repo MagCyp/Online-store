@@ -1,0 +1,39 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.container {
+  padding-left: 64px;
+  display: flex;
+  gap: 64px;
+}
+
+.addresses {
+  &-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &:first-child {
+      color: $white;
+    }
+  }
+
+  &-empty {
+    padding: 64px 47.5px 0px;
+    display: flex;
+    justify-content: center;
+    color: $gray-100;
+  }
+
+  &-list {
+    display: flex;
+    flex-direction: column;
+    padding-top: 32px;
+    gap: 32px;
+  }
+
+  * {
+    color: $white;
+  }
+}

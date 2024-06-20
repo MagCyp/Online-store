@@ -1,4 +1,5 @@
 export interface Props {
-  category: string;
+  userPage?: string;
+  category?: string;
   name?: string;
 }

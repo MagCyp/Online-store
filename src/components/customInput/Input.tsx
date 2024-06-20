@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useState } from 'react';
+import { ChangeEvent, FC, useEffect, useState } from 'react';
 
 import IconButton from '@components/iconButton/IconButton';
 import Eye from '@components/icons/Eye';
@@ -48,6 +48,12 @@ const CustomInput: FC<Props> = ({
       setError && setError(validate(val.target.value));
     }
   };
+
+  useEffect(() => {
+    if (validate) {
+      setError && setError(validate(value));
+    }
+  }, [value]);
 
   const OnChange = (val: ChangeEvent<HTMLInputElement>) => {
     if (onChange) {

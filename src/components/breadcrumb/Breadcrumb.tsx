@@ -8,10 +8,10 @@ import { Props } from '@components/breadcrumb/types';
 
 import styles from '@components/breadcrumb/Breadcrumb.module.scss';
 
-const Breadcrumb: FC<Props> = ({ category, name }) => {
+const Breadcrumb: FC<Props> = ({ category, name, userPage }) => {
   return (
     <div className={styles['container']}>
-      {!name && <h2 className="regular">{category}</h2>}
+      {!name && <h2 className="regular">{category || userPage}</h2>}
       <div className={styles['breadcrumbs']}>
         <Button
           className="link-gray small"
@@ -19,8 +19,18 @@ const Breadcrumb: FC<Props> = ({ category, name }) => {
           text="Home"
           href="/"
         />
-        <ArrowRight size="small" />
-        <Link to={`/catalog/${category}`}>{category}</Link>
+        {category && (
+          <>
+            <ArrowRight size="small" />
+            <Link to={`/catalog/${category}`}>{category}</Link>
+          </>
+        )}
+        {userPage && (
+          <>
+            <ArrowRight size="small" />
+            <p>{userPage}</p>
+          </>
+        )}
         {name && (
           <>
             <ArrowRight size="small" />
