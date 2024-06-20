@@ -1,7 +1,10 @@
 import { FC, useEffect, useState } from 'react';
+
+import AddressCard from '@pages/userAccount/addresses/addressCard/AddressCard';
+import AddressForm from '@pages/userAccount/addresses/addressForm/AddressForm';
+
 import { Props as addressType } from '@pages/userAccount/addresses/addressCard/types';
-import AddressCard from './addressCard/AddressCard';
-import AddressForm from './addressForm/AddressForm';
+
 import styles from '@pages/userAccount/addresses/addresses.module.scss';
 
 const addresses: addressType[] = [
@@ -46,8 +49,11 @@ const Addresses: FC = () => {
 
   const handleRemove = (index: number) => {
     if (!userAddresses) return;
+
     const updatedAddresses = userAddresses.filter((_, i) => i !== index);
+
     setUserAddresses(updatedAddresses);
+
     if (active || active === 0 || 0 >= updatedAddresses.length) {
       setActive(null);
     }
@@ -61,7 +67,9 @@ const Addresses: FC = () => {
     if (userAddresses) {
       if (index !== null) {
         const updatedAddresses = [...userAddresses];
+
         updatedAddresses[index] = address;
+
         setUserAddresses(updatedAddresses);
       } else {
         if (userAddresses.length < 3) {

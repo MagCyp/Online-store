@@ -57,6 +57,7 @@ const AddressForm: FC<Props> = ({ active, addresses, onSave }) => {
 
   const formHasErrors = () => {
     const isErr = Object.values(error).every(err => err === '');
+
     return isErr;
   };
 
@@ -94,6 +95,7 @@ const AddressForm: FC<Props> = ({ active, addresses, onSave }) => {
       address,
       code,
     };
+
     onSave(newAddress, active);
   };
 

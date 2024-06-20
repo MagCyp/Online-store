@@ -20,11 +20,13 @@ const AddressCard: FC<Props> = ({
   setActive,
   onRemove,
 }) => {
-  const [isHover, setIsHover] = useState(false);
+  const [isHover, setIsHover] = useState<boolean>(false);
+
   const handleRemoveClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     onRemove && onRemove();
   };
+
   return (
     <div
       className={styles['container']}

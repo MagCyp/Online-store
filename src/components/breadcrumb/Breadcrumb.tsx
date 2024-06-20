@@ -28,7 +28,7 @@ const Breadcrumb: FC<Props> = ({ category, name, userPage }) => {
         {userPage && (
           <>
             <ArrowRight size="small" />
-            <Link to={`/catalog/${category}`}>{userPage}</Link>
+            <p>{userPage}</p>
           </>
         )}
         {name && (

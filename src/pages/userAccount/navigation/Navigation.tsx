@@ -3,6 +3,8 @@ import { FC } from 'react';
 import Button from '@/components/button/Button';
 import userImg from '@/assets/images/image.png';
 
+import { Props } from '@pages/userAccount/navigation/types';
+
 import styles from '@pages/userAccount/navigation/navigation.module.scss';
 
 const userInfo = {
@@ -17,11 +19,6 @@ const navigation: Record<string, string> = {
   favorite: 'Favorite',
 };
 
-interface Props {
-  currentPage: string;
-  setCurrentPage: (currentPage: string) => void;
-}
-
 const Navigation: FC<Props> = ({ currentPage, setCurrentPage }) => {
   const handleLogOut = () => {
     console.log('log out');
@@ -34,7 +31,7 @@ const Navigation: FC<Props> = ({ currentPage, setCurrentPage }) => {
         <h6>{userInfo.name}</h6>
       </div>
       <div className={styles['navigation']}>
-        {Object.keys(navigation).map((item, index) => (
+        {Object.keys(navigation).map(item => (
           <div
             key={item}
             className={`${styles['menu-item']} ${

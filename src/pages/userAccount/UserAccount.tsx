@@ -1,14 +1,14 @@
 import { FC, useState } from 'react';
 
 import Container from '@components/container/Container';
-import Breadcrumb from '@/components/breadcrumb/Breadcrumb';
+import Breadcrumb from '@components/breadcrumb/Breadcrumb';
 import Navigation from '@pages/userAccount/navigation/Navigation';
+import Addresses from '@pages/userAccount/addresses/Addresses';
 
 import styles from '@pages/userAccount/userAccount.module.scss';
-import Addresses from './addresses/Addresses';
 
 const UserAccount: FC = () => {
-  const [currentPage, setCurrentPage] = useState('addresses');
+  const [currentPage, setCurrentPage] = useState<string>('addresses');
 
   const renderContent = () => {
     // switch (currentPage) {
