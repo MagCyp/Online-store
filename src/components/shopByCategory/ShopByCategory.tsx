@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Container from '@components/container/Container';
@@ -10,7 +10,7 @@ import Joysticks from '@components/icons/Joysticks';
 import Headsets from '@components/icons/Headsets';
 import Chair from '@components/icons/Chair';
 
-import { IItems } from '@components/shopByCategory/types';
+import { IItems, Props } from '@components/shopByCategory/types';
 
 import styles from '@components/shopByCategory/ShopByCategory.module.scss';
 
@@ -43,9 +43,11 @@ const items: IItems[] = [
   },
 ];
 
-const ShopByCategory: FC = () => {
+const ShopByCategory: FC<Props> = ({ setY }) => {
   const [hoveredItemId, setHoveredItemId] = useState<number | null>(null);
   const navigate = useNavigate();
+
+  const ref = useRef<HTMLDivElement>(null);
 
   const handleMouseEnter = (itemId: number) => {
     setHoveredItemId(itemId);
@@ -59,8 +61,14 @@ const ShopByCategory: FC = () => {
     navigate(`/catalog/${href}`);
   };
 
+  useEffect(() => {
+    if (ref.current) {
+      setY(ref.current.getBoundingClientRect().y);
+    }
+  }, []);
+
   return (
-    <div className={styles['bg-wrapper']}>
+    <div className={styles['bg-wrapper']} ref={ref}>
       <Container>
         <h3 className={`${styles.title} regular`}>Shop by category</h3>
         <div className={styles['items-wrapper']}>

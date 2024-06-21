@@ -13,6 +13,7 @@ import styles from '@components/heroScreens/heroScreenFirst/HeroScreenFirst.modu
 const HeroScreenFirst: FC<Props> = ({
   onLeftButtonClick,
   onRightButtonClick,
+  onClick,
 }) => {
   return (
     <div className={styles['bg-wrapper']}>
@@ -25,6 +26,7 @@ const HeroScreenFirst: FC<Props> = ({
             text="Go to shopping"
             className="primary large"
             type="button"
+            onClick={() => onClick()}
           />
           <div className={styles['slider']}>
             <div className={styles['discount-content']}>

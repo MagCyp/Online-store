@@ -1,4 +1,4 @@
-import { FC, useRef } from 'react';
+import { FC, useRef, useState } from 'react';
 import { Swiper, SwiperSlide, SwiperRef } from 'swiper/react';
 
 import HeroScreenFirst from '@components/heroScreens/heroScreenFirst/HeroScreenFirst';
@@ -15,12 +15,21 @@ import 'swiper/css/free-mode';
 const Home: FC = () => {
   const sliderRef = useRef<SwiperRef>(null);
 
+  const [y, setY] = useState<number>(0);
+
   const handleNext = () => {
     sliderRef.current?.swiper?.slideNext();
   };
 
   const handlePrev = () => {
     sliderRef.current?.swiper?.slidePrev();
+  };
+
+  const scrollToY = () => {
+    window.scrollTo({
+      top: y,
+      behavior: 'smooth',
+    });
   };
 
   return (
@@ -36,6 +45,7 @@ const Home: FC = () => {
           <HeroScreenFirst
             onLeftButtonClick={handlePrev}
             onRightButtonClick={handleNext}
+            onClick={scrollToY}
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -47,7 +57,7 @@ const Home: FC = () => {
       </Swiper>
       <DynamicBackgroundEffects>
         <Carousel />
-        <ShopByCategory />
+        <ShopByCategory setY={setY} />
         <AboutUs />
         <ClientFeedback />
       </DynamicBackgroundEffects>

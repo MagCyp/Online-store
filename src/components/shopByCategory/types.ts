@@ -3,3 +3,7 @@ export interface IItems {
   icon: JSX.Element | null;
   title: string;
 }
+
+export interface Props {
+  setY: (y: number) => void;
+}
