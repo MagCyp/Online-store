@@ -10,6 +10,8 @@ import HeartOpacity from '@components/icons/HeartOpacity';
 import ShoppingBag from '@components/icons/ShoppingBag';
 import Container from '@components/container/Container';
 
+import logo from '../../assets/images/Logo-wide.png';
+
 import { restrictNumberToString } from '@utils/NumberString/restrictNumberToString';
 
 import styles from '@components/header/Header.module.scss';
@@ -27,7 +29,7 @@ const Header: FC = () => {
         <div className={styles['header']}>
           <div className={styles['logo']}>
             <a href="/">
-              <h5 className="regular">Logo</h5>
+              <img src={logo} alt="Logo" />
             </a>
           </div>
           <div className={styles['link-group']}>

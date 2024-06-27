@@ -5,6 +5,8 @@ import Container from '@components/container/Container';
 import CustomInput from '@/components/customInput/Input';
 import Button from '@components/button/Button';
 
+import logo from '../../assets/images/Logo-wide.png';
+
 import { validateEmail } from '@utils/validation/validation';
 
 import { IItems } from '@components/footer/types';
@@ -102,7 +104,7 @@ const Footer: FC = () => {
         <div className={styles['logo-wrapper']}>
           <div className={styles['logo']}>
             <a href="/">
-              <h5 className="regular">Logo</h5>
+              <img src={logo} alt="Logo" />
             </a>
           </div>
           <p className="regular m">© 2024 Game store. All rights reserved</p>
