@@ -4,6 +4,7 @@ export interface Props {
   name: string;
   shortDescription: string;
   price: number;
+  rating: number;
   priceWithSale: number | null;
   imageUrl: string;
   id: string;

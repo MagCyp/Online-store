@@ -24,6 +24,7 @@ export interface IProduct {
   createdAt: string;
   priceWithSale: null;
   brand: string;
+  rating: number;
   _links: {
     self: {
       href: string;

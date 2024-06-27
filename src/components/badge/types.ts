@@ -1,4 +1,5 @@
 export interface Props {
-  text: string;
+  text: string | number;
   className: string;
+  isRating?: boolean;
 }

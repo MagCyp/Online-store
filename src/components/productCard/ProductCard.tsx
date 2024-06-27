@@ -22,6 +22,7 @@ const ProductCard: FC<Props> = ({
   price,
   priceWithSale,
   imageUrl,
+  rating,
   id,
 }) => {
   const [isHovered, setHovered] = useState<boolean>(false);
@@ -89,11 +90,10 @@ const ProductCard: FC<Props> = ({
           />
         </div>
         <img className={styles['image']} src={imageUrl} alt="" />
-        {priceWithSale && (
-          <div className={styles['bottom-label']}>
-            <Badge className="gray small" text="Sale" />
-          </div>
-        )}
+
+        <div className={styles['bottom-label']}>
+          <Badge className="gray small" text={rating} isRating />
+        </div>
       </div>
       <div className={styles['content']}>
         <div>

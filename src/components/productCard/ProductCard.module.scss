@@ -12,6 +12,10 @@
 
 .image-container {
   position: relative;
+  background-image: linear-gradient(
+    rgba(238, 238, 246, 1),
+    rgba(193, 193, 203, 1)
+  );
 
   .top-label {
     position: absolute;
