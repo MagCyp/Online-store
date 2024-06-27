@@ -5,7 +5,7 @@ import Container from '@components/container/Container';
 import CustomInput from '@/components/customInput/Input';
 import Button from '@components/button/Button';
 
-import logo from '../../assets/images/Logo-wide.png';
+import logo from '../../assets/images/Logo-wide.svg';
 
 import { validateEmail } from '@utils/validation/validation';
 

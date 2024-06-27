@@ -10,7 +10,7 @@ import HeartOpacity from '@components/icons/HeartOpacity';
 import ShoppingBag from '@components/icons/ShoppingBag';
 import Container from '@components/container/Container';
 
-import logo from '../../assets/images/Logo-wide.png';
+import logo from '../../assets/images/Logo-wide.svg';
 
 import { restrictNumberToString } from '@utils/NumberString/restrictNumberToString';
 
