@@ -57,7 +57,11 @@ const Home: FC = () => {
       </Swiper>
       <DynamicBackgroundEffects>
         <Carousel />
-        <ShopByCategory setY={setY} />
+        <ShopByCategory
+          setY={y => {
+            setY(y);
+          }}
+        />
         <AboutUs />
         <ClientFeedback />
       </DynamicBackgroundEffects>

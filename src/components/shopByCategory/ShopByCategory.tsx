@@ -62,10 +62,20 @@ const ShopByCategory: FC<Props> = ({ setY }) => {
   };
 
   useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      setY(entries[0].boundingClientRect.y + window.scrollY);
+    });
+
     if (ref.current) {
-      setY(ref.current.getBoundingClientRect().y);
+      observer.observe(ref.current);
     }
-  }, []);
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [setY]);
 
   return (
     <div className={styles['bg-wrapper']} ref={ref}>
