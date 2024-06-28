@@ -204,6 +204,7 @@ const Carousel: FC = () => {
                       name={item.name}
                       shortDescription={item.shortDescription}
                       price={item.price}
+                      rating={item.rating}
                       imageUrl={item.imageUrl}
                       createdAt={item.createdAt}
                       priceWithSale={item.priceWithSale}

@@ -24,6 +24,7 @@ const ProductList: FC<Props> = ({ products, isLoading }) => {
               price={product.price}
               imageUrl={product.imageUrl}
               id={product.id}
+              rating={product.rating}
               createdAt={product.createdAt}
               priceWithSale={product.priceWithSale}
             />
