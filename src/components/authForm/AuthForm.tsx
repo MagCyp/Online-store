@@ -8,6 +8,11 @@ import IconButton from '@/components/iconButton/IconButton';
 import SocialIconColored from '@/components/icons/SocialIconColored';
 import Button from '@/components/button/Button';
 
+import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
+
+import { login } from '@/store/data/auth/loginThunk';
+import { register } from '@/store/data/auth/registerThunk';
+
 import {
   validateEmail,
   validateFirstName,
@@ -20,16 +25,20 @@ import { Props, Errors } from '@components/authForm/types';
 
 import styles from '@components/authForm/authForm.module.scss';
 
-const AuthModal: FC<Props> = ({ register, isOpen }) => {
+const AuthModal: FC<Props> = ({
+  isRegister,
+  isOpen,
+  onAuthSuccess,
+  setIsOpen,
+}) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [repeatPassword, setRepeatPassword] = useState<string>('');
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
-  const [phone, setPhone] = useState<string>('');
-  const [checked, setChecked] = useState<boolean>(!register);
+  const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [checked, setChecked] = useState<boolean>(!isRegister);
   const [opened, setOpened] = useState<boolean>(isOpen || false);
-
   const [error, setError] = useState<Errors>({
     firstNameError: '',
     lastNameError: '',
@@ -39,8 +48,11 @@ const AuthModal: FC<Props> = ({ register, isOpen }) => {
     repeatPasswordError: '',
   });
 
+  const authState = useAppSelector(state => state.auth);
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
-    if (register) {
+    if (isRegister) {
       setError({
         firstNameError: 'err',
         lastNameError: 'err',
@@ -50,14 +62,14 @@ const AuthModal: FC<Props> = ({ register, isOpen }) => {
         repeatPasswordError: 'err',
       });
     }
-  }, [register]);
+  }, [isRegister]);
 
   useEffect(() => {
     isOpen !== undefined && setOpened(isOpen);
   }, [isOpen]);
 
   useEffect(() => {
-    if (repeatPassword !== password && register) {
+    if (repeatPassword !== password && isRegister) {
       setError({
         ...error,
         repeatPasswordError: 'Passwords do not match',
@@ -72,10 +84,34 @@ const AuthModal: FC<Props> = ({ register, isOpen }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('submit');
+    if (isRegister) {
+      dispatch(
+        register({
+          firstName: firstName,
+          lastName: lastName,
+          phoneNumber: phoneNumber,
+          email: email,
+          password: password,
+        }),
+      ).then(result => {
+        if (result.meta.requestStatus === 'fulfilled' && onAuthSuccess) {
+          onAuthSuccess();
+        }
+      });
+    } else {
+      dispatch(login({ email: email, password: password })).then(result => {
+        if (result.meta.requestStatus === 'fulfilled' && onAuthSuccess) {
+          onAuthSuccess();
+        }
+      });
+    }
   };
 
-  const authError = 'login error';
+  const handleClose = () => {
+    setIsOpen && setIsOpen(false);
+    setOpened(false);
+  };
+
   return (
     <div
       className={styles['wrapper']}
@@ -91,30 +127,32 @@ const AuthModal: FC<Props> = ({ register, isOpen }) => {
               alignItems: 'flex-end',
             }}
           >
-            {register ? 'Create account' : 'Log in'}
+            {isRegister ? 'Create account' : 'Log in'}
             <IconButton
               icon={<CloseBig size="medium" />}
               type="button"
               className="link-gray large"
-              onClick={() => setOpened(false)}
+              onClick={() => handleClose()}
             />
           </h5>
           <div style={{ display: 'flex', flexDirection: 'row', gap: '4px' }}>
             <p className="m regular">
-              {register
+              {isRegister
                 ? 'Already have an account?'
                 : 'Don’t have an account yet?'}
             </p>
             <Button
               className="link-gray medium"
-              text={register ? 'Log in' : 'Create account'}
+              text={isRegister ? 'Log in' : 'Create account'}
               type="button"
             />
           </div>
         </div>
-        {authError && <Error bigError message={authError} />}
+        {authState?.failureReason && (
+          <Error bigError message={authState?.failureReason} />
+        )}
         <form onSubmit={handleSubmit}>
-          {register ? (
+          {isRegister ? (
             <>
               <CustomInput
                 type="text"
@@ -138,8 +176,8 @@ const AuthModal: FC<Props> = ({ register, isOpen }) => {
               />
               <CustomInput
                 type="text"
-                value={phone}
-                onChange={e => setPhone(e.target.value)}
+                value={phoneNumber}
+                onChange={e => setPhoneNumber(e.target.value)}
                 setError={error =>
                   setError(prev => ({ ...prev, phoneError: error }))
                 }
@@ -216,7 +254,7 @@ const AuthModal: FC<Props> = ({ register, isOpen }) => {
             </>
           )}
 
-          {register ? (
+          {isRegister ? (
             <div className={styles['options']}>
               <CheckBox
                 label="I agree with Privacy Policy and Terms of Use"
@@ -236,7 +274,7 @@ const AuthModal: FC<Props> = ({ register, isOpen }) => {
           )}
           <Button
             type="submit"
-            text={register ? 'Sign up' : 'Sign In'}
+            text={isRegister ? 'Sign up' : 'Sign In'}
             className="primary medium"
             fullWidth
             isDisabled={

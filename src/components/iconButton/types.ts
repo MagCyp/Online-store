@@ -6,4 +6,5 @@ export interface Props {
   isDisabled?: boolean;
   icon?: ReactNode;
   onClick?: () => void;
+  to?: string;
 }

@@ -6,6 +6,7 @@ import userImg from '@/assets/images/image.png';
 import { Props } from '@pages/userAccount/navigation/types';
 
 import styles from '@pages/userAccount/navigation/navigation.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 const userInfo = {
   name: 'Aria Evergreen',
@@ -20,8 +21,11 @@ const navigation: Record<string, string> = {
 };
 
 const Navigation: FC<Props> = ({ currentPage, setCurrentPage }) => {
+  const navigate = useNavigate();
+
   const handleLogOut = () => {
-    console.log('log out');
+    localStorage.removeItem('jwt');
+    navigate('/');
   };
 
   return (

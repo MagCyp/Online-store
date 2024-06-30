@@ -1,30 +1,24 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query/react';
 
-import { authApi } from '@store/services/authApi';
 import userSlice from '@store/slices/user/userSlice';
-import loginSlice from '@store/slices/auth/login/loginSlice';
-import registerSlice from '@store/slices/auth/register/registerSlice';
 import catalogSlice from '@store/slices/catalog/catalogSlice';
 import productsSlice from '@store/slices/data/products/productsSlice';
 import filtersSlice from '@store/slices/data/filters/filtersSlice';
 import reviewsSlice from '@store/slices/data/reviews/reviewsSlice';
 import productIdSlice from '@store/slices/productId/productIdSlice';
+import authSlice from '@store/slices/auth/authSlice';
 
 export const store = configureStore({
   reducer: {
     user: userSlice,
-    login: loginSlice,
-    register: registerSlice,
     catalog: catalogSlice,
     products: productsSlice,
     productId: productIdSlice,
     filters: filtersSlice,
     reviews: reviewsSlice,
-    [authApi.reducerPath]: authApi.reducer,
+    auth: authSlice,
   },
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(authApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
