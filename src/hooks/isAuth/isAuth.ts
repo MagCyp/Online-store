@@ -5,14 +5,11 @@ export const isAuth = async (): Promise<boolean> => {
 
   if (jwt) {
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/auth/me`,
-        {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
+      await axios.get(`${process.env.REACT_APP_API_URL}/auth/me`, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
         },
-      );
+      });
 
       return true;
     } catch (error) {

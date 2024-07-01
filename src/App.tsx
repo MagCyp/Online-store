@@ -34,7 +34,7 @@ const App: FC = () => {
 
   useEffect(() => {
     checkAuth();
-  }, []);
+  }, [location]);
 
   useEffect(() => {
     if (!authStatus && privateLocations.includes(location.pathname)) {

@@ -38,6 +38,8 @@ const AuthModal: FC<Props> = ({
   const [lastName, setLastName] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [checked, setChecked] = useState<boolean>(!isRegister);
+  const [formState, setFormState] = useState<boolean>(!!isRegister);
+  const [rememberMe, setRememberMe] = useState<boolean>(false);
   const [opened, setOpened] = useState<boolean>(isOpen || false);
   const [error, setError] = useState<Errors>({
     firstNameError: '',
@@ -52,7 +54,7 @@ const AuthModal: FC<Props> = ({
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (isRegister) {
+    if (formState) {
       setError({
         firstNameError: 'err',
         lastNameError: 'err',
@@ -62,14 +64,14 @@ const AuthModal: FC<Props> = ({
         repeatPasswordError: 'err',
       });
     }
-  }, [isRegister]);
+  }, [formState]);
 
   useEffect(() => {
     isOpen !== undefined && setOpened(isOpen);
   }, [isOpen]);
 
   useEffect(() => {
-    if (repeatPassword !== password && isRegister) {
+    if (repeatPassword !== password && formState) {
       setError({
         ...error,
         repeatPasswordError: 'Passwords do not match',
@@ -84,7 +86,7 @@ const AuthModal: FC<Props> = ({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (isRegister) {
+    if (formState) {
       dispatch(
         register({
           firstName: firstName,
@@ -99,11 +101,13 @@ const AuthModal: FC<Props> = ({
         }
       });
     } else {
-      dispatch(login({ email: email, password: password })).then(result => {
-        if (result.meta.requestStatus === 'fulfilled' && onAuthSuccess) {
-          onAuthSuccess();
-        }
-      });
+      dispatch(login({ email: email, password: password, rememberMe })).then(
+        result => {
+          if (result.meta.requestStatus === 'fulfilled' && onAuthSuccess) {
+            onAuthSuccess();
+          }
+        },
+      );
     }
   };
 
@@ -127,7 +131,7 @@ const AuthModal: FC<Props> = ({
               alignItems: 'flex-end',
             }}
           >
-            {isRegister ? 'Create account' : 'Log in'}
+            {formState ? 'Create account' : 'Log in'}
             <IconButton
               icon={<CloseBig size="medium" />}
               type="button"
@@ -137,14 +141,15 @@ const AuthModal: FC<Props> = ({
           </h5>
           <div style={{ display: 'flex', flexDirection: 'row', gap: '4px' }}>
             <p className="m regular">
-              {isRegister
+              {formState
                 ? 'Already have an account?'
                 : 'Don’t have an account yet?'}
             </p>
             <Button
               className="link-gray medium"
-              text={isRegister ? 'Log in' : 'Create account'}
+              text={formState ? 'Log in' : 'Create account'}
               type="button"
+              onClick={() => setFormState(!formState)}
             />
           </div>
         </div>
@@ -152,7 +157,7 @@ const AuthModal: FC<Props> = ({
           <Error bigError message={authState?.failureReason} />
         )}
         <form onSubmit={handleSubmit}>
-          {isRegister ? (
+          {formState ? (
             <>
               <CustomInput
                 type="text"
@@ -254,7 +259,7 @@ const AuthModal: FC<Props> = ({
             </>
           )}
 
-          {isRegister ? (
+          {formState ? (
             <div className={styles['options']}>
               <CheckBox
                 label="I agree with Privacy Policy and Terms of Use"
@@ -264,7 +269,11 @@ const AuthModal: FC<Props> = ({
             </div>
           ) : (
             <div className={styles['options']}>
-              <CheckBox label="Remember me" small />
+              <CheckBox
+                label="Remember me"
+                small
+                onChange={() => setRememberMe(!rememberMe)}
+              />
               <Button
                 className="link-gray medium"
                 text="Forgot password"
@@ -274,7 +283,7 @@ const AuthModal: FC<Props> = ({
           )}
           <Button
             type="submit"
-            text={isRegister ? 'Sign up' : 'Sign In'}
+            text={formState ? 'Sign up' : 'Sign In'}
             className="primary medium"
             fullWidth
             isDisabled={

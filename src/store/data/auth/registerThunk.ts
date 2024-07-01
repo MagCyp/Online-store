@@ -2,14 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { IAuthResponse } from '@/models/models';
-
-interface RegisterCredentials {
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-  email: string;
-  password: string;
-}
+import { RegisterCredentials } from '@store/data/auth/types';
 
 export const register = createAsyncThunk(
   'auth/register',

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { login } from '@store/data/auth/loginThunk';
 import { register } from '@store/data/auth/registerThunk';
-import { IAuthResponse } from '../../../models/models';
+import { IAuthResponse } from '@models/models';
 
 interface AuthState extends IAuthResponse {
   loading: boolean;
@@ -26,12 +26,16 @@ const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.loading = false;
-        state.jwt = action.payload.jwt;
-        state.success = action.payload.success;
-        state.failureReason = action.payload.failureReason;
+        state.jwt = action.payload.data.jwt;
+        state.success = action.payload.data.success;
+        state.failureReason = action.payload.data.failureReason;
 
-        if (typeof action.payload.jwt === 'string') {
-          localStorage.setItem('jwt', action.payload.jwt);
+        if (typeof action.payload.data.jwt === 'string') {
+          if (action.payload.rememberMe) {
+            localStorage.setItem('jwt', action.payload.data.jwt);
+          } else {
+            sessionStorage.setItem('jwt', action.payload.data.jwt);
+          }
         }
       })
       .addCase(login.rejected, state => {
