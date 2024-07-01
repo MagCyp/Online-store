@@ -1,6 +1,8 @@
 export interface Props {
-  register?: boolean;
+  isRegister?: boolean;
   isOpen?: boolean;
+  onAuthSuccess?: () => void;
+  setIsOpen?(value: boolean): void;
 }
 
 export interface Errors {

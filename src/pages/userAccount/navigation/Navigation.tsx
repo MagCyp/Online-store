@@ -1,7 +1,8 @@
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import Button from '@/components/button/Button';
-import userImg from '@/assets/images/image.png';
+import Button from '@components/button/Button';
+import userImg from '@assets/images/image.png';
 
 import { Props } from '@pages/userAccount/navigation/types';
 
@@ -20,8 +21,11 @@ const navigation: Record<string, string> = {
 };
 
 const Navigation: FC<Props> = ({ currentPage, setCurrentPage }) => {
+  const navigate = useNavigate();
+
   const handleLogOut = () => {
-    console.log('log out');
+    localStorage.removeItem('jwt');
+    navigate('/');
   };
 
   return (

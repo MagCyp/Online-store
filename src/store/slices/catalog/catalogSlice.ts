@@ -29,4 +29,5 @@ export const {
   toggleStock,
   clearState,
 } = catalogSlice.actions;
+
 export default catalogSlice.reducer;

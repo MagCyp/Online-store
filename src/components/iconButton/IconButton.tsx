@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { generateClassNames } from '@utils/generateClassNames/className';
 
@@ -6,23 +7,36 @@ import { Props } from '@components/iconButton/types';
 
 import styles from '@components/iconButton/IconButton.module.scss';
 
-const IconButton = React.forwardRef<HTMLButtonElement, Props>(
-  ({ className, icon, type, isDisabled, onClick }, ref) => {
-    const buttonClassNames = generateClassNames(className, styles);
+const IconButton = React.forwardRef<
+  HTMLButtonElement & HTMLAnchorElement,
+  Props
+>(({ className, icon, type, isDisabled, onClick, to }, ref) => {
+  const buttonClassNames = generateClassNames(className, styles);
 
+  if (to) {
     return (
-      <button
-        ref={ref}
+      <Link
+        to={to}
         className={buttonClassNames}
-        type={type}
-        onClick={onClick}
-        disabled={isDisabled}
+        ref={ref as React.Ref<HTMLAnchorElement>}
       >
         {icon}
-      </button>
+      </Link>
     );
-  },
-);
+  }
+
+  return (
+    <button
+      ref={ref as React.Ref<HTMLButtonElement>}
+      className={buttonClassNames}
+      type={type}
+      onClick={onClick}
+      disabled={isDisabled}
+    >
+      {icon}
+    </button>
+  );
+});
 
 IconButton.displayName = 'IconButton';
 

@@ -18,7 +18,7 @@ import styles from '@components/header/Header.module.scss';
 
 const Header: FC = () => {
   const [isVisibleSearch, setVisibleSearch] = useState<boolean>(false);
-  const toggleButtonRef = useRef<HTMLButtonElement>(null);
+  const toggleButtonRef = useRef<HTMLButtonElement & HTMLAnchorElement>(null);
 
   const favoriteCount = 999;
   const cartCount = 15;
@@ -63,6 +63,7 @@ const Header: FC = () => {
               type="button"
               className="link-gray large"
               icon={<UserCircle size="medium" />}
+              to="/account"
             />
             <div className={styles['icon-container']}>
               <IconButton

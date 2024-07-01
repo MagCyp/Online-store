@@ -69,3 +69,9 @@ export interface IProductData {
     number: number;
   };
 }
+
+export interface IAuthResponse {
+  jwt: null | string;
+  success: boolean;
+  failureReason: null | string;
+}
