@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const isAuth = async (): Promise<boolean> => {
-  const jwt = localStorage.getItem('jwt');
+  const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
 
   if (jwt) {
     try {

@@ -63,6 +63,15 @@ const AuthModal: FC<Props> = ({
         passwordError: 'err',
         repeatPasswordError: 'err',
       });
+    } else {
+      setError({
+        firstNameError: '',
+        lastNameError: '',
+        phoneError: '',
+        emailError: 'err',
+        passwordError: 'err',
+        repeatPasswordError: '',
+      });
     }
   }, [formState]);
 
