@@ -1,0 +1,32 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.account {
+  * {
+    color: $white;
+  }
+
+  &-form {
+    margin-left: 80px;
+    width: 688px;
+    color: $white;
+    display: flex;
+    flex-direction: column;
+
+    &-header {
+      padding-bottom: 24px;
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+
+  .hover {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

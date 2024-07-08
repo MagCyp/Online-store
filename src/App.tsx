@@ -32,19 +32,19 @@ const App: FC = () => {
     setAuthStatus(authResult);
   };
 
-  useEffect(() => {
-    checkAuth();
-  }, [location]);
+  // useEffect(() => {
+  //   checkAuth();
+  // }, [location]);
 
-  useEffect(() => {
-    if (!authStatus && privateLocations.includes(location.pathname)) {
-      setPrevLocation(location.pathname);
-      navigate('/');
-      setTimeout(() => {
-        setShowModal(true);
-      }, 1);
-    }
-  }, [location.pathname]);
+  // useEffect(() => {
+  //   if (!authStatus && privateLocations.includes(location.pathname)) {
+  //     setPrevLocation(location.pathname);
+  //     navigate('/');
+  //     setTimeout(() => {
+  //       setShowModal(true);
+  //     }, 1);
+  //   }
+  // }, [location.pathname]);
 
   const handleAuthSuccess = async () => {
     setShowModal(false);
