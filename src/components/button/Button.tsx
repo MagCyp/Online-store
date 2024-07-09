@@ -11,6 +11,7 @@ const Button: FC<Props> = ({
   className,
   text,
   type,
+  icon,
   isDisabled,
   iconRight,
   iconLeft,
@@ -35,6 +36,7 @@ const Button: FC<Props> = ({
       onClick={onClick || onClickEvent}
       disabled={isDisabled}
     >
+      {icon && icon}
       {iconLeft && iconLeft}
       {href ? <Link to={href}>{text}</Link> : <p>{text}</p>}
       {iconRight && iconRight}

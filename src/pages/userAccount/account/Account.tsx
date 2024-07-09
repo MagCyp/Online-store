@@ -6,7 +6,6 @@ import Button from '@components/button/Button';
 import {
   validateFirstName,
   validateLastName,
-  validateNullString,
   validatePhone,
   validateEmail,
   validatePassword,
