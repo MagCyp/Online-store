@@ -1,9 +1,9 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import { generateClassNames } from '@utils/generateClassNames/className';
 
-import { CSSProperties, Props } from '@components/button/types';
+import { Props } from '@components/button/types';
 
 import styles from '@components/button/Button.module.scss';
 
@@ -20,18 +20,20 @@ const Button: FC<Props> = ({
   href,
   isHidden,
   fullWidth,
+  style,
 }) => {
   const buttonClassNames = generateClassNames(className, styles);
 
-  const buttonStyles: CSSProperties = {
+  const buttonStyles: React.CSSProperties = {
     visibility: isHidden ? 'hidden' : 'visible',
     width: fullWidth ? '100%' : undefined,
+    ...style,
   };
 
   return (
     <button
       className={buttonClassNames}
-      style={buttonStyles}
+      style={buttonStyles} // add
       type={type}
       onClick={onClick || onClickEvent}
       disabled={isDisabled}

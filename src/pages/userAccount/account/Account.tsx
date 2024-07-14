@@ -76,7 +76,14 @@ const Account: FC<Props> = ({
         }}
         validate={() => validateRepeatPassword(newPass, repNewPass)}
       />
-      <Button type="button" text="Go to shopping" className="secondary large" />
+      <div className={styles['button-wrapper']}>
+        <Button
+          type="button"
+          text="Save"
+          className="primary medium"
+          fullWidth={true}
+        />
+      </div>
     </div>
   );
 };

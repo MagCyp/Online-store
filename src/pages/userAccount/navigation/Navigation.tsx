@@ -34,12 +34,15 @@ const Navigation: FC<Props> = ({ currentPage, setCurrentPage }) => {
     <div className={styles['user-navigation']}>
       <div className={styles['image-block']}>
         <img src={userInfo.image} alt="image" />
-        <Button
-          text=""
-          className="round-image"
-          type="button"
-          icon={<Swap size="medium" />}
-        />
+        <div className={styles['button-wrapper']}>
+          <Button
+            text=""
+            className="round-image"
+            type="button"
+            icon={<Swap size="large" />}
+            fullWidth={true}
+          />
+        </div>
         <h6>{userInfo.name}</h6>
       </div>
       <div className={styles['navigation']}>
@@ -62,6 +65,7 @@ const Navigation: FC<Props> = ({ currentPage, setCurrentPage }) => {
           text="Log out"
           type="button"
           className="link-gray medium"
+          style={{ justifyContent: 'start' }}
           onClick={handleLogOut}
         />
       </div>

@@ -14,10 +14,18 @@
     display: flex;
     flex-direction: column;
 
+    &-button-container {
+      width: 390px;
+    }
+
     &-header {
       padding-bottom: 24px;
     }
   }
+}
+
+.button-wrapper {
+  width: 180px;
 }
 
 // .buttons {

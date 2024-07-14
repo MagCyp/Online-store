@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, CSSProperties as ReactCSSProperties } from 'react';
 
 export type Props = {
   className: string;
@@ -13,6 +13,7 @@ export type Props = {
   onClickEvent?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   href?: string;
   fullWidth?: boolean;
+  style?: ReactCSSProperties;
 };
 
 export type CSSProperties = {
