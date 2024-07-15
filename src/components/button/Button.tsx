@@ -33,7 +33,7 @@ const Button: FC<Props> = ({
   return (
     <button
       className={buttonClassNames}
-      style={buttonStyles} // add
+      style={buttonStyles}
       type={type}
       onClick={onClick || onClickEvent}
       disabled={isDisabled}

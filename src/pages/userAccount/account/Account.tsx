@@ -1,6 +1,6 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
-import CustomInput from '@/components/customInput/Input';
+import CustomInput from '@components/customInput/Input';
 import Button from '@components/button/Button';
 
 import {
@@ -10,7 +10,7 @@ import {
   validateEmail,
   validatePassword,
   validateRepeatPassword,
-} from '@/utils/validation/validation';
+} from '@utils/validation/validation';
 
 import { Props } from '@pages/userAccount/account/types';
 
@@ -21,10 +21,13 @@ const Account: FC<Props> = ({
   lastName,
   phone,
   email,
-  oldPass,
-  newPass,
-  repNewPass,
 }) => {
+  const [password, setPassword] = useState<{password: string, newPassword: string, repeatPassword: string}>({
+    password:'',
+    newPassword: '',
+    repeatPassword: ''
+  })
+
   return (
     <div className={styles['account-form']}>
       <h6 className={`bold ${styles['account-form-header']}`}>
@@ -57,24 +60,24 @@ const Account: FC<Props> = ({
       <h6 className={`bold ${styles['addresses-form-header']}`}>Password</h6>
       <CustomInput
         type="password"
-        value={oldPass}
+        value={password.password}
         staticLabel={{ header: 'Old password', label: 'Old password' }}
         validate={validatePassword}
       />
       <CustomInput
         type="password"
-        value={newPass}
+        value={password.newPassword}
         staticLabel={{ header: 'New password', label: 'New password' }}
         validate={validatePassword}
       />
       <CustomInput
         type="password"
-        value={repNewPass}
+        value={password.repeatPassword}
         staticLabel={{
           header: 'Repeat new password',
           label: 'Repeat new password',
         }}
-        validate={() => validateRepeatPassword(newPass, repNewPass)}
+        validate={() => validateRepeatPassword(password.newPassword, password.repeatPassword)}
       />
       <div className={styles['button-wrapper']}>
         <Button

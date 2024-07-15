@@ -8,8 +8,15 @@ import Addresses from '@pages/userAccount/addresses/Addresses';
 
 import styles from '@pages/userAccount/userAccount.module.scss';
 
+const navigation: Record<string, string> = {
+  account: 'Account',
+  orders: 'My orders',
+  addresses: 'Addresses',
+  favorite: 'Favorite',
+};
+
 const UserAccount: FC = () => {
-  const [currentPage, setCurrentPage] = useState<string>('addresses');
+  const [currentPage, setCurrentPage] = useState<string>('account');
 
   const renderContent = () => {
     switch (currentPage) {
@@ -20,38 +27,23 @@ const UserAccount: FC = () => {
             lastName=""
             phone=""
             email=""
-            oldPass=""
-            newPass=""
-            repNewPass=""
           />
         );
       // case 'orders':
       //   return <Orders />;
-      // case 'addresses':
-      //   return <Addresses />;
+      case 'addresses':
+        return <Addresses />;
       // case 'favorite':
       //   return <Favorite />;
       default:
-        return <Addresses />;
-      //   return (
-      //     <Account
-      //       firstName=""
-      //       lastName=""
-      //       phone=""
-      //       email=""
-      //       oldPass=""
-      //       newPass=""
-      //       repNewPass=""
-      //     />
-      // );
+         return <Addresses />;
     }
-    // return <Addresses />;
   };
 
   return (
     <Container>
       <div className={styles['account-container']}>
-        <Breadcrumb userPage="My Account" />
+        <Breadcrumb userPage={navigation[currentPage]} />
         <div className={styles['content']}>
           <Navigation
             currentPage={currentPage}

@@ -3,7 +3,4 @@ export interface Props {
   lastName: string;
   phone: string;
   email: string;
-  oldPass: string;
-  newPass: string;
-  repNewPass: string;
 }

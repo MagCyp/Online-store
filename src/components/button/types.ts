@@ -2,7 +2,7 @@ import { ReactNode, CSSProperties as ReactCSSProperties } from 'react';
 
 export type Props = {
   className: string;
-  text: string | undefined;
+  text?: string;
   type: 'button' | 'submit' | 'reset' | undefined;
   isDisabled?: boolean;
   isHidden?: boolean;
