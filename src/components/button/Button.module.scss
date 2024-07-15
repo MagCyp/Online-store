@@ -89,3 +89,22 @@
     @include text-color($gray-200);
   }
 }
+
+.round-image {
+  background-color: $gray-300;
+  border: none;
+  border-radius: 50%;
+  padding: 9px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  &:hover {
+    background-color: $gray-400;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
