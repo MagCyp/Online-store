@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import CustomInput from '@components/customInput/Input';
 import CheckBox from '@components/checkBox/CheckBox';
@@ -10,15 +10,11 @@ import { login } from '@store/data/auth/loginThunk';
 
 import { validateEmail, validatePassword } from '@utils/validation/validation';
 
-import { Errors } from '@components/authForm/types';
+import { Errors, FormProps } from '@components/authForm/types';
 
 import styles from '@components/authForm/authForm.module.scss';
 
-interface LoginFormProps {
-  onAuthSuccess: () => void;
-}
-
-const LoginForm: FC<LoginFormProps> = ({ onAuthSuccess }) => {
+const LoginForm: FC<FormProps> = ({ onAuthSuccess, reset }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [rememberMe, setRememberMe] = useState<boolean>(false);
@@ -33,10 +29,20 @@ const LoginForm: FC<LoginFormProps> = ({ onAuthSuccess }) => {
     e.preventDefault();
     dispatch(login({ email, password, rememberMe })).then(result => {
       if (result.meta.requestStatus === 'fulfilled' && onAuthSuccess) {
-        onAuthSuccess();
+        onAuthSuccess('login');
       }
     });
   };
+
+  useEffect(() => {
+    setEmail('');
+    setPassword('');
+    setRememberMe(false);
+    setError({
+      emailError: 'err',
+      passwordError: 'err',
+    });
+  }, [reset]);
 
   return (
     <form onSubmit={handleSubmit}>

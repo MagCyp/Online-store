@@ -9,11 +9,13 @@ import {
 
 import Header from '@components/header/Header';
 import Footer from '@components/footer/Footer';
+import ModalWindow from '@components/modalWindow/ModalWindow';
+import AuthForm from '@components/authForm/AuthForm';
 import Home from '@pages/home/Home';
 import Catalog from '@pages/catalog/Catalog';
-import AuthForm from '@components/authForm/AuthForm';
 import ProductId from '@pages/productId/ProductId';
 import UserAccount from '@pages/userAccount/UserAccount';
+import Verify from '@pages/verify/Verify';
 
 import { isAuth } from '@hooks/isAuth/isAuth';
 import { useAppDispatch } from '@hooks/redux/redux';
@@ -32,36 +34,51 @@ const App: FC = () => {
   const [authStatus, setAuthStatus] = useState<boolean | null>(null);
   const [prevLocation, setPrevLocation] = useState<string>('');
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [showMessageModal, setShowMessageModal] = useState<boolean>(false);
+  const [showErrorModal, setShowErrorModal] = useState<boolean>(false);
+  const [authChecking, setAuthChecking] = useState<boolean>(true);
 
   const checkAuth = async () => {
     const authResult = await isAuth();
-    setAuthStatus(authResult);
-
-    if (authResult) {
-      const cart = getCartFromLocalStorage();
-      dispatch(cartAdd(cart));
-    }
+    return authResult;
   };
 
   useEffect(() => {
-    checkAuth();
-  }, [location]);
+    setAuthChecking(true);
+    checkAuth().then(res => {
+      setAuthStatus(res);
+      setAuthChecking(false);
 
-  useEffect(() => {
-    if (!authStatus && privateLocations.includes(location.pathname)) {
-      setPrevLocation(location.pathname);
-      navigate('/');
-      setTimeout(() => {
-        setShowModal(true);
-      }, 1);
-    }
+      if (res) {
+        const cart = getCartFromLocalStorage();
+        dispatch(cartAdd(cart));
+      }
+    });
   }, [location.pathname]);
 
-  const handleAuthSuccess = async () => {
+  useEffect(() => {
+    if (
+      !authStatus &&
+      !authChecking &&
+      privateLocations.includes(location.pathname)
+    ) {
+      setPrevLocation(location.pathname);
+      navigate('/');
+      setShowModal(true);
+    }
+  }, [location.pathname, authStatus, authChecking]);
+
+  const handleAuthSuccess = async (formName: string) => {
     setShowModal(false);
-    navigate(prevLocation);
+
+    if (formName === 'register') {
+      setShowMessageModal(true);
+      await checkAuth();
+    }
+
     setAuthStatus(true);
-    checkAuth();
+    await checkAuth();
+    navigate(prevLocation);
   };
 
   return (
@@ -69,9 +86,27 @@ const App: FC = () => {
       <Header />
       <main>
         <AuthForm
-          onAuthSuccess={handleAuthSuccess}
+          onAuthSuccess={formName => handleAuthSuccess(formName)}
           isOpen={showModal}
           setIsOpen={setShowModal}
+        />
+        <ModalWindow
+          isOpen={showMessageModal}
+          setIsOpen={setShowMessageModal}
+          firstButtonText="Close"
+          firstButtonClose
+          header="Registration Success"
+          message="Verify message was sent to your email"
+          type="success"
+        />
+        <ModalWindow
+          isOpen={showErrorModal}
+          setIsOpen={setShowErrorModal}
+          firstButtonClose
+          firstButtonText="Close"
+          header="Something went wrong"
+          message="Please try again later or contact technical support"
+          type="error"
         />
 
         <Routes>
@@ -79,6 +114,15 @@ const App: FC = () => {
           <Route path="/catalog/:category" element={<Catalog />} />
           <Route path="/catalog/:category/:id" element={<ProductId />} />
           <Route path="/account" element={<UserAccount />} />
+          <Route
+            path="/verify"
+            element={
+              <Verify
+                setIsOpen={setShowModal}
+                setIsOpenError={setShowErrorModal}
+              />
+            }
+          />
         </Routes>
       </main>
       <Footer />

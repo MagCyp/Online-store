@@ -16,15 +16,11 @@ import {
   validatePhone,
 } from '@utils/validation/validation';
 
-import { Errors } from '@components/authForm/types';
+import { Errors, FormProps } from '@components/authForm/types';
 
 import styles from '@components/authForm/authForm.module.scss';
 
-interface RegisterFormProps {
-  onAuthSuccess: () => void;
-}
-
-const RegisterForm: FC<RegisterFormProps> = ({ onAuthSuccess }) => {
+const RegisterForm: FC<FormProps> = ({ onAuthSuccess, reset }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [repeatPassword, setRepeatPassword] = useState<string>('');
@@ -66,10 +62,28 @@ const RegisterForm: FC<RegisterFormProps> = ({ onAuthSuccess }) => {
       }),
     ).then(result => {
       if (result.meta.requestStatus === 'fulfilled' && onAuthSuccess) {
-        onAuthSuccess();
+        onAuthSuccess('register');
       }
     });
   };
+
+  useEffect(() => {
+    setEmail('');
+    setPassword('');
+    setRepeatPassword('');
+    setFirstName('');
+    setLastName('');
+    setPhoneNumber('');
+    setChecked(false);
+    setError({
+      firstNameError: 'err',
+      lastNameError: 'err',
+      phoneError: 'err',
+      emailError: 'err',
+      passwordError: 'err',
+      repeatPasswordError: 'err',
+    });
+  }, [reset]);
 
   return (
     <form onSubmit={handleSubmit}>

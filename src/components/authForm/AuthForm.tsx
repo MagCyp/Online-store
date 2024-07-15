@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import IconButton from '@components/iconButton/IconButton';
 import CloseBig from '@components/icons/CloseBig';
@@ -9,24 +9,41 @@ import RegisterForm from '@components/authForm/RegisterForm';
 
 import { useAppSelector } from '@/hooks/redux/redux';
 
+import { Props } from '@components/authForm/types';
+
 import styles from '@components/authForm/authForm.module.scss';
 
-const AuthForm: FC<{
-  isOpen: boolean;
-  onAuthSuccess: () => void;
-  setIsOpen: (isOpen: boolean) => void;
-}> = ({ isOpen, onAuthSuccess, setIsOpen }) => {
+const AuthForm: FC<Props> = ({ isOpen, onAuthSuccess, setIsOpen }) => {
   const [formState, setFormState] = useState<boolean>(false);
+  const [internalIsOpen, setInternalIsOpen] = useState<boolean>(!!isOpen);
   const authState = useAppSelector(state => state.auth);
 
   const handleClose = () => {
+    setInternalIsOpen(false);
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    setInternalIsOpen(!!isOpen);
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (internalIsOpen) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+      setIsOpen(false);
+    }
+
+    return () => {
+      document.body.classList.remove('no-scroll');
+    };
+  }, [internalIsOpen, setIsOpen]);
 
   return (
     <div
       className={styles['wrapper']}
-      style={isOpen ? { display: 'flex' } : { display: 'none' }}
+      style={internalIsOpen ? { display: 'flex' } : { display: 'none' }}
     >
       <div className={styles['container']}>
         <div className={styles['header']}>
@@ -43,7 +60,7 @@ const AuthForm: FC<{
               icon={<CloseBig size="medium" />}
               type="button"
               className="link-gray large"
-              onClick={() => handleClose()}
+              onClick={handleClose}
             />
           </h5>
           <div style={{ display: 'flex', flexDirection: 'row', gap: '4px' }}>
@@ -64,9 +81,9 @@ const AuthForm: FC<{
           <Error bigError message={authState?.failureReason} />
         )}
         {formState ? (
-          <RegisterForm onAuthSuccess={onAuthSuccess} />
+          <RegisterForm onAuthSuccess={onAuthSuccess} reset={!isOpen} />
         ) : (
-          <LoginForm onAuthSuccess={onAuthSuccess} />
+          <LoginForm onAuthSuccess={onAuthSuccess} reset={!isOpen} />
         )}
       </div>
     </div>
