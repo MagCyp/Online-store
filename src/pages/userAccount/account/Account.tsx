@@ -27,6 +27,10 @@ const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
     repeatPassword: '',
   });
 
+  const handlePasswordChange = (field: string, value: string) => {
+    setPassword(prevState => ({ ...prevState, [field]: value }));
+  };
+
   return (
     <div className={styles['account-form']}>
       <h6 className={`bold ${styles['account-form-header']}`}>
@@ -62,12 +66,14 @@ const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
         value={password.password}
         staticLabel={{ header: 'Old password', label: 'Old password' }}
         validate={validatePassword}
+        onChange={e => handlePasswordChange('password', e.target.value)}
       />
       <CustomInput
         type="password"
         value={password.newPassword}
         staticLabel={{ header: 'New password', label: 'New password' }}
         validate={validatePassword}
+        onChange={e => handlePasswordChange('newPassword', e.target.value)}
       />
       <CustomInput
         type="password"
@@ -79,6 +85,7 @@ const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
         validate={() =>
           validateRepeatPassword(password.newPassword, password.repeatPassword)
         }
+        onChange={e => handlePasswordChange('repeatPassword', e.target.value)}
       />
       <div className={styles['button-wrapper']}>
         <Button

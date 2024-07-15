@@ -8,6 +8,7 @@ import Button from '@components/button/Button';
 import { useAppSelector } from '@/hooks/redux/redux';
 
 import { Props } from '@components/cart/types';
+import { ICartItem } from '@/store/data/cart/types';
 
 import styles from '@components/cart/cart.module.scss';
 
@@ -16,7 +17,7 @@ const Cart: FC<Props> = ({ isOpened, onClose }) => {
 
   const [total, setTotal] = useState<number>(0);
   const [subtotal, setSubtotal] = useState<number>(0);
-  const [sortedCart, setSortedCart] = useState<any[]>([]);
+  const [sortedCart, setSortedCart] = useState<ICartItem[]>([]);
 
   const cart = useAppSelector(state => state.cart.items);
 

@@ -48,11 +48,9 @@ export const cartAdd = createAsyncThunk(
 
         return fetchProducts(cartItems);
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error adding items to cart:', error);
-      return rejectWithValue(
-        error.response?.data || 'Error adding items to cart',
-      );
+      return rejectWithValue('Error adding items to cart');
     }
   },
 );
@@ -96,11 +94,9 @@ export const cartRemove = createAsyncThunk(
 
         return fetchProducts(cartItems);
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error removing items from cart:', error);
-      return rejectWithValue(
-        error.response?.data || 'Error removing items from cart',
-      );
+      return rejectWithValue('Error removing items from cart');
     }
   },
 );
@@ -132,11 +128,9 @@ export const cartGet = createAsyncThunk(
 
         return fetchProducts(cartItems);
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error getting items from cart:', error);
-      return rejectWithValue(
-        error.response?.data || 'Error getting items from cart',
-      );
+      return rejectWithValue('Error getting items from cart');
     }
   },
 );
