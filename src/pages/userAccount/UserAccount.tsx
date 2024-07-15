@@ -3,7 +3,7 @@ import { FC, useState } from 'react';
 import Container from '@components/container/Container';
 import Breadcrumb from '@components/breadcrumb/Breadcrumb';
 import Navigation from '@pages/userAccount/navigation/Navigation';
-import Account from './account/Account';
+import Account from '@pages/userAccount/account/Account';
 import Addresses from '@pages/userAccount/addresses/Addresses';
 
 import styles from '@pages/userAccount/userAccount.module.scss';
