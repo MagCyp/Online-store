@@ -1,16 +1,17 @@
 import { FC, useEffect, useMemo, useState } from 'react';
 
-import Badge from '@/components/badge/Badge';
-import IconButton from '@/components/iconButton/IconButton';
-import HeartOpacity from '@/components/icons/HeartOpacity';
-import HeartWhite from '@/components/icons/HeartWhite';
-import Button from '@/components/button/Button';
+import Badge from '@components/badge/Badge';
+import IconButton from '@components/iconButton/IconButton';
+import HeartOpacity from '@components/icons/HeartOpacity';
+import HeartWhite from '@components/icons/HeartWhite';
+import Button from '@components/button/Button';
 
-import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
+import { useAppDispatch, useAppSelector } from '@hooks/redux/redux';
 
-import { setCart, setFavorites } from '@/store/slices/user/userSlice';
+import { setFavorites } from '@store/slices/user/userSlice';
+import { cartAdd } from '@store/data/cart/cartThunks';
 
-import { Props } from '@/components/productCard/types';
+import { Props } from '@components/productCard/types';
 
 import styles from '@components/productCard/ProductCard.module.scss';
 
@@ -27,6 +28,7 @@ const ProductCard: FC<Props> = ({
 }) => {
   const [isHovered, setHovered] = useState<boolean>(false);
   const [formattedShortDesc, setFormattedShortDesc] = useState<string>('');
+
   const dispatch = useAppDispatch();
   const isFavorite = useAppSelector(state => state.user.favorites).includes(id);
 
@@ -63,6 +65,10 @@ const ProductCard: FC<Props> = ({
       </div>
     );
   }, []);
+
+  const handleAdd = () => {
+    dispatch(cartAdd([{ productId: id, productQuantity: 1 }]));
+  };
 
   return (
     <div
@@ -119,7 +125,7 @@ const ProductCard: FC<Props> = ({
         text="Add to cart"
         className="secondary medium"
         isHidden={!isHovered}
-        onClick={() => dispatch(setCart(id))}
+        onClick={() => handleAdd()}
       />
     </div>
   );

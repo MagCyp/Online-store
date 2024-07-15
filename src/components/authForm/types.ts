@@ -6,10 +6,10 @@ export interface Props {
 }
 
 export interface Errors {
-  firstNameError: string;
-  lastNameError: string;
-  phoneError: string;
-  emailError: string;
-  passwordError: string;
-  repeatPasswordError: string;
+  firstNameError?: string;
+  lastNameError?: string;
+  phoneError?: string;
+  emailError?: string;
+  passwordError?: string;
+  repeatPasswordError?: string;
 }

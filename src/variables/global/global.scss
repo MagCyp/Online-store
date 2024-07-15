@@ -22,7 +22,7 @@ body {
   height: 100vh;
 }
 
-main{
+main {
   flex-grow: 1;
 }
 
@@ -79,4 +79,8 @@ h6 {
   @extend .bold;
   font-size: 22px;
   line-height: 32px;
+}
+
+.no-scroll {
+  overflow: hidden;
 }

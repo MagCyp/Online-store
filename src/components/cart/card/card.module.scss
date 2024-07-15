@@ -1,0 +1,63 @@
+@use '@/variables/fonts/paragraphSizes';
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@import '@/variables/colors/colors';
+
+.card {
+  display: flex;
+  padding: 24px 0;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 16px;
+
+  border-bottom: 1px solid $gray-300;
+
+  &:last-of-type {
+    border-bottom: 0;
+  }
+}
+
+.img {
+  width: 92px;
+  height: 92px;
+}
+
+.left-side {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.right-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  &-left {
+    @extend .text-container;
+    align-items: flex-end;
+  }
+}
+
+.counter-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: fit-content;
+  border: 1px solid $gray-10;
+}
+
+.count {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  width: 28px;
+}

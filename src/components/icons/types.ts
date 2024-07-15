@@ -5,6 +5,7 @@ export enum sizes {
   large = '40',
   medium = '24',
   small = '20',
+  mediumSmall = '16',
   verySmall = '12',
 }
 

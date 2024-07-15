@@ -1,0 +1,69 @@
+@use '@/variables/fonts/paragraphSizes';
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@import '@/variables/colors/colors';
+
+.wrapper {
+  position: fixed;
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($gray-10, 0.2);
+  z-index: 10;
+}
+
+.cart {
+  height: 100vh;
+  background-color: $gray-600;
+  width: 435px;
+  position: fixed;
+}
+
+.body {
+  padding: 32px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-list {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow-y: scroll;
+  padding-right: 3px;
+
+  &::-webkit-scrollbar {
+    background-color: transparent;
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $gray-400;
+    border-radius: 10px;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.total {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 16px 0;
+
+  & + .total {
+    border-top: 1px solid $gray-300;
+    padding-bottom: 32px;
+  }
+}

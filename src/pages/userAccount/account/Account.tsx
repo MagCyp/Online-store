@@ -16,17 +16,16 @@ import { Props } from '@pages/userAccount/account/types';
 
 import styles from '@pages/userAccount/account/account.module.scss';
 
-const Account: FC<Props> = ({
-  firstName,
-  lastName,
-  phone,
-  email,
-}) => {
-  const [password, setPassword] = useState<{password: string, newPassword: string, repeatPassword: string}>({
-    password:'',
+const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
+  const [password, setPassword] = useState<{
+    password: string;
+    newPassword: string;
+    repeatPassword: string;
+  }>({
+    password: '',
     newPassword: '',
-    repeatPassword: ''
-  })
+    repeatPassword: '',
+  });
 
   return (
     <div className={styles['account-form']}>
@@ -77,7 +76,9 @@ const Account: FC<Props> = ({
           header: 'Repeat new password',
           label: 'Repeat new password',
         }}
-        validate={() => validateRepeatPassword(password.newPassword, password.repeatPassword)}
+        validate={() =>
+          validateRepeatPassword(password.newPassword, password.repeatPassword)
+        }
       />
       <div className={styles['button-wrapper']}>
         <Button

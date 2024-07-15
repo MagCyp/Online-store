@@ -11,17 +11,23 @@ import Header from '@components/header/Header';
 import Footer from '@components/footer/Footer';
 import Home from '@pages/home/Home';
 import Catalog from '@pages/catalog/Catalog';
-import AuthModal from '@components/authForm/AuthForm';
+import AuthForm from '@components/authForm/AuthForm';
 import ProductId from '@pages/productId/ProductId';
 import UserAccount from '@pages/userAccount/UserAccount';
 
 import { isAuth } from '@hooks/isAuth/isAuth';
+import { useAppDispatch } from '@hooks/redux/redux';
+
+import { cartAdd } from '@store/data/cart/cartThunks';
+
+import { getCartFromLocalStorage } from '@utils/cart/cartOperation';
 
 const privateLocations = ['/account'];
 
 const App: FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const [authStatus, setAuthStatus] = useState<boolean | null>(null);
   const [prevLocation, setPrevLocation] = useState<string>('');
@@ -30,6 +36,11 @@ const App: FC = () => {
   const checkAuth = async () => {
     const authResult = await isAuth();
     setAuthStatus(authResult);
+
+    if (authResult) {
+      const cart = getCartFromLocalStorage();
+      dispatch(cartAdd(cart));
+    }
   };
 
   useEffect(() => {
@@ -57,7 +68,7 @@ const App: FC = () => {
     <>
       <Header />
       <main>
-        <AuthModal
+        <AuthForm
           onAuthSuccess={handleAuthSuccess}
           isOpen={showModal}
           setIsOpen={setShowModal}

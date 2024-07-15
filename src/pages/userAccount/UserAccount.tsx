@@ -21,14 +21,7 @@ const UserAccount: FC = () => {
   const renderContent = () => {
     switch (currentPage) {
       case 'account':
-        return (
-          <Account
-            firstName=""
-            lastName=""
-            phone=""
-            email=""
-          />
-        );
+        return <Account firstName="" lastName="" phone="" email="" />;
       // case 'orders':
       //   return <Orders />;
       case 'addresses':
@@ -36,7 +29,7 @@ const UserAccount: FC = () => {
       // case 'favorite':
       //   return <Favorite />;
       default:
-         return <Addresses />;
+        return <Addresses />;
     }
   };
 
