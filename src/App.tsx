@@ -49,10 +49,12 @@ const App: FC = () => {
       setAuthStatus(res);
       setAuthChecking(false);
 
-      if (res) {
-        const cart = getCartFromLocalStorage();
-        dispatch(cartAdd(cart));
-      }
+      const cart = getCartFromLocalStorage();
+      dispatch(cartAdd(cart)).then(res => {
+        if (res.meta.requestStatus === 'fulfilled') {
+          localStorage.removeItem('cart');
+        }
+      });
     });
   }, [location.pathname]);
 
@@ -74,6 +76,8 @@ const App: FC = () => {
     if (formName === 'register') {
       setShowMessageModal(true);
       await checkAuth();
+
+      return;
     }
 
     setAuthStatus(true);

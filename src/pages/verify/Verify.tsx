@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -12,16 +12,22 @@ const Verify: FC<Props> = ({ setIsOpen, setIsOpenError }) => {
   const navigate = useNavigate();
   const token = searchParams.get('token');
 
-  axios
-    .post(`${process.env.REACT_APP_API_URL}/auth/verify?token=${token}`)
-    .then(() => {
-      navigate('/');
-      setIsOpen(true);
-    })
-    .catch(() => {
-      navigate('/');
-      setIsOpenError(true);
-    });
+  useEffect(() => {
+    const verifyToken = async () => {
+      try {
+        await axios.post(
+          `${process.env.REACT_APP_API_URL}/auth/verify?token=${token}`,
+        );
+        setIsOpen(true);
+        navigate('/');
+      } catch (err) {
+        setIsOpenError(true);
+        navigate('/');
+      }
+    };
+
+    verifyToken();
+  }, [token, navigate, setIsOpen, setIsOpenError]);
 
   return <div></div>;
 };

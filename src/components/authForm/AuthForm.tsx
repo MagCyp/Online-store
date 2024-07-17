@@ -18,6 +18,8 @@ const AuthForm: FC<Props> = ({ isOpen, onAuthSuccess, setIsOpen }) => {
   const [internalIsOpen, setInternalIsOpen] = useState<boolean>(!!isOpen);
   const authState = useAppSelector(state => state.auth);
 
+  const [formKey, setFormKey] = useState<number>(0);
+
   const handleClose = () => {
     setInternalIsOpen(false);
     setIsOpen(false);
@@ -39,6 +41,13 @@ const AuthForm: FC<Props> = ({ isOpen, onAuthSuccess, setIsOpen }) => {
       document.body.classList.remove('no-scroll');
     };
   }, [internalIsOpen, setIsOpen]);
+
+  const handleAuthSuccess = (formName: string) => {
+    if (onAuthSuccess) {
+      onAuthSuccess(formName);
+    }
+    setFormKey(prevKey => prevKey + 1);
+  };
 
   return (
     <div
@@ -81,9 +90,17 @@ const AuthForm: FC<Props> = ({ isOpen, onAuthSuccess, setIsOpen }) => {
           <Error bigError message={authState?.failureReason} />
         )}
         {formState ? (
-          <RegisterForm onAuthSuccess={onAuthSuccess} reset={!isOpen} />
+          <RegisterForm
+            onAuthSuccess={handleAuthSuccess}
+            reset={!isOpen}
+            key={formKey}
+          />
         ) : (
-          <LoginForm onAuthSuccess={onAuthSuccess} reset={!isOpen} />
+          <LoginForm
+            onAuthSuccess={handleAuthSuccess}
+            reset={!isOpen}
+            key={formKey}
+          />
         )}
       </div>
     </div>
