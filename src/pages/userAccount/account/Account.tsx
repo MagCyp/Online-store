@@ -16,17 +16,20 @@ import { Props } from '@pages/userAccount/account/types';
 
 import styles from '@pages/userAccount/account/account.module.scss';
 
-const Account: FC<Props> = ({
-  firstName,
-  lastName,
-  phone,
-  email,
-}) => {
-  const [password, setPassword] = useState<{password: string, newPassword: string, repeatPassword: string}>({
-    password:'',
+const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
+  const [password, setPassword] = useState<{
+    password: string;
+    newPassword: string;
+    repeatPassword: string;
+  }>({
+    password: '',
     newPassword: '',
-    repeatPassword: ''
-  })
+    repeatPassword: '',
+  });
+
+  const handlePasswordChange = (field: string, value: string) => {
+    setPassword(prevState => ({ ...prevState, [field]: value }));
+  };
 
   return (
     <div className={styles['account-form']}>
@@ -63,12 +66,14 @@ const Account: FC<Props> = ({
         value={password.password}
         staticLabel={{ header: 'Old password', label: 'Old password' }}
         validate={validatePassword}
+        onChange={e => handlePasswordChange('password', e.target.value)}
       />
       <CustomInput
         type="password"
         value={password.newPassword}
         staticLabel={{ header: 'New password', label: 'New password' }}
         validate={validatePassword}
+        onChange={e => handlePasswordChange('newPassword', e.target.value)}
       />
       <CustomInput
         type="password"
@@ -77,7 +82,10 @@ const Account: FC<Props> = ({
           header: 'Repeat new password',
           label: 'Repeat new password',
         }}
-        validate={() => validateRepeatPassword(password.newPassword, password.repeatPassword)}
+        validate={() =>
+          validateRepeatPassword(password.newPassword, password.repeatPassword)
+        }
+        onChange={e => handlePasswordChange('repeatPassword', e.target.value)}
       />
       <div className={styles['button-wrapper']}>
         <Button

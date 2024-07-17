@@ -8,6 +8,7 @@ import filtersSlice from '@store/slices/data/filters/filtersSlice';
 import reviewsSlice from '@store/slices/data/reviews/reviewsSlice';
 import productIdSlice from '@store/slices/productId/productIdSlice';
 import authSlice from '@store/slices/auth/authSlice';
+import cartSlice from '@store/slices/cart/cartSlice';
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
     filters: filtersSlice,
     reviews: reviewsSlice,
     auth: authSlice,
+    cart: cartSlice,
   },
 });
 

@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 
 import DropDownMenu from '@components/header/dropDownMenu/DropDownMenu';
 import DropDownSearch from '@components/header/dropDownSearch/DropDownSearch';
@@ -10,7 +10,13 @@ import HeartOpacity from '@components/icons/HeartOpacity';
 import ShoppingBag from '@components/icons/ShoppingBag';
 import Container from '@components/container/Container';
 
-import logo from '../../assets/images/Logo-wide.svg';
+import Cart from '@components/cart/Cart';
+
+import logo from '@assets/images/Logo-wide.svg';
+
+import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
+
+import { cartGet } from '@store/data/cart/cartThunks';
 
 import { restrictNumberToString } from '@utils/NumberString/restrictNumberToString';
 
@@ -18,10 +24,24 @@ import styles from '@components/header/Header.module.scss';
 
 const Header: FC = () => {
   const [isVisibleSearch, setVisibleSearch] = useState<boolean>(false);
+  const [isCartVisible, setCartVisible] = useState<boolean>(false);
+  const [cartCount, setCartCount] = useState<number>(0);
+
   const toggleButtonRef = useRef<HTMLButtonElement & HTMLAnchorElement>(null);
 
+  const dispatch = useAppDispatch();
+  const cart = useAppSelector(state => state.cart.items);
+
+  useEffect(() => {
+    dispatch(cartGet());
+  }, []);
+
   const favoriteCount = 999;
-  const cartCount = 15;
+
+  useEffect(() => {
+    const count = cart.reduce((acc, item) => acc + item.quantity, 0);
+    setCartCount(count);
+  }, [cart]);
 
   return (
     <header>
@@ -82,6 +102,7 @@ const Header: FC = () => {
                 type="button"
                 className="link-gray large"
                 icon={<ShoppingBag size="medium" />}
+                onClick={() => setCartVisible(!isCartVisible)}
               />
               {cartCount > 0 && (
                 <span className={styles['count']}>
@@ -99,6 +120,9 @@ const Header: FC = () => {
           )}
         </div>
       </Container>
+      {isCartVisible && (
+        <Cart isOpened={isCartVisible} onClose={() => setCartVisible(false)} />
+      )}
     </header>
   );
 };

@@ -1,15 +1,19 @@
-export interface Props {
+export interface Props extends FormProps {
   isRegister?: boolean;
   isOpen?: boolean;
-  onAuthSuccess?: () => void;
-  setIsOpen?(value: boolean): void;
+  setIsOpen(isOpen: boolean): void;
+}
+
+export interface FormProps {
+  onAuthSuccess?: (formName: string) => void;
+  reset?: boolean;
 }
 
 export interface Errors {
-  firstNameError: string;
-  lastNameError: string;
-  phoneError: string;
-  emailError: string;
-  passwordError: string;
-  repeatPasswordError: string;
+  firstNameError?: string;
+  lastNameError?: string;
+  phoneError?: string;
+  emailError?: string;
+  passwordError?: string;
+  repeatPasswordError?: string;
 }

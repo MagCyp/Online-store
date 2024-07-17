@@ -2,13 +2,12 @@ import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '@components/button/Button';
+import Swap from '@components/icons/Swap';
 import userImg from '@assets/images/image.png';
 
 import { Props } from '@pages/userAccount/navigation/types';
 
 import styles from '@pages/userAccount/navigation/navigation.module.scss';
-
-import Swap from '@/components/icons/Swap';
 
 const userInfo = {
   name: 'Aria Evergreen',
@@ -27,6 +26,7 @@ const Navigation: FC<Props> = ({ currentPage, setCurrentPage }) => {
 
   const handleLogOut = () => {
     localStorage.removeItem('jwt');
+    sessionStorage.removeItem('jwt');
     navigate('/');
   };
 
