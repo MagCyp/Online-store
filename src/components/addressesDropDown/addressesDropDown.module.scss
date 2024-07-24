@@ -1,0 +1,80 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: $gray-10;
+  gap: 16px;
+  align-self: stretch;
+  position: relative;
+
+  .dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    align-self: stretch;
+    padding: 13px;
+    border: 1px solid $gray-300;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $gray-400;
+      border: 1px solid $gray-200;
+    }
+
+    &:focus {
+      background-color: $gray-500;
+      border: 1px solid $green-200;
+    }
+
+    p {
+      @extend .medium;
+      @extend .m;
+      flex: 1 0 0;
+      color: $gray-10;
+    }
+  }
+
+  .items-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-self: stretch;
+    position: absolute;
+    top: 100%;
+    background-color: $gray-500;
+    z-index: 10;
+    width: 100%;
+    border: 1px solid $gray-100;
+  }
+}
+
+.item-box {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  padding: 8px 12px;
+
+  &:hover {
+    background-color: $gray-400;
+  }
+
+  &:focus-within {
+    background-color: red;
+    background-color: $gray-400;
+  }
+
+  &.active {
+    background-color: $gray-400;
+    border: 1px solid $gray-400;
+  }
+}
+
+.postal-code {
+  display: flex;
+  align-items: flex-end;
+}

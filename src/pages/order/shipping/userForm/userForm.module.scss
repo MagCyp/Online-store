@@ -1,0 +1,30 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  padding-bottom: 200px;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  background-color: $gray-500;
+}
+
+.radio-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.name-fields {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}

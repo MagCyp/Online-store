@@ -16,10 +16,12 @@ import Catalog from '@pages/catalog/Catalog';
 import ProductId from '@pages/productId/ProductId';
 import UserAccount from '@pages/userAccount/UserAccount';
 import Verify from '@pages/verify/Verify';
+import Order from '@pages/order/Order';
 
 import { isAuth } from '@hooks/isAuth/isAuth';
 import { useAppDispatch } from '@hooks/redux/redux';
 
+import { fetchUserDataSuccess } from '@store/slices/user/userSlice';
 import { cartAdd } from '@store/data/cart/cartThunks';
 
 import { getCartFromLocalStorage } from '@utils/cart/cartOperation';
@@ -45,16 +47,21 @@ const App: FC = () => {
 
   useEffect(() => {
     setAuthChecking(true);
-    checkAuth().then(res => {
-      setAuthStatus(res);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    checkAuth().then((res: any) => {
+      setAuthStatus(!!res);
       setAuthChecking(false);
 
+      dispatch(fetchUserDataSuccess(res.data));
+
       const cart = getCartFromLocalStorage();
-      dispatch(cartAdd(cart)).then(res => {
-        if (res.meta.requestStatus === 'fulfilled') {
-          localStorage.removeItem('cart');
-        }
-      });
+      if (res) {
+        dispatch(cartAdd(cart)).then(res => {
+          if (res.meta.requestStatus === 'fulfilled') {
+            localStorage.removeItem('cart');
+          }
+        });
+      }
     });
   }, [location.pathname]);
 
@@ -127,6 +134,7 @@ const App: FC = () => {
               />
             }
           />
+          <Route path="/order" element={<Order />} />
         </Routes>
       </main>
       <Footer />

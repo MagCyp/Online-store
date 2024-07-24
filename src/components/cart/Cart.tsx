@@ -91,7 +91,7 @@ const Cart: FC<Props> = ({ isOpened, onClose }) => {
       <div className={styles['cart']} ref={cartRef}>
         <div className={styles['body']}>
           <div className={styles['header']}>
-            <h4 className="regular">Cart</h4>
+            <h4 className="regular white">Cart</h4>
             <IconButton
               className="link-gray"
               type="button"
@@ -123,18 +123,18 @@ const Cart: FC<Props> = ({ isOpened, onClose }) => {
                   alignItems: 'center',
                 }}
               >
-                <h4 className="regular">cart is empty</h4>
+                <h4 className="regular white">Cart is empty</h4>
               </div>
             )}
           </div>
           <div className={styles['checkout']}>
             <div className={styles['total']}>
-              <p className="bold m">Subtotal</p>
-              <p className="bold m">${subtotal.toFixed(2)}</p>
+              <p className="bold m white">Subtotal</p>
+              <p className="bold m white">${subtotal.toFixed(2)}</p>
             </div>
             <div className={styles['total']}>
-              <h6>Total</h6>
-              <h6>${total.toFixed(2)}</h6>
+              <h6 className="white">Total</h6>
+              <h6 className="white">${total.toFixed(2)}</h6>
             </div>
           </div>
           <Button

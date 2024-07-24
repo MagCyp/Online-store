@@ -1,0 +1,14 @@
+.body {
+  display: flex;
+  flex-direction: row;
+  padding-top: 24px;
+  gap: 64px;
+}
+
+.side-bar {
+  width: 416px;
+}
+
+.form-container {
+  flex: 1;
+}

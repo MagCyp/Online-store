@@ -9,9 +9,11 @@ import reviewsSlice from '@store/slices/data/reviews/reviewsSlice';
 import productIdSlice from '@store/slices/productId/productIdSlice';
 import authSlice from '@store/slices/auth/authSlice';
 import cartSlice from '@store/slices/cart/cartSlice';
+import paymentSlice from '@store/slices/payment/paymentSlice';
 
 export const store = configureStore({
   reducer: {
+    payment: paymentSlice,
     user: userSlice,
     catalog: catalogSlice,
     products: productsSlice,

@@ -1,0 +1,67 @@
+@import '@/variables/colors/colors';
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 736px;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 95px;
+  margin: 24px 0;
+  gap: 40px;
+
+  text-align: center;
+}
+
+.items-grid {
+  display: grid;
+  gap: 56px;
+  grid-template-columns: repeat(3, 1fr);
+  padding-top: 16px;
+}
+
+.item-wrapper {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.count {
+  border-radius: 80px;
+  position: absolute;
+  right: -12px;
+  top: -12px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $white;
+}
+
+.order-info {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.info-header,
+.info-value {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 20px;
+}
+
+.buttons-container {
+  display: flex;
+  gap: 24px;
+}

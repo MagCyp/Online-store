@@ -75,3 +75,12 @@ export interface IAuthResponse {
   success: boolean;
   failureReason: null | string;
 }
+
+export interface IUserData {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  userPhoto: string;
+}
