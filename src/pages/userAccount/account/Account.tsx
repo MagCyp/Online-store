@@ -18,30 +18,6 @@ import { Props } from '@pages/userAccount/account/types';
 
 import styles from '@pages/userAccount/account/account.module.scss';
 
-const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
-
-console.log(jwt);
-
-// export const getData = async (): Promise<object> => {
-//   const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
-
-//   if (jwt) {
-//     try {
-//       await axios.get(`${process.env.REACT_APP_API_URL}/auth/me`, {
-//         headers: {
-//           Authorization: `Bearer ${jwt}`,
-//         },
-//       });
-
-//       return true;
-//     } catch (error) {
-//       return false;
-//     }
-//   } else {
-//     return false;
-//   }
-// };
-
 const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
   const [userAccountData, setUserAccountData] = useState<{
     firstName: string;
