@@ -3,14 +3,15 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from '@components/button/Button';
 import Swap from '@components/icons/Swap';
-import userImg from '@assets/images/image.png';
+// import userImg from '@assets/images/image.png';
+import userImg from '@assets/images/no-profile-picture.svg';
 
 import { Props } from '@pages/userAccount/navigation/types';
 
 import styles from '@pages/userAccount/navigation/navigation.module.scss';
 
 const userInfo = {
-  name: 'Aria Evergreen',
+  // name: 'Aria Evergreen',
   image: userImg,
 };
 
@@ -21,7 +22,7 @@ const navigation: Record<string, string> = {
   favorite: 'Favorite',
 };
 
-const Navigation: FC<Props> = ({ currentPage, setCurrentPage }) => {
+const Navigation: FC<Props> = ({ currentPage, setCurrentPage, userName }) => {
   const navigate = useNavigate();
 
   const handleLogOut = () => {
@@ -43,7 +44,7 @@ const Navigation: FC<Props> = ({ currentPage, setCurrentPage }) => {
             fullWidth={true}
           />
         </div>
-        <h6>{userInfo.name}</h6>
+        <h6>{userName}</h6>
       </div>
       <div className={styles['navigation']}>
         {Object.keys(navigation).map(item => (

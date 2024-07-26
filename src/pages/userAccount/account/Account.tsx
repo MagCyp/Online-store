@@ -3,8 +3,6 @@ import { FC, useState, useEffect } from 'react';
 import CustomInput from '@components/customInput/Input';
 import Button from '@components/button/Button';
 
-import axios from 'axios';
-
 import {
   validateFirstName,
   validateLastName,
@@ -25,10 +23,10 @@ const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
     phone: string;
     email: string;
   }>({
-    firstName: 'Aria',
-    lastName: 'Evergreen',
-    phone: '+380000000000',
-    email: 'Aria69@gmail.com',
+    firstName: firstName || '',
+    lastName: lastName || '',
+    phone: phone || '',
+    email: email || '',
   });
 
   const [password, setPassword] = useState<{

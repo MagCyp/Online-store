@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import axios from 'axios';
 
 import Container from '@components/container/Container';
@@ -9,63 +9,53 @@ import Addresses from '@pages/userAccount/addresses/Addresses';
 
 import styles from '@pages/userAccount/userAccount.module.scss';
 
-
 const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
 const path = '/auth/me';
 const baseURL = process.env.REACT_APP_API_URL;
 
-// axios
-//   .get(`${baseURL}${path}`, {
-//     headers: {
-//       Authorization: `Bearer ${jwt}`,
-//     },
-//   })
-//   .then(response => {
-//     console.log('Response data:', response.data);
-//   })
-//   .catch(error => {
-//     console.error('Error:', error);
-//   });
-
-// +++++++++++++++
-
-const GetUserData = async () => {
-  // State to store the fetched data
-  const [userData, setUserData] = useState([]);
-
-  // Function to fetch data using Axios
-
-  const fetchUserData = async () => {
-    try {
-      const response = await axios.get(`${baseURL}${path}`, {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      });
-      setUserData(response.data);
-      console.log(userData);
-    }catch (error){
-      console.error("Error fetching data", error);
-    }
-};
-
-fetchUserData()
-
-// ++++++++++++++++
-const navigation: Record<string, string> = {
-  account: 'Account',
-  orders: 'My orders',
-  addresses: 'Addresses',
-  favorite: 'Favorite',
-};
+interface UserData {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  email: string;
+}
 
 const UserAccount: FC = () => {
   const [currentPage, setCurrentPage] = useState<string>('account');
+  const [userData, setUserData] = useState<UserData | null>(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(`${baseURL}${path}`, {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        });
+        setUserData(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error('Error fetching data', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   const renderContent = () => {
+    if (!userData) {
+      return <div>Loading...</div>;
+    }
     switch (currentPage) {
       case 'account':
-        return <Account firstName="" lastName="" phone="" email="" />;
+        return (
+          <Account
+            firstName={userData.firstName}
+            lastName={userData.lastName}
+            phone={userData.phoneNumber}
+            email={userData.email}
+          />
+        );
       // case 'orders':
       //   return <Orders />;
       case 'addresses':
@@ -85,12 +75,22 @@ const UserAccount: FC = () => {
           <Navigation
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
+            userName={`${userData?.firstName ?? '...'} ${
+              userData?.lastName ?? '...'
+            }`}
           />
           {renderContent()}
         </div>
       </div>
     </Container>
   );
+};
+
+const navigation: Record<string, string> = {
+  account: 'Account',
+  orders: 'My orders',
+  addresses: 'Addresses',
+  favorite: 'Favorite',
 };
 
 export default UserAccount;
