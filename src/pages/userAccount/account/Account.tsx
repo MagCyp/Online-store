@@ -1,4 +1,5 @@
 import { FC, useState, useEffect } from 'react';
+import axios from 'axios';
 
 import CustomInput from '@components/customInput/Input';
 import Button from '@components/button/Button';
@@ -15,6 +16,10 @@ import {
 import { Props } from '@pages/userAccount/account/types';
 
 import styles from '@pages/userAccount/account/account.module.scss';
+
+const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
+const path = '/account';
+const baseURL = process.env.REACT_APP_API_URL;
 
 const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
   const [userAccountData, setUserAccountData] = useState<{
@@ -91,6 +96,23 @@ const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
     ((infoIsValid && passwordIsValid) ||
       (infoIsValid && !passwordIsChanging)) &&
     password.newPassword === password.repeatPassword;
+
+  const onSave = async () => {
+    try {
+      const response = await axios.put(
+        `${baseURL}${path}`,
+        JSON.stringify(userAccountData),
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        },
+      );
+      console.log('User data updated successfully:', response.data);
+    } catch (error) {
+      console.error('Error updating user data:', error);
+    }
+  };
 
   return (
     <div className={styles['account-form']}>
@@ -174,7 +196,7 @@ const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
           className="primary medium"
           fullWidth={true}
           isDisabled={!formIsValid}
-          onClick={() => console.log('AAAAAAAAAAA')}
+          onClick={onSave}
         />
       </div>
     </div>
