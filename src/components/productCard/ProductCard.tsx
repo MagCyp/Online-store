@@ -70,7 +70,7 @@ const ProductCard: FC<Props> = ({
   }, []);
 
   const handleAdd = () => {
-    dispatch(cartAdd([{ productId: id, productQuantity: 1 }]));
+    dispatch(cartAdd([{ id: id, quantity: 1 }]));
   };
 
   return (

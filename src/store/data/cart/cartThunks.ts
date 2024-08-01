@@ -13,10 +13,7 @@ const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
 
 export const cartAdd = createAsyncThunk(
   'cart/add',
-  async (
-    items: { productId: string; productQuantity: number }[],
-    { rejectWithValue },
-  ) => {
+  async (items: { id: string; quantity: number }[], { rejectWithValue }) => {
     try {
       const authenticated = await isAuth();
       if (authenticated) {
@@ -31,15 +28,13 @@ export const cartAdd = createAsyncThunk(
         );
         return response.data.cartItems;
       } else {
-        const cartItems: { productId: string; productQuantity: number }[] =
+        const cartItems: { id: string; quantity: number }[] =
           getCartFromLocalStorage();
 
         items.forEach(item => {
-          const index = cartItems.findIndex(
-            ci => ci.productId === item.productId,
-          );
+          const index = cartItems.findIndex(ci => ci.id === item.id);
           if (index !== -1) {
-            cartItems[index].productQuantity += item.productQuantity;
+            cartItems[index].quantity += item.quantity;
           } else {
             cartItems.push(item);
           }
@@ -57,10 +52,7 @@ export const cartAdd = createAsyncThunk(
 
 export const cartRemove = createAsyncThunk(
   'cart/remove',
-  async (
-    items: { productId: string; productQuantity: number }[],
-    { rejectWithValue },
-  ) => {
+  async (items: { id: string; quantity: number }[], { rejectWithValue }) => {
     try {
       const authenticated = await isAuth();
       if (authenticated) {
@@ -76,16 +68,14 @@ export const cartRemove = createAsyncThunk(
 
         return response.data.cartItems;
       } else {
-        const cartItems: { productId: string; productQuantity: number }[] =
+        const cartItems: { id: string; quantity: number }[] =
           getCartFromLocalStorage();
 
         items.forEach(item => {
-          const index = cartItems.findIndex(
-            ci => ci.productId === item.productId,
-          );
+          const index = cartItems.findIndex(ci => ci.id === item.id);
           if (index !== -1) {
-            cartItems[index].productQuantity -= item.productQuantity;
-            if (cartItems[index].productQuantity <= 0) {
+            cartItems[index].quantity -= item.quantity;
+            if (cartItems[index].quantity <= 0) {
               cartItems.splice(index, 1);
             }
           }
@@ -119,7 +109,7 @@ export const cartGet = createAsyncThunk(
 
         return response.data.cartItems;
       } else {
-        const cartItems: { productId: string; productQuantity: number }[] =
+        const cartItems: { id: string; quantity: number }[] =
           getCartFromLocalStorage();
 
         if (cartItems.length <= 0) {

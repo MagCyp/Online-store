@@ -4,6 +4,7 @@ import RadioButton from '@components/radioButton/RadioButton';
 import CustomInput from '@components/customInput/Input';
 import AddressesDropDown from '@components/addressesDropDown/AddressesDropDown';
 import Button from '@components/button/Button';
+import AuthForm from '@components/authForm/AuthForm';
 
 import { useAppDispatch, useAppSelector } from '@hooks/redux/redux';
 import { isAuth } from '@hooks/isAuth/isAuth';
@@ -19,7 +20,6 @@ import {
 } from '@utils/validation/validation';
 
 import styles from '@pages/order/shipping/userForm/userForm.module.scss';
-import AuthForm from '@/components/authForm/AuthForm';
 
 interface IUserDetails {
   firstName: string;
@@ -43,6 +43,7 @@ interface Props {
 
 const UserForm: FC<Props> = ({ onSubmit }) => {
   const user = useAppSelector(state => state.user.userData);
+  const cart = useAppSelector(state => state.cart.items);
   const dispatch = useAppDispatch();
 
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -64,10 +65,10 @@ const UserForm: FC<Props> = ({ onSubmit }) => {
   }, []);
 
   const [userDetails, setUserDetails] = useState<IUserDetails>({
-    firstName: 'aaaa',
-    lastName: 'aaaa',
-    email: 'aaaa@aaaa.aaaa',
-    number: '+380000000000',
+    firstName: '',
+    lastName: '',
+    email: '',
+    number: '',
   });
 
   const [currentAddress, setCurrentAddress] = useState<IAddress>({
@@ -382,7 +383,7 @@ const UserForm: FC<Props> = ({ onSubmit }) => {
             type="submit"
             className="primary large"
             text="Continue to Payment"
-            isDisabled={hasErrors}
+            isDisabled={hasErrors || !cart}
           />
         </form>
       ) : (

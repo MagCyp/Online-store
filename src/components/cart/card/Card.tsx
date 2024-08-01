@@ -26,7 +26,7 @@ const Card: FC<Props> = ({
   const dispatch = useAppDispatch();
 
   const handleRemove = () => {
-    dispatch(cartRemove([{ productId: id, productQuantity: count }]));
+    dispatch(cartRemove([{ id: id, quantity: count }]));
   };
 
   const handleIncrease = () => {
@@ -35,12 +35,12 @@ const Card: FC<Props> = ({
     }
 
     setCount(count + 1);
-    dispatch(cartAdd([{ productId: id, productQuantity: 1 }]));
+    dispatch(cartAdd([{ id: id, quantity: 1 }]));
   };
 
   const handleDecrease = () => {
     setCount(count - 1);
-    dispatch(cartRemove([{ productId: id, productQuantity: 1 }]));
+    dispatch(cartRemove([{ id: id, quantity: 1 }]));
   };
 
   return (

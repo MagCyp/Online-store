@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 
 import Card from '@components/cart/card/Card';
 import CustomInput from '@components/customInput/Input';
@@ -8,6 +8,8 @@ import Discount from '@components/icons/Discount';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
 
 import { setData } from '@store/slices/payment/paymentSlice';
+
+import { ICartItem } from '@/store/data/cart/types';
 
 import styles from '@pages/order/shipping/sideBar/sideBar.module.scss';
 
@@ -28,8 +30,10 @@ const possibleDiscounts: IDiscount[] = [
 ];
 
 const SideBar: FC = () => {
-  const items = useAppSelector(state => state.cart.items);
+  const cart = useAppSelector(state => state.cart.items);
   const paymentInfo = useAppSelector(state => state.payment);
+
+  const [sortedCart, setSortedCart] = useState<ICartItem[]>([]);
 
   const dispatch = useAppDispatch();
 
@@ -38,7 +42,7 @@ const SideBar: FC = () => {
   const shipping = paymentInfo.delivery === 'express' ? 20 : 10;
 
   const totalItemsPrice = useMemo(() => {
-    return items.reduce(
+    return cart.reduce(
       (acc, item) =>
         acc +
         item.quantity *
@@ -47,7 +51,7 @@ const SideBar: FC = () => {
             : item.product.price),
       0,
     );
-  }, [items]);
+  }, [cart]);
 
   const totalPromo = useMemo(() => {
     return discounts.reduce((acc, promo) => acc + promo.amount, 0);
@@ -70,14 +74,22 @@ const SideBar: FC = () => {
     return total;
   }, [totalItemsPrice, totalPromo, shipping]);
 
+  useEffect(() => {
+    const sorted = cart
+      .slice()
+      .sort((a, b) => a.product.name.localeCompare(b.product.name));
+
+    setSortedCart(sorted);
+  }, [cart]);
+
   return (
     <div className={styles['container']}>
       <h5 className="bold white">Order summary</h5>
       <div className={styles['cart-list']}>
-        {items?.map(item => (
+        {sortedCart?.map(item => (
           <Card
             key={item.id}
-            id={item.id}
+            id={item.product.id}
             quantity={item.quantity}
             img={item.product.imageUrl}
             name={item.product.name}
