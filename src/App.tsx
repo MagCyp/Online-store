@@ -17,6 +17,7 @@ import ProductId from '@pages/productId/ProductId';
 import UserAccount from '@pages/userAccount/UserAccount';
 import Verify from '@pages/verify/Verify';
 import Order from '@pages/order/Order';
+import OrderComplete from '@pages/order/orderComplete/OrderComplete';
 
 import { isAuth } from '@hooks/isAuth/isAuth';
 import { useAppDispatch } from '@hooks/redux/redux';
@@ -135,6 +136,7 @@ const App: FC = () => {
             }
           />
           <Route path="/order" element={<Order />} />
+          <Route path="/complete" element={<OrderComplete />} />
         </Routes>
       </main>
       <Footer />

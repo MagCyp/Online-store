@@ -1,12 +1,15 @@
 import { FC, useMemo, useState } from 'react';
 
-import styles from '@pages/order/shipping/sideBar/sideBar.module.scss';
-import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
 import Card from '@components/cart/card/Card';
 import CustomInput from '@components/customInput/Input';
 import Button from '@components/button/Button';
 import Discount from '@components/icons/Discount';
-import { setData } from '@/store/slices/payment/paymentSlice';
+
+import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
+
+import { setData } from '@store/slices/payment/paymentSlice';
+
+import styles from '@pages/order/shipping/sideBar/sideBar.module.scss';
 
 interface IDiscount {
   name: string;

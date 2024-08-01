@@ -1,9 +1,9 @@
 import { FC } from 'react';
 
 import Container from '@components/container/Container';
+import Button from '@components/button/Button';
 
 import styles from '@pages/order/orderComplete/orderComplete.module.scss';
-import Button from '@/components/button/Button';
 
 const items: { img: string; count: number }[] = [
   {

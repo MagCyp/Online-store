@@ -1,7 +1,10 @@
 import { FC, useEffect, useRef, useState } from 'react';
+
 import ArrowDown from '@components/icons/ArrowDown';
 import ArrowUp from '@components/icons/ArrowUp';
+
 import { IAddress, Props } from '@components/addressesDropDown/types';
+
 import styles from '@components/addressesDropDown/addressesDropDown.module.scss';
 
 const AddressesDropDown: FC<Props> = ({

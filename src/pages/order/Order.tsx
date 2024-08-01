@@ -1,14 +1,12 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 
 import Container from '@components/container/Container';
+import Shipping from '@pages/order/shipping/Shipping';
+import Payment from '@pages/order/payment/Payment';
 
 import { useAppSelector } from '@hooks/redux/redux';
 
 import styles from '@pages/order/order.module.scss';
-import Payment from './payment/Payment';
-import OrderComplete from './orderComplete/OrderComplete';
-import Shipping from './shipping/Shipping';
-import { useLocation } from 'react-router-dom';
 
 const progressSteps = [
   { step: 'shipping', label: 'Shipping' },
@@ -18,28 +16,17 @@ const progressSteps = [
 
 const Order: FC = () => {
   const user = useAppSelector(state => state.user.userData);
-  const location = useLocation();
 
   const [currentProgressSteps, setCurrentProgressSteps] = useState<
-    'shipping' | 'payment' | 'complete'
+    'shipping' | 'payment'
   >('shipping');
-
-  console.log();
-
-  useEffect(() => {
-    if (location.state?.currentPage === 'payment') {
-      setCurrentProgressSteps('payment');
-    }
-  }, [location]);
 
   const renderStepComponent = () => {
     switch (currentProgressSteps) {
       case 'shipping':
-        return <Shipping />;
+        return <Shipping onSubmit={() => setCurrentProgressSteps('payment')} />;
       case 'payment':
         return <Payment />;
-      case 'complete':
-        return <OrderComplete />;
       default:
         return null;
     }

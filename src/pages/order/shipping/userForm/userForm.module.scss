@@ -6,8 +6,6 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
-
-  padding-bottom: 200px;
 }
 
 .form-section {
@@ -27,4 +25,26 @@
   display: flex;
   flex-direction: row;
   gap: 24px;
+}
+
+.register-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.register {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 70%;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+
+  & > * {
+    flex: 1;
+  }
 }

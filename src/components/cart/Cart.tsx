@@ -1,21 +1,23 @@
 import { FC, useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import IconButton from '@components/iconButton/IconButton';
 import CloseBig from '@components/icons/CloseBig';
 import Card from '@components/cart/card/Card';
 import Button from '@components/button/Button';
 
-import { useAppSelector } from '@/hooks/redux/redux';
+import { useAppSelector } from '@hooks/redux/redux';
 
 import { Props } from '@components/cart/types';
-import { ICartItem } from '@/store/data/cart/types';
+import { ICartItem } from '@store/data/cart/types';
 
 import styles from '@components/cart/cart.module.scss';
 
 const Cart: FC<Props> = ({ isOpened, onClose }) => {
+  const navigate = useNavigate();
+
   const [opened, setOpened] = useState<boolean>(isOpened);
 
-  const [total, setTotal] = useState<number>(0);
   const [subtotal, setSubtotal] = useState<number>(0);
   const [sortedCart, setSortedCart] = useState<ICartItem[]>([]);
 
@@ -32,20 +34,11 @@ const Cart: FC<Props> = ({ isOpened, onClose }) => {
     setSubtotal(sum);
   };
 
-  const calcTotal = () => {
-    const calculatedTotal = subtotal;
-    setTotal(calculatedTotal);
-  };
-
   useEffect(() => {
     if (cart && cart.length > 0) {
       calcSubtotal();
     }
   }, [cart]);
-
-  useEffect(() => {
-    calcTotal();
-  }, [subtotal]);
 
   useEffect(() => {
     setOpened(isOpened);
@@ -85,6 +78,11 @@ const Cart: FC<Props> = ({ isOpened, onClose }) => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [opened, onClose]);
+
+  const handleCheckOut = () => {
+    navigate('/order');
+    onClose();
+  };
 
   return (
     <div className={`${styles['wrapper']} ${opened ? styles['open'] : ''}`}>
@@ -129,12 +127,8 @@ const Cart: FC<Props> = ({ isOpened, onClose }) => {
           </div>
           <div className={styles['checkout']}>
             <div className={styles['total']}>
-              <p className="bold m white">Subtotal</p>
-              <p className="bold m white">${subtotal.toFixed(2)}</p>
-            </div>
-            <div className={styles['total']}>
-              <h6 className="white">Total</h6>
-              <h6 className="white">${total.toFixed(2)}</h6>
+              <h6 className="white">Subtotal</h6>
+              <h6 className="white">${subtotal.toFixed(2)}</h6>
             </div>
           </div>
           <Button
@@ -142,6 +136,7 @@ const Cart: FC<Props> = ({ isOpened, onClose }) => {
             type="button"
             text="Checkout"
             fullWidth
+            onClick={handleCheckOut}
           />
         </div>
       </div>

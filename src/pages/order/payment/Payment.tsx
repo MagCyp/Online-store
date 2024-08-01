@@ -4,13 +4,14 @@ import { FC, useEffect, useState } from 'react';
 import Container from '@components/container/Container';
 import RadioButton from '@components/radioButton/RadioButton';
 import WayForPayInline from '@components/icons/WayForPayInline';
+import Button from '@components/button/Button';
+import WayForPayCircle from '@components/icons/WayForPayCircle';
+
+import { useAppSelector } from '@hooks/redux/redux';
 
 import styles from '@pages/order/payment/payment.module.scss';
-import Button from '@/components/button/Button';
-import WayForPayCircle from '@/components/icons/WayForPayCircle';
-import { useAppSelector } from '@/hooks/redux/redux';
-const CryptoJS = require('crypto-js');
 
+const CryptoJS = require('crypto-js');
 const PaymentText = ['WayForPay'];
 
 interface IOrderData {
@@ -34,7 +35,6 @@ interface IOrderData {
 }
 
 const Payment: FC = () => {
-  const user = useAppSelector(state => state.user.userData);
   const items = useAppSelector(state => state.cart.items);
   const paymentInfo = useAppSelector(state => state.payment);
 
@@ -63,21 +63,48 @@ const Payment: FC = () => {
     const productNames: string[] = [];
     const productPrices: string[] = [];
     const productCounts: string[] = [];
+    const itemList: { item_id: string; item_count: number }[] = [];
 
     items.forEach(item => {
       productNames.push(item.product.name);
       productPrices.push(item.product.price.toString());
       productCounts.push(item.quantity.toString());
+      itemList.push({ item_id: item.product.id, item_count: item.quantity });
     });
 
-    // Оновлюємо стан
+    const itemsQueryString = itemList
+      .map(item => `items_id=${item.item_id}&item_count=${item.item_count}`)
+      .join('&');
+
+    const totalAmount = productPrices
+      .reduce(
+        (acc, price, index) =>
+          acc + parseFloat(price) * parseInt(productCounts[index]),
+        0,
+      )
+      .toFixed(2);
+
+    const currentDate = new Date();
+
+    const formattedDate = currentDate.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+
+    const merchantDomainName = `indie-game-shop.netlify.app/complete?${itemsQueryString}&orderId=${
+      orderData.orderReference
+    }&total=${totalAmount}&date=${encodeURIComponent(formattedDate)}`;
+
     setOrderData(prev => ({
       ...prev,
+      merchantDomainName,
       productName: productNames,
       productPrice: productPrices,
       productCount: productCounts,
+      amount: totalAmount,
     }));
-  }, [items]);
+  }, []);
 
   useEffect(() => {
     if (paymentInfo) {
@@ -93,7 +120,6 @@ const Payment: FC = () => {
         clientState: paymentInfo.region,
         amount: paymentInfo.total,
       }));
-      console.log(paymentInfo.total);
     }
   }, [paymentInfo]);
 

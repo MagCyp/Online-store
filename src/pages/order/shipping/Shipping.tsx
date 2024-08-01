@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-import styles from './shipping.module.scss';
-import UserForm from './userForm/UserForm';
-import SideBar from './sideBar/SideBar';
+import styles from '@pages/order/shipping/shipping.module.scss';
+import UserForm from '@pages/order/shipping/userForm/UserForm';
+import SideBar from '@pages/order/shipping/sideBar/SideBar';
 
-const Shipping = () => {
+interface Props {
+  onSubmit: () => void;
+}
+
+const Shipping: FC<Props> = ({ onSubmit }) => {
   return (
     <div className={styles['body']}>
       <div className={styles['form-container']}>
-        <UserForm />
+        <UserForm onSubmit={onSubmit} />
       </div>
       <div className={styles['side-bar']}>
         <SideBar />
