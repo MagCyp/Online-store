@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
 import Container from '@components/container/Container';
@@ -8,6 +8,7 @@ import Account from '@pages/userAccount/account/Account';
 import Addresses from '@pages/userAccount/addresses/Addresses';
 
 import styles from '@pages/userAccount/userAccount.module.scss';
+import { isAuth } from '@/hooks/isAuth/isAuth';
 
 const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
 const path = '/auth/me';
@@ -24,25 +25,35 @@ const UserAccount: FC = () => {
   const [currentPage, setCurrentPage] = useState<string>('account');
   const [userData, setUserData] = useState<UserData | null>(null);
 
+  const fetchUserData = async (): Promise<UserData | null> => {
+    try {
+      const response = await axios.get(`${baseURL}${path}`, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching data', error);
+      return null;
+    }
+  };
+
+  const fetchData = async () => {
+    const res = await isAuth();
+    if (res && res.data) {
+      setUserData(res.data as UserData);
+    } else {
+      console.log('User not authenticated');
+      setUserData(null);
+    }
+  };
+
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get(`${baseURL}${path}`, {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
-        });
-        setUserData(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error('Error fetching data', error);
-      }
-    };
+    fetchData();
+  }, [jwt]);
 
-    fetchUserData();
-  }, []);
-
-  const renderContent = () => {
+  const renderContent = useCallback(() => {
     if (!userData) {
       return <div>Loading...</div>;
     }
@@ -65,7 +76,7 @@ const UserAccount: FC = () => {
       default:
         return <Addresses />;
     }
-  };
+  }, [userData, currentPage]);
 
   return (
     <Container>
@@ -78,6 +89,7 @@ const UserAccount: FC = () => {
             userName={`${userData?.firstName ?? '...'} ${
               userData?.lastName ?? '...'
             }`}
+            onLogout={() => setUserData(null)}
           />
           {renderContent()}
         </div>

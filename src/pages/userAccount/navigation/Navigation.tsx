@@ -22,12 +22,18 @@ const navigation: Record<string, string> = {
   favorite: 'Favorite',
 };
 
-const Navigation: FC<Props> = ({ currentPage, setCurrentPage, userName }) => {
+const Navigation: FC<Props> = ({
+  currentPage,
+  setCurrentPage,
+  userName,
+  onLogout,
+}) => {
   const navigate = useNavigate();
 
   const handleLogOut = () => {
     localStorage.removeItem('jwt');
     sessionStorage.removeItem('jwt');
+    onLogout?.();
     navigate('/');
   };
 
