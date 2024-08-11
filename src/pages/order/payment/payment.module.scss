@@ -1,0 +1,21 @@
+@import '@/variables/colors/colors';
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  width: 643px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px 24px;
+  background-color: $gray-500;
+  margin: 24px 0;
+}
+
+.hr {
+  border: 1px solid $gray-300;
+}

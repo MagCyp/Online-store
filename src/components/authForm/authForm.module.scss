@@ -4,11 +4,13 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba($gray-10, 0.1);
-  position: absolute;
+  position: fixed;
   z-index: 100;
   justify-content: center;
   align-items: center;
   display: flex;
+  top: 0;
+  right: 0;
 }
 
 .container {

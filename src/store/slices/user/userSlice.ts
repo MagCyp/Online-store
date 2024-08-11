@@ -1,20 +1,43 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import * as userReducers from '@store/slices/user/userReducers';
+import { IUserData } from '@models/models';
 
-import { UserState } from '@store/slices/user/types';
+interface UserState {
+  userData: IUserData | null;
+  loading: boolean;
+  error: string | null;
+}
 
 const initialState: UserState = {
-  token: null,
-  favorites: [],
-  cart: [],
+  userData: null,
+  loading: false,
+  error: null,
 };
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: userReducers,
+  reducers: {
+    fetchUserDataStart(state) {
+      state.loading = true;
+      state.error = null;
+    },
+    fetchUserDataSuccess(state, action: PayloadAction<IUserData>) {
+      state.loading = false;
+      state.userData = action.payload;
+      console.log(action.payload);
+    },
+    fetchUserDataFailure(state, action: PayloadAction<string>) {
+      state.loading = false;
+      state.error = action.payload;
+    },
+  },
 });
 
-export const { setUser, setFavorites, setCart } = userSlice.actions;
+export const {
+  fetchUserDataStart,
+  fetchUserDataSuccess,
+  fetchUserDataFailure,
+} = userSlice.actions;
+
 export default userSlice.reducer;

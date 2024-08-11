@@ -1,7 +1,7 @@
 export const saveCartToLocalStorage = (
   cartItems: {
-    productId: string;
-    productQuantity: number;
+    id: string;
+    quantity: number;
   }[],
 ) => {
   localStorage.setItem('cart', JSON.stringify(cartItems));

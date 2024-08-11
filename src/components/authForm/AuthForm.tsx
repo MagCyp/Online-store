@@ -13,8 +13,13 @@ import { Props } from '@components/authForm/types';
 
 import styles from '@components/authForm/authForm.module.scss';
 
-const AuthForm: FC<Props> = ({ isOpen, onAuthSuccess, setIsOpen }) => {
-  const [formState, setFormState] = useState<boolean>(false);
+const AuthForm: FC<Props> = ({
+  isOpen,
+  onAuthSuccess,
+  setIsOpen,
+  isRegister,
+}) => {
+  const [formState, setFormState] = useState<boolean>(!!isRegister);
   const [internalIsOpen, setInternalIsOpen] = useState<boolean>(!!isOpen);
   const authState = useAppSelector(state => state.auth);
 

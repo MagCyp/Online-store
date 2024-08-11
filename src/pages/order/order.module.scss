@@ -1,0 +1,52 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.wrapper {
+  padding-top: 148px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  justify-content: center;
+  padding-top: 56px;
+
+  &-section {
+    display: flex;
+    gap: 17px;
+    padding-bottom: 26px;
+    width: 256px;
+    align-items: center;
+
+    &.with-border {
+      border-bottom: 2px solid $white;
+    }
+  }
+}
+
+.number {
+  border-radius: 40px;
+  background-color: $gray-100;
+  height: 42px;
+  width: 42px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.active {
+    background-color: $green-500;
+  }
+
+  color: $black;
+}

@@ -26,7 +26,7 @@ const Card: FC<Props> = ({
   const dispatch = useAppDispatch();
 
   const handleRemove = () => {
-    dispatch(cartRemove([{ productId: id, productQuantity: count }]));
+    dispatch(cartRemove([{ id: id, quantity: count }]));
   };
 
   const handleIncrease = () => {
@@ -35,12 +35,12 @@ const Card: FC<Props> = ({
     }
 
     setCount(count + 1);
-    dispatch(cartAdd([{ productId: id, productQuantity: 1 }]));
+    dispatch(cartAdd([{ id: id, quantity: 1 }]));
   };
 
   const handleDecrease = () => {
     setCount(count - 1);
-    dispatch(cartRemove([{ productId: id, productQuantity: 1 }]));
+    dispatch(cartRemove([{ id: id, quantity: 1 }]));
   };
 
   return (
@@ -48,8 +48,8 @@ const Card: FC<Props> = ({
       <img src={img} alt={name} className={styles['img']} />
       <div className={styles['left-side']}>
         <div className={styles['text-container']}>
-          <p className="bold s">{name}</p>
-          <p className="regular xs">{property}</p>
+          <p className="bold s white">{name}</p>
+          <p className="regular xs gray-100">{property}</p>
         </div>
         <div className={styles['counter-wrapper']}>
           <IconButton
@@ -58,7 +58,7 @@ const Card: FC<Props> = ({
             icon={<Minus size="mediumSmall" />}
             onClick={() => handleDecrease()}
           />
-          <p className={`bold xs ${styles['count']}`}>{count}</p>
+          <p className={`bold xs white ${styles['count']}`}>{count}</p>
           <IconButton
             className="link-gray extraSmall"
             type="button"
@@ -76,12 +76,12 @@ const Card: FC<Props> = ({
         />
         {salePrice ? (
           <div className={styles['text-container-left']}>
-            <p className="regular xs">${price}</p>
-            <p className="bold s">${salePrice}</p>
+            <p className="regular xs gray-100 ">${price}</p>
+            <p className="bold s white">${salePrice}</p>
           </div>
         ) : (
           <div className={styles['text-container-left']}>
-            <p className="bold s">${price}</p>
+            <p className="bold s white">${price}</p>
           </div>
         )}
       </div>
