@@ -2,11 +2,11 @@ import axios from 'axios';
 import { ICartProduct } from '@store/data/cart/types';
 
 export const fetchProducts = async (
-  cartItems: { productId: string; productQuantity: number }[],
+  cartItems: { id: string; quantity: number }[],
 ) => {
   if (cartItems.length === 0) return [];
 
-  const productIds = cartItems.map(item => item.productId).join('&ids=');
+  const productIds = cartItems.map(item => item.id).join('&ids=');
 
   const response = await axios.get(
     `${process.env.REACT_APP_API_URL}/products/by-ids?ids=${productIds}`,
@@ -15,14 +15,14 @@ export const fetchProducts = async (
   const products: ICartProduct[] = response.data._embedded.products;
 
   return cartItems.map(ci => {
-    const product = products.find(p => p.id === ci.productId);
+    const product = products.find(p => p.id === ci.id);
 
     if (!product) {
-      throw new Error(`Product with ID ${ci.productId} not found`);
+      throw new Error(`Product with ID ${ci.id} not found`);
     }
 
     return {
-      id: ci.productId,
+      id: ci.id,
       product: {
         id: product.id,
         name: product.name,
@@ -31,7 +31,7 @@ export const fetchProducts = async (
         imageUrl: product.imageUrl,
         links: product.links,
       },
-      quantity: ci.productQuantity,
+      quantity: ci.quantity,
     };
   });
 };

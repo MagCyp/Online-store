@@ -84,6 +84,10 @@
     height: 20px;
     bottom: 14px;
     left: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     & > * {
       padding: 0px;
     }

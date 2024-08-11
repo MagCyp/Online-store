@@ -2,13 +2,16 @@ import { FC, useEffect, useMemo, useState } from 'react';
 
 import Badge from '@components/badge/Badge';
 import IconButton from '@components/iconButton/IconButton';
-import HeartOpacity from '@components/icons/HeartOpacity';
-import HeartWhite from '@components/icons/HeartWhite';
+// import HeartOpacity from '@components/icons/HeartOpacity';
+// import HeartWhite from '@components/icons/HeartWhite';
 import Button from '@components/button/Button';
 
-import { useAppDispatch, useAppSelector } from '@hooks/redux/redux';
+import {
+  useAppDispatch,
+  // useAppSelector
+} from '@hooks/redux/redux';
 
-import { setFavorites } from '@store/slices/user/userSlice';
+// import { setFavorites } from '@store/slices/user/userSlice';
 import { cartAdd } from '@store/data/cart/cartThunks';
 
 import { Props } from '@components/productCard/types';
@@ -30,7 +33,7 @@ const ProductCard: FC<Props> = ({
   const [formattedShortDesc, setFormattedShortDesc] = useState<string>('');
 
   const dispatch = useAppDispatch();
-  const isFavorite = useAppSelector(state => state.user.favorites).includes(id);
+  // const isFavorite = useAppSelector(state => state.user.favorites).includes(id);
 
   const handleMouseEnter = () => setHovered(true);
   const handleMouseLeave = () => setHovered(false);
@@ -67,7 +70,7 @@ const ProductCard: FC<Props> = ({
   }, []);
 
   const handleAdd = () => {
-    dispatch(cartAdd([{ productId: id, productQuantity: 1 }]));
+    dispatch(cartAdd([{ id: id, quantity: 1 }]));
   };
 
   return (
@@ -85,14 +88,14 @@ const ProductCard: FC<Props> = ({
           <IconButton
             className="link-gray"
             type="button"
-            icon={
-              isFavorite ? (
-                <HeartWhite size="small" />
-              ) : (
-                <HeartOpacity size="small" />
-              )
-            }
-            onClick={() => dispatch(setFavorites(id))}
+            // icon={
+            //   isFavorite ? (
+            //     <HeartWhite size="small" />
+            //   ) : (
+            //     <HeartOpacity size="small" />
+            //   )
+            // }
+            // onClick={() => dispatch(setFavorites(id))}
           />
         </div>
         <img className={styles['image']} src={imageUrl} alt="" />

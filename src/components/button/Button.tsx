@@ -30,6 +30,37 @@ const Button: FC<Props> = ({
     ...style,
   };
 
+  if (href) {
+    return (
+      <Link
+        to={href}
+        className={buttonClassNames}
+        style={{
+          ...buttonStyles,
+          textAlign: 'center',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        onMouseDown={onClick}
+      >
+        {icon && icon}
+        {iconLeft && iconLeft}
+        <p
+          style={{
+            textAlign: 'center',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          {text}
+        </p>
+        {iconRight && iconRight}
+      </Link>
+    );
+  }
+
   return (
     <button
       className={buttonClassNames}
