@@ -159,8 +159,6 @@ const Payment: FC = () => {
   const handleSubmit = () => {
     const signature = generateSignature();
 
-    console.log('aaa', signature);
-
     const form = document.createElement('form');
     form.method = 'POST';
     form.action = 'https://secure.wayforpay.com/pay';
