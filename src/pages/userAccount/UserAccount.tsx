@@ -11,8 +11,8 @@ import styles from '@pages/userAccount/userAccount.module.scss';
 import { isAuth } from '@/hooks/isAuth/isAuth';
 
 const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
-const path = '/auth/me';
-const baseURL = process.env.REACT_APP_API_URL;
+// const path = '/auth/me';
+// const baseURL = process.env.REACT_APP_API_URL;
 
 interface UserData {
   firstName: string;
@@ -24,20 +24,6 @@ interface UserData {
 const UserAccount: FC = () => {
   const [currentPage, setCurrentPage] = useState<string>('account');
   const [userData, setUserData] = useState<UserData | null>(null);
-
-  const fetchUserData = async (): Promise<UserData | null> => {
-    try {
-      const response = await axios.get(`${baseURL}${path}`, {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      });
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching data', error);
-      return null;
-    }
-  };
 
   const fetchData = async () => {
     const res = await isAuth();
@@ -63,7 +49,7 @@ const UserAccount: FC = () => {
           <Account
             firstName={userData.firstName}
             lastName={userData.lastName}
-            phone={userData.phoneNumber}
+            phoneNumber={userData.phoneNumber}
             email={userData.email}
           />
         );
@@ -106,3 +92,17 @@ const navigation: Record<string, string> = {
 };
 
 export default UserAccount;
+
+// const fetchUserData = async (): Promise<UserData | null> => {
+//   try {
+//     const response = await axios.get(`${baseURL}${path}`, {
+//       headers: {
+//         Authorization: `Bearer ${jwt}`,
+//       },
+//     });
+//     return response.data;
+//   } catch (error) {
+//     console.error('Error fetching data', error);
+//     return null;
+//   }
+// };

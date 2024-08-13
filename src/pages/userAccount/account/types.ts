@@ -1,6 +1,6 @@
 export interface Props {
   firstName: string;
   lastName: string;
-  phone: string;
+  phoneNumber: string;
   email: string;
 }

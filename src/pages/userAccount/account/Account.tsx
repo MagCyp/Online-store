@@ -17,20 +17,20 @@ import { Props } from '@pages/userAccount/account/types';
 
 import styles from '@pages/userAccount/account/account.module.scss';
 
-const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
+// const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
 const path = '/account';
 const baseURL = process.env.REACT_APP_API_URL;
 
-const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
+const Account: FC<Props> = ({ firstName, lastName, phoneNumber, email }) => {
   const [userAccountData, setUserAccountData] = useState<{
     firstName: string;
     lastName: string;
-    phone: string;
+    phoneNumber: string;
     email: string;
   }>({
     firstName: firstName || '',
     lastName: lastName || '',
-    phone: phone || '',
+    phoneNumber: phoneNumber || '',
     email: email || '',
   });
 
@@ -47,7 +47,7 @@ const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
   const [userAccountDataErrors, setUserAccountDataErrors] = useState({
     firstName: '',
     lastName: '',
-    phone: '',
+    phoneNumber: '',
     email: '',
   });
 
@@ -76,7 +76,7 @@ const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
   const infoIsValid = !(
     !!userAccountDataErrors.firstName ||
     !!userAccountDataErrors.lastName ||
-    !!userAccountDataErrors.phone ||
+    !!userAccountDataErrors.phoneNumber ||
     !!userAccountDataErrors.email
   );
 
@@ -99,15 +99,13 @@ const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
 
   const onSave = async () => {
     try {
-      const response = await axios.put(
-        `${baseURL}${path}`,
-        JSON.stringify(userAccountData),
-        {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
+      const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
+      console.log(jwt);
+      const response = await axios.put(`${baseURL}${path}`, userAccountData, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
         },
-      );
+      });
       console.log('User data updated successfully:', response.data);
     } catch (error) {
       console.error('Error updating user data:', error);
@@ -140,12 +138,14 @@ const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
       />
       <CustomInput
         type="text"
-        value={userAccountData.phone}
+        value={userAccountData.phoneNumber}
         staticLabel={{ header: 'Phone Number', label: 'Phone Number' }}
-        error={userAccountDataErrors.phone}
-        onChange={e => handleUserAccountDataChange('phone', e.target.value)}
+        error={userAccountDataErrors.phoneNumber}
+        onChange={e =>
+          handleUserAccountDataChange('phoneNumber', e.target.value)
+        }
         validate={validatePhone}
-        setError={err => handleUserAccountDataErrorsChange('phone', err)}
+        setError={err => handleUserAccountDataErrorsChange('phoneNumber', err)}
       />
       <CustomInput
         type="email"
