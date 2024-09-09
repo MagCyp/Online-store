@@ -1,0 +1,52 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.customer-reviews-container {
+  display: grid;
+  margin-top: 200px;
+  margin-bottom: 144px;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 0;
+
+  .customer-reviews-left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    h1 {
+      font-family: 'monument-regular', sans-serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: $gray-10;
+      line-height: 42px;
+    }
+
+    p {
+      color: $gray-10;
+      font-size: 18px;
+      font-family: 'helvetica-regular', sans-serif;
+      font-weight: 400;
+    }
+  }
+
+  .customer-reviews-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 24px;
+
+    .rate-indicator {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+
+      .reviews-count {
+        font-family: helvetica-regular, sans-serif;
+        font-size: 14px;
+        color: white;
+      }
+    }
+  }
+}

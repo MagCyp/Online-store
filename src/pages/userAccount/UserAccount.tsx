@@ -17,7 +17,7 @@ const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
 interface UserData {
   firstName: string;
   lastName: string;
-  phoneNumber: string;
+  phone: string;
   email: string;
 }
 
@@ -49,7 +49,7 @@ const UserAccount: FC = () => {
           <Account
             firstName={userData.firstName}
             lastName={userData.lastName}
-            phoneNumber={userData.phoneNumber}
+            phone={userData.phone}
             email={userData.email}
           />
         );

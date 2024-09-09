@@ -21,16 +21,16 @@ import styles from '@pages/userAccount/account/account.module.scss';
 const path = '/account';
 const baseURL = process.env.REACT_APP_API_URL;
 
-const Account: FC<Props> = ({ firstName, lastName, phoneNumber, email }) => {
+const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
   const [userAccountData, setUserAccountData] = useState<{
     firstName: string;
     lastName: string;
-    phoneNumber: string;
+    phone: string;
     email: string;
   }>({
     firstName: firstName || '',
     lastName: lastName || '',
-    phoneNumber: phoneNumber || '',
+    phone: phone || '',
     email: email || '',
   });
 
@@ -47,7 +47,7 @@ const Account: FC<Props> = ({ firstName, lastName, phoneNumber, email }) => {
   const [userAccountDataErrors, setUserAccountDataErrors] = useState({
     firstName: '',
     lastName: '',
-    phoneNumber: '',
+    phone: '',
     email: '',
   });
 
@@ -76,7 +76,7 @@ const Account: FC<Props> = ({ firstName, lastName, phoneNumber, email }) => {
   const infoIsValid = !(
     !!userAccountDataErrors.firstName ||
     !!userAccountDataErrors.lastName ||
-    !!userAccountDataErrors.phoneNumber ||
+    !!userAccountDataErrors.phone ||
     !!userAccountDataErrors.email
   );
 
@@ -138,14 +138,12 @@ const Account: FC<Props> = ({ firstName, lastName, phoneNumber, email }) => {
       />
       <CustomInput
         type="text"
-        value={userAccountData.phoneNumber}
+        value={userAccountData.phone}
         staticLabel={{ header: 'Phone Number', label: 'Phone Number' }}
-        error={userAccountDataErrors.phoneNumber}
-        onChange={e =>
-          handleUserAccountDataChange('phoneNumber', e.target.value)
-        }
+        error={userAccountDataErrors.phone}
+        onChange={e => handleUserAccountDataChange('phone', e.target.value)}
         validate={validatePhone}
-        setError={err => handleUserAccountDataErrorsChange('phoneNumber', err)}
+        setError={err => handleUserAccountDataErrorsChange('phone', err)}
       />
       <CustomInput
         type="email"
