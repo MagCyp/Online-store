@@ -1,12 +1,9 @@
 import { FC } from 'react';
 import StarsRate from '@pages/product/starsRate/StarsRate';
 
-import styles from '@pages/product/rateBox/RateBox.module.scss';
+import { Props } from '@pages/product/rateBox/types';
 
-interface Props {
-  rating: number;
-  reviewsAmount: number;
-}
+import styles from '@pages/product/rateBox/RateBox.module.scss';
 
 const RateBox: FC<Props> = ({ rating, reviewsAmount }) => {
   return (

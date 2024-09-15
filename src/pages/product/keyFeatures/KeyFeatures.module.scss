@@ -15,15 +15,11 @@
     color: $gray-10;
   }
 
-  // p
-
   hr {
     margin-top: 18px;
     margin-bottom: 72px;
     border: 1px solid $gray-300;
   }
-
-  // hr
 
   .items-wrapper {
     display: flex;
@@ -46,8 +42,6 @@
           object-fit: cover;
         }
       }
-
-      // gray-block
 
       .column-feature {
         width: 100%;
@@ -74,8 +68,6 @@
             line-height: 42px;
           }
 
-          // h1
-
           p {
             max-width: 456px;
             color: $gray-100;
@@ -84,18 +76,8 @@
             font-size: 16px;
             line-height: 24px;
           }
-
-          // p
         }
-
-        // feature-box
       }
-
-      // column-features
     }
-
-    // productId-features
   }
-
-  // items-wrapper
 }

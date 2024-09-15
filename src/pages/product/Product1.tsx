@@ -1,33 +1,33 @@
 import { FC, useEffect, useState } from 'react';
 
-import Container from '@/components/container/Container';
-import DynamicBackgroundEffects from '@/components/dynamicBackgroundEffects/DynamicBackgroundEffects';
-import Breadcrumb from '@components/breadcrumb/Breadcrumb';
-import ProductDescBox from '@pages/product/productDescBox/ProductDescBox';
-import RateBox from '@pages/product/rateBox/RateBox';
-import PriceBox from '@pages/product/priceBox/PriceBox';
-import ThumbnailSlider from '@pages/product/thumbnailSlider/ThumbnailSlider';
-import ColorSelector from '@pages/product/colorSelector/ColorSelector';
-import QuantitySelector from '@pages/product/quantitySelector/QuantitySelector';
-import DropDownSection from '@pages/product/dropDownsSection/DropDownSection';
-
-import Check from '@/components/icons/Check';
 import Button from '@/components/button/Button';
-import KeyFeatures from '@pages/product/keyFeatures/KeyFeatures';
+import Breadcrumb from '@components/breadcrumb/Breadcrumb';
+import ColorSelector from '@pages/product/colorSelector/ColorSelector';
+import Container from '@/components/container/Container';
 import CustomerReviews from '@pages/product/customerReviews/CustomerReviews';
+import DynamicBackgroundEffects from '@/components/dynamicBackgroundEffects/DynamicBackgroundEffects';
+import DropDownSection from '@pages/product/dropDownsSection/DropDownSection';
+import HeartOpacity from '@/components/icons/HeartOpacity';
+import HeartWhite from '@/components/icons/HeartWhite';
+import KeyFeatures from '@pages/product/keyFeatures/KeyFeatures';
+import PriceBox from '@pages/product/priceBox/PriceBox';
+import ProductCard from '@/components/productCard/ProductCard';
+import ProductCardSkeleton from '@/components/skeletons/productCardSkeleton/ProductCardSkeleton';
+import ProductDescBox from '@pages/product/productDescBox/ProductDescBox';
+import QuantitySelector from '@pages/product/quantitySelector/QuantitySelector';
+import RateBox from '@pages/product/rateBox/RateBox';
+import ThumbnailSlider from '@pages/product/thumbnailSlider/ThumbnailSlider';
+
+import { IProduct } from '@/models/models';
+import { fetchAllProducts } from '@/store/data/allProducts/asyncAction';
+
 import img1 from '@pages/product/keyFeatures/images/keyFeature1.png';
 import img2 from '@pages/product/keyFeatures/images/keyFeature2.png';
 import img3 from '@pages/product/keyFeatures/images/keyFeature3.png';
 
-import styles from '@pages/product/Product1.module.scss';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
-import { fetchAllProducts } from '@/store/data/allProducts/asyncAction';
-import ProductCard from '@/components/productCard/ProductCard';
-import { IProduct } from '@/models/models';
-import ProductCardSkeleton from '@/components/skeletons/productCardSkeleton/ProductCardSkeleton';
-import StarFull from '@/components/icons/StarFull';
-import HeartOpacity from '@/components/icons/HeartOpacity';
-import HeartWhite from '@/components/icons/HeartWhite';
+
+import styles from '@pages/product/Product1.module.scss';
 
 const colors = ['white', 'azure', 'ghostwhite'];
 

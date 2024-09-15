@@ -1,9 +1,8 @@
 import { FC, useState } from 'react';
-import styles from '@pages/product/colorSelector/ColorSelector.module.scss';
 
-interface Props {
-  colors: string[];
-}
+import { Props } from '@pages/product/colorSelector/types';
+
+import styles from '@pages/product/colorSelector/ColorSelector.module.scss';
 
 const ColorSelector: FC<Props> = ({ colors }) => {
   const [selectedColor, setSelectedColor] = useState(colors[0]);

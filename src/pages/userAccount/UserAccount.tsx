@@ -1,5 +1,4 @@
 import { FC, useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
 
 import Container from '@components/container/Container';
 import Breadcrumb from '@components/breadcrumb/Breadcrumb';
@@ -7,8 +6,9 @@ import Navigation from '@pages/userAccount/navigation/Navigation';
 import Account from '@pages/userAccount/account/Account';
 import Addresses from '@pages/userAccount/addresses/Addresses';
 
-import styles from '@pages/userAccount/userAccount.module.scss';
 import { isAuth } from '@/hooks/isAuth/isAuth';
+
+import styles from '@pages/userAccount/userAccount.module.scss';
 
 const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
 // const path = '/auth/me';

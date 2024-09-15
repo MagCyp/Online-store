@@ -1,14 +1,10 @@
 import { FC, useState } from 'react';
+
+import { Props } from '@pages/product/quantitySelector/types';
+
 import styles from '@pages/product/quantitySelector/QuantitySelector.module.scss';
 
-interface QuantitySelectorProps {
-  min?: number;
-  max?: number;
-  initialQuantity?: number;
-  onQuantityChange: (quantity: number) => void;
-}
-
-const QuantitySelector: FC<QuantitySelectorProps> = ({
+const QuantitySelector: FC<Props> = ({
   min = 1,
   max = 10,
   initialQuantity = 1,

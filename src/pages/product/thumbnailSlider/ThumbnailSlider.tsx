@@ -1,5 +1,5 @@
 import { FC, useState, useEffect, useRef } from 'react';
-import styles from '@pages/product/thumbnailSlider/ThumbnailSlider.module.scss';
+
 import img1 from '@pages/product/thumbnailSlider/slides/1.jpg';
 import img2 from '@pages/product/thumbnailSlider/slides/2.jpg';
 import img3 from '@pages/product/thumbnailSlider/slides/3.jpg';
@@ -7,6 +7,9 @@ import img4 from '@pages/product/thumbnailSlider/slides/4.jpg';
 import img5 from '@pages/product/thumbnailSlider/slides/5.jpg';
 import img6 from '@pages/product/thumbnailSlider/slides/6.jpg';
 import img7 from '@pages/product/thumbnailSlider/slides/7.jpg';
+
+import styles from '@pages/product/thumbnailSlider/ThumbnailSlider.module.scss';
+
 const images = [
   { src: img1 },
   { src: img2 },
@@ -22,6 +25,7 @@ const ThumbnailSlider: FC = () => {
   const [start, setStart] = useState<number>(0);
   const [change, setChange] = useState<number>(0);
   const slideRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     if (!slideRef.current) return;
     const scrollWidth = slideRef.current.scrollWidth;
@@ -29,10 +33,12 @@ const ThumbnailSlider: FC = () => {
     const width = scrollWidth / childrenElementCount;
     setWidth(width);
   }, []);
+
   function plusSlides(n: number) {
     setSlideIndex(prev => prev + n);
     slideShow(slideIndex + n);
   }
+
   function slideShow(n: number) {
     if (n > images.length) {
       setSlideIndex(1);
@@ -41,14 +47,17 @@ const ThumbnailSlider: FC = () => {
       setSlideIndex(images.length);
     }
   }
+
   // Drag
   function dragStart(e: React.DragEvent<HTMLDivElement>) {
     setStart(e.clientX);
   }
+
   function dragOver(e: React.DragEvent<HTMLDivElement>) {
     const touch = e.clientX;
     setChange(start - touch);
   }
+
   function dragEnd(e: React.DragEvent<HTMLDivElement>) {
     if (slideRef.current && width) {
       if (change > 0) {
@@ -58,6 +67,7 @@ const ThumbnailSlider: FC = () => {
       }
     }
   }
+
   useEffect(() => {
     if (!slideRef.current) return;
     const numOfThumb = Math.round(slideRef.current.offsetWidth / width);
@@ -109,4 +119,5 @@ const ThumbnailSlider: FC = () => {
     </div>
   );
 };
+
 export default ThumbnailSlider;

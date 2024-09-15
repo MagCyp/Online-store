@@ -3,11 +3,9 @@ import { FC } from 'react';
 import StarFull from '@components/icons/StarFull';
 import StarEmpty from '@components/icons/StarEmpty';
 
-import styles from '@pages/product/starsRate/StarsRate.module.scss';
+import { Props } from '@pages/product/starsRate/types';
 
-interface Props {
-  rating: number;
-}
+import styles from '@pages/product/starsRate/StarsRate.module.scss';
 
 const StarsRate: FC<Props> = ({ rating }) => {
   const ratingStar = Array.from({ length: 5 }, (elem, index) => {

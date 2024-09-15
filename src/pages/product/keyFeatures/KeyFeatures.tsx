@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import styles from '@pages/product/keyFeatures/KeyFeatures.module.scss';
-
 import { Props } from '@pages/product/keyFeatures/types';
+
+import styles from '@pages/product/keyFeatures/KeyFeatures.module.scss';
 
 const KeyFeatures: FC<Props> = ({ features }) => {
   return (

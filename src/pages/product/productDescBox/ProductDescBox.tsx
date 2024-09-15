@@ -1,12 +1,8 @@
 import { FC } from 'react';
 
-import styles from '@pages/product/productDescBox/ProductDescBox.module.scss';
+import { Props } from '@pages/product/productDescBox/types';
 
-interface Props {
-  brand: string;
-  model: string;
-  shortDescription: string;
-}
+import styles from '@pages/product/productDescBox/ProductDescBox.module.scss';
 
 const ProductDescBox: FC<Props> = ({ brand, model, shortDescription }) => {
   return (

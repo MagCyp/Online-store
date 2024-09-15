@@ -1,11 +1,8 @@
 import { FC } from 'react';
 
-import styles from '@pages/product/priceBox/PriceBox.module.scss';
+import { Props } from '@pages/product/priceBox/types';
 
-interface Props {
-  price: number;
-  priceWithSale?: number;
-}
+import styles from '@pages/product/priceBox/PriceBox.module.scss';
 
 const PriceBox: FC<Props> = ({ price, priceWithSale }) => {
   return (

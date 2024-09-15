@@ -1,8 +1,10 @@
 import { FC } from 'react';
+
 import ProductDropDown from '@/components/productDropDown/ProductDropDown';
-import styles from '@pages/product/dropDownsSection/DropDownSection.module.scss';
 
 import { Props } from '@pages/product/dropDownsSection/types';
+
+import styles from '@pages/product/dropDownsSection/DropDownSection.module.scss';
 
 const DropDownSection: FC<Props> = ({ options }) => {
   return (

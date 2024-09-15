@@ -3,9 +3,9 @@ import { FC } from 'react';
 import StarsRate from '@pages/product/starsRate/StarsRate';
 import ProgressIndicator from '@/components/progressIndicator/ProgressIndicator';
 
-import styles from '@pages/product/customerReviews/CustormerReviews.module.scss';
-
 import { Props } from '@pages/product/customerReviews/types';
+
+import styles from '@pages/product/customerReviews/CustormerReviews.module.scss';
 
 const CustomerReviews: FC<Props> = ({ ratingData }) => {
   return (
