@@ -22,7 +22,7 @@ export const cartAdd = createAsyncThunk(
           items,
           {
             headers: {
-              Authorization: `Bearer ${jwt}`,
+              Authorization: `${jwt}`,
             },
           },
         );
@@ -61,7 +61,7 @@ export const cartRemove = createAsyncThunk(
           {
             data: items,
             headers: {
-              Authorization: `Bearer ${jwt}`,
+              Authorization: `${jwt}`,
             },
           },
         );
@@ -102,7 +102,7 @@ export const cartGet = createAsyncThunk(
           `${process.env.REACT_APP_API_URL}/carts`,
           {
             headers: {
-              Authorization: `Bearer ${jwt}`,
+              Authorization: `${jwt}`,
             },
           },
         );

@@ -26,7 +26,7 @@ const RegisterForm: FC<FormProps> = ({ onAuthSuccess, reset }) => {
   const [repeatPassword, setRepeatPassword] = useState<string>('');
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
-  const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [phone, setPhone] = useState<string>('');
   const [checked, setChecked] = useState<boolean>(false);
   const [error, setError] = useState<Errors>({
     firstNameError: 'err',
@@ -56,7 +56,7 @@ const RegisterForm: FC<FormProps> = ({ onAuthSuccess, reset }) => {
       register({
         firstName,
         lastName,
-        phoneNumber,
+        phone: phone,
         email,
         password,
       }),
@@ -73,7 +73,7 @@ const RegisterForm: FC<FormProps> = ({ onAuthSuccess, reset }) => {
     setRepeatPassword('');
     setFirstName('');
     setLastName('');
-    setPhoneNumber('');
+    setPhone('');
     setChecked(false);
     setError({
       firstNameError: 'err',
@@ -109,8 +109,8 @@ const RegisterForm: FC<FormProps> = ({ onAuthSuccess, reset }) => {
       />
       <CustomInput
         type="text"
-        value={phoneNumber}
-        onChange={e => setPhoneNumber(e.target.value)}
+        value={phone}
+        onChange={e => setPhone(e.target.value)}
         setError={error => setError(prev => ({ ...prev, phoneError: error }))}
         staticLabel={{ header: 'Phone', label: '+380983516319' }}
         validate={validatePhone}

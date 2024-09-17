@@ -32,6 +32,7 @@ interface IOrderData {
   clientState: string;
   clientCity: string;
   clientAddress: string;
+  returnUrl: string;
 }
 
 const Payment: FC = () => {
@@ -57,6 +58,7 @@ const Payment: FC = () => {
     clientState: 'ee',
     clientCity: 'ff',
     clientAddress: 'gg',
+    returnUrl: '',
   });
 
   useEffect(() => {
@@ -92,7 +94,7 @@ const Payment: FC = () => {
       day: 'numeric',
     });
 
-    const merchantDomainName = `indie-game-shop.netlify.app/complete?${itemsQueryString}&orderId=${
+    const merchantDomainName = `https://indie-game-shop.netlify.app/complete?${itemsQueryString}&orderId=${
       orderData.orderReference
     }&total=${totalAmount}&date=${encodeURIComponent(formattedDate)}`;
 
@@ -102,7 +104,9 @@ const Payment: FC = () => {
       productName: productNames,
       productPrice: productPrices,
       productCount: productCounts,
-      amount: totalAmount,
+      // amount: totalAmount,
+      amount: '0',
+      returnUrl: merchantDomainName,
     }));
   }, []);
 
@@ -118,7 +122,8 @@ const Payment: FC = () => {
         clientCity: paymentInfo.city,
         clientCountry: 'Ukraine',
         clientState: paymentInfo.region,
-        amount: paymentInfo.total,
+        // amount: paymentInfo.total,
+        amount: '0',
       }));
     }
   }, [paymentInfo]);
@@ -150,16 +155,17 @@ const Payment: FC = () => {
       ...productPrice,
     ].join(';');
 
-    return CryptoJS.HmacMD5(
-      signatureString,
-      'flk3409refn54t54t*FNJRET',
-    ).toString(CryptoJS.enc.Hex);
+    return CryptoJS.HmacMD5(signatureString, secretKey).toString(
+      CryptoJS.enc.Hex,
+    );
   };
+
+  useEffect(() => {
+    console.log(orderData.returnUrl);
+  }, [orderData.returnUrl]);
 
   const handleSubmit = () => {
     const signature = generateSignature();
-
-    console.log('aaa', signature);
 
     const form = document.createElement('form');
     form.method = 'POST';

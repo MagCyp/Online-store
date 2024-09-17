@@ -91,9 +91,7 @@ const AuthForm: FC<Props> = ({
             />
           </div>
         </div>
-        {authState?.failureReason && (
-          <Error bigError message={authState?.failureReason} />
-        )}
+        {authState?.message && <Error bigError message={authState?.message} />}
         {formState ? (
           <RegisterForm
             onAuthSuccess={handleAuthSuccess}

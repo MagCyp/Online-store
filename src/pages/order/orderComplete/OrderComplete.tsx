@@ -1,34 +1,72 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 import Container from '@components/container/Container';
 import Button from '@components/button/Button';
 
 import styles from '@pages/order/orderComplete/orderComplete.module.scss';
 
-const items: { img: string; count: number }[] = [
-  {
-    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9jFOrrTIHLG30fqFc-rJIRw9PK4SqBvrZjA&usqp=CAU',
-    count: 1,
-  },
-  {
-    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9jFOrrTIHLG30fqFc-rJIRw9PK4SqBvrZjA&usqp=CAU',
-    count: 4,
-  },
-  {
-    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9jFOrrTIHLG30fqFc-rJIRw9PK4SqBvrZjA&usqp=CAU',
-    count: 2,
-  },
-  {
-    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9jFOrrTIHLG30fqFc-rJIRw9PK4SqBvrZjA&usqp=CAU',
-    count: 10,
-  },
-  {
-    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9jFOrrTIHLG30fqFc-rJIRw9PK4SqBvrZjA&usqp=CAU',
-    count: 5,
-  },
-];
+interface IItem {
+  imageUrl: string;
+  count: number;
+}
 
 const OrderComplete: FC = () => {
+  const location = useLocation();
+
+  const [items, setItems] = useState<IItem[]>([]);
+  const [orderDate, setOrderDate] = useState<string | null>('');
+  const [total, setTotal] = useState<string | null>('');
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+
+    setOrderDate(searchParams.get('date'));
+    setTotal(searchParams.get('total'));
+
+    const itemIdsArray: string[] = [];
+    const itemCountsArray: string[] = [];
+
+    searchParams.getAll('items_id').forEach(id => {
+      itemIdsArray.push(id);
+    });
+    searchParams.getAll('item_count').forEach(count => {
+      itemCountsArray.push(count);
+    });
+
+    async function getItems() {
+      try {
+        const response = await axios.get(
+          'https://backend-4uug.onrender.com/products/by-ids',
+          {
+            params: { ids: itemIdsArray.join(',') },
+          },
+        );
+
+        const productsFromBackend = response.data._embedded.products;
+
+        const combinedItems = productsFromBackend.map(
+          (product: IItem, index: number) => ({
+            imageUrl: product.imageUrl,
+            count: itemCountsArray[index],
+          }),
+        );
+        console.log(combinedItems);
+
+        setItems(combinedItems);
+      } catch (error) {
+        console.error('Error fetching items:', error);
+      }
+    }
+
+    if (itemIdsArray.length > 0) {
+      getItems();
+    }
+
+    //clear cart in future
+  }, [location.search]);
+
   return (
     <Container>
       <div className={styles['container']}>
@@ -39,7 +77,7 @@ const OrderComplete: FC = () => {
               <div
                 key={index}
                 className={styles['item-wrapper']}
-                style={{ backgroundImage: `url(${item.img})` }}
+                style={{ backgroundImage: `url(${item.imageUrl})` }}
               >
                 <div className={styles['count']}>{item.count}</div>
               </div>
@@ -54,6 +92,9 @@ const OrderComplete: FC = () => {
             </div>
             <div className={styles['info-value']}>
               <p className="medium s white">#qad1</p>
+              <p className="medium s white">{orderDate}</p>
+              <p className="medium s white">${total}</p>
+              <p className="medium s white">WayForPay</p>
             </div>
           </div>
           <div className={styles['buttons-container']}>

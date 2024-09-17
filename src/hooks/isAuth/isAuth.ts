@@ -6,10 +6,10 @@ export const isAuth = async () => {
   if (jwt) {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/auth/me`,
+        `${process.env.REACT_APP_API_URL}/account`,
         {
           headers: {
-            Authorization: `Bearer ${jwt}`,
+            Authorization: `${jwt}`,
           },
         },
       );

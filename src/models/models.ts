@@ -71,9 +71,9 @@ export interface IProductData {
 }
 
 export interface IAuthResponse {
-  jwt: null | string;
-  success: boolean;
-  failureReason: null | string;
+  access_token?: string;
+  refresh_token?: string;
+  message?: string;
 }
 
 export interface IUserData {

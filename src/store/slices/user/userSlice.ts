@@ -25,7 +25,6 @@ const userSlice = createSlice({
     fetchUserDataSuccess(state, action: PayloadAction<IUserData>) {
       state.loading = false;
       state.userData = action.payload;
-      console.log(action.payload);
     },
     fetchUserDataFailure(state, action: PayloadAction<string>) {
       state.loading = false;
