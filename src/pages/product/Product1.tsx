@@ -87,9 +87,9 @@ const ratingData = {
   ],
 };
 
-const handleColorSelect = (color: string) => {
-  console.log('Selected color:', color);
-};
+// const handleColorSelect = (color: string) => {
+//   console.log('Selected color:', color);
+// };
 
 const Product1: FC = () => {
   const handleQuantityChange = (quantity: number) => {

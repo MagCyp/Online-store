@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react';
+import { FC, useState } from 'react';
 import axios from 'axios';
 
 import CustomInput from '@components/customInput/Input';

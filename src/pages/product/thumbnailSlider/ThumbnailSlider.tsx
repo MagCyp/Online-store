@@ -58,7 +58,7 @@ const ThumbnailSlider: FC = () => {
     setChange(start - touch);
   }
 
-  function dragEnd(e: React.DragEvent<HTMLDivElement>) {
+  function dragEnd() {
     if (slideRef.current && width) {
       if (change > 0) {
         slideRef.current.scrollLeft += width;
