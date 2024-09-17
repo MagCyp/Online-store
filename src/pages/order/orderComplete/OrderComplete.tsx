@@ -52,7 +52,6 @@ const OrderComplete: FC = () => {
             count: itemCountsArray[index],
           }),
         );
-        console.log(combinedItems);
 
         setItems(combinedItems);
       } catch (error) {
@@ -64,7 +63,8 @@ const OrderComplete: FC = () => {
       getItems();
     }
 
-    //clear cart in future
+    localStorage.removeItem('cart');
+    axios.delete('https://backend-4uug.onrender.com/carts/clear');
   }, [location.search]);
 
   return (
