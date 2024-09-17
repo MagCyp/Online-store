@@ -1,0 +1,40 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.product-desc-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 28px;
+
+  .product-title {
+    color: $gray-100;
+    font-family: 'helvetica-regular', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 26px;
+  }
+
+  // productId-title
+
+  .product-model {
+    color: $gray-10;
+    font-family: 'monument-regular', sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 42px;
+  }
+
+  // productId-model
+
+  .product-description {
+    color: $gray-50;
+    font-family: 'helvetica-regular', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  // productId-description
+}

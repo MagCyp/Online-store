@@ -13,7 +13,7 @@ import ModalWindow from '@components/modalWindow/ModalWindow';
 import AuthForm from '@components/authForm/AuthForm';
 import Home from '@pages/home/Home';
 import Catalog from '@pages/catalog/Catalog';
-import ProductId from '@pages/productId/ProductId';
+import Product1 from '@pages/product/Product1';
 import UserAccount from '@pages/userAccount/UserAccount';
 import Verify from '@pages/verify/Verify';
 import Order from '@pages/order/Order';
@@ -124,8 +124,8 @@ const App: FC = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/catalog/:category" element={<Catalog />} />
-          <Route path="/catalog/:category/:id" element={<ProductId />} />
           <Route path="/account" element={<UserAccount />} />
+          <Route path="/product" element={<Product1 />} />
           <Route
             path="/verify"
             element={

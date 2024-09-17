@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, useEffect, useCallback } from 'react';
 
 import Container from '@components/container/Container';
 import Breadcrumb from '@components/breadcrumb/Breadcrumb';
@@ -6,22 +6,53 @@ import Navigation from '@pages/userAccount/navigation/Navigation';
 import Account from '@pages/userAccount/account/Account';
 import Addresses from '@pages/userAccount/addresses/Addresses';
 
+import { isAuth } from '@/hooks/isAuth/isAuth';
+
 import styles from '@pages/userAccount/userAccount.module.scss';
 
-const navigation: Record<string, string> = {
-  account: 'Account',
-  orders: 'My orders',
-  addresses: 'Addresses',
-  favorite: 'Favorite',
-};
+const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
+// const path = '/auth/me';
+// const baseURL = process.env.REACT_APP_API_URL;
+
+interface UserData {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  email: string;
+}
 
 const UserAccount: FC = () => {
   const [currentPage, setCurrentPage] = useState<string>('account');
+  const [userData, setUserData] = useState<UserData | null>(null);
 
-  const renderContent = () => {
+  const fetchData = async () => {
+    const res = await isAuth();
+    if (res && res.data) {
+      setUserData(res.data as UserData);
+    } else {
+      console.log('User not authenticated');
+      setUserData(null);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [jwt]);
+
+  const renderContent = useCallback(() => {
+    if (!userData) {
+      return <div>Loading...</div>;
+    }
     switch (currentPage) {
       case 'account':
-        return <Account firstName="" lastName="" phone="" email="" />;
+        return (
+          <Account
+            firstName={userData.firstName}
+            lastName={userData.lastName}
+            phone={userData.phone}
+            email={userData.email}
+          />
+        );
       // case 'orders':
       //   return <Orders />;
       case 'addresses':
@@ -31,7 +62,7 @@ const UserAccount: FC = () => {
       default:
         return <Addresses />;
     }
-  };
+  }, [userData, currentPage]);
 
   return (
     <Container>
@@ -41,6 +72,10 @@ const UserAccount: FC = () => {
           <Navigation
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
+            userName={`${userData?.firstName ?? '...'} ${
+              userData?.lastName ?? '...'
+            }`}
+            onLogout={() => setUserData(null)}
           />
           {renderContent()}
         </div>
@@ -49,4 +84,25 @@ const UserAccount: FC = () => {
   );
 };
 
+const navigation: Record<string, string> = {
+  account: 'Account',
+  orders: 'My orders',
+  addresses: 'Addresses',
+  favorite: 'Favorite',
+};
+
 export default UserAccount;
+
+// const fetchUserData = async (): Promise<UserData | null> => {
+//   try {
+//     const response = await axios.get(`${baseURL}${path}`, {
+//       headers: {
+//         Authorization: `Bearer ${jwt}`,
+//       },
+//     });
+//     return response.data;
+//   } catch (error) {
+//     console.error('Error fetching data', error);
+//     return null;
+//   }
+// };

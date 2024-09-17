@@ -1,0 +1,46 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.product-price-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+
+  .product-price {
+    color: $gray-10;
+    font-family: 'helvetica-bold', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 32px;
+    user-select: none;
+  }
+
+  // productId-price
+
+  .product-sale {
+    color: $gray-100;
+    font-family: 'helvetica-regular', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 32px;
+    text-decoration: line-through;
+    user-select: none;
+  }
+
+  //  productId-sale
+
+  .sale {
+    color: $gray-500;
+    font-family: 'inter', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    padding: 2px 8px;
+    background: $green-500;
+    user-select: none;
+  }
+
+  // sale
+}
