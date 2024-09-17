@@ -9,9 +9,9 @@ interface AuthState extends IAuthResponse {
 }
 
 const initialState: AuthState = {
-  jwt: null,
-  success: false,
-  failureReason: null,
+  access_token: '',
+  refresh_token: '',
+  message: '',
   loading: false,
 };
 
@@ -25,37 +25,52 @@ const authSlice = createSlice({
         state.loading = true;
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.loading = false;
-        state.jwt = action.payload.data.jwt;
-        state.success = action.payload.data.success;
-        state.failureReason = action.payload.data.failureReason;
+        const { access_token, refresh_token } = action.payload.data;
 
-        if (typeof action.payload.data.jwt === 'string') {
+        state.access_token = access_token;
+
+        state.refresh_token = refresh_token;
+
+        if (access_token) {
           if (action.payload.rememberMe) {
-            localStorage.setItem('jwt', action.payload.data.jwt);
+            localStorage.setItem('jwt', access_token);
           } else {
-            sessionStorage.setItem('jwt', action.payload.data.jwt);
+            sessionStorage.setItem('jwt', access_token);
           }
         }
       })
-      .addCase(login.rejected, state => {
-        state.loading = false;
-        state.success = false;
-        state.failureReason = 'Enter valid data';
+      .addCase(login.rejected, (state, action) => {
+        if (
+          action.payload &&
+          typeof action.payload === 'object' &&
+          'data' in action.payload
+        ) {
+          state.message = (
+            action.payload as { data: { message: string } }
+          ).data.message;
+        } else {
+          state.message = 'Login failed';
+        }
       })
       .addCase(register.pending, state => {
         state.loading = true;
       })
-      .addCase(register.fulfilled, (state, action) => {
-        state.loading = false;
-        state.jwt = action.payload.jwt;
-        state.success = action.payload.success;
-        state.failureReason = action.payload.failureReason;
-      })
+      .addCase(
+        register.fulfilled,
+        (
+          state,
+          // action
+        ) => {
+          state.loading = false;
+          // state.jwt = action.payload.jwt;
+          // state.success = action.payload.success;
+          // state.failureReason = action.payload.failureReason;
+        },
+      )
       .addCase(register.rejected, state => {
         state.loading = false;
-        state.success = false;
-        state.failureReason = 'User already exist';
+        // state.success = false;
+        state.message = 'User already exist';
       });
   },
 });

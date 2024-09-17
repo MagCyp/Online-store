@@ -10,6 +10,11 @@ export const login = createAsyncThunk(
     const response = await axios.post<IAuthResponse>(
       `${process.env.REACT_APP_API_URL}/auth/login`,
       credentials,
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      },
     );
 
     return { data: response.data, rememberMe: credentials.rememberMe };
