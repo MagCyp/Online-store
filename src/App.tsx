@@ -25,6 +25,7 @@ import { useAppDispatch } from '@hooks/redux/redux';
 import { fetchUserDataSuccess } from '@store/slices/user/userSlice';
 import { cartAdd } from '@store/data/cart/cartThunks';
 
+import { fetchData } from './utils/wakeUpBack/wakeUpBack';
 import { getCartFromLocalStorage } from '@utils/cart/cartOperation';
 
 const privateLocations = ['/account'];
@@ -45,6 +46,16 @@ const App: FC = () => {
     const authResult = await isAuth();
     return authResult;
   };
+
+  useEffect(() => {
+    fetchData();
+
+    const intervalId = setInterval(() => {
+      fetchData();
+    }, 600000);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   useEffect(() => {
     setAuthChecking(true);
