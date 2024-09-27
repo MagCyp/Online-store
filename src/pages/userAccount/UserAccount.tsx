@@ -17,7 +17,7 @@ const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
 interface UserData {
   firstName: string;
   lastName: string;
-  phone: string;
+  phoneNumber: string;
   email: string;
 }
 
@@ -49,7 +49,7 @@ const UserAccount: FC = () => {
           <Account
             firstName={userData.firstName}
             lastName={userData.lastName}
-            phone={userData.phone}
+            phone={userData.phoneNumber}
             email={userData.email}
           />
         );
@@ -72,8 +72,8 @@ const UserAccount: FC = () => {
           <Navigation
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
-            userName={`${userData?.firstName ?? '...'} ${
-              userData?.lastName ?? '...'
+            userName={`${userData?.firstName ?? ''} ${
+              userData?.lastName ?? ''
             }`}
             onLogout={() => setUserData(null)}
           />

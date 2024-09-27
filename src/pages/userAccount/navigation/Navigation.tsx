@@ -46,7 +46,7 @@ const Navigation: FC<Props> = ({
             text=""
             className="round-image"
             type="button"
-            icon={<Swap size="large" />}
+            icon={<Swap size="medium" />}
             fullWidth={true}
           />
         </div>

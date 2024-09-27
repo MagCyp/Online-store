@@ -97,15 +97,49 @@ const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
       (infoIsValid && !passwordIsChanging)) &&
     password.newPassword === password.repeatPassword;
 
+  // const onSave = async () => {
+  //   try {
+  //     const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
+  //     console.log(jwt);
+  //     const response = await axios.put(`${baseURL}${path}`, userAccountData, {
+  //       headers: {
+  //         Authorization: `Bearer ${jwt}`,
+  //       },
+  //     });
+  //     console.log('User data updated successfully:', response.data);
+  //   } catch (error) {
+  //     console.error('Error updating user data:', error);
+  //   }
+  // };
+
   const onSave = async () => {
     try {
       const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
       console.log(jwt);
-      const response = await axios.put(`${baseURL}${path}`, userAccountData, {
+
+      // Convert userAccountData to URL-encoded format
+      const params = new URLSearchParams();
+      Object.keys(userAccountData).forEach(key => {
+        params.append(
+          key,
+          userAccountData[key as keyof typeof userAccountData],
+        );
+      });
+
+      // For password fields, if you want to include them in the form data
+      if (passwordIsChanging) {
+        params.append('password', password.password);
+        params.append('newPassword', password.newPassword);
+        params.append('repeatPassword', password.repeatPassword);
+      }
+
+      const response = await axios.put(`${baseURL}${path}`, params, {
         headers: {
           Authorization: `Bearer ${jwt}`,
+          'Content-Type': 'application/x-www-form-urlencoded', // Set content type to x-www-form-urlencoded
         },
       });
+
       console.log('User data updated successfully:', response.data);
     } catch (error) {
       console.error('Error updating user data:', error);

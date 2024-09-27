@@ -13,6 +13,7 @@
     color: $white;
     display: flex;
     flex-direction: column;
+    -webkit-user-select: none;
 
     &-button-container {
       width: 390px;

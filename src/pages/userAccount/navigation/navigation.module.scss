@@ -17,6 +17,11 @@
     align-items: center;
     padding: 40px 16px 40px 16px;
     gap: 6px;
+    -webkit-user-select: none;
+
+    & img {
+      width: 164px;
+    }
 
     .button-wrapper {
       position: absolute;
