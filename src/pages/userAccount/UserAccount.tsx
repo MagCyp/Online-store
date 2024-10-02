@@ -49,7 +49,7 @@ const UserAccount: FC = () => {
           <Account
             firstName={userData.firstName}
             lastName={userData.lastName}
-            phone={userData.phoneNumber}
+            phoneNumber={userData.phoneNumber}
             email={userData.email}
           />
         );

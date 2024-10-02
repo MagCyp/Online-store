@@ -21,16 +21,16 @@ import styles from '@pages/userAccount/account/account.module.scss';
 const path = '/account';
 const baseURL = process.env.REACT_APP_API_URL;
 
-const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
+const Account: FC<Props> = ({ firstName, lastName, phoneNumber, email }) => {
   const [userAccountData, setUserAccountData] = useState<{
     firstName: string;
     lastName: string;
-    phone: string;
+    phoneNumber: string;
     email: string;
   }>({
     firstName: firstName || '',
     lastName: lastName || '',
-    phone: phone || '',
+    phoneNumber: phoneNumber || '',
     email: email || '',
   });
 
@@ -130,12 +130,11 @@ const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
       if (passwordIsChanging) {
         params.append('password', password.password);
         params.append('newPassword', password.newPassword);
-        params.append('repeatPassword', password.repeatPassword);
       }
 
       const response = await axios.put(`${baseURL}${path}`, params, {
         headers: {
-          Authorization: `Bearer ${jwt}`,
+          Authorization: `${jwt}`,
           'Content-Type': 'application/x-www-form-urlencoded', // Set content type to x-www-form-urlencoded
         },
       });
@@ -172,12 +171,14 @@ const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
       />
       <CustomInput
         type="text"
-        value={userAccountData.phone}
+        value={userAccountData.phoneNumber}
         staticLabel={{ header: 'Phone Number', label: 'Phone Number' }}
         error={userAccountDataErrors.phone}
-        onChange={e => handleUserAccountDataChange('phone', e.target.value)}
+        onChange={e =>
+          handleUserAccountDataChange('phoneNumber', e.target.value)
+        }
         validate={validatePhone}
-        setError={err => handleUserAccountDataErrorsChange('phone', err)}
+        setError={err => handleUserAccountDataErrorsChange('phoneNumber', err)}
       />
       <CustomInput
         type="email"
