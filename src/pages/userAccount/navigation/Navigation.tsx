@@ -11,7 +11,6 @@ import { Props } from '@pages/userAccount/navigation/types';
 import styles from '@pages/userAccount/navigation/navigation.module.scss';
 
 const userInfo = {
-  // name: 'Aria Evergreen',
   image: userImg,
 };
 

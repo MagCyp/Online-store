@@ -17,11 +17,16 @@ import { Props } from '@pages/userAccount/account/types';
 
 import styles from '@pages/userAccount/account/account.module.scss';
 
-// const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
 const path = '/account';
 const baseURL = process.env.REACT_APP_API_URL;
 
-const Account: FC<Props> = ({ firstName, lastName, phoneNumber, email }) => {
+const Account: FC<Props> = ({
+  firstName,
+  lastName,
+  phoneNumber,
+  email,
+  onUpdateUserData,
+}) => {
   const [userAccountData, setUserAccountData] = useState<{
     firstName: string;
     lastName: string;
@@ -97,27 +102,10 @@ const Account: FC<Props> = ({ firstName, lastName, phoneNumber, email }) => {
       (infoIsValid && !passwordIsChanging)) &&
     password.newPassword === password.repeatPassword;
 
-  // const onSave = async () => {
-  //   try {
-  //     const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
-  //     console.log(jwt);
-  //     const response = await axios.put(`${baseURL}${path}`, userAccountData, {
-  //       headers: {
-  //         Authorization: `Bearer ${jwt}`,
-  //       },
-  //     });
-  //     console.log('User data updated successfully:', response.data);
-  //   } catch (error) {
-  //     console.error('Error updating user data:', error);
-  //   }
-  // };
-
   const onSave = async () => {
     try {
       const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
-      console.log(jwt);
 
-      // Convert userAccountData to URL-encoded format
       const params = new URLSearchParams();
       Object.keys(userAccountData).forEach(key => {
         params.append(
@@ -126,20 +114,26 @@ const Account: FC<Props> = ({ firstName, lastName, phoneNumber, email }) => {
         );
       });
 
-      // For password fields, if you want to include them in the form data
-      if (passwordIsChanging) {
-        params.append('password', password.password);
+      if (passwordIsChanging && passwordIsValid) {
+        params.append('oldPassword', password.password);
         params.append('newPassword', password.newPassword);
       }
 
       const response = await axios.put(`${baseURL}${path}`, params, {
         headers: {
           Authorization: `${jwt}`,
-          'Content-Type': 'application/x-www-form-urlencoded', // Set content type to x-www-form-urlencoded
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
       });
 
       console.log('User data updated successfully:', response.data);
+
+      onUpdateUserData({
+        firstName: userAccountData.firstName,
+        lastName: userAccountData.lastName,
+        phoneNumber: userAccountData.phoneNumber,
+        email: userAccountData.email,
+      });
     } catch (error) {
       console.error('Error updating user data:', error);
     }
