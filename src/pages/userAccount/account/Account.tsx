@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import CustomInput from '@components/customInput/Input';
 import Button from '@components/button/Button';
+import ModalWindow from '@/components/modalWindow/ModalWindow';
 
 import {
   validateFirstName,
@@ -61,6 +62,9 @@ const Account: FC<Props> = ({
     newPassword: '',
     repeatPassword: '',
   });
+
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [modalMessage, setModalMessage] = useState<string>('');
 
   const handleUserAccountDataChange = (field: string, value: string) => {
     setUserAccountData(prevState => ({ ...prevState, [field]: value }));
@@ -134,8 +138,13 @@ const Account: FC<Props> = ({
         phoneNumber: userAccountData.phoneNumber,
         email: userAccountData.email,
       });
-    } catch (error) {
-      console.error('Error updating user data:', error);
+    } catch (error: any) {
+      if (error.response && error.response.status === 400) {
+        setModalMessage('The current password was entered incorrectly.');
+        setIsModalOpen(true);
+      } else {
+        console.error('Error updating user data:', error);
+      }
     }
   };
 
@@ -226,6 +235,15 @@ const Account: FC<Props> = ({
           onClick={onSave}
         />
       </div>
+      <ModalWindow
+        isOpen={isModalOpen}
+        setIsOpen={setIsModalOpen}
+        header="Error"
+        message={modalMessage}
+        type="error"
+        firstButtonText="OK"
+        firstButtonClose={true}
+      />
     </div>
   );
 };
