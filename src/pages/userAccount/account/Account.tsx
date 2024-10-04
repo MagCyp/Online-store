@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 import CustomInput from '@components/customInput/Input';
 import Button from '@components/button/Button';
@@ -138,12 +138,17 @@ const Account: FC<Props> = ({
         phoneNumber: userAccountData.phoneNumber,
         email: userAccountData.email,
       });
-    } catch (error: any) {
-      if (error.response && error.response.status === 400) {
-        setModalMessage('The current password was entered incorrectly.');
-        setIsModalOpen(true);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const axiosError = error as AxiosError;
+        if (axiosError.response && axiosError.response.status === 400) {
+          setModalMessage('The current password was entered incorrectly.');
+          setIsModalOpen(true);
+        } else {
+          console.error('Error updating user data:', axiosError.message);
+        }
       } else {
-        console.error('Error updating user data:', error);
+        console.error('Unknown error:', error);
       }
     }
   };
