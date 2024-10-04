@@ -13,6 +13,7 @@
     color: $white;
     display: flex;
     flex-direction: column;
+    -webkit-user-select: none;
 
     &-button-container {
       width: 390px;
@@ -27,14 +28,3 @@
 .button-wrapper {
   width: 180px;
 }
-
-// .buttons {
-//   display: flex;
-//   flex-direction: column;
-//   gap: 34px;
-
-//   .hover {
-//     display: flex;
-//     justify-content: flex-end;
-//   }
-// }

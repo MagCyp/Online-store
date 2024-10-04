@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import CustomInput from '@components/customInput/Input';
 import Button from '@components/button/Button';
+import ModalWindow from '@/components/modalWindow/ModalWindow';
 
 import {
   validateFirstName,
@@ -17,20 +18,25 @@ import { Props } from '@pages/userAccount/account/types';
 
 import styles from '@pages/userAccount/account/account.module.scss';
 
-// const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
 const path = '/account';
 const baseURL = process.env.REACT_APP_API_URL;
 
-const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
+const Account: FC<Props> = ({
+  firstName,
+  lastName,
+  phoneNumber,
+  email,
+  onUpdateUserData,
+}) => {
   const [userAccountData, setUserAccountData] = useState<{
     firstName: string;
     lastName: string;
-    phone: string;
+    phoneNumber: string;
     email: string;
   }>({
     firstName: firstName || '',
     lastName: lastName || '',
-    phone: phone || '',
+    phoneNumber: phoneNumber || '',
     email: email || '',
   });
 
@@ -56,6 +62,9 @@ const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
     newPassword: '',
     repeatPassword: '',
   });
+
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [modalMessage, setModalMessage] = useState<string>('');
 
   const handleUserAccountDataChange = (field: string, value: string) => {
     setUserAccountData(prevState => ({ ...prevState, [field]: value }));
@@ -100,15 +109,42 @@ const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
   const onSave = async () => {
     try {
       const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
-      console.log(jwt);
-      const response = await axios.put(`${baseURL}${path}`, userAccountData, {
+
+      const params = new URLSearchParams();
+      Object.keys(userAccountData).forEach(key => {
+        params.append(
+          key,
+          userAccountData[key as keyof typeof userAccountData],
+        );
+      });
+
+      if (passwordIsChanging && passwordIsValid) {
+        params.append('oldPassword', password.password);
+        params.append('newPassword', password.newPassword);
+      }
+
+      const response = await axios.put(`${baseURL}${path}`, params, {
         headers: {
-          Authorization: `Bearer ${jwt}`,
+          Authorization: `${jwt}`,
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
       });
+
       console.log('User data updated successfully:', response.data);
-    } catch (error) {
-      console.error('Error updating user data:', error);
+
+      onUpdateUserData({
+        firstName: userAccountData.firstName,
+        lastName: userAccountData.lastName,
+        phoneNumber: userAccountData.phoneNumber,
+        email: userAccountData.email,
+      });
+    } catch (error: any) {
+      if (error.response && error.response.status === 400) {
+        setModalMessage('The current password was entered incorrectly.');
+        setIsModalOpen(true);
+      } else {
+        console.error('Error updating user data:', error);
+      }
     }
   };
 
@@ -138,12 +174,14 @@ const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
       />
       <CustomInput
         type="text"
-        value={userAccountData.phone}
+        value={userAccountData.phoneNumber}
         staticLabel={{ header: 'Phone Number', label: 'Phone Number' }}
         error={userAccountDataErrors.phone}
-        onChange={e => handleUserAccountDataChange('phone', e.target.value)}
+        onChange={e =>
+          handleUserAccountDataChange('phoneNumber', e.target.value)
+        }
         validate={validatePhone}
-        setError={err => handleUserAccountDataErrorsChange('phone', err)}
+        setError={err => handleUserAccountDataErrorsChange('phoneNumber', err)}
       />
       <CustomInput
         type="email"
@@ -197,6 +235,15 @@ const Account: FC<Props> = ({ firstName, lastName, phone, email }) => {
           onClick={onSave}
         />
       </div>
+      <ModalWindow
+        isOpen={isModalOpen}
+        setIsOpen={setIsModalOpen}
+        header="Error"
+        message={modalMessage}
+        type="error"
+        firstButtonText="OK"
+        firstButtonClose={true}
+      />
     </div>
   );
 };

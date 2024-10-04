@@ -1,34 +1,28 @@
 import { FC, useState, useEffect, useCallback } from 'react';
 
-import Container from '@components/container/Container';
-import Breadcrumb from '@components/breadcrumb/Breadcrumb';
-import Navigation from '@pages/userAccount/navigation/Navigation';
 import Account from '@pages/userAccount/account/Account';
 import Addresses from '@pages/userAccount/addresses/Addresses';
+import Breadcrumb from '@components/breadcrumb/Breadcrumb';
+import Container from '@components/container/Container';
+import Navigation from '@pages/userAccount/navigation/Navigation';
 
 import { isAuth } from '@/hooks/isAuth/isAuth';
+
+import { Props } from '@pages/userAccount/types';
 
 import styles from '@pages/userAccount/userAccount.module.scss';
 
 const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
-// const path = '/auth/me';
-// const baseURL = process.env.REACT_APP_API_URL;
-
-interface UserData {
-  firstName: string;
-  lastName: string;
-  phone: string;
-  email: string;
-}
 
 const UserAccount: FC = () => {
   const [currentPage, setCurrentPage] = useState<string>('account');
-  const [userData, setUserData] = useState<UserData | null>(null);
+  const [userData, setUserData] = useState<Props | null>(null);
 
   const fetchData = async () => {
     const res = await isAuth();
+
     if (res && res.data) {
-      setUserData(res.data as UserData);
+      setUserData(res.data as Props);
     } else {
       console.log('User not authenticated');
       setUserData(null);
@@ -38,6 +32,10 @@ const UserAccount: FC = () => {
   useEffect(() => {
     fetchData();
   }, [jwt]);
+
+  const updateUserData = (newData: Props) => {
+    setUserData(newData);
+  };
 
   const renderContent = useCallback(() => {
     if (!userData) {
@@ -49,8 +47,9 @@ const UserAccount: FC = () => {
           <Account
             firstName={userData.firstName}
             lastName={userData.lastName}
-            phone={userData.phone}
+            phoneNumber={userData.phoneNumber}
             email={userData.email}
+            onUpdateUserData={updateUserData}
           />
         );
       // case 'orders':
@@ -72,8 +71,8 @@ const UserAccount: FC = () => {
           <Navigation
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
-            userName={`${userData?.firstName ?? '...'} ${
-              userData?.lastName ?? '...'
+            userName={`${userData?.firstName ?? ''} ${
+              userData?.lastName ?? ''
             }`}
             onLogout={() => setUserData(null)}
           />
@@ -92,17 +91,3 @@ const navigation: Record<string, string> = {
 };
 
 export default UserAccount;
-
-// const fetchUserData = async (): Promise<UserData | null> => {
-//   try {
-//     const response = await axios.get(`${baseURL}${path}`, {
-//       headers: {
-//         Authorization: `Bearer ${jwt}`,
-//       },
-//     });
-//     return response.data;
-//   } catch (error) {
-//     console.error('Error fetching data', error);
-//     return null;
-//   }
-// };

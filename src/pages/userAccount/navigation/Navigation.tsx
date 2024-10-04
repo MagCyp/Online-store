@@ -11,7 +11,6 @@ import { Props } from '@pages/userAccount/navigation/types';
 import styles from '@pages/userAccount/navigation/navigation.module.scss';
 
 const userInfo = {
-  // name: 'Aria Evergreen',
   image: userImg,
 };
 
@@ -46,7 +45,7 @@ const Navigation: FC<Props> = ({
             text=""
             className="round-image"
             type="button"
-            icon={<Swap size="large" />}
+            icon={<Swap size="medium" />}
             fullWidth={true}
           />
         </div>

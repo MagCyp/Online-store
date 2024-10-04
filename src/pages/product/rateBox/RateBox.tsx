@@ -11,7 +11,7 @@ const RateBox: FC<Props> = ({ rating, reviewsAmount }) => {
       <StarsRate rating={rating} />
       <div className={styles['rate-and-reviews']}>
         <div className={styles['rate']}>{rating}</div>
-        <div className={styles['reviews']}>({`${reviewsAmount} Revievs`})</div>
+        <div className={styles['reviews']}>({`${reviewsAmount} Reviews`})</div>
       </div>
     </div>
   );
