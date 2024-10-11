@@ -94,7 +94,7 @@ const Product1: FC = () => {
     try {
       const response = await axios.get(`${baseURL}/wishlist/list`, {
         headers: {
-          Authorization: `Bearer ${jwt}`,
+          Authorization: `${jwt}`,
         },
       });
 
