@@ -1,4 +1,5 @@
 import { FC, useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Badge from '@components/badge/Badge';
 import IconButton from '@components/iconButton/IconButton';
@@ -32,9 +33,14 @@ const ProductCard: FC<Props> = ({
   const [isHovered, setHovered] = useState<boolean>(false);
   const [formattedShortDesc, setFormattedShortDesc] = useState<string>('');
 
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   // const isFavorite = useAppSelector(state => state.user.favorites).includes(id);
 
+  const handleClick = (href: string) => {
+    navigate(`/product/${href}`);
+    window.scrollTo(0, 0);
+  };
   const handleMouseEnter = () => setHovered(true);
   const handleMouseLeave = () => setHovered(false);
 
@@ -79,48 +85,50 @@ const ProductCard: FC<Props> = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className={styles['image-container']}>
-        {generateTopLabel}
-        <div
-          className={styles['top-button']}
-          style={{ visibility: isHovered ? 'visible' : 'hidden' }}
-        >
-          <IconButton
-            className="link-gray"
-            type="button"
-            // icon={
-            //   isFavorite ? (
-            //     <HeartWhite size="small" />
-            //   ) : (
-            //     <HeartOpacity size="small" />
-            //   )
-            // }
-            // onClick={() => dispatch(setFavorites(id))}
-          />
-        </div>
-        <img className={styles['image']} src={imageUrl} alt="" />
+      <div onClick={() => handleClick(id)}>
+        <div className={styles['image-container']}>
+          {generateTopLabel}
+          <div
+            className={styles['top-button']}
+            style={{ visibility: isHovered ? 'visible' : 'hidden' }}
+          >
+            <IconButton
+              className="link-gray"
+              type="button"
+              // icon={
+              //   isFavorite ? (
+              //     <HeartWhite size="small" />
+              //   ) : (
+              //     <HeartOpacity size="small" />
+              //   )
+              // }
+              // onClick={() => dispatch(setFavorites(id))}
+            />
+          </div>
+          <img className={styles['image']} src={imageUrl} alt="" />
 
-        <div className={styles['bottom-label']}>
-          <Badge className="gray small" text={rating} isRating />
+          <div className={styles['bottom-label']}>
+            <Badge className="gray small" text={rating} isRating />
+          </div>
         </div>
-      </div>
-      <div className={styles['content']}>
-        <div>
-          <p className={styles['brand']}>{brand}</p>
-          <p className={styles['product-name']} data-tooltip={name}>
-            {name}
-          </p>
-        </div>
-        <p className={styles['short-description']}>{formattedShortDesc}</p>
-        <div className={styles['price-container']}>
-          {priceWithSale ? (
-            <>
-              <h6 className={styles['price']}>${priceWithSale}</h6>
-              <h6 className={styles['sale-price']}>${price}</h6>
-            </>
-          ) : (
-            <h6 className={styles['price']}>${price}</h6>
-          )}
+        <div className={styles['content']}>
+          <div>
+            <p className={styles['brand']}>{brand}</p>
+            <p className={styles['product-name']} data-tooltip={name}>
+              {name}
+            </p>
+          </div>
+          <p className={styles['short-description']}>{formattedShortDesc}</p>
+          <div className={styles['price-container']}>
+            {priceWithSale ? (
+              <>
+                <h6 className={styles['price']}>${priceWithSale}</h6>
+                <h6 className={styles['sale-price']}>${price}</h6>
+              </>
+            ) : (
+              <h6 className={styles['price']}>${price}</h6>
+            )}
+          </div>
         </div>
       </div>
       <Button

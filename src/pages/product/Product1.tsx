@@ -1,4 +1,6 @@
 import { FC, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 import Button from '@/components/button/Button';
 import Breadcrumb from '@components/breadcrumb/Breadcrumb';
@@ -21,13 +23,14 @@ import ThumbnailSlider from '@pages/product/thumbnailSlider/ThumbnailSlider';
 import { IProduct } from '@/models/models';
 import { fetchAllProducts } from '@/store/data/allProducts/asyncAction';
 
-import img1 from '@pages/product/keyFeatures/images/keyFeature1.png';
-import img2 from '@pages/product/keyFeatures/images/keyFeature2.png';
-import img3 from '@pages/product/keyFeatures/images/keyFeature3.png';
-
 import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
 
 import styles from '@pages/product/Product1.module.scss';
+
+const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
+
+const path = '/products';
+const baseURL = process.env.REACT_APP_API_URL;
 
 const colors = ['white', 'azure', 'ghostwhite'];
 
@@ -54,27 +57,6 @@ const dropDownContent = [
   },
 ];
 
-const keyFeaturesContent = [
-  {
-    imgSource: img1,
-    title: 'Ergonomic design',
-    description:
-      "The mouse's ergonomic shape is crafted for both palm and claw grip styles, providing comfort and reducing fatigue during prolonged use.", // Fixed the HTML entity for apostrophe
-  },
-  {
-    imgSource: img2,
-    title: 'Precise sensor',
-    description:
-      "The mouse's sensor ensures precision tracking on most surfaces, giving users confidence during gaming or productivity tasks.", // Changed title and description to reflect variety
-  },
-  {
-    imgSource: img3,
-    title: 'Durable build',
-    description:
-      "The mouse's durable build ensures long-term use without compromising performance.", // Changed title and description for uniqueness
-  },
-];
-
 const ratingData = {
   overallRating: 4.6,
   reviewQuantity: 137,
@@ -87,25 +69,60 @@ const ratingData = {
   ],
 };
 
-// const handleColorSelect = (color: string) => {
-//   console.log('Selected color:', color);
-// };
-
 const Product1: FC = () => {
+  const { id } = useParams<{ id: string }>(); // Отримуємо id з URL
+
   const handleQuantityChange = (quantity: number) => {
     console.log('Selected quantity:', quantity);
   };
 
   const [liked, setLiked] = useState(false);
+  const [loading, setLoading] = useState<boolean>(true); // Стан для завантаження
+  const [productData, setProductData] = useState<any>(null); // Данні про продукт
+  const [error, setError] = useState<string | null>(null); // Для збереження помилок
+
+  const dispatch = useAppDispatch();
 
   const toggleLike = () => {
     setLiked(prevLiked => !prevLiked);
   };
 
-  const dispatch = useAppDispatch();
-
   const { dataProducts, status } = useAppSelector(state => state.products);
   const [products, setProducts] = useState<IProduct[]>([]);
+
+  const checkIfProductIsLiked = async () => {
+    try {
+      const response = await axios.get(`${baseURL}/wishlist/list`, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
+
+      const wishlist = response.data;
+      const isLiked = wishlist.some((product: any) => product.id === id);
+      setLiked(isLiked);
+    } catch (error) {
+      console.error('Error checking wishlist:', error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        setLoading(true); // Встановлюємо стан завантаження
+        const response = await axios.get(`${baseURL}${path}/${id}`);
+        setProductData(response.data);
+        console.log(response);
+      } catch (err) {
+        setError('Failed to load product');
+      } finally {
+        setLoading(false); // Завершуємо стан завантаження
+      }
+    };
+
+    fetchProduct();
+    checkIfProductIsLiked(); // Перевіряємо, чи є продукт у списку улюблених
+  }, [id]);
 
   useEffect(() => {
     if (dataProducts) setProducts(dataProducts);
@@ -115,34 +132,41 @@ const Product1: FC = () => {
     dispatch(fetchAllProducts({ page: 0, size: 4 }));
   }, [dispatch]);
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
   return (
     <DynamicBackgroundEffects>
       <Container>
         <div className={styles['product-container']}>
           <div className={styles['breadcrumb']}>
-            <Breadcrumb name={'product'} />
+            <Breadcrumb name={productData.name} />
             <div className={styles['product-content']}>
               <div className={styles['product-general_information']}>
                 <div className={styles['thumbnail_image']}>
-                  <ThumbnailSlider />
+                  <ThumbnailSlider images={productData.images} />
                 </div>
                 <div className={styles['product-details-container']}>
-                  <RateBox rating={4.2} reviewsAmount={137} />
+                  <RateBox
+                    rating={productData.averageRate}
+                    reviewsAmount={137}
+                  />
                   <ProductDescBox
-                    brand="TechBlaze"
-                    model="MX MASTER 3S"
-                    shortDescription="Day-long comfort, great for small to medium-sized hands"
+                    brand={productData.brand}
+                    model={productData.name}
+                    shortDescription={productData.shortDescription}
                   />
-                  <PriceBox price={132} priceWithSale={164} />
-                  {/* <ColorSelector
-                    options={colorOptions}
-                    onSelect={handleColorSelect}
-                  /> */}
+                  <PriceBox
+                    price={productData.price}
+                    priceWithSale={productData.priceWithSale}
+                  />
 
-                  <ColorSelector
-                    colors={colors}
-                    // onSelect={handleColorSelect}
-                  />
+                  <ColorSelector colors={colors} />
                   <div className={styles['quantity-favorite-button-wrapper']}>
                     <QuantitySelector
                       min={1}
@@ -178,7 +202,7 @@ const Product1: FC = () => {
                 </div>
               </div>
             </div>
-            <KeyFeatures features={keyFeaturesContent} />
+            <KeyFeatures features={productData.features} />
             <CustomerReviews ratingData={ratingData} />
             <h3 className={styles['recommended-product']}>
               Recommended product

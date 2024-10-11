@@ -17,7 +17,7 @@ const KeyFeatures: FC<Props> = ({ features }) => {
             style={{ flexDirection: index % 2 === 0 ? 'row' : 'row-reverse' }}
           >
             <div className={styles['gray-block']}>
-              <img src={feature.imgSource} alt={feature.title} />
+              <img src={feature.imageUrl} alt={feature.title} />
             </div>
             <div
               className={styles['column-feature']}

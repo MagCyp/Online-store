@@ -1,25 +1,10 @@
 import { FC, useState, useEffect, useRef } from 'react';
 
-import img1 from '@pages/product/thumbnailSlider/slides/1.jpg';
-import img2 from '@pages/product/thumbnailSlider/slides/2.jpg';
-import img3 from '@pages/product/thumbnailSlider/slides/3.jpg';
-import img4 from '@pages/product/thumbnailSlider/slides/4.jpg';
-import img5 from '@pages/product/thumbnailSlider/slides/5.jpg';
-import img6 from '@pages/product/thumbnailSlider/slides/6.jpg';
-import img7 from '@pages/product/thumbnailSlider/slides/7.jpg';
+import { Props } from '@pages/product/thumbnailSlider/types';
 
 import styles from '@pages/product/thumbnailSlider/ThumbnailSlider.module.scss';
 
-const images = [
-  { src: img1 },
-  { src: img2 },
-  { src: img3 },
-  { src: img4 },
-  { src: img5 },
-  { src: img6 },
-  { src: img7 },
-];
-const ThumbnailSlider: FC = () => {
+const ThumbnailSlider: FC<Props> = ({ images }) => {
   const [slideIndex, setSlideIndex] = useState<number>(1);
   const [width, setWidth] = useState<number>(0);
   const [start, setStart] = useState<number>(0);
@@ -84,7 +69,7 @@ const ThumbnailSlider: FC = () => {
             className={styles['mySlides']}
             style={{ display: index + 1 === slideIndex ? 'block' : 'none' }}
           >
-            <img src={image.src} alt="" />
+            <img src={image} alt="" />
           </div>
         ))}
         <a href="#!" className={styles['prev']} onClick={() => plusSlides(-1)}>
@@ -111,7 +96,7 @@ const ThumbnailSlider: FC = () => {
                 setSlideIndex(index + 1);
               }}
             >
-              <img src={image.src} alt="" />
+              <img src={image} alt="" />
             </div>
           ))}
         </div>

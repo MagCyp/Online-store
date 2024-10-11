@@ -1,7 +1,8 @@
 export interface featureContent {
   title: string;
   description: string;
-  imgSource: string;
+  imageUrl: string;
+  id: string;
 }
 
 export interface Props {
