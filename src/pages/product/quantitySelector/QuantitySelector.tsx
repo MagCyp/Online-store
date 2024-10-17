@@ -50,14 +50,3 @@ const QuantitySelector: FC<Props> = ({
 };
 
 export default QuantitySelector;
-
-// div className={styles['quantity-box']}>
-//                 <div className={styles['row']}>
-//                   <input className={styles['input-field']} type="number" />
-//                   <button className={styles['favorite']}>
-//                     <div className={styles['favorite-content']}>
-//                       <HeartOpacity size={'small'} />
-//                       Favorite
-//                     </div>
-//                   </button>
-//                 </div>
