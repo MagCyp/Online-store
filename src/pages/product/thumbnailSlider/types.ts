@@ -1,3 +1,3 @@
 export interface Props {
-  ratingData: number[];
+  images: string[];
 }

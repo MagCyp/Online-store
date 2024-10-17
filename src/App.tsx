@@ -136,7 +136,7 @@ const App: FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/catalog/:category" element={<Catalog />} />
           <Route path="/account" element={<UserAccount />} />
-          <Route path="/product" element={<Product1 />} />
+          <Route path="/product/:id" element={<Product1 />} />
           <Route
             path="/verify"
             element={

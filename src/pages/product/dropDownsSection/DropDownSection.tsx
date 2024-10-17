@@ -6,15 +6,16 @@ import { Props } from '@pages/product/dropDownsSection/types';
 
 import styles from '@pages/product/dropDownsSection/DropDownSection.module.scss';
 
-const DropDownSection: FC<Props> = ({ options }) => {
+const DropDownSection: FC<Props> = ({ characteristics }) => {
   return (
     <div className={styles['dropDown-box']}>
-      {options.map((option, index) => (
-        <ProductDropDown header={option.header} key={index}>
-          <p className={styles['characteristics-p']}>{option.content}</p>
+      {Object.entries(characteristics).map(([key, value], index) => (
+        <ProductDropDown header={key} key={index}>
+          <p className={styles['characteristics-p']}>{value}</p>
         </ProductDropDown>
       ))}
     </div>
   );
 };
+
 export default DropDownSection;

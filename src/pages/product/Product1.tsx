@@ -1,4 +1,6 @@
 import { FC, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 import Button from '@/components/button/Button';
 import Breadcrumb from '@components/breadcrumb/Breadcrumb';
@@ -18,94 +20,102 @@ import QuantitySelector from '@pages/product/quantitySelector/QuantitySelector';
 import RateBox from '@pages/product/rateBox/RateBox';
 import ThumbnailSlider from '@pages/product/thumbnailSlider/ThumbnailSlider';
 
+import { cartAdd } from '@store/data/cart/cartThunks';
 import { IProduct } from '@/models/models';
 import { fetchAllProducts } from '@/store/data/allProducts/asyncAction';
 
-import img1 from '@pages/product/keyFeatures/images/keyFeature1.png';
-import img2 from '@pages/product/keyFeatures/images/keyFeature2.png';
-import img3 from '@pages/product/keyFeatures/images/keyFeature3.png';
-
 import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
+
+import { WishListProduct, Product } from '@pages/product/types';
 
 import styles from '@pages/product/Product1.module.scss';
 
-const colors = ['white', 'azure', 'ghostwhite'];
-
-const dropDownContent = [
-  {
-    header: 'Specs & Details',
-    content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  },
-  {
-    header: 'Compatibility',
-    content:
-      'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa',
-  },
-  {
-    header: 'In the Box',
-    content:
-      'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer tincidunt. Cras dapibus. Vivamus elementum.',
-  },
-  {
-    header: 'Warranty',
-    content:
-      'Lorem ipsum dolor. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero.',
-  },
-];
-
-const keyFeaturesContent = [
-  {
-    imgSource: img1,
-    title: 'Ergonomic design',
-    description:
-      "The mouse's ergonomic shape is crafted for both palm and claw grip styles, providing comfort and reducing fatigue during prolonged use.", // Fixed the HTML entity for apostrophe
-  },
-  {
-    imgSource: img2,
-    title: 'Precise sensor',
-    description:
-      "The mouse's sensor ensures precision tracking on most surfaces, giving users confidence during gaming or productivity tasks.", // Changed title and description to reflect variety
-  },
-  {
-    imgSource: img3,
-    title: 'Durable build',
-    description:
-      "The mouse's durable build ensures long-term use without compromising performance.", // Changed title and description for uniqueness
-  },
-];
-
-const ratingData = {
-  overallRating: 4.6,
-  reviewQuantity: 137,
-  opinions: [
-    { rating: 5, quantity: 80 },
-    { rating: 4, quantity: 65 },
-    { rating: 3, quantity: 50 },
-    { rating: 2, quantity: 35 },
-    { rating: 1, quantity: 20 },
-  ],
-};
-
-// const handleColorSelect = (color: string) => {
-//   console.log('Selected color:', color);
-// };
+const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
+const path = '/products';
+const baseURL = process.env.REACT_APP_API_URL;
 
 const Product1: FC = () => {
-  const handleQuantityChange = (quantity: number) => {
-    console.log('Selected quantity:', quantity);
-  };
+  const { id } = useParams<{ id: string }>();
 
+  const [productData, setProductData] = useState<Product | null>(null);
+  const [products, setProducts] = useState<IProduct[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [quantity, setQuantity] = useState<number>(1);
   const [liked, setLiked] = useState(false);
-
-  const toggleLike = () => {
-    setLiked(prevLiked => !prevLiked);
-  };
+  const [error, setError] = useState<string | null>(null);
+  const { dataProducts, status } = useAppSelector(state => state.products);
 
   const dispatch = useAppDispatch();
 
-  const { dataProducts, status } = useAppSelector(state => state.products);
-  const [products, setProducts] = useState<IProduct[]>([]);
+  const handleQuantityChange = (quantity: number) => {
+    setQuantity(quantity);
+  };
+
+  const toggleLike = async () => {
+    try {
+      if (liked) {
+        await axios.delete(`${baseURL}/wishlist/remove/${id}`, {
+          headers: {
+            Authorization: `${jwt}`,
+          },
+        });
+        setLiked(false);
+      } else {
+        await axios.post(
+          `${baseURL}/wishlist/add/${id}`,
+          {},
+          {
+            headers: {
+              Authorization: `${jwt}`,
+            },
+          },
+        );
+
+        setLiked(true);
+      }
+    } catch (error) {
+      console.error('Error updating wishlist:', error);
+    }
+  };
+
+  const handleAdd = () => {
+    dispatch(cartAdd([{ id: id!, quantity }]));
+  };
+
+  const checkIfProductIsLiked = async () => {
+    try {
+      const response = await axios.get(`${baseURL}/wishlist/list`, {
+        headers: {
+          Authorization: `${jwt}`,
+        },
+      });
+
+      const wishlist = response.data;
+      const isLiked = wishlist.some(
+        (product: WishListProduct) => product.id === id,
+      );
+      setLiked(isLiked);
+    } catch (error) {
+      console.error('Error checking wishlist:', error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(`${baseURL}${path}/${id}`);
+        setProductData(response.data);
+      } catch (err) {
+        setError('Failed to load product');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+    checkIfProductIsLiked();
+  }, [id]);
 
   useEffect(() => {
     if (dataProducts) setProducts(dataProducts);
@@ -115,71 +125,89 @@ const Product1: FC = () => {
     dispatch(fetchAllProducts({ page: 0, size: 4 }));
   }, [dispatch]);
 
+  if (loading) {
+    return <div></div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
   return (
     <DynamicBackgroundEffects>
       <Container>
         <div className={styles['product-container']}>
           <div className={styles['breadcrumb']}>
-            <Breadcrumb name={'product'} />
+            {productData && <Breadcrumb name={productData.name} />}
             <div className={styles['product-content']}>
               <div className={styles['product-general_information']}>
                 <div className={styles['thumbnail_image']}>
-                  <ThumbnailSlider />
+                  {productData && (
+                    <ThumbnailSlider images={productData.images} />
+                  )}
                 </div>
                 <div className={styles['product-details-container']}>
-                  <RateBox rating={4.2} reviewsAmount={137} />
-                  <ProductDescBox
-                    brand="TechBlaze"
-                    model="MX MASTER 3S"
-                    shortDescription="Day-long comfort, great for small to medium-sized hands"
-                  />
-                  <PriceBox price={132} priceWithSale={164} />
-                  {/* <ColorSelector
-                    options={colorOptions}
-                    onSelect={handleColorSelect}
-                  /> */}
-
-                  <ColorSelector
-                    colors={colors}
-                    // onSelect={handleColorSelect}
-                  />
-                  <div className={styles['quantity-favorite-button-wrapper']}>
-                    <QuantitySelector
-                      min={1}
-                      max={5}
-                      initialQuantity={1}
-                      onQuantityChange={handleQuantityChange}
-                    />
-                    <Button
-                      type="button"
-                      text="Favorite"
-                      className="secondary medium"
-                      fullWidth={true}
-                      iconLeft={
-                        liked ? (
-                          <HeartWhite size={'small'} />
-                        ) : (
-                          <HeartOpacity size={'small'} />
-                        )
-                      }
-                      onClick={toggleLike}
-                    />
-                  </div>
-                  <div className={styles['button-wrapper']}>
-                    <Button
-                      type="button"
-                      text="Add to cart"
-                      className="primary medium"
-                      fullWidth={true}
-                    />
-                  </div>
-
-                  <DropDownSection options={dropDownContent} />
+                  {productData && (
+                    <>
+                      <RateBox
+                        rating={productData.averageRate}
+                        reviewsAmount={productData.reviews.length}
+                      />
+                      <ProductDescBox
+                        brand={productData.brand}
+                        model={productData.name}
+                        shortDescription={productData.shortDescription}
+                      />
+                      <PriceBox
+                        price={productData.price}
+                        priceWithSale={productData.priceWithSale}
+                      />
+                      <ColorSelector colors={productData.colors} />
+                      <div
+                        className={styles['quantity-favorite-button-wrapper']}
+                      >
+                        <QuantitySelector
+                          min={1}
+                          max={5}
+                          initialQuantity={1}
+                          onQuantityChange={handleQuantityChange}
+                        />
+                        <Button
+                          type="button"
+                          text="Favorite"
+                          className="secondary medium"
+                          fullWidth={true}
+                          iconLeft={
+                            liked ? (
+                              <HeartWhite size={'small'} />
+                            ) : (
+                              <HeartOpacity size={'small'} />
+                            )
+                          }
+                          onClick={toggleLike}
+                        />
+                      </div>
+                      <div className={styles['button-wrapper']}>
+                        <Button
+                          type="button"
+                          text="Add to cart"
+                          className="primary medium"
+                          fullWidth={true}
+                          onClick={() => handleAdd()}
+                        />
+                      </div>
+                      <DropDownSection
+                        characteristics={productData.characteristics}
+                      />
+                    </>
+                  )}
                 </div>
               </div>
             </div>
-            <KeyFeatures features={keyFeaturesContent} />
-            <CustomerReviews ratingData={ratingData} />
+            {productData && <KeyFeatures features={productData.features} />}
+            {productData && (
+              <CustomerReviews ratingData={productData.reviews} />
+            )}
             <h3 className={styles['recommended-product']}>
               Recommended product
             </h3>
