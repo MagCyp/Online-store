@@ -2,6 +2,8 @@ import { FC, useState, useEffect, useCallback } from 'react';
 
 import Account from '@pages/userAccount/account/Account';
 import Addresses from '@pages/userAccount/addresses/Addresses';
+import Favorite from '@pages/userAccount/favorite/Favorite';
+import Orders from '@pages/userAccount/orders/Orders';
 import Breadcrumb from '@components/breadcrumb/Breadcrumb';
 import Container from '@components/container/Container';
 import Navigation from '@pages/userAccount/navigation/Navigation';
@@ -52,12 +54,12 @@ const UserAccount: FC = () => {
             onUpdateUserData={updateUserData}
           />
         );
-      // case 'orders':
-      //   return <Orders />;
+      case 'orders':
+        return <Orders content="This is your orders content" />;
       case 'addresses':
         return <Addresses />;
-      // case 'favorite':
-      //   return <Favorite />;
+      case 'favorite':
+        return <Favorite content="This is your favorite content" />;
       default:
         return <Addresses />;
     }
