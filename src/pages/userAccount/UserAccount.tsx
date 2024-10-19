@@ -59,7 +59,7 @@ const UserAccount: FC = () => {
       case 'addresses':
         return <Addresses />;
       case 'favorite':
-        return <Favorite content="This is your favorite content" />;
+        return <Favorite />;
       default:
         return <Addresses />;
     }
