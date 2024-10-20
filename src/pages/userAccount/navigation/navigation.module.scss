@@ -3,6 +3,7 @@
 @import '@/variables/colors/colors';
 
 .user-navigation {
+  min-width: 256px;
   width: 256px;
   display: flex;
   flex-direction: column;
