@@ -91,7 +91,7 @@
 }
 
 .round-image {
-  background-color: $gray-300;
+  background-color: $gray-10;
   border: none;
   border-radius: 50%;
   padding: 9px;
@@ -99,10 +99,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  &:hover {
-    background-color: $gray-400;
-  }
+  color: $gray-600;
 
   &:focus {
     outline: none;

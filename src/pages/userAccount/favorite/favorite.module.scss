@@ -2,6 +2,12 @@
 @use '@/variables/fonts/paragraphSizes';
 @import '@/variables/colors/colors';
 
+.favorite-container {
+  position: relative;
+  top: -66px;
+  margin-left: 32px;
+}
+
 .sort-container {
   display: flex;
   align-items: center;
@@ -17,27 +23,3 @@
     color: $gray-50;
   }
 }
-
-// .content-container {
-//   display: flex;
-//   flex-direction: row;
-//   gap: 90px;
-
-//   .sort-container {
-//     display: flex;
-//     align-items: center;
-//     justify-content: right;
-//     gap: 16px;
-//     padding-bottom: 41px;
-
-//     * {
-//       @extend .regular;
-//       @extend .s;
-//       color: $gray-50;
-//     }
-//   }
-// }
-
-// .content {
-//   width: 3000px;
-// }

@@ -40,15 +40,7 @@ const Navigation: FC<Props> = ({
     <div className={styles['user-navigation']}>
       <div className={styles['image-block']}>
         <img src={userInfo.image} alt="image" />
-        <div className={styles['button-wrapper']}>
-          <Button
-            text=""
-            className="round-image"
-            type="button"
-            icon={<Swap size="medium" />}
-            fullWidth={true}
-          />
-        </div>
+        <div className={styles['button-wrapper']}></div>
         <h6>{userName}</h6>
       </div>
       <div className={styles['navigation']}>

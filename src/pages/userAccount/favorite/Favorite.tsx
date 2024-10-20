@@ -4,7 +4,7 @@ import axios from 'axios';
 import InputDropDown from '@components/inputDropDown/InputDropDown';
 
 import Container from '@components/container/Container';
-import ProductList from '@pages/catalog/productList/ProductList';
+import FavoriteProductList from '@pages/userAccount/favorite/favoriteProductList/FavoriteProductList';
 
 import { IProduct } from '@models/models';
 
@@ -76,7 +76,7 @@ const Favorite: FC = () => {
             setSortedBy={sortBy => handleSortBy(sortBy)}
           />
         </div>
-        <ProductList products={products} isLoading={isLoading} />
+        <FavoriteProductList products={products} isLoading={isLoading} />
       </div>
     </Container>
   );
