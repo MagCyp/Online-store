@@ -1,4 +1,5 @@
 import { FC, useEffect, useRef, useState } from 'react';
+import axios from 'axios';
 
 import DropDownMenu from '@components/header/dropDownMenu/DropDownMenu';
 import DropDownSearch from '@components/header/dropDownSearch/DropDownSearch';
@@ -15,6 +16,7 @@ import Cart from '@components/cart/Cart';
 import logo from '@assets/images/Logo-wide.svg';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
+import { fetchFavoriteCount } from '@store/slices/favoriteCount/favoriteCountSlice'; // Імпортуємо асинхронну дію
 
 import { cartGet } from '@store/data/cart/cartThunks';
 
@@ -31,12 +33,13 @@ const Header: FC = () => {
 
   const dispatch = useAppDispatch();
   const cart = useAppSelector(state => state.cart.items);
+  const favoriteCount = useAppSelector(state => state.favorites.count); // Отримуємо кількість улюблених товарів
+  const favoriteStatus = useAppSelector(state => state.favorites.status); // Стан запиту на улюблені товари
 
   useEffect(() => {
-    dispatch(cartGet());
-  }, []);
-
-  const favoriteCount = 999;
+    dispatch(cartGet()); // Отримуємо товари в корзині
+    dispatch(fetchFavoriteCount()); // Отримуємо кількість улюблених товарів
+  }, [dispatch]);
 
   useEffect(() => {
     const count = cart.reduce((acc, item) => acc + item.quantity, 0);

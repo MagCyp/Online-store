@@ -5,7 +5,7 @@ export interface Props {
   shortDescription: string;
   price: number;
   rating: number;
-  priceWithSale: number | null;
+  priceWithSale?: number | null;
   imageUrl: string;
   id: string;
 }
