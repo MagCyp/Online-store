@@ -8,6 +8,7 @@ import HeartWhite from '@components/icons/HeartWhite';
 import Button from '@components/button/Button';
 
 import { useAppDispatch } from '@hooks/redux/redux';
+import { fetchFavoriteCount } from '@store/slices/favoriteCount/favoriteCountSlice'; // Імпортуємо
 
 import { cartAdd } from '@store/data/cart/cartThunks';
 
@@ -56,9 +57,11 @@ const FavoriteProductCard: FC<Props> = ({
             },
           },
         );
-
         setLiked(true);
       }
+
+      // Викликаємо fetchFavoriteCount після зміни стану
+      dispatch(fetchFavoriteCount());
     } catch (error) {
       console.error('Error updating wishlist:', error);
     }
