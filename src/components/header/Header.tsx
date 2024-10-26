@@ -15,6 +15,7 @@ import Cart from '@components/cart/Cart';
 
 import logo from '@assets/images/Logo-wide.svg';
 
+import { isAuth } from '@/hooks/isAuth/isAuth';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
 import { fetchFavoriteCount } from '@store/slices/favoriteCount/favoriteCountSlice'; // Імпортуємо асинхронну дію
 
@@ -35,6 +36,19 @@ const Header: FC = () => {
   const cart = useAppSelector(state => state.cart.items);
   const favoriteCount = useAppSelector(state => state.favorites.count); // Отримуємо кількість улюблених товарів
   const favoriteStatus = useAppSelector(state => state.favorites.status); // Стан запиту на улюблені товари
+
+  const handleFavoritesClick = async () => {
+    const authResponse = await isAuth();
+
+    if (authResponse) {
+      // Якщо користувач авторизований, встановлюємо сторінку та перенаправляємо
+      localStorage.setItem('currentPage', 'favorite');
+      window.location.href = '/account';
+    } else {
+      // Якщо не авторизований, перенаправляємо на сторінку авторизації
+      window.location.href = '/account';
+    }
+  };
 
   useEffect(() => {
     dispatch(cartGet()); // Отримуємо товари в корзині
@@ -93,6 +107,7 @@ const Header: FC = () => {
                 type="button"
                 className="link-gray large"
                 icon={<HeartOpacity size="medium" />}
+                onClick={handleFavoritesClick}
               />
               {favoriteCount > 0 && (
                 <span className={styles['count']}>

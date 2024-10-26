@@ -34,6 +34,14 @@ const UserAccount: FC = () => {
     fetchData();
   }, [jwt]);
 
+  useEffect(() => {
+    const storedPage = localStorage.getItem('currentPage');
+    if (storedPage) {
+      setCurrentPage(storedPage);
+      localStorage.removeItem('currentPage'); // Очищаємо після використання
+    }
+  }, []);
+
   const updateUserData = (newData: Props) => {
     setUserData(newData);
   };
