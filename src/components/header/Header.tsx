@@ -17,7 +17,7 @@ import logo from '@assets/images/Logo-wide.svg';
 
 import { isAuth } from '@/hooks/isAuth/isAuth';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
-import { fetchFavoriteCount } from '@store/slices/favoriteCount/favoriteCountSlice'; // Імпортуємо асинхронну дію
+import { fetchFavorites } from '@store/slices/favoriteCount/favoriteCountSlice'; // Змінено на fetchFavorites
 
 import { cartGet } from '@store/data/cart/cartThunks';
 
@@ -52,7 +52,7 @@ const Header: FC = () => {
 
   useEffect(() => {
     dispatch(cartGet()); // Отримуємо товари в корзині
-    dispatch(fetchFavoriteCount()); // Отримуємо кількість улюблених товарів
+    dispatch(fetchFavorites()); // Отримуємо кількість улюблених товарів
   }, [dispatch]);
 
   useEffect(() => {

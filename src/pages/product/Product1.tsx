@@ -25,7 +25,7 @@ import { IProduct } from '@/models/models';
 import { fetchAllProducts } from '@/store/data/allProducts/asyncAction';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
-import { fetchFavoriteCount } from '@store/slices/favoriteCount/favoriteCountSlice'; // Імпортуємо
+import { fetchFavorites } from '@store/slices/favoriteCount/favoriteCountSlice'; // Імпортуємо
 
 import { WishListProduct, Product } from '@pages/product/types';
 
@@ -74,7 +74,7 @@ const Product1: FC = () => {
         setLiked(true);
       }
       // Оновлення кількості улюблених товарів
-      dispatch(fetchFavoriteCount());
+      dispatch(fetchFavorites());
     } catch (error) {
       console.error('Error updating wishlist:', error);
     }

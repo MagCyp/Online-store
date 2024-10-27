@@ -2,9 +2,22 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { isAuth } from '@/hooks/isAuth/isAuth';
 
-// Асинхронна дія для отримання кількості улюблених товарів
-export const fetchFavoriteCount = createAsyncThunk(
-  'favorites/fetchFavoriteCount',
+// Інтерфейс для елементів масиву улюблених товарів
+export interface Props {
+  createdAt: string;
+  brand: string;
+  name: string;
+  shortDescription: string;
+  price: number;
+  rating: number;
+  priceWithSale?: number | null;
+  imageUrl: string;
+  id: string;
+}
+
+// Асинхронна дія для отримання улюблених товарів
+export const fetchFavorites = createAsyncThunk(
+  'favorites/fetchFavorites',
   async (_, { rejectWithValue }) => {
     const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
 
@@ -24,8 +37,8 @@ export const fetchFavoriteCount = createAsyncThunk(
         },
       );
 
-      // Повертаємо кількість елементів у масиві
-      return response.data.length;
+      // Повертаємо масив улюблених товарів
+      return response.data;
     } catch (error) {
       console.error('Failed to fetch favorite products:', error);
       return rejectWithValue('Failed to fetch favorite products');
@@ -37,26 +50,44 @@ export const fetchFavoriteCount = createAsyncThunk(
 const favoriteCountSlice = createSlice({
   name: 'favorites',
   initialState: {
+    items: [] as Props[], // Масив для зберігання улюблених товарів
     count: 0, // Початковий стан кількості
     status: 'idle', // Стан запиту: idle, loading, succeeded, failed
     error: null as string | null, // Тип має бути string | null
   },
-  reducers: {},
+  reducers: {
+    addFavorite: (state, action) => {
+      state.items.push(action.payload); // Додаємо товар до масиву
+      state.count = state.items.length; // Оновлюємо кількість
+    },
+    removeFavorite: (state, action) => {
+      state.items = state.items.filter(item => item.id !== action.payload); // Видаляємо товар за ID
+      state.count = state.items.length; // Оновлюємо кількість
+    },
+    resetFavorites: state => {
+      state.items = []; // Очищуємо масив улюблених товарів
+      state.count = 0; // Скидаємо кількість
+    },
+  },
   extraReducers: builder => {
     builder
-      .addCase(fetchFavoriteCount.pending, state => {
+      .addCase(fetchFavorites.pending, state => {
         state.status = 'loading';
         state.error = null; // Очищуємо помилку при новому запиті
       })
-      .addCase(fetchFavoriteCount.fulfilled, (state, action) => {
+      .addCase(fetchFavorites.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.count = action.payload; // Оновлюємо кількість улюблених товарів
+        state.items = action.payload; // Оновлюємо масив улюблених товарів
+        state.count = action.payload.length; // Оновлюємо кількість
       })
-      .addCase(fetchFavoriteCount.rejected, (state, action) => {
+      .addCase(fetchFavorites.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload as string; // Присвоюємо помилку
       });
   },
 });
 
+// Експортуємо дії та редюсер
+export const { addFavorite, removeFavorite, resetFavorites } =
+  favoriteCountSlice.actions; // Додано resetFavorites
 export default favoriteCountSlice.reducer;
