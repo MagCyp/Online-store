@@ -1,6 +1,23 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.wrapper {
+  width: 100%;
+}
+
 .container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
   gap: 22px;
   row-gap: 32px;
+}
+
+.noFavorites {
+  font-family: 'helvetica-bold', sans-serif;
+  color: $gray-10;
+  margin-top: 80px;
+  width: 100%;
+  text-align: center;
+  font-size: 1.4rem;
 }

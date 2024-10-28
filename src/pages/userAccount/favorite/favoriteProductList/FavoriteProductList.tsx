@@ -9,28 +9,34 @@ import styles from '@pages/userAccount/favorite/favoriteProductList/FavoriteProd
 
 const FavoriteProductList: FC<Props> = ({ products, isLoading }) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.wrapper}>
       {isLoading ? (
-        Array.from({ length: 15 }, (_, index) => (
-          <ProductCardSkeleton key={index} />
-        ))
+        <div className={styles.container}>
+          {Array.from({ length: 15 }, (_, index) => (
+            <ProductCardSkeleton key={index} />
+          ))}
+        </div>
       ) : !products || products.length === 0 ? (
-        <h2>You have not yet added a product to your favorites list</h2>
+        <h2 className={styles.noFavorites}>
+          You have not added any products <br /> to your favorites yet
+        </h2>
       ) : (
-        products.map(product => (
-          <FavoriteProductCard
-            key={product.id}
-            brand={product.brand}
-            name={product.name}
-            shortDescription={product.shortDescription}
-            price={product.price}
-            imageUrl={product.imageUrl}
-            id={product.id}
-            rating={product.rating}
-            createdAt={product.createdAt}
-            priceWithSale={product.priceWithSale}
-          />
-        ))
+        <div className={styles.container}>
+          {products.map(product => (
+            <FavoriteProductCard
+              key={product.id}
+              brand={product.brand}
+              name={product.name}
+              shortDescription={product.shortDescription}
+              price={product.price}
+              imageUrl={product.imageUrl}
+              id={product.id}
+              rating={product.rating}
+              createdAt={product.createdAt}
+              priceWithSale={product.priceWithSale}
+            />
+          ))}
+        </div>
       )}
     </div>
   );

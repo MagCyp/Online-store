@@ -70,8 +70,6 @@ const UserAccount: FC = () => {
             onUpdateUserData={updateUserData}
           />
         );
-      // case 'orders':
-      //   return <Orders content="This is your orders content" />;
       case 'addresses':
         return <Addresses />;
       case 'favorite':

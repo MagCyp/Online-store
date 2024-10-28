@@ -16,7 +16,6 @@ const userInfo = {
 
 const navigation: Record<string, string> = {
   account: 'Account',
-  orders: 'My orders',
   addresses: 'Addresses',
   favorite: 'Favorite',
 };
