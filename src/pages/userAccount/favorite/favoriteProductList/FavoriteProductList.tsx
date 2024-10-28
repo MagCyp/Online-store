@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
-import ProductCardSkeleton from '@/components/skeletons/productCardSkeleton/ProductCardSkeleton';
 import FavoriteProductCard from '@pages/userAccount/favorite/favoriteProductCard/FavoriteProductCard';
+import ProductCardSkeleton from '@/components/skeletons/productCardSkeleton/ProductCardSkeleton';
 
 import { Props } from '@pages/userAccount/favorite/favoriteProductList/types';
 

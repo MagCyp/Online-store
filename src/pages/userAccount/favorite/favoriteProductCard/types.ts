@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+
 import { isAuth } from '@/hooks/isAuth/isAuth';
 
 export interface Props {
@@ -14,7 +15,6 @@ export interface Props {
   id: string;
 }
 
-// Асинхронна дія для отримання списку улюблених товарів
 export const fetchFavoriteCount = createAsyncThunk(
   'favorites/fetchFavoriteCount',
   async (_, { rejectWithValue }) => {
@@ -35,7 +35,6 @@ export const fetchFavoriteCount = createAsyncThunk(
         },
       );
 
-      // Повертаємо масив товарів
       return response.data;
     } catch (error) {
       console.error('Failed to fetch favorite products:', error);
@@ -45,13 +44,12 @@ export const fetchFavoriteCount = createAsyncThunk(
 );
 
 interface FavoriteState {
-  items: Props[]; // Зберігає масив улюблених товарів
-  count: number; // Кількість товарів
-  status: 'idle' | 'loading' | 'succeeded' | 'failed'; // Стан запиту
-  error: string | null; // Помилка
+  items: Props[];
+  count: number;
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  error: string | null;
 }
 
-// Створюємо слайс для улюблених товарів
 const favoriteCountSlice = createSlice({
   name: 'favorites',
   initialState: {
@@ -69,8 +67,8 @@ const favoriteCountSlice = createSlice({
       })
       .addCase(fetchFavoriteCount.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.items = action.payload; // Оновлюємо масив товарів
-        state.count = action.payload.length; // Оновлюємо кількість улюблених товарів
+        state.items = action.payload;
+        state.count = action.payload.length;
       })
       .addCase(fetchFavoriteCount.rejected, (state, action) => {
         state.status = 'failed';

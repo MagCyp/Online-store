@@ -1,15 +1,17 @@
 import { FC, useState, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { resetFavorites } from '@store/slices/favoriteCount/favoriteCountSlice'; // Імпорт дії для скидання слайсу
 
 import Account from '@pages/userAccount/account/Account';
 import Addresses from '@pages/userAccount/addresses/Addresses';
-import Favorite from '@pages/userAccount/favorite/Favorite';
 import Breadcrumb from '@components/breadcrumb/Breadcrumb';
 import Container from '@components/container/Container';
+import Favorite from '@pages/userAccount/favorite/Favorite';
 import Navigation from '@pages/userAccount/navigation/Navigation';
 
 import { isAuth } from '@/hooks/isAuth/isAuth';
+
+import { resetFavorites } from '@store/slices/favoriteCount/favoriteCountSlice';
+
 import { Props } from '@pages/userAccount/types';
 
 import styles from '@pages/userAccount/userAccount.module.scss';
@@ -17,7 +19,7 @@ import styles from '@pages/userAccount/userAccount.module.scss';
 const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
 
 const UserAccount: FC = () => {
-  const dispatch = useDispatch(); // Використання useDispatch для доступу до Redux
+  const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState<string>('account');
   const [userData, setUserData] = useState<Props | null>(null);
 
@@ -40,7 +42,7 @@ const UserAccount: FC = () => {
     const storedPage = localStorage.getItem('currentPage');
     if (storedPage) {
       setCurrentPage(storedPage);
-      localStorage.removeItem('currentPage'); // Очищаємо після використання
+      localStorage.removeItem('currentPage');
     }
   }, []);
 
@@ -49,15 +51,15 @@ const UserAccount: FC = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('jwt'); // Видалення токена з localStorage
-    sessionStorage.removeItem('jwt'); // Видалення токена з sessionStorage
-    dispatch(resetFavorites()); // Скидання слайсу з улюбленими товарами
-    setUserData(null); // Обнулення даних користувача
+    localStorage.removeItem('jwt');
+    sessionStorage.removeItem('jwt');
+    dispatch(resetFavorites());
+    setUserData(null);
   };
 
   const renderContent = useCallback(() => {
     if (!userData) {
-      return <div>Loading...</div>;
+      return <div></div>;
     }
     switch (currentPage) {
       case 'account':
@@ -90,7 +92,7 @@ const UserAccount: FC = () => {
             userName={`${userData?.firstName ?? ''} ${
               userData?.lastName ?? ''
             }`}
-            onLogout={handleLogout} // Передача функції виходу
+            onLogout={handleLogout}
           />
           {renderContent()}
         </div>

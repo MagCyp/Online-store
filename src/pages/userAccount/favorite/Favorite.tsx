@@ -1,10 +1,15 @@
 import { FC, useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
-import InputDropDown from '@components/inputDropDown/InputDropDown';
+
 import Container from '@components/container/Container';
 import FavoriteProductList from '@pages/userAccount/favorite/favoriteProductList/FavoriteProductList';
+import InputDropDown from '@components/inputDropDown/InputDropDown';
+
+import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
+
 import { fetchFavorites } from '@store/slices/favoriteCount/favoriteCountSlice';
+
 import { IProduct } from '@models/models';
+
 import styles from '@pages/userAccount/favorite/favorite.module.scss';
 
 const sortOptions = [
@@ -16,7 +21,7 @@ const sortOptions = [
 
 const Favorite: FC = () => {
   const dispatch = useAppDispatch();
-  const products = useAppSelector(state => state.favorites.items as IProduct[]); // Явно вказуємо тип
+  const products = useAppSelector(state => state.favorites.items as IProduct[]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [sortedProducts, setSortedProducts] = useState<IProduct[]>(products);
   const [sortBy, setSortBy] = useState<string>('createdAt,DESC');

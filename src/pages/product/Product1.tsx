@@ -20,12 +20,13 @@ import QuantitySelector from '@pages/product/quantitySelector/QuantitySelector';
 import RateBox from '@pages/product/rateBox/RateBox';
 import ThumbnailSlider from '@pages/product/thumbnailSlider/ThumbnailSlider';
 
-import { cartAdd } from '@store/data/cart/cartThunks';
 import { IProduct } from '@/models/models';
+
+import { cartAdd } from '@store/data/cart/cartThunks';
 import { fetchAllProducts } from '@/store/data/allProducts/asyncAction';
+import { fetchFavorites } from '@store/slices/favoriteCount/favoriteCountSlice';
 
 import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
-import { fetchFavorites } from '@store/slices/favoriteCount/favoriteCountSlice'; // Імпортуємо
 
 import { WishListProduct, Product } from '@pages/product/types';
 
@@ -73,7 +74,6 @@ const Product1: FC = () => {
         );
         setLiked(true);
       }
-      // Оновлення кількості улюблених товарів
       dispatch(fetchFavorites());
     } catch (error) {
       console.error('Error updating wishlist:', error);

@@ -1,20 +1,26 @@
 import { FC, useEffect, useRef, useState } from 'react';
+
+import Button from '@components/button/Button';
+import Cart from '@components/cart/Cart';
+import Container from '@components/container/Container';
 import DropDownMenu from '@components/header/dropDownMenu/DropDownMenu';
 import DropDownSearch from '@components/header/dropDownSearch/DropDownSearch';
-import Button from '@components/button/Button';
+import HeartOpacity from '@components/icons/HeartOpacity';
 import IconButton from '@components/iconButton/IconButton';
 import Search from '@components/icons/Search';
-import UserCircle from '@components/icons/UserCircle';
-import HeartOpacity from '@components/icons/HeartOpacity';
 import ShoppingBag from '@components/icons/ShoppingBag';
-import Container from '@components/container/Container';
-import Cart from '@components/cart/Cart';
+import UserCircle from '@components/icons/UserCircle';
+
 import logo from '@assets/images/Logo-wide.svg';
+
 import { isAuth } from '@/hooks/isAuth/isAuth';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
+
 import { fetchFavorites } from '@store/slices/favoriteCount/favoriteCountSlice';
 import { cartGet } from '@store/data/cart/cartThunks';
+
 import { restrictNumberToString } from '@utils/NumberString/restrictNumberToString';
+
 import styles from '@components/header/Header.module.scss';
 
 const Header: FC = () => {
@@ -26,7 +32,6 @@ const Header: FC = () => {
   const dispatch = useAppDispatch();
   const cart = useAppSelector(state => state.cart.items);
   const favoriteCount = useAppSelector(state => state.favorites.count);
-  const favoriteStatus = useAppSelector(state => state.favorites.status);
 
   const handleFavoritesClick = async () => {
     const authResponse = await isAuth();
@@ -40,8 +45,8 @@ const Header: FC = () => {
   };
 
   useEffect(() => {
-    dispatch(cartGet()); // Отримуємо товари в кошику
-    dispatch(fetchFavorites()); // Отримуємо кількість улюблених товарів
+    dispatch(cartGet());
+    dispatch(fetchFavorites());
   }, [dispatch]);
 
   useEffect(() => {
