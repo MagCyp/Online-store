@@ -1,14 +1,14 @@
 import { FC, useEffect, useState } from 'react';
-import axios from 'axios';
-
-import InputDropDown from '@components/inputDropDown/InputDropDown';
 
 import Container from '@components/container/Container';
 import FavoriteProductList from '@pages/userAccount/favorite/favoriteProductList/FavoriteProductList';
+import InputDropDown from '@components/inputDropDown/InputDropDown';
+
+import { useAppDispatch, useAppSelector } from '@/hooks/redux/redux';
+
+import { fetchFavorites } from '@store/slices/favoriteCount/favoriteCountSlice';
 
 import { IProduct } from '@models/models';
-
-const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
 
 import styles from '@pages/userAccount/favorite/favorite.module.scss';
 
@@ -20,51 +20,39 @@ const sortOptions = [
 ];
 
 const Favorite: FC = () => {
-  const [products, setProducts] = useState<IProduct[]>([]);
+  const dispatch = useAppDispatch();
+  const products = useAppSelector(state => state.favorites.items as IProduct[]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [sortedProducts, setSortedProducts] = useState<IProduct[]>(products);
   const [sortBy, setSortBy] = useState<string>('createdAt,DESC');
-
-  const fetchFavoriteProducts = async () => {
-    setIsLoading(true);
-    try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/wishlist/list`,
-        {
-          headers: {
-            Authorization: `${jwt}`,
-          },
-        },
-      );
-      setProducts(response.data);
-    } catch (error) {
-      console.error('Failed to fetch favorite products:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const handleSortBy = (sortBy: string) => {
     setSortBy(sortBy);
-    setProducts(
-      [...products].sort((a, b) => {
-        const [key, order] = sortBy.split(',');
+    const [key, order] = sortBy.split(',');
 
-        const valueA = a[key as keyof IProduct];
-        const valueB = b[key as keyof IProduct];
+    const sorted = [...products].sort((a, b) => {
+      const valueA = a[key as keyof IProduct];
+      const valueB = b[key as keyof IProduct];
 
-        if (valueA == null || valueB == null) return 0;
+      if (valueA == null || valueB == null) return 0;
 
-        if (order === 'ASC') {
-          return valueA > valueB ? 1 : -1;
-        }
-        return valueA < valueB ? 1 : -1;
-      }),
-    );
+      if (order === 'ASC') {
+        return valueA > valueB ? 1 : -1;
+      }
+      return valueA < valueB ? 1 : -1;
+    });
+
+    setSortedProducts(sorted);
   };
 
   useEffect(() => {
-    fetchFavoriteProducts();
-  }, []);
+    setIsLoading(true);
+    dispatch(fetchFavorites()).finally(() => setIsLoading(false));
+  }, [dispatch]);
+
+  useEffect(() => {
+    setSortedProducts(products);
+  }, [products]);
 
   return (
     <Container>
@@ -76,7 +64,7 @@ const Favorite: FC = () => {
             setSortedBy={sortBy => handleSortBy(sortBy)}
           />
         </div>
-        <FavoriteProductList products={products} isLoading={isLoading} />
+        <FavoriteProductList products={sortedProducts} isLoading={isLoading} />
       </div>
     </Container>
   );

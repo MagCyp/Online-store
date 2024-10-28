@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import Badge from '@components/badge/Badge';
+import Button from '@components/button/Button';
 import HeartOpacity from '@components/icons/HeartOpacity';
 import HeartWhite from '@components/icons/HeartWhite';
-import Button from '@components/button/Button';
 
 import { useAppDispatch } from '@hooks/redux/redux';
 
+import { fetchFavorites } from '@store/slices/favoriteCount/favoriteCountSlice';
 import { cartAdd } from '@store/data/cart/cartThunks';
 
 import { Props } from '@pages/userAccount/favorite/favoriteProductCard/types';
@@ -56,9 +57,10 @@ const FavoriteProductCard: FC<Props> = ({
             },
           },
         );
-
         setLiked(true);
       }
+
+      dispatch(fetchFavorites());
     } catch (error) {
       console.error('Error updating wishlist:', error);
     }
@@ -167,7 +169,6 @@ const FavoriteProductCard: FC<Props> = ({
         type="button"
         text="Add to cart"
         className="secondary medium"
-        // isHidden={!isHovered}
         isHidden={false}
         onClick={() => handleAdd()}
       />

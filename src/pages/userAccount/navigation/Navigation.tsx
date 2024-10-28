@@ -2,8 +2,7 @@ import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '@components/button/Button';
-import Swap from '@components/icons/Swap';
-// import userImg from '@assets/images/image.png';
+
 import userImg from '@assets/images/no-profile-picture.svg';
 
 import { Props } from '@pages/userAccount/navigation/types';
@@ -16,7 +15,6 @@ const userInfo = {
 
 const navigation: Record<string, string> = {
   account: 'Account',
-  orders: 'My orders',
   addresses: 'Addresses',
   favorite: 'Favorite',
 };

@@ -1,15 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query/react';
 
-import userSlice from '@store/slices/user/userSlice';
-import catalogSlice from '@store/slices/catalog/catalogSlice';
-import productsSlice from '@store/slices/data/products/productsSlice';
-import filtersSlice from '@store/slices/data/filters/filtersSlice';
-import reviewsSlice from '@store/slices/data/reviews/reviewsSlice';
-import productIdSlice from '@store/slices/productId/productIdSlice';
 import authSlice from '@store/slices/auth/authSlice';
 import cartSlice from '@store/slices/cart/cartSlice';
+import catalogSlice from '@store/slices/catalog/catalogSlice';
+import favoriteCountSlice from '@store/slices/favoriteCount/favoriteCountSlice';
+import filtersSlice from '@store/slices/data/filters/filtersSlice';
 import paymentSlice from '@store/slices/payment/paymentSlice';
+import productIdSlice from '@store/slices/productId/productIdSlice';
+import productsSlice from '@store/slices/data/products/productsSlice';
+import reviewsSlice from '@store/slices/data/reviews/reviewsSlice';
+import userSlice from '@store/slices/user/userSlice';
 
 export const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ export const store = configureStore({
     reviews: reviewsSlice,
     auth: authSlice,
     cart: cartSlice,
+    favorites: favoriteCountSlice,
   },
 });
 
