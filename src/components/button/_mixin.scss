@@ -1,0 +1,84 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+
+@mixin large-default {
+  padding: 16px 28px 16px 28px;
+  gap: 12px;
+}
+
+@mixin large-link {
+  gap: 12px;
+}
+
+@mixin large-text {
+  * {
+    @extend .bold;
+    @extend .l;
+  }
+}
+
+@mixin medium-default {
+  padding: 10px 18px 10px 18px;
+  gap: 8px;
+}
+
+@mixin medium-link {
+  gap: 8px;
+}
+
+@mixin medium-text {
+  * {
+    @extend .bold;
+    @extend .m;
+  }
+}
+
+@mixin small-default {
+  padding: 8px 14px 8px 14px;
+  gap: 8px;
+}
+
+@mixin small-link {
+  gap: 8px;
+}
+
+@mixin small-text {
+  * {
+    @extend .medium;
+    @extend .s;
+  }
+}
+
+@mixin default-sizes {
+  &.large {
+    @include large-default;
+    @include large-text;
+  }
+
+  &.medium {
+    @include medium-default;
+    @include medium-text;
+  }
+
+  &.small {
+    @include small-default;
+    @include small-text;
+  }
+}
+
+@mixin link-sizes {
+  &.large {
+    @include large-link;
+    @include large-text;
+  }
+
+  &.medium {
+    @include medium-link;
+    @include medium-text;
+  }
+
+  &.small {
+    @include small-link;
+    @include small-text;
+  }
+}

@@ -1,0 +1,48 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: $gray-10;
+  gap: 16px;
+  align-self: stretch;
+  padding: 10px 0;
+  border-top: 1px solid $gray-400; /* Add top border */
+
+  &:first-child {
+    border-top: 1px solid $gray-400;
+  }
+
+  &:last-child {
+    border-bottom: 1px solid $gray-400;
+  }
+
+  .dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    align-self: stretch;
+    padding: 10px;
+
+    p {
+      @extend .medium;
+      @extend .m;
+      flex: 1 0 0;
+      font-family: 'helvetica-bold', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 24px;
+      color: $gray-10;
+    }
+  }
+
+  .items-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-self: stretch;
+  }
+}

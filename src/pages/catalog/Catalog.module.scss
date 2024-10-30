@@ -1,0 +1,43 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.category-container {
+  padding-top: 54px;
+  padding-bottom: 130px;
+}
+
+.breadcrumb {
+  padding: 48px 0 48px;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: row;
+  gap: 90px;
+
+  .sort-container {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 16px;
+    padding-bottom: 41px;
+
+    * {
+      @extend .regular;
+      @extend .s;
+      color: $gray-50;
+    }
+  }
+}
+
+.content {
+  width: 3000px;
+}
+
+.load-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0 48px;
+}

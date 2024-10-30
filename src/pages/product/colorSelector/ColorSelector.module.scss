@@ -1,0 +1,47 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.color-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 28px;
+
+  .colorSelector {
+    width: 124px;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    gap: 12px;
+
+    button {
+      width: 36px;
+      height: 36px;
+      outline: none;
+      overflow: hidden;
+      border-radius: 50%;
+      background-color: $gray-200;
+      cursor: pointer;
+      border: none;
+      border: 1px solid $gray-200;
+
+      &:hover {
+        border: 6px solid $gray-200;
+      }
+      &.active {
+        border: 6px solid $gray-200;
+      }
+    }
+  }
+}
+
+.label {
+  font-family: 'helvetica-regular', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  color: $gray-25;
+  user-select: none;
+  margin-top: 10px;
+}

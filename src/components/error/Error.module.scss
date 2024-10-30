@@ -1,0 +1,20 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.default-red {
+  color: $error-400;
+  margin-top: 8px;
+  @extend .s;
+  @extend .regular;
+  display: block;
+}
+
+.container {
+  border: 1px solid $error-500;
+  padding: 10px 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  color: $white;
+}

@@ -1,22 +1,42 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { UserState } from './types';
+import { IUserData } from '@models/models';
+
+interface UserState {
+  userData: IUserData | null;
+  loading: boolean;
+  error: string | null;
+}
 
 const initialState: UserState = {
-  email: null,
-  token: null,
+  userData: null,
+  loading: false,
+  error: null,
 };
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUser(state, action: PayloadAction<UserState>) {
-      state.email = action.payload.email;
-      state.token = action.payload.token;
+    fetchUserDataStart(state) {
+      state.loading = true;
+      state.error = null;
+    },
+    fetchUserDataSuccess(state, action: PayloadAction<IUserData>) {
+      state.loading = false;
+      state.userData = action.payload;
+    },
+    fetchUserDataFailure(state, action: PayloadAction<string>) {
+      state.loading = false;
+      state.error = action.payload;
     },
   },
 });
 
-export const { setUser } = userSlice.actions;
+export const {
+  fetchUserDataStart,
+  fetchUserDataSuccess,
+  fetchUserDataFailure,
+} = userSlice.actions;
+
 export default userSlice.reducer;

@@ -1,0 +1,20 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.addresses {
+  * {
+    color: $white;
+  }
+
+  &-form {
+    width: 328px;
+    color: $white;
+    display: flex;
+    flex-direction: column;
+
+    &-header {
+      padding-bottom: 24px;
+    }
+  }
+}

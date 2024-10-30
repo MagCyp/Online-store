@@ -1,0 +1,11 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@import '@/components/badge/mixin';
+
+.badge {
+  @include sizes;
+  @include colors;
+  @extend .medium;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

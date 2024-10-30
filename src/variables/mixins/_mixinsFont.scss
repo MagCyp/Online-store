@@ -1,0 +1,13 @@
+@import '@/variables/fonts/fonts';
+
+@mixin font-families-monument {
+  &.regular {
+    font-weight: 400;
+    font-family: 'monument-regular', sans-serif;
+  }
+
+  &.bold {
+    font-weight: 800;
+    font-family: 'monument-bold', sans-serif;
+  }
+}

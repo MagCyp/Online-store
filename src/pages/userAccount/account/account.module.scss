@@ -1,0 +1,30 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.account {
+  * {
+    color: $white;
+  }
+
+  &-form {
+    margin-left: 80px;
+    width: 688px;
+    color: $white;
+    display: flex;
+    flex-direction: column;
+    -webkit-user-select: none;
+
+    &-button-container {
+      width: 390px;
+    }
+
+    &-header {
+      padding-bottom: 24px;
+    }
+  }
+}
+
+.button-wrapper {
+  width: 180px;
+}

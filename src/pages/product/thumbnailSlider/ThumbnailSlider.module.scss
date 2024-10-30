@@ -1,0 +1,96 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.product-page-img {
+  width: 100%;
+
+  overflow: hidden;
+  position: relative;
+}
+
+.mySlides {
+  width: 100%;
+  height: 440px;
+  position: relative;
+  display: none;
+  margin-bottom: 24px;
+}
+
+.mySlides img {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  object-fit: cover;
+}
+
+.product-page-img .prev,
+.product-page-img .next {
+  cursor: pointer;
+  position: absolute;
+  top: 37%;
+  transform: translateY(-50%);
+  width: auto;
+  padding: 10px;
+  color: white;
+  font-family: 'helvetica-regular', sans-serif;
+  font-weight: bold;
+  font-size: 50px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.product-page-img .next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.product-page-img .prev:hover,
+.product-page-img .next:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.product-page-img .slider-img {
+  width: 100%;
+  height: 120px;
+  overflow-x: scroll;
+  display: flex;
+  user-select: none;
+  white-space: nowrap;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.product-page-img .slider-img::-webkit-scrollbar {
+  display: none;
+}
+
+.product-page-img .slider-img .slider-box {
+  width: 100px;
+  height: 72px;
+  min-width: 100px;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-page-img .slider-img .slider-box.active {
+  border-bottom: 4px solid $green-500;
+  & img {
+    opacity: 1;
+  }
+}
+
+.product-page-img .slider-img .slider-box img {
+  width: 100px;
+  height: 72px;
+  object-fit: cover;
+  display: inline-block;
+  opacity: 0.7;
+}
+
+.product-page-img .slider-img .slider-box img:hover {
+  opacity: 1;
+}

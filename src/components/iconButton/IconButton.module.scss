@@ -1,0 +1,136 @@
+@import '@/variables/colors/colors';
+@import '@/variables/mixins/utilities';
+@import '@/components/iconButton/mixin';
+
+.primary {
+  @include text-color($gray-500);
+  @include border-background($green-500);
+  @include sizes;
+
+  &:hover {
+    @include border-background($green-400);
+  }
+
+  &:active:enabled {
+    box-shadow: 0px 0px 28px 0px $primary-button-shadow;
+  }
+
+  &:disabled {
+    @include text-color($gray-300);
+    @include border-background($gray-200);
+  }
+}
+
+.secondary {
+  @include text-color($gray-10);
+  @include sizes;
+  border: 1px solid $gray-200;
+  background-color: transparent;
+
+  &:hover {
+    @include text-color($gray-500);
+    background-color: $white;
+    border-color: 1px solid $gray-500;
+  }
+
+  &:active:enabled {
+    @include border-background($gray-50);
+    @include text-color($gray-500);
+  }
+
+  &:disabled {
+    @include text-color($gray-200);
+    border: 1px solid $gray-200;
+    background-color: transparent;
+  }
+}
+
+.link-color {
+  @include text-color($green-500);
+  @include sizes;
+  border: transparent;
+  background-color: transparent;
+
+  &:hover {
+    @include text-color($green-300);
+  }
+
+  &:active:enabled {
+    @include text-color($green-700);
+  }
+
+  &:disabled {
+    @include text-color($gray-200);
+  }
+}
+
+.link-gray {
+  @include text-color($gray-10);
+  @include sizes;
+  border: transparent;
+  background-color: transparent;
+
+  &:hover {
+    @include text-color($gray-50);
+  }
+
+  &:active:enabled {
+    @include text-color($gray-100);
+  }
+
+  &:disabled {
+    @include text-color($gray-200);
+  }
+}
+
+.outline {
+  @include text-color($gray-10);
+  @include background-animation(150ms);
+  background-color: transparent;
+  border: 0px solid transparent;
+
+  &:hover {
+    @include text-color($gray-50);
+    @include background-animation(150ms);
+  }
+
+  &:active:enabled {
+    @include text-color($gray-10);
+    @include background-animation(150ms);
+  }
+
+  &:disabled {
+    @include text-color($gray-300);
+  }
+}
+
+.fill {
+  @include background-animation(150ms);
+  @include text-color($gray-10);
+  background-color: $default-background-color;
+  border-radius: 100px;
+  border: 0px solid transparent;
+  padding: 8px;
+
+  &:hover {
+    @include background-animation(150ms);
+    background-color: $hover-background-color;
+  }
+
+  &:active:enabled {
+    @include background-animation(150ms);
+    background-color: $focused-background-color;
+  }
+
+  &:disabled {
+    @include text-color($gray-200);
+    background-color: $disabled-background-color;
+  }
+}
+
+.none {
+  outline: none;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}

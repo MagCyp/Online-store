@@ -1,0 +1,18 @@
+@import '@/variables/colors/colors';
+
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 198px;
+  gap: 32px;
+  align-items: flex-start;
+
+  * {
+    color: $gray-10;
+  }
+
+  .line{
+    background-color: $gray-300;
+    width: 100%;
+  }
+}

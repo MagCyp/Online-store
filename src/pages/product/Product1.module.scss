@@ -1,0 +1,216 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.product-container {
+  padding-top: 54px;
+  padding-bottom: 130px;
+  color: white;
+
+  .breadcrumb {
+    padding: 66px 0 22px 0;
+  }
+
+  .product-content {
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.product-general_information {
+  display: flex;
+  justify-content: space-between;
+}
+
+.thumbnail_image {
+  width: 600px;
+}
+
+.product-details-container {
+  width: 448px;
+  margin-left: 72px;
+}
+.quantity-favorite-button-wrapper {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.button-wrapper {
+  margin-top: 20px;
+}
+
+.customer-reviews-container {
+  display: grid;
+  margin-top: 200px;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 0;
+
+  .customer-reviews-left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    h1 {
+      font-family: 'monument-regular', sans-serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: $gray-10;
+      line-height: 42px;
+    }
+
+    .stars-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      .stars {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+      }
+
+      .avg-rate {
+        color: $gray-10;
+        font-size: 14px;
+        font-family: 'helvetica-regular', sans-serif;
+        line-height: 20px;
+        margin-left: 4px;
+      }
+    }
+
+    p {
+      color: $gray-10;
+      font-size: 18px;
+      font-family: 'helvetica-regular', sans-serif;
+      font-weight: 400;
+    }
+  }
+
+  .customer-reviews-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 24px;
+
+    .rate-indicator {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+
+      .stars {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+      }
+
+      .reviews-count {
+        font-family: helvetica-regular, sans-serif;
+        font-size: 14px;
+        color: white;
+      }
+    }
+  }
+}
+
+.customer-box {
+  hr {
+    margin-bottom: 32px;
+    margin-top: 32px;
+    border: 1px solid $gray-300;
+  }
+
+  .customer-review-box {
+    display: flex;
+    flex-direction: row;
+
+    .customer-column {
+      min-width: 250px;
+      display: flex;
+      flex-direction: column;
+
+      .stars {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+
+      h3 {
+        font-size: 16px;
+        font-family: helvetica-regular, sans-serif;
+        font-weight: 700;
+        color: $gray-10;
+        line-height: 24px;
+        margin-top: 24px;
+      }
+
+      span {
+        font-size: 12px;
+        font-family: helvetica-regular, sans-serif;
+        font-weight: 400;
+        color: $gray-200;
+        line-height: 18px;
+        margin-top: 8px;
+      }
+
+      .verified {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 4px;
+        user-select: none;
+        margin-top: 16px;
+
+        span {
+          font-size: 14px;
+          font-family: helvetica-regular, sans-serif;
+          font-weight: 500;
+          color: $gray-10;
+          line-height: 20px;
+        }
+      }
+    }
+
+    .review {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      h2 {
+        font-size: 18px;
+        font-family: helvetica-regular, sans-serif;
+        font-weight: 700;
+        color: $gray-10;
+        line-height: 26px;
+      }
+
+      p {
+        font-size: 14px;
+        font-family: helvetica-regular, sans-serif;
+        font-weight: 400;
+        color: $gray-50;
+        line-height: 20px;
+      }
+    }
+  }
+}
+
+.recommended-product {
+  text-align: center;
+  color: white;
+  font-size: 32px;
+  line-height: 48px;
+  font-weight: 400;
+  font-family: monument-regular, sans-serif;
+  user-select: none;
+
+  &-row {
+    margin-top: 56px;
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+  }
+}

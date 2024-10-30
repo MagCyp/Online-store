@@ -1,0 +1,28 @@
+@import '@/variables/colors/colors';
+
+.rate-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .rate-and-reviews {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    .rate {
+      color: $gray-10;
+      font-size: 14px;
+      font-family: 'helvetica-regular', sans-serif;
+      line-height: 20px;
+    }
+
+    .reviews {
+      color: $gray-10;
+      font-size: 14px;
+      font-family: 'helvetica-regular', sans-serif;
+      text-decoration: underline;
+      line-height: 20px;
+    }
+  }
+}

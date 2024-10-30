@@ -1,0 +1,48 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.drop-down-item {
+  display: flex;
+  padding: 12px;
+  width: 100%;
+  align-items: center;
+  gap: 32px;
+  border-bottom: 1px solid $gray-400;
+  background-color: $gray-500;
+  color: $gray-10;
+
+  &:hover {
+    .icon-hovered {
+      transform: rotate(45deg);
+      transition: all 50ms ease-in-out;
+    }
+  }
+}
+
+.text-badge {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1 0 0;
+}
+
+.text {
+  @extend .medium;
+  @extend .m;
+  text-decoration: none;
+  color: $gray-10;
+}
+
+.list-item {
+  padding: 16px 24px;
+  border: none;
+
+  &:hover {
+    background-color: $gray-400;
+  }
+
+  &:disabled {
+    color: $gray-300;
+  }
+}

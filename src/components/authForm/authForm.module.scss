@@ -1,0 +1,61 @@
+@import '@/variables/colors/colors';
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($gray-10, 0.1);
+  position: fixed;
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  top: 0;
+  right: 0;
+}
+
+.container {
+  width: 540px;
+  background-color: $gray-600;
+  box-shadow: 0px 0px 200px 0px rgba($gray-100, 0.24);
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.header {
+  color: $white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 28px;
+  padding-top: 8px;
+}
+
+.divider {
+  display: flex;
+  padding: 12px 0px;
+  align-items: center;
+  color: $white;
+
+  &::before,
+  &::after {
+    height: 1px;
+    flex-grow: 1;
+    content: '';
+    background-color: $gray-300;
+  }
+
+  &::before {
+    margin-right: 10px;
+  }
+
+  &::after {
+    margin-left: 10px;
+  }
+}

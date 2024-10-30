@@ -1,0 +1,50 @@
+@import '@/variables/colors/colors';
+
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.container {
+  flex-direction: column;
+  padding: 48px;
+  position: absolute;
+  z-index: 100;
+  background-color: $gray-600;
+  box-shadow: 0px 0px 200px 0px $gray-50;
+  max-width: 440px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+
+  &-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $gray-50;
+    gap: 16px;
+  }
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  padding-top: 40px;
+
+  & > * {
+    flex: 1;
+  }
+}

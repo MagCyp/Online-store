@@ -1,0 +1,105 @@
+@import '@/variables/colors/colors';
+@import '@/variables/skeleton/skeleton';
+
+.skeleton-wrapper {
+  display: flex;
+  gap: 140px;
+}
+
+.reviews-wrapper {
+  padding: 18px 0;
+}
+
+.title-skeleton {
+  width: 458px;
+  height: 60px;
+  border-radius: 6px;
+  margin-bottom: 24px;
+  @include skeletonGradientAnimation;
+}
+
+.description-skeleton {
+  width: 458px;
+  height: 18px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  @include skeletonGradientAnimation;
+}
+
+.icons-skeleton {
+  width: 144px;
+  height: 45px;
+  border-radius: 6px;
+  margin-top: 72px;
+  margin-bottom: 24px;
+  @include skeletonGradientAnimation;
+}
+
+.rating-skeleton {
+  width: 172px;
+  height: 24px;
+  border-radius: 6px;
+  @include skeletonGradientAnimation;
+}
+
+.quotes-skeleton {
+  width: 45px;
+  height: 24px;
+  border-radius: 6px;
+  margin-top: 27px;
+  margin-bottom: 43px;
+  @include skeletonGradientAnimation;
+}
+
+.comment-skeleton {
+  width: 414px;
+  height: 120px;
+  border-radius: 6px;
+  margin-bottom: 32px;
+  @include skeletonGradientAnimation;
+}
+
+.skeleton-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 6px;
+  margin-right: 22px;
+  @include skeletonGradientAnimation;
+}
+
+.user-skeleton-wrapper {
+  display: flex;
+  align-items: center;
+  padding-bottom: 44px;
+}
+
+.text-skeleton-wrapper {
+  margin-right: 51px;
+}
+
+.name-skeleton {
+  width: 52px;
+  height: 18px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  @include skeletonGradientAnimation;
+}
+
+.experiance-skeleton {
+  width: 140px;
+  height: 14px;
+  border-radius: 6px;
+  @include skeletonGradientAnimation;
+}
+
+.rating-wrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.skeleton-star {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  @include skeletonGradientAnimation;
+}

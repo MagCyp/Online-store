@@ -1,0 +1,79 @@
+@import '@/variables/colors/colors';
+
+.bg-wrapper {
+  position: relative;
+  padding: 116px 0;
+}
+
+.skeleton-wrapper {
+  display: flex;
+  gap: 32px;
+  padding-top: 48px;
+}
+
+.categories-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid $gray-300;
+
+  .category {
+    padding-bottom: 16px;
+    color: $gray-50;
+    cursor: pointer;
+  }
+
+  .active-category {
+    color: $gray-10;
+    border-bottom: 2px solid $gray-10;
+  }
+}
+
+.cards-wrapper {
+  padding-top: 48px;
+  width: 1280px;
+  margin: 0 auto;
+
+  .card {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.icon {
+  margin-top: 182px;
+  width: 56px;
+  height: 56px;
+}
+
+.swiper-wrapper {
+  width: 1120px;
+
+  .my-swiper swiper-slide {
+    width: 256px;
+  }
+}
+
+.pagination-circle-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 100px;
+
+  .pagination-circle {
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    background-color: $gray-200;
+    cursor: pointer;
+  }
+
+  .active-pagination-circle {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background-color: $gray-10;
+  }
+}

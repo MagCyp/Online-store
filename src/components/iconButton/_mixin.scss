@@ -1,0 +1,17 @@
+@mixin sizes {
+  &.large {
+    padding: 16px;
+  }
+
+  &.medium {
+    padding: 12px;
+  }
+
+  &.small {
+    padding: 8px;
+  }
+
+  &.extraSmall {
+    padding: 6px;
+  }
+}

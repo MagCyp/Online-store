@@ -1,0 +1,41 @@
+@use '@/variables/fonts/fontFamiliesHelvetica';
+@use '@/variables/fonts/paragraphSizes';
+@import '@/variables/colors/colors';
+
+.quantity-box {
+  width: 144px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid $gray-200;
+}
+
+.button {
+  background-color: $gray-600;
+  color: $white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+
+  font-family: 'helvetica-regular', sans-serif;
+  font-size: 36px;
+  font-weight: light;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.quantity {
+  font-family: 'helvetica-regular', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  padding: 0 15px;
+  text-align: center;
+  min-width: 40px;
+}

@@ -1,0 +1,54 @@
+@import '@/variables/colors/colors';
+@import '@/variables/skeleton/skeleton';
+
+.skeleton-img {
+  width: 256px;
+  height: 256px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  @include skeletonGradientAnimation;
+}
+
+.skeleton-brand {
+  width: 49px;
+  height: 14px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  @include skeletonGradientAnimation;
+}
+
+.skeleton-name {
+  width: 150px;
+  height: 18px;
+  border-radius: 6px;
+  margin-bottom: 21px;
+  @include skeletonGradientAnimation;
+}
+
+.skeleton-description {
+  width: 256px;
+  height: 14px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  @include skeletonGradientAnimation;
+}
+
+.skeleton-additional {
+  width: 138px;
+  height: 14px;
+  border-radius: 6px;
+  margin-bottom: 21px;
+  @include skeletonGradientAnimation;
+}
+
+.price-wrapper {
+  display: flex;
+  gap: 12px;
+}
+
+.price-wrapper div {
+  width: 49px;
+  height: 22px;
+  border-radius: 6px;
+  @include skeletonGradientAnimation;
+}
