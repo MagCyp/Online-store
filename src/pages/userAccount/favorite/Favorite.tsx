@@ -24,10 +24,10 @@ const Favorite: FC = () => {
   const products = useAppSelector(state => state.favorites.items as IProduct[]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [sortedProducts, setSortedProducts] = useState<IProduct[]>(products);
-  const [sortBy, setSortBy] = useState<string>('createdAt,DESC');
+  // const [sortBy, setSortBy] = useState<string>('createdAt,DESC');
 
   const handleSortBy = (sortBy: string) => {
-    setSortBy(sortBy);
+    // setSortBy(sortBy);
     const [key, order] = sortBy.split(',');
 
     const sorted = [...products].sort((a, b) => {

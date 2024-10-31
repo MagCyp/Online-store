@@ -17,7 +17,7 @@ import { Props } from '@pages/userAccount/favorite/favoriteProductCard/types';
 import styles from '@pages/userAccount/favorite/favoriteProductCard/FavoriteProductCard.module.scss';
 
 const jwt = localStorage.getItem('jwt') || sessionStorage.getItem('jwt');
-const path = '/products';
+// const path = '/products';
 const baseURL = process.env.REACT_APP_API_URL;
 
 const FavoriteProductCard: FC<Props> = ({

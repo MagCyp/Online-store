@@ -81,7 +81,7 @@ const Product1: FC = () => {
   };
 
   const handleAdd = () => {
-    dispatch(cartAdd([{ id: id!, quantity }]));
+    if(id) dispatch(cartAdd([{ id: id, quantity }]));
   };
 
   const checkIfProductIsLiked = async () => {
